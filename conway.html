@@ -1,0 +1,657 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles/hackmd.css" />
+    <link rel="stylesheet" href="styles/latex.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        MathJax = {
+          loader: {load: ['[tex]/amscd']},
+          tex: {
+            packages: {'[+]': ['amscd']},
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            macros:{
+                Abs: ['\\left\\lvert #1 \\right\\rvert',1],
+                abs: ['\\lvert #1 \\rvert',1],
+                Norm: ['\\left\\lVert #1 \\right\\rVert',1],
+                norm: ['\\lVert #1 \\rVert',1],
+                op: ['\\textrm{op}'],
+                dist: ["\\operatorname\{dist\}"],
+                Ker: ["\\operatorname\{Ker\}"],
+                Ima: ["\\operatorname\{Im\}"]
+            }}
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    -->
+    <script type="text/javascript" src="scripts/environ.js"></script>
+    
+</head>
+
+<body>
+<div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
+
+<!-- Write below -->
+
+<h3>Contents</h3>
+<span class="toc">
+<ul id="toc-only">
+</ul>
+</span>
+
+<script>
+    section("part","Analysis")
+</script>
+<script>
+    section("chapter","Functional Analysis")
+</script>
+<script>
+    section("section","Hilbert Space")
+</script>
+Thorugh this chapter $\mathbf{F}$ will denote either the real field, $\mathbf{R}$ or the complex field $\mathbf{C}$.
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $V$ is a vector space over $\mathbf{F}$, a <font color="Teal"><em>semi-inner</em></font> product on $V$ is a function $u:V\times V\to\mathbf{F}$ such that for all $\alpha,\beta$ in $\mathbf{F}$, and $x,y,z\in V$, the following are satisfies:
+<ol class="parenthesis">
+    <li>$u(\alpha x+\beta y,z)=\alpha u(x,z)+\beta u(y,z)$,</li>
+    <li>$u(x,\alpha y+\beta z)=\overline{\alpha}u(x,y)+\overline{\beta}u(x,z)$,</li>
+    <li>$u(x,x)\geq 0$,</li>
+    <li>$u(x,y)=\overline{u(y,x)}$.</li>
+</ol>
+An <font color="Teal"><em>inner product</em></font> on $V$ is a semi-innver product that also satisfies the following:
+<ol class="parenthesis" style="counter-reset: listcounter 4;">
+    <li>If $u(x,x)=0$ then $x=0$.</li>
+</ol>
+An inner product in this chapter will be denoted by $\langle x,y\rangle=u(x,y)$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"CBSI", "name": "Cauchy–Bunyakovsky–Schwarz inequality"})
+</script><em> $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$, then
+$$
+\vert\langle x,y\rangle\vert^2\leq\langle x,x\rangle\langle y,y\rangle
+$$
+for all $\alpha$ and $\beta$. Moreover, equality occurs if and only if ther are scalars $\alpha$ and $\beta$, both not $0$, such that $\langle\beta x,+\alpha y,\beta x+\alpha y\rangle=0$.
+</em></div>
+
+<p><em>Proof.</em> If $\alpha\in\mathbf{F}$ and $x$ and $y\in V$, then
+$$
+0\leq\langle x-\alpha y,x-\alpha y\rangle=\langle x,x\rangle-\alpha\langle y,x\rangle-\overline{\alpha}\langle x,y\rangle+\vert\alpha\vert^2\langle y,y\rangle.
+$$
+Suppose $\langle y,x\rangle=be^{i\theta}$, $b\geq 0$, and let $\alpha=e^{-i\theta}t$, $t\in\mathbf{R}$. The above inequality becomes
+$$
+\begin{align}
+0&\leq\langle x,x\rangle-e^{-i\theta}tbe^{i\theta}-e^{i\theta}tbt^{-i\theta}+t^2\langle y,y\rangle\\
+&=\langle x,x\rangle-2bt+t^2\langle y,y\rangle\\
+&=c-2bt+at^2\\
+&=:q(t),
+\end{align}
+$$
+where $c=\langle x,x\rangle$ and $a=\langle y,y\rangle$. Thus $q(t)$ is a quadratic polynomial in the real variable $t$ and $q(t)\geq 0$ for all $t$. This implies tha the quation $q(t)=0$ has at most one real solution $t$. From the equadratic formula we find that the discriminant is not positive; that is, $0\geq 2b^2-4ac$. Hence
+$$
+0\geq b^2-ac=\vert\langle x,y\rangle\vert^2-\langle x,x\rangle\langle y,y\rangle,
+$$
+proving the inequality. The proof of the necessary and sufficient condition is routine.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> If $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$ and $\Vert x\Vert:=\langle x,x\rangle^{1/2}$ for all $x\in V$, then
+<ol class="parenthesis">
+    <li>$\Vert x+y\Vert\leq\Vert x\Vert+\Vert y\Vert$ for all $x,y\in V$,</li>
+    <li>$\Vert\alpha x\Vert=\vert\alpha\vert\Vert x\Vert$ for all $\alpha\in\mathbf{F}$ and $x\in V$.</li>
+</ol>
+If $\langle\cdot,\cdot\rangle$ is an innre product, then
+<ol class="parenthesis" style="counter-reset: listcounter 2;">
+    <li>$\Vert x\Vert=0$ implies $x=0$</li>
+</ol>
+</em></div>
+
+<p><em>Proof.</em> The proof of (ii) and (iii) are easy. To see (i), note that for $x$ and $y$ in $V$,
+$$
+\begin{align}
+\Vert x+y\Vert^2&=\langle x+y,x+y\rangle\\
+&=\Vert x\Vert^2+\langle y,x\rangle+\langle x,y\rangle+\Vert y\Vert^2\\
+&=\Vert x\Vert^2+2\Re\langle x,y\rangle+\Vert y\Vert^2.
+\end{align}
+$$
+By the (<script>ref("CBSI");</script>), $\Re\langle x,y\rangle\leq\vert\langle x,y\rangle\vert\leq\Vert x\Vert\Vert y\Vert$. Hence
+$$
+\begin{align}
+\Vert x+y\Vert^2&\leq\Vert x\Vert^2+2\Vert x\Vert y\Vert y\Vert+\Vert y\Vert^2\\
+&=(\Vert x\Vert+\Vert y\Vert)^2.
+\end{align}
+$$
+The inequality now follows by taking square roots.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition",{"label":"L2HS"})
+</script><em> $L^2(\mu)$ is a Hilbert space.
+</em></div>
+
+<p><em>Proof.</em> Omitted.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> A <font color="Teal"><em>Hilbert</em></font> space if a vector space $H$ over $\mathbf{F}$ togehter with an inner product $\langle\cdot,\cdot\rangle$ such that relative to the metric $d(x,y)=\Vert x-y\Vert$ induced by the norm, $H$ is a complete metric space.
+</div>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $G$ is an open subset of the complex plane $\mathbf{C}$, then $L_a^2(G)$ denote the collection of all analytic functions $f:G\to\mathbf{}$ such that
+$$
+\Vert f\Vert_2:=\iint_G\vert f(x+iy)\vert^2dxdy< \infty.
+$$
+$L^2_a(G)$ is called the <font color="Teal"><em>Bergman space</em></font> for $G$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Lemma")
+</script><em> If $f$ is analytic in a neighborhood of $\overline{B}(a,r)$, then
+$$
+f(a)=\frac{1}{\pi r^2}\iint_{B(a,r)}f.
+$$
+</em></div>
+
+<p><em>Proof.</em> By the mean value property, of $0>t\leq r$ then
+$$
+f(a)=\frac{1}{2\pi}\int^\pi_{-\pi}f(a+te^{i\theta})d\theta
+$$
+Hence
+$$
+\begin{align}
+(\pi r^2)^{-1}\iint_{B(a,r)}f&=(\pi r^2)^{-1}\int_0^r\left[\int_{-\pi}^\pi f(a+te^{i\theta}d\theta)\right]dt\\
+&=\frac{2}{r^2}\int_0^rtf(a)dt=df(a).
+\end{align}
+$$
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> if $f\in L^2_a(G)$, $a\in G$, and $0< r< \dist(a,\partial G)$, then
+$$
+\vert f(a)\vert\leq\frac{1}{r\sqrt{\pi}}\Vert f\Vert_2
+$$
+</em></div>
+
+<p><em>Proof.</em> Since $\overline{B}(a,r)\subseteq G$, the ppreceding lemma and (<script>ref("CBSI");</script>) implies
+$$
+\begin{align}
+\abs{f(a)}&=\frac{1}{\pi r^2}\abs{\iint_{B(a,r)}f\cdot 1}\\
+&\leq\frac{1}{\pi r^2}\left[\iint_{B(a,r)}\abs{f}^2\right]^{1/2}\left[\iint_{B(a,r)}1\right]^{1/2}\\
+&\leq\dfrac{1}{\pi r^2}\norm{f}_2r\sqrt{\pi}.
+\end{align}
+$$
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition")
+</script><em> $L^2_a(G)$ is a Hilbert space.
+</em></div>
+
+<p><em>Proof.</em> $L^2a(G)\subseteq L^2(\mu)$ and $L^2(\mu)$ is a Hilbert space by (<script>ref("L2HS");</script>). It suffices to show that $L^2_a(G)$ is closed in $L^2(\mu)$. Let $\{f_n\}$ be a sequence in $L^2_a(G)$ and let $f\in L^2(\mu)$ such that $\int\abs{f_n-f}^2d\mu\to 0$ as $n\to\infty$. Suppose $\overline{B}(a,r)\subseteq G$ and let $0< \rho< \dist(B(a,r),\partial G)$. By the precedding corollary there is a constant $C$ such that $\abs{f_n(z)-f_m(z)}\leq C\norm{f_n-f_m}_2$ fro all $n,m$ and for $\abs{z-a}\leq \rho$. Thus $\{f_n\}$ is a uniformly Cauchy sequence on any closed disk in $G$. By () there is an analytic function $g$ on $G$ such that $f_n(z)\to g(z)$ uniformly on compact subsets of $G$. But since $\int\abs{f_n-f}^2d\mu\to 0$, it converges in measure and so there is a subsequence $\{f_{n_k}\}$ such that $f_{n_k}(z)\to f(z)$ a.e. $[\mu]$. Thus $f=g$ a.e. $[\mu]$ and so $f\in L^2_a(G)$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $H$ is a Hilbert space and $f,g\in H$, then $f$ adn $g$ are orthogonal if $\langle f,g\rangle$. In symbols, $f\perp g$. If $A,B\subseteq H$, then $A\perp B$ if $f\perp g$ for every $f$ in $A$ and $g$ in $B$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem")
+</script><em> If $f_1,f_2,\ldots,f_n$ are pairwise orthogonal vectors in $H$, then
+$$
+\norm{f_1+f_2+\cdots+f_n}^2=\norm{f_1}^2+\norm{f_2}^2+\cdots+\norm{f_n}^2.
+$$
+</em></div>
+
+<p><em>Proof.</em> If $f_1\perp f_2$, then
+$$
+\norm{f_1+f_2}^2=\langle f_1+f_2,f_1+f_1\rangle=\norm{f_1}^2+2\Re\langle f_1,f_2\rangle+\norm{f_2}^2.
+$$
+Since $f_1\perp f_2$, this implies the resilt for $n=2$. The remainder of the proof proceeds by induction.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"PL"})
+</script><em> If $H$ is a Hilbert space and $f,g\in H$, then
+$$
+\norm{f+g}^2+\norm{f-g}^2=2(\norm{f}^2+\norm{g}^2).
+$$
+</em></div>
+
+<p><em>Proof.</em> For any $f$ and $g$ in $H$,
+$$
+\begin{align}
+\norm{f+g}^2=\norm{f}^2+2\Re\langle f,g\rangle+\norm{g}^2,\\
+\norm{f-g}^2=\norm{f}^2-2\Re\langle f,g\rangle+\norm{g}^2.
+\end{align}
+$$
+Now add.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $V$ is a vector space over $\mathbf{F}$ and $A\subseteq V$, then $A$ is a <font color="Teal"><em>convex</em></font> set if for any $x$ and $y$ in $A$ and $0\leq t\leq 1$, $tx+(1-t)y\in A$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"OGPU"})
+</script><em> If $H$ is a Hilbert space, $K$ a closed convex non-empty subset of $H$ and $h\in H$, then there is a unique points $k_0$ in $K$ such that
+$$
+\norm{h-k_0}=\dist(h,K)=:\inf\{\norm{h-k}\mid k\in K\}.
+$$
+</em></div>
+
+<p><em>Proof.</em> By considering $K-h=:\{k-h\mid k\in K\}$ instead of $K$, it suffices to assume that $h=0$. So we want to show that there is a qunie vector $k_0$ in $K$ such that
+$$
+\norm{k_0}=\dist(0,K)=:\inf\{\norm{k}\mid k\in K\}.
+$$
+Let $d=\dist(0,K)$. By definition, there is a seuqence $\{k_n\}$ in $K$ such that $\norm{k_n}\to d$. Now (<script>ref("PL");</script>) implies that
+$$
+\Norm{\frac{k_n-k_m}{2}}=\frac{1}{2}(\norm{k_n}^2+\norm{k_m}^2)-\Norm{\frac{k_n+l_m}{2}}^2.
+$$
+Since $K$ is convex, $(k_n+k_m)/2\in K$. Hence $\norm{(k_n+k_m)/2}^2\geq d^2$. If $\varepsilon>0$, choose $N$ such that for all $n\geq N$, $\norm{k_n}^2< d^2+\varepsilon^2/4$. By the equation above, if $n,m\geq N$, then
+$$
+\Norm{\frac{k_n-k_m}{2}}^2< \frac{1}{2}(2d^2+\frac{\varepsilon^2}{2})-d^2=\frac{\varepsilon^2}{4}.
+$$
+Thus $\norm{k_n-k_m}< \varepsilon$ for $n,m\geq N$ and $\{k_n\}$ is Caushy. Since $H$ is complete and $K$ is closed, there is a $k_0$ in $K$ such that $\norm{k_n-k_0}\to 0$. Also for all $k_n$,
+$$
+d\leq\norm{k_0}=\norm{k_0-k_n+k_n}\leq\norm{k_0-k_n}+\norm{k_n}\to d.
+$$
+Thus $\norm{k_0}=d$. To prove that $k_0$ is unique, suppose $h_0\in K$ such that $\norm{h_0}=d$. By convexity, $(k_0+h_0)/2\in K$. Hence
+$$
+d\leq\Norm{\frac{h_0+k_0}{2}}\leq\frac{\norm{h_0}+\norm{k_0}}{2}=d.
+$$
+So $\norm{(h_0+k_0)/2}=d$, and (<script>ref("PL");</script>) implies
+$$
+d^2=\Norm{\frac{h_0+k_0}{2}}^2=d^2-\Norm{\frac{h_0-k_0}{2}}^2.
+$$
+Hence $h_0=k_0$.
+<span style="float:right;">$\square$</span></p>
+
+If the convex set in the preceding theorem is in fact a closed linear subspace of $H$, mor can be said.
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"OGPE"})
+</script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $\norm{h-f_0}=\dist(h,M)$, then $h-f_0\perp M$. Conversely, if $f_0\in M$ such that $h-f_0\in M$, then $\norm{h-f_0}=\dist(h,M)$.
+</em></div>
+
+<p><em>Proof.</em> Suppose $f_0\in M$ and $\norm{h-f_0}=\dist(h,M)$. If $f\in M$, then $f_0+f\in M$ and so
+$$
+\begin{align}
+\norm{h-f_0}^2&\leq\norm{h-(f_0+f)}^2\\
+&=\norm{(h-f_0)-f}^2\\
+&=\norm{h-f_0}^2-2\Re\langle h-f_0,f\rangle+\norm{f}^2.
+\end{align}
+$$
+Thus $$2\Re\langle h-f_0,f\rangle\leq\norm{f}^2$$ for any $f$ in $M$. Fix $f$ in $M$ and substitute $te^{i\theta}f$ for $f$ in the preceding inequality, where $\langle h-f_0,f\rangle=re^{i\theta}$, $r\geq 0$. This yields $2\Re(te^{-i\theta}re^{i\theta})\leq t^2\norm{f}^2$, or $2tr\leq t^2\norm{f}^2$. Letting $t\to 0$, we see that $r=0$, that is, $h-f_0\perp f$. For the converse, suppose $f_0\in M$ usch that $h-f_0\perp M$. If $f\in M$, then $h-f_0\perp f_0-f$ so that
+$$
+\begin{align}
+\norm{h-f}^2&=\norm{(h-f_0)+(f_0-f)}^2\\
+&=\norm{h-f_0}^2+\norm{f_0-f}^2\\
+&\geq\norm{h-f_0}^2.
+\end{align}
+$$
+Thus $\norm{h-f_0}=\dist(h,M)$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $H$ is a Hilbert space and $A\subseteq H$, then define $A^\perp=\{f\in H\mid f\perp g\ \textrm{ for all }g\textrm{ in }A\}$. It is easy to see that $A^\perp$ is a closed linear subsepace of $H$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary",{"label":"OGPC"})
+</script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $h-f_0\in M^\perp$.
+</em></div>
+
+<p><em>Proof.</em> This follows from (<script>ref("OGPE");</script>) together with the uniqueness statement in (<script>ref("OGPU");</script>).
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition",{"label":"OGPD"})
+</script> By (<script>ref("OGPD");</script>) if $M$ is a closed linear subspace of $H$ and $h\in H$, a function $P=P_M:H\to M$ can be defined so that $h-Ph\perp M$. $P$ is called the <font color="Teal"><em>orthogonal projection</em></font> of $H$ onto $M$.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"BPOP"})
+</script><em> If $M$ is a closed linear subspace of $H$ and $h\in H$, then
+<ol class="parenthesis">
+    <li>$P$ is a linear transformation on $H$,</li>
+    <li>$\norm{Ph}\leq\norm{h}$ for every $h$ in $H$,</li>
+    <li>$P^2=P$,</li>
+    <li>$\Ker P=M^\perp$ and $\Ima P=M$.</li>
+</ol>
+</em></div>
+
+<p><em>Proof.</em> Keep in mind that for every $h\in H$, $h-Ph\in M^\perp$ and $\norm{h-Ph}=\dist(h,M)$. (i) Let $h_1$, $h_2\in H$ and $\alpha_1$, $\alpha_2\in\mathbf{F}$. If $f\in M$ then $$
+        \begin{align}
+        &\langle(\alpha_1h_1+\alpha_2h_2)-(\alpha_1Ph_1+\alpha_2Ph_2),f\rangle\\
+        =&\alpha_1\langle h_1-Ph_1,f\rangle+\alpha_2\langle h_2-Ph_2,f\rangle\\
+        =&0.
+        \end{align}
+        $$
+        Therefore by the uniqueness statement of (<script>ref("OGPE");</script>), $P(\alpha h_1+\alpha_2h_2)=\alpha_1Ph_1+\alpha_2Ph_2$. (ii) If $h\in H$, then $h=(h-Ph)+Ph$, $Ph\in M$, and $h-Ph\in M^\perp$. Thus $\norm{h}^2=\norm{h-Ph}^2+\norm{Ph}^2\geq\norm{Ph}^2$. (iii) If $f\in M$, then $Pf=f$. For any $h\in H$, $Ph\in M$. Hence $P^2h=P(Ph)=Ph$, that is, $P^2=P$. (iv) If $Ph=0$, then $h=h-Ph\in M^\perp$. Conversely, if $h\in M^\perp$, then $0$ is the unique vector in $M$ such that $h-0=h\perp M$ and $h\in M^\perp$. Therefore $Ph=0$. The assertion $\Ima P=M$ is clearly.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> We introduce the notation $M\leq H$ to signify that $M$ is a closed linear subspace of $H$. We will use the term <font color="Teal"><em>linaer manifold</em></font> to designate a linear subspace of $H$ that is not necessarily clsoed. A <font color="Teal"><em>linear subsapce</em></font> of $H$ will always mean a closed linear subsapce.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> If $M\leq H$ then $(M^\perp)^\perp=M$.
+</em></div>
+
+<p><em>Proof.</em> If $I$ is used to designate the identity operator on $H$ and $P=P_M$, then $I-P$ is the orthogonal projection of $H$ onto $M\perp$ (exercise). By part (iv) of (<script>ref("BPOP");</script>), $(M^\perp)^\perp=\Ker(I-P)$. But $0=(I-P)h$ if and only if $h=Ph$. Thus $(M^\perp)^\perp=\Ker(I-P)=\Ima P=M$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> If $A\subseteq H$, then $(A^\perp)^\perp$ is the closed linear span of $A$ in $H$.
+</em></div>
+
+<p><em>Proof.</em> Omitted.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> If $Y$ is a linear manifold in $H$, then $Y$ is dense in $H$ if and only if $Y^\perp=(0)$.
+</em></div>
+
+<p><em>Proof.</em> Omitted.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition")
+</script><em> let $H$ be a Hilbert space and $L:H\to\mathbf{F}$ a linear functional. Then the following statements are equivalent:
+<ol class="parenthesis">
+    <li>$L$ is continuous.</li>
+    <li>$L$ is continuous at $0$.</li>
+    <li>$L$ is continuous at some point.</li>
+    <li>There is a constant $c>0$ such that $\abs{L(h)}\leq c\norm{h}$ for every $h\in H$.</li>
+</ol>
+</em></div>
+
+<p><em>Proof.</em> If is clearly that (i)$\Rightarrow$(ii)$\Rightarrow$(iii) and (iv)$\Rightarrow$(ii). We will show that (iii)$\Rightarrow$(i) and (ii)$\Rightarrow$(iv). Suppose $L$ is continuous at $h_0$ and $h$ is any point in $H$. If $h_n\to h$ in $H$, then $h_n-h+h_0\to h_0$. By assumption,
+$$
+\begin{align}
+L(h_0)&=\lim_{n\to\infty}L(h_n-h+h_0)\\
+&=\lim_{n\to\infty}\big(L(h_n)-L(h)+L(h_0)\big)\\
+&=\lim_{n\to\infty}L(h_n)-L(h)+L(h_0).
+\end{align}
+$$
+Hence $L(h)=\lim L(h_n)$, and (iii)$\Rightarrow$(i) is prove. To show that (ii)$\Rightarrow$(iv), assume $L$ is continuous at $0$. Thus $L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}< 1\})$ contains an open neibhnorhood of $0$. So there is a $\delta> 0$ such that $B(0,\delta)\subseteq L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}< 1\})$, that is, $\norm{h}<\delta$ implies $\abs{L(h)}< 1$. If $h$ is an arbitrary element of $H$ and $\varepsilon> 0$, then $\norm{\delta(\norm{h}+\varepsilon)^{-1}}<\delta$. Hence
+$$
+1> \Abs{L\left[\frac{\delta h}{\norm{h}+\varepsilon}\right]}=\frac{\delta}{\norm{h}+\varepsilon}\abs{L(h)}.
+$$
+Thus $\abs{L(h)}<(\norm{h}+\varepsilon)/\delta$. Let $\varepsilon\to 0$ we see that (iv) holds with $c=1/\delta$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> A bounded linear functional $L$ on $H$ is a linear functional for which there is a constant $c> 0$ such that $\abs{L(h)}\leq c\norm{h}$ for all $h\in H$. In light of the preceding proposition, a linear functional is bounded if ando nly if it is continuous. In this case, define
+$$
+\norm{L}_\op:=\sup\{\abs{L(h)}\mid\norm{h}\leq 1\}.
+$$
+Note that by definition, $\norm{L}_\op < \infty$. $\norm{L}_\op$ is called the <font color="Teal"><em>operator norm</em></font> of $L$.
+</div>
+
+
+
+
+
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<!--
+
+<script>
+    section("chapter","Harmonic Analysis")
+</script>
+<script>
+    section("part","Algebra")
+</script>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition", "transcendence")
+</script>Given $E/F$ a field extension that may not be algebraic. If $B$ is a subset of $E$ then an element $\gamma$ is <font color="Teal"><em>algebraically dependent</em></font> on $B$ if $\gamma$ is algebraic over the field $F(B)$, and a subset $C$ of $E$ is algebraically dependent on $B$ if every element in $C$ is algebraically dependents on $B$. We say $C$ is <font color="Teal"><em>algebraically independent</em></font> on $B$ if $C$ is not algebraically dependent on $B$. We say $B$ is <font color="Teal"><em>algebraically independent</em></font> over $F$ if for every $\gamma\in B$, $\gamma$ is algebraically independent on $B\setminus\{\gamma\}$. We say $B$ is <font color="Teal"><em>algebraically dependent</em></font> over $F$ if $B$ is not algebraically independent over $F$.
+</div>
+
+
+<p><em>Proof.</em> 
+$$
+\begin{CD}
+A @>a>> B\\
+@VVbV @VVcV\\
+C @>d>> D
+\end{CD}
+$$
+<span style="float:right;">$\square$</span></p><br></br> 
+-->
+
+
+<!-- Write above -->
+</div>
+
+<script>
+    document.getElementById("toc-only").innerHTML = generateTOC("page");
+</script>
+
+<div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+    <div class="pull-right dropdown">
+        <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+        <i class="fa fa-bars"></i>
+        </a>
+        <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+            <div class="toc">
+                <ul class="nav">
+                    <script>
+                        generateTOC();    
+                    </script>
+                </ul>
+            </div>
+            <div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+        </ul>
+    </div>
+</div>
+<div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+    <div class="toc">
+        <ul class="nav">
+            <script>
+                generateTOC();    
+            </script>
+        </ul>
+    </div>
+    <div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+<script>
+    var markdown = $(".markdown-body");
+    //smooth all hash trigger scrolling
+    function smoothHashScroll() {
+        var hashElements = $("a[href^='#']").toArray();
+        for (var i = 0; i < hashElements.length; i++) {
+            var element = hashElements[i];
+            var $element = $(element);
+            var hash = element.hash;
+            if (hash) {
+                $element.on('click', function (e) {
+                    // store hash
+                    var hash = this.hash;
+                    if ($(hash).length <= 0) return;
+                    // prevent default anchor click behavior
+                    e.preventDefault();
+                    // animate
+                    $('body, html').stop(true, true).animate({
+                        scrollTop: $(hash).offset().top
+                    }, 100, "linear", function () {
+                        // when done, add hash to url
+                        // (default click behaviour)
+                        window.location.hash = hash;
+                    });
+                });
+            }
+        }
+    }
+    
+    smoothHashScroll();
+    var toc = $('.ui-toc');
+    var tocAffix = $('.ui-affix-toc');
+    var tocDropdown = $('.ui-toc-dropdown');
+    //toc
+    tocDropdown.click(function (e) {
+        e.stopPropagation();
+    });
+    
+    var enoughForAffixToc = true;
+    
+    function generateScrollspy() {
+        $(document.body).scrollspy({
+            target: ''
+        });
+        $(document.body).scrollspy('refresh');
+        if (enoughForAffixToc) {
+            toc.hide();
+            tocAffix.show();
+        } else {
+            tocAffix.hide();
+            toc.show();
+        }
+        $(document.body).scroll();
+    }
+    
+    function windowResize() {
+        //toc right
+        var paddingRight = parseFloat(markdown.css('padding-right'));
+        var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+        toc.css('right', right + 'px');
+        //affix toc left
+        var newbool;
+        var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+        //for ipad or wider device
+        if (rightMargin >= 133) {
+            newbool = true;
+            var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+            var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+            tocAffix.css('left', left + 'px');
+        } else {
+            newbool = false;
+        }
+        if (newbool != enoughForAffixToc) {
+            enoughForAffixToc = newbool;
+            generateScrollspy();
+        }
+    }
+    $(window).resize(function () {
+        windowResize();
+    });
+    $(document).ready(function () {
+        windowResize();
+        generateScrollspy();
+    });
+    
+    //remove hash
+    function removeHash() {
+        window.location.hash = '';
+    }
+    
+    var backtotop = $('.back-to-top');
+    var gotobottom = $('.go-to-bottom');
+    
+    backtotop.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (scrollToTop)
+            scrollToTop();
+        removeHash();
+    });
+    gotobottom.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (scrollToBottom)
+            scrollToBottom();
+        removeHash();
+    });
+    
+    var toggle = $('.expand-toggle');
+    var tocExpand = false;
+    
+    checkExpandToggle();
+    toggle.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        tocExpand = !tocExpand;
+        checkExpandToggle();
+    })
+    
+    function checkExpandToggle () {
+        var toc = $('.ui-toc-dropdown .toc');
+        var toggle = $('.expand-toggle');
+        if (!tocExpand) {
+            toc.removeClass('expand');
+            toggle.text('全部展開');
+        } else {
+            toc.addClass('expand');
+            toggle.text('全部收起');
+        }
+    }
+    
+    function scrollToTop() {
+        $('body, html').stop(true, true).animate({
+            scrollTop: 0
+        }, 100, "linear");
+    }
+    
+    function scrollToBottom() {
+        $('body, html').stop(true, true).animate({
+            scrollTop: $(document.body)[0].scrollHeight
+        }, 100, "linear");
+    }
+</script>
+</body>
+</html>
