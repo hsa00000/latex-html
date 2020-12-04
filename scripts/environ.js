@@ -1,14 +1,17 @@
-var num = 0;
+var theoremcounter = 0;
+var section_level = ["part", "chapter", "section"];
+var levelcounter = {"part":0, "chapter":0, "section":0};
+var toc_tree = [];
 var label = {};
 
 function theorem(name, info = "") {
-    num++;
-    document.write("<span class=\"number\"");
+    theoremcounter++;
+    document.write("<span");
     if (info != "" && "label" in info) {
         document.write(" id=", info["label"]);
-        label[info["label"]] = num;
+        label[info["label"]] = [levelcounter["chapter"], theoremcounter];
     }
-    document.write("><strong>", name, "</span> ", num);
+    document.write("><strong>", name, "</span> ", levelcounter["chapter"], ".", theoremcounter);
     if (info != "" && "name" in info) {
         document.write(" (", info["name"], ")");
     }
@@ -16,27 +19,27 @@ function theorem(name, info = "") {
 }
 
 function ref(id) {
-    document.write("<a href=#", id, ">", label[id], "</a>");
+    document.write("<a href=#", id, ">", label[id][0], ".", label[id][1], "</a>");
 }
 
 function eq_before() {
-    num++;
-    document.write("<p id=\"", "eq", num, "\" hidden>");
+    theoremcounter++;
+    document.write("<p id=\"", "eq", theoremcounter, "\" hidden>");
 }
 
 function eq_id(id) {
-    var hidden_id = "eq" + num;
+    var hidden_id = "eq" + theoremcounter;
     var str = document.getElementById(hidden_id).innerHTML;
     document.write("<p id=", id, "></p>");
-    document.write("\\begin{equation}\\tag{", num, "}");
+    document.write("\\begin{equation}\\tag{", levelcounter["chapter"], ".", theoremcounter, "}");
     document.write(str);
     document.write("\\end{equation}");
-    label[id] = num;
+    label[id] = [levelcounter["chapter"], theoremcounter];
 }
-var section_level = ["part", "chapter", "section"];
-var toc_tree = [];
+
 
 function section(level, name) {
+    levelcounter[level]++;
     id = name.replace(/\s+/g, '-');
     h_level = section_level.indexOf(level);
     h_level++;
@@ -91,7 +94,6 @@ function generateTOC(attr = "") {
             }
         }
         var after_index = toc_html.indexOf(str_before) + 1;
-        console.log(i, toc_html_label, toc_html);
         toc_html_label.push(after_index);
     }
     if (attr == "page") {
