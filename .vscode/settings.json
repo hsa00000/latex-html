@@ -2,4 +2,5 @@
 	"editor.wordWrap": "on",
 	"html.preview.scrollEditorWithPreview": false,
 	"html.preview.scrollPreviewWithEditor": false,
+	"html.autoClosingTags": false,
 }
