@@ -12,12 +12,14 @@ ol > li::before {
     display: inline-block; 
     padding-right: 10px;
     font-style:normal;
-
     width: 23px; 
     content: counter(listcounter, decimal) ". ";
 }
 ol > li {
     counter-increment: listcounter;
+}
+ol.parenthesis{
+    margin-bottom: 0;
 }
 ol.parenthesis > li::before {
     width: 41px; 
