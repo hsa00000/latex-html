@@ -16,6 +16,14 @@ function theorem(name, info = "") {
         document.write(" (", info["name"], ")");
     }
     document.write(".</strong> ");
+    if (info != "" && "label" in info) {
+        var id = info["label"];
+        qstr = "[href='#" + id + "']";
+        var beforeref = document.querySelectorAll(qstr);
+        for (i = 0; i < beforeref.length; i++){
+             beforeref[i].innerHTML = label[id][0] + "." + label[id][1];
+        }
+    }
 }
 
 function ref(id) {
