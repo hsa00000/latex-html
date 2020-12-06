@@ -7,7 +7,7 @@ ol {
     padding: 0;
     counter-reset: listcounter;
 }
-ol li::before {
+ol > li::before {
     text-align: right;
     display: inline-block; 
     padding-right: 10px;
@@ -16,14 +16,24 @@ ol li::before {
     width: 23px; 
     content: counter(listcounter, decimal) ". ";
 }
-ol li {
+ol > li {
     counter-increment: listcounter;
 }
-.parenthesis li::before {
+ol.parenthesis > li::before {
     width: 41px; 
     content: "(" counter(listcounter, lower-roman) "). ";
 }
-
-.proof {
+p.proof {
     overflow: hidden;
+}
+.tocpage ol{
+    margin-left: 0px;
+    padding-left: 30px;
+}
+ol.upperroman > li{
+    margin-left: -17px;
+}
+ol.upperroman > li::before {
+    width: 26px;
+    content: counter(listcounter, upper-roman) ". ";
 }

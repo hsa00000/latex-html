@@ -9,9 +9,9 @@ function theorem(name, info = "") {
     document.write("<span");
     if (info != "" && "label" in info) {
         document.write(" id=", info["label"]);
-        label[info["label"]] = [levelcounter["chapter"], theoremcounter];
+        label[info["label"]] = [levelcounter["section"], theoremcounter];
     }
-    document.write("><strong>", name, "</span> ", levelcounter["chapter"], ".", theoremcounter);
+    document.write("><strong>", name, "</span> ", levelcounter["section"], ".", theoremcounter);
     if (info != "" && "name" in info) {
         document.write(" (", info["name"], ")");
     }
@@ -31,10 +31,10 @@ function eq_id(id) {
     var hidden_id = "eq" + theoremcounter;
     var str = document.getElementById(hidden_id).innerHTML;
     document.write("<p id=", id, "></p>");
-    document.write("\\begin{equation}\\tag{", levelcounter["chapter"], ".", theoremcounter, "}");
+    document.write("\\begin{equation}\\tag{", levelcounter["section"], ".", theoremcounter, "}");
     document.write(str);
     document.write("\\end{equation}");
-    label[id] = [levelcounter["chapter"], theoremcounter];
+    label[id] = [levelcounter["section"], theoremcounter];
 }
 
 
@@ -43,7 +43,13 @@ function section(level, name) {
     id = name.replace(/\s+/g, '-');
     h_level = section_level.indexOf(level);
     h_level++;
-    document.write("<h", h_level, " id=", id, ">", name, "</h", h_level, ">");
+    document.write("<h", h_level, " id=", id, ">");
+    if (level == "chapter"){
+        document.write(romanize(levelcounter[level]),". ");
+    }else if(level == "section"){
+        document.write(levelcounter[level],". ");
+    }
+    document.write(name, "</h", h_level, ">");
     toc_tree.push({
         "h_level": h_level,
         "id": id,
@@ -66,11 +72,20 @@ function generateTOC(attr = "") {
         var str_after = "</li>";
         if (next_node["h_level"] > this_node["h_level"]) {
             if (attr == "page") {
-                str_before += "<ul>";
+                if (next_node["h_level"] == 1){
+                    str_before += "<ul>";
+                    str_after = "</ul>" + str_after;
+                }else if(next_node["h_level"] == 2){
+                    str_before += "<ol class=\"upperroman\">";
+                    str_after = "</ol>" + str_after;
+                }else{
+                    str_before += "<ol>";
+                    str_after = "</ol>" + str_after;
+                }
             } else {
                 str_before += "<ul class=\"nav\">";
+                str_after = "</ul>" + str_after;
             }
-            str_after = "</ul>" + str_after;
         }
         if (i == 0) {
             toc_html.push(str_before);
@@ -108,4 +123,18 @@ function generateTOC(attr = "") {
         }
     }
 
+}
+//from https://stackoverflow.com/questions/9083037/
+function romanize (num) {
+    if (isNaN(num))
+        return NaN;
+    var digits = String(+num).split(""),
+        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+               "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+               "","I","II","III","IV","V","VI","VII","VIII","IX"],
+        roman = "",
+        i = 3;
+    while (i--)
+        roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+    return Array(+digits.join("") + 1).join("M") + roman;
 }
