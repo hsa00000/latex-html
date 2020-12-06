@@ -23,6 +23,7 @@ ol li {
     width: 41px; 
     content: "(" counter(listcounter, lower-roman) "). ";
 }
-p + div {
-    margin-top: 25px;
+
+.proof {
+    overflow: hidden;
 }

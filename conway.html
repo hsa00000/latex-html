@@ -80,7 +80,7 @@ $$
 for all $\alpha$ and $\beta$. Moreover, equality occurs if and only if ther are scalars $\alpha$ and $\beta$, both not $0$, such that $\langle\beta x,+\alpha y,\beta x+\alpha y\rangle=0$.
 </em></div>
 
-<p><em>Proof.</em> If $\alpha\in\mathbf{F}$ and $x$ and $y\in V$, then
+<p class="proof"><em>Proof.</em> If $\alpha\in\mathbf{F}$ and $x$ and $y\in V$, then
 $$
 0\leq\langle x-\alpha y,x-\alpha y\rangle=\langle x,x\rangle-\alpha\langle y,x\rangle-\overline{\alpha}\langle x,y\rangle+\vert\alpha\vert^2\langle y,y\rangle.
 $$
@@ -114,7 +114,7 @@ If $\langle\cdot,\cdot\rangle$ is an innre product, then
 </ol>
 </em></div>
 
-<p><em>Proof.</em> The proof of (ii) and (iii) are easy. To see (i), note that for $x$ and $y$ in $V$,
+<p class="proof"><em>Proof.</em> The proof of (ii) and (iii) are easy. To see (i), note that for $x$ and $y$ in $V$,
 $$
 \begin{align}
 \Vert x+y\Vert^2&=\langle x+y,x+y\rangle\\
@@ -138,7 +138,7 @@ theorem("Proposition",{"label":"L2HS"})
 </script><em> $L^2(\mu)$ is a Hilbert space.
 </em></div>
 
-<p><em>Proof.</em> Omitted.
+<p class="proof"><em>Proof.</em> Omitted.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -166,7 +166,7 @@ f(a)=\frac{1}{\pi r^2}\iint_{B(a,r)}f.
 $$
 </em></div>
 
-<p><em>Proof.</em> By the mean value property, of $0>t\leq r$ then
+<p class="proof"><em>Proof.</em> By the mean value property, of $0>t\leq r$ then
 $$
 f(a)=\frac{1}{2\pi}\int^\pi_{-\pi}f(a+te^{i\theta})d\theta
 $$
@@ -188,7 +188,7 @@ $$
 $$
 </em></div>
 
-<p><em>Proof.</em> Since $\overline{B}(a,r)\subseteq G$, the ppreceding lemma and (<script>ref("CBSI");</script>) implies
+<p class="proof"><em>Proof.</em> Since $\overline{B}(a,r)\subseteq G$, the preceding lemma and (<script>ref("CBSI");</script>) implies
 $$
 \begin{align}
 \abs{f(a)}&=\frac{1}{\pi r^2}\abs{\iint_{B(a,r)}f\cdot 1}\\
@@ -204,7 +204,7 @@ theorem("Proposition")
 </script><em> $L^2_a(G)$ is a Hilbert space.
 </em></div>
 
-<p><em>Proof.</em> $L^2a(G)\subseteq L^2(\mu)$ and $L^2(\mu)$ is a Hilbert space by (<script>ref("L2HS");</script>). It suffices to show that $L^2_a(G)$ is closed in $L^2(\mu)$. Let $\{f_n\}$ be a sequence in $L^2_a(G)$ and let $f\in L^2(\mu)$ such that $\int\abs{f_n-f}^2d\mu\to 0$ as $n\to\infty$. Suppose $\overline{B}(a,r)\subseteq G$ and let $0< \rho< \dist(B(a,r),\partial G)$. By the precedding corollary there is a constant $C$ such that $\abs{f_n(z)-f_m(z)}\leq C\norm{f_n-f_m}_2$ fro all $n,m$ and for $\abs{z-a}\leq \rho$. Thus $\{f_n\}$ is a uniformly Cauchy sequence on any closed disk in $G$. By () there is an analytic function $g$ on $G$ such that $f_n(z)\to g(z)$ uniformly on compact subsets of $G$. But since $\int\abs{f_n-f}^2d\mu\to 0$, it converges in measure and so there is a subsequence $\{f_{n_k}\}$ such that $f_{n_k}(z)\to f(z)$ a.e. $[\mu]$. Thus $f=g$ a.e. $[\mu]$ and so $f\in L^2_a(G)$.
+<p class="proof"><em>Proof.</em> $L^2a(G)\subseteq L^2(\mu)$ and $L^2(\mu)$ is a Hilbert space by (<script>ref("L2HS");</script>). It suffices to show that $L^2_a(G)$ is closed in $L^2(\mu)$. Let $\{f_n\}$ be a sequence in $L^2_a(G)$ and let $f\in L^2(\mu)$ such that $\int\abs{f_n-f}^2d\mu\to 0$ as $n\to\infty$. Suppose $\overline{B}(a,r)\subseteq G$ and let $0< \rho< \dist(B(a,r),\partial G)$. By the precedding corollary there is a constant $C$ such that $\abs{f_n(z)-f_m(z)}\leq C\norm{f_n-f_m}_2$ fro all $n,m$ and for $\abs{z-a}\leq \rho$. Thus $\{f_n\}$ is a uniformly Cauchy sequence on any closed disk in $G$. By () there is an analytic function $g$ on $G$ such that $f_n(z)\to g(z)$ uniformly on compact subsets of $G$. But since $\int\abs{f_n-f}^2d\mu\to 0$, it converges in measure and so there is a subsequence $\{f_{n_k}\}$ such that $f_{n_k}(z)\to f(z)$ a.e. $[\mu]$. Thus $f=g$ a.e. $[\mu]$ and so $f\in L^2_a(G)$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -222,7 +222,7 @@ $$
 $$
 </em></div>
 
-<p><em>Proof.</em> If $f_1\perp f_2$, then
+<p class="proof"><em>Proof.</em> If $f_1\perp f_2$, then
 $$
 \norm{f_1+f_2}^2=\langle f_1+f_2,f_1+f_1\rangle=\norm{f_1}^2+2\Re\langle f_1,f_2\rangle+\norm{f_2}^2.
 $$
@@ -238,7 +238,7 @@ $$
 $$
 </em></div>
 
-<p><em>Proof.</em> For any $f$ and $g$ in $H$,
+<p class="proof"><em>Proof.</em> For any $f$ and $g$ in $H$,
 $$
 \begin{align}
 \norm{f+g}^2=\norm{f}^2+2\Re\langle f,g\rangle+\norm{g}^2,\\
@@ -263,7 +263,7 @@ $$
 $$
 </em></div>
 
-<p><em>Proof.</em> By considering $K-h=:\{k-h\mid k\in K\}$ instead of $K$, it suffices to assume that $h=0$. So we want to show that there is a qunie vector $k_0$ in $K$ such that
+<p class="proof"><em>Proof.</em> By considering $K-h=:\{k-h\mid k\in K\}$ instead of $K$, it suffices to assume that $h=0$. So we want to show that there is a qunie vector $k_0$ in $K$ such that
 $$
 \norm{k_0}=\dist(0,K)=:\inf\{\norm{k}\mid k\in K\}.
 $$
@@ -298,7 +298,7 @@ theorem("Theorem",{"label":"OGPE"})
 </script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $\norm{h-f_0}=\dist(h,M)$, then $h-f_0\perp M$. Conversely, if $f_0\in M$ such that $h-f_0\in M$, then $\norm{h-f_0}=\dist(h,M)$.
 </em></div>
 
-<p><em>Proof.</em> Suppose $f_0\in M$ and $\norm{h-f_0}=\dist(h,M)$. If $f\in M$, then $f_0+f\in M$ and so
+<p class="proof"><em>Proof.</em> Suppose $f_0\in M$ and $\norm{h-f_0}=\dist(h,M)$. If $f\in M$, then $f_0+f\in M$ and so
 $$
 \begin{align}
 \norm{h-f_0}^2&\leq\norm{h-(f_0+f)}^2\\
@@ -329,7 +329,7 @@ theorem("Corollary",{"label":"OGPC"})
 </script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $h-f_0\in M^\perp$.
 </em></div>
 
-<p><em>Proof.</em> This follows from (<script>ref("OGPE");</script>) together with the uniqueness statement in (<script>ref("OGPU");</script>).
+<p class="proof"><em>Proof.</em> This follows from (<script>ref("OGPE");</script>) together with the uniqueness statement in (<script>ref("OGPU");</script>).
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -350,7 +350,7 @@ theorem("Theorem",{"label":"BPOP"})
 </ol>
 </em></div>
 
-<p><em>Proof.</em> Keep in mind that for every $h\in H$, $h-Ph\in M^\perp$ and $\norm{h-Ph}=\dist(h,M)$. (i) Let $h_1$, $h_2\in H$ and $\alpha_1$, $\alpha_2\in\mathbf{F}$. If $f\in M$ then $$
+<p class="proof"><em>Proof.</em> Keep in mind that for every $h\in H$, $h-Ph\in M^\perp$ and $\norm{h-Ph}=\dist(h,M)$. (i) Let $h_1$, $h_2\in H$ and $\alpha_1$, $\alpha_2\in\mathbf{F}$. If $f\in M$ then $$
         \begin{align}
         &\langle(\alpha_1h_1+\alpha_2h_2)-(\alpha_1Ph_1+\alpha_2Ph_2),f\rangle\\
         =&\alpha_1\langle h_1-Ph_1,f\rangle+\alpha_2\langle h_2-Ph_2,f\rangle\\
@@ -372,7 +372,7 @@ theorem("Corollary")
 </script><em> If $M\leq H$ then $(M^\perp)^\perp=M$.
 </em></div>
 
-<p><em>Proof.</em> If $I$ is used to designate the identity operator on $H$ and $P=P_M$, then $I-P$ is the orthogonal projection of $H$ onto $M\perp$ (exercise). By part (iv) of (<script>ref("BPOP");</script>), $(M^\perp)^\perp=\Ker(I-P)$. But $0=(I-P)h$ if and only if $h=Ph$. Thus $(M^\perp)^\perp=\Ker(I-P)=\Ima P=M$.
+<p class="proof"><em>Proof.</em> If $I$ is used to designate the identity operator on $H$ and $P=P_M$, then $I-P$ is the orthogonal projection of $H$ onto $M\perp$ (exercise). By part (iv) of (<script>ref("BPOP");</script>), $(M^\perp)^\perp=\Ker(I-P)$. But $0=(I-P)h$ if and only if $h=Ph$. Thus $(M^\perp)^\perp=\Ker(I-P)=\Ima P=M$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -381,7 +381,7 @@ theorem("Corollary")
 </script><em> If $A\subseteq H$, then $(A^\perp)^\perp$ is the closed linear span of $A$ in $H$.
 </em></div>
 
-<p><em>Proof.</em> Omitted.
+<p class="proof"><em>Proof.</em> Omitted.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -390,7 +390,7 @@ theorem("Corollary")
 </script><em> If $Y$ is a linear manifold in $H$, then $Y$ is dense in $H$ if and only if $Y^\perp=(0)$.
 </em></div>
 
-<p><em>Proof.</em> Omitted.
+<p class="proof"><em>Proof.</em> Omitted.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -405,7 +405,7 @@ theorem("Proposition")
 </ol>
 </em></div>
 
-<p><em>Proof.</em> If is clearly that (i)$\Rightarrow$(ii)$\Rightarrow$(iii) and (iv)$\Rightarrow$(ii). We will show that (iii)$\Rightarrow$(i) and (ii)$\Rightarrow$(iv). Suppose $L$ is continuous at $h_0$ and $h$ is any point in $H$. If $h_n\to h$ in $H$, then $h_n-h+h_0\to h_0$. By assumption,
+<p class="proof"><em>Proof.</em> If is clearly that (i)$\Rightarrow$(ii)$\Rightarrow$(iii) and (iv)$\Rightarrow$(ii). We will show that (iii)$\Rightarrow$(i) and (ii)$\Rightarrow$(iv). Suppose $L$ is continuous at $h_0$ and $h$ is any point in $H$. If $h_n\to h$ in $H$, then $h_n-h+h_0\to h_0$. By assumption,
 $$
 \begin{align}
 L(h_0)&=\lim_{n\to\infty}L(h_n-h+h_0)\\

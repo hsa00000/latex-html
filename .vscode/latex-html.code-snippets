@@ -77,7 +77,7 @@
 	"proof": {
 		"prefix": ["proof"],
     	"body": [
-		"<p><em>Proof.</em>$0",
+		"<p class=\"proof\"><em>Proof.</em>$0",
 		"<span style=\"float:right;\">$\\square$</span></p>"
 		],
     	"description": "proof"
