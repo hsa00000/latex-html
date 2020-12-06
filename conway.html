@@ -321,8 +321,17 @@ Thus $\norm{h-f_0}=\dist(h,M)$.
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> If $H$ is a Hilbert space and $A\subseteq H$, then define $A^\perp=\{f\in H\mid f\perp g\ \textrm{ for all }g\textrm{ in }A\}$. It is easy to see that $A^\perp$ is a closed linear subsepace of $H$.
+</script> If $H$ is a Hilbert space and $A\subseteq H$, then define $A^\perp=\{f\in H\mid f\perp g\ \textrm{ for all }g\textrm{ in }A\}$.
 </div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition",{"label":"PIOL"})
+</script><em> Let $A\subseteq H$. Then $A^\perp$ is a closed linear subsepace of $H$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> To show that $A^\perp$ is closed, let $\{x_n\}$ be a sequence in $A^\perp$ such that $x_n\to x\in H$. To shwo that $x\in A^\perp$, let $a\in A$. Then $\langle x_n,a\rangle=0$ for all $n$ and so $\lim_n\langle x_n,a\rangle=\langle\lim_n x_n,a\rangle=\langle x,a\rangle=0$.
+<span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
 <script type="text/javascript" >
@@ -369,20 +378,39 @@ theorem("Definition")
 
 <div class="alert alert-info">
 <script type="text/javascript" >
-theorem("Corollary")
+theorem("Corollary",{"label":"PPLS"})
 </script><em> If $M\leq H$ then $(M^\perp)^\perp=M$.
 </em></div>
 
 <p class="proof"><em>Proof.</em> If $I$ is used to designate the identity operator on $H$ and $P=P_M$, then $I-P$ is the orthogonal projection of $H$ onto $M\perp$ (exercise). By part (iv) of (<script>ref("BPOP");</script>), $(M^\perp)^\perp=\Ker(I-P)$. But $0=(I-P)h$ if and only if $h=Ph$. Thus $(M^\perp)^\perp=\Ker(I-P)=\Ima P=M$.
 <span style="float:right;">$\square$</span></p>
 
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> If $A\subseteq H$, let $\wedge A$ be the intersection of all clsoed linear subspae of $H$ that contain $A$. $\wedge A$ is called the <font color="Teal"><em>closed linear span</em></font> of $A$.
+</div>
+
 <div class="alert alert-info">
 <script type="text/javascript" >
-theorem("Corollary")
+theorem("Proposition",{"label":"CLS"})
+</script><em> Let $A\subseteq H$.
+    <ol class="parenthesis">
+        <li>$\wedge A\leq H$. In particular, $\wedge A$ is the smallest closed linear subsapce of $H$ that contains $A$.</li>
+        <li>$\wedge A$ is the closure of $\{\sum_{k=1}^n\alpha_kf_k\mid n\geq 1,\ \alpha_k\in\mathbf{F},\ f_k\in A\}$.</li>
+    </ol>
+</em></div>
+
+<p class="proof"><em>Proof.</em> $\wedge A$ is clearly closed in $H$ and so $\wedge A\leq H$. Hence the first reslut follows. It is easy to see that the closure of $\{\sum_{k=1}^n\alpha_kf_k\mid n\geq 1,\ \alpha_k\in\mathbf{F},\ f_k\in A\}$ is the smallest closed linear subsapce of $H$ that contains $A$. Hence the second result follows.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary",{"label":"PPLM"})
 </script><em> If $A\subseteq H$, then $(A^\perp)^\perp$ is the closed linear span of $A$ in $H$.
 </em></div>
 
-<p class="proof"><em>Proof.</em> Omitted.
+<p class="proof"><em>Proof.</em> By (<script>ref("PIOL");</script>), $(A^\perp)^\perp$ is a closed linear subspace of $H$. We need to show that $\wedge A\subseteq(A^\perp)^\perp$. If $B$ is a closed linear subsapce of $H$ containing $A$, then $A\subseteq B$ and so $B^\perp\subseteq A^\perp$ and $(A^\perp)^\perp\subseteq(B^\perp)^\perp$. By (<script>ref("PPLS");</script>), $(B^\perp)^\perp=B$. Hence $(A^\perp)^\perp$ is the smallest linear subsapce of $A$ containing $A$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -391,7 +419,7 @@ theorem("Corollary")
 </script><em> If $Y$ is a linear manifold in $H$, then $Y$ is dense in $H$ if and only if $Y^\perp=(0)$.
 </em></div>
 
-<p class="proof"><em>Proof.</em> Omitted.
+<p class="proof"><em>Proof.</em> If $Y$ is a linear manifold of $H$ then $\overline{Y}=\wedge Y$ by (ii) of (<script>ref("CLS");</script>), and $\wedge Y=(Y^\perp)^\perp$ by (<script>ref("PPLM");</script>).
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -430,6 +458,102 @@ $$
 $$
 Note that by definition, $\norm{L}_\op < \infty$. $\norm{L}_\op$ is called the <font color="Teal"><em>operator norm</em></font> of $L$.
 </div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition")
+</script><em> Let $L$ be a bounded linear functional on $H$. Then
+$$
+\begin{align}
+\norm{L}_\op&=\sup\{\abs{L(h)}\mid\norm{h}=1\}\\
+&=\sup\{\abs{L(h)}/\norm{h}\mid h\in H,\ h\neq 0\}\\
+&=\inf\{c> 0:\abs{L(h)}\leq c\norm{h},\ h\in H\}.
+\end{align}
+$$
+Also, $\abs{L(h)}\leq\norm{L}_\op\norm{h}$ for every $h$ in $H$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Let $\alpha=\sup\{\abs{L(h)}\mid\norm{h}=1\}$. Clearly $\alpha\leq\norm{L}_\op$. If $h\in H$ is non-zero with $\norm{h}\leq 1$, then $\abs{L(h)}/\norm{h}=L(h/\norm{h})\leq\alpha$ by the definition of $\alpha$ and so $\abs{L(h)}\leq\alpha\norm{h}\leq\alpha$. Hence $\norm{L}_\op\leq\alpha$. Let $\beta=\sup\{\abs{L(h)}/\norm{h}\mid h\in H,\ h\neq 0\}$. Then $\alpha\leq\beta$ clearly. If $h\in H$ with $h\neq 0$, then $L(h)/\norm{h}=L(h/\norm{h})\leq\alpha$ by the definition of $\alpha$. Hence $\beta\leq\alpha$. Let $\gamma=\inf\{c> 0:\abs{L(h)}\leq c\norm{h},\ h\in H\}$. If $\varepsilon>0$, then the definition of $\norm{L}_\op$ shows that $\abs{L(\norm{h}+\varepsilon)^{-1}h}\leq\norm{L}_\op$. Hence $\abs{L(h)}\leq\norm{L}(\norm{h}+\varepsilon)$. Letting $\varepsilon\to 0$ shows that $\abs{L(h)}\leq\norm{L}_\op\norm{h}$ for all $h$. So the definition of $\alpha$ shows that $\alpha\leq\norm{L}$. On the other hand, if $\abs{L(h)}\leq c\norm{h}$ for all $h$, then $\norm{L}\leq c$. Hence $\norm{L}\leq\alpha$.
+<span style="float:right;">$\square$</span></p>
+
+Fix an $h_0$ in $H$ and define $L:H\to\mathbf{F}$ by $L(h)=\langle h,h_0\rangle$. It is easy to see that $L$ is linear. Also, (<script>ref("CBSI");</script>) gives that $\abs{L(h)}=\abs{\langle h,h_0\rangle}\leq\norm{h}\norm{h_0}$. So $L$ is bounded and $\norm{L}_\op\leq\norm{h_0}$. In fact, $L(h_0/\norm{h_0})=\langle h_0/\norm{h_0},h_0\rangle=\norm{h_0}$. We will prove the conver of this result:
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"label":"CBSI", "name": "Riesz Representation Theorem"})
+</script><em> Let $L:H\to\mathbf{F}$ be a bounded linear functional. Then there is a unique vector $h_0\in H$ such that $L(h)=\langle h,h_0\rangle$ for every $h\in H$. Moreover, $\norm{L}_\op=\norm{h_0}$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Let $M=\Ker L$. Because $L$ is continuous, $M$ is a closed linear subspace of $H$. Since we may assume that $M\neq H$, $M^\perp\neq (0)$. Hence there is a vector $f_0$ in $M^\perp$ such that $L(f_0)=1$. Now if $h\in H$ and $\alpha= L(h)$, then $L(h-\alpha f_0)=L(h)-\alpha=0$. Thus $h-L(h)f_0\in M$ and
+$$
+0=\langle h-L(h)f_0,f_0\rangle=\langle h,f_0\rangle-L(h)\norm{f_0}^2.
+$$
+So if $h_0=\norm{f_0}^{-2}f_0$ then $L(h)=\langle h,h_0\rangle$ for all $h$ in $H$. For the uniqueness, if $h_0'\in H$ such that $\langle h,h_0\rangle=\langle h,h_0'\rangle$ for all $h$, then $h_0-h_0'\in H$. In particular, $h_0-h_0'\perp h_0-h_0'$ and so $h_0'=h_0$. The fact that $\norm{L}_\op=\norm{h_0}$ was shown in the discussion preceeding the theorem.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Corollary")
+</script><em> If $(X,\Omega,\mu)$ is a measure space and $F:L^2(\mu)\to\mathbf{F}$ is a bounded linear functional, then there is a unique $h_0$ in $L^2(\mu)$ such that
+$$
+F(h)=\int h\overline{h_0}d\mu
+$$
+for every $h$ in $L^2(\mu)$.
+</em></div>
+
+<div class="alert alert-warning">
+<script type="text/javascript" >
+theorem("Definition")
+</script> An <font color="Teal"><em>orthonormal</em></font> subset of a Hilbert space $H$ is a subset $E$ such that
+<ol class="parenthesis">
+    <li>for every $e\in E$, $\norm{e}=1$,</li>
+    <li>if $e_1,e_2\in E$ with $e_1\neq e_2$, $e_1\perp e_2$.</li>
+</ol>
+A <font color="Teal"><em>basis</em></font> for $H$ is a maximal orthonormal set.
+</div>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Proposition")
+</script><em> If $E$ is an orthonormal set in $H$, then there is a basis for $H$ that contains $E$.
+</em></div>
+<p class="proof"><em>Proof.</em> Omiited.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script type="text/javascript" >
+theorem("Theorem",{"name":"Gram-Schmidt Process"})
+</script><em> If $H$ is a Hilbert space and $\{h_n\}_{n\in\mathbf{N}}$ is a linearly independent subset of $H$, then there is an orthonormal set $\{e_n\}_{n\in\mathbf{N}}$ such that for every $n$, the linear space of $\{e_1,\ldots,e_n\}$ equals the linear space of $\{h_1,\ldots,h_n\}$.
+</em></div>
+
+
+
+
+
+
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+
+<script>
+    section("section","Banach Space")
+</script>
+<script>
+    section("chapter","Harmonic Analysis")
+</script>
+
+
+
+
+
+
 
 
 

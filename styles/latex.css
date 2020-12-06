@@ -21,7 +21,7 @@ ol > li {
 }
 ol.parenthesis > li::before {
     width: 41px; 
-    content: "(" counter(listcounter, lower-roman) "). ";
+    content: "(" counter(listcounter, lower-roman) ") ";
 }
 p.proof {
     overflow: hidden;
