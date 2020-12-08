@@ -56,6 +56,7 @@ function section(level, name) {
         document.write(romanize(levelcounter[level]),". ");
     }else if(level == "section"){
         document.write(levelcounter[level],". ");
+        theoremcounter = 0;
     }
     document.write(name, "</h", h_level, ">");
     toc_tree.push({

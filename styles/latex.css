@@ -25,7 +25,7 @@ ol.parenthesis > li::before {
     width: 41px; 
     content: "(" counter(listcounter, lower-roman) ") ";
 }
-p.proof {
+.proof {
     overflow: hidden;
 }
 .tocpage ol{
