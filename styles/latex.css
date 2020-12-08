@@ -36,6 +36,6 @@ ol.upperroman > li{
     margin-left: -17px;
 }
 ol.upperroman > li::before {
-    width: 26px;
+    width: 32px;
     content: counter(listcounter, upper-roman) ". ";
 }

@@ -61,7 +61,8 @@ function section(level, name) {
     toc_tree.push({
         "h_level": h_level,
         "id": id,
-        "name": name
+        "name": name,
+        "counter": levelcounter[level]
     });
 }
 
@@ -84,10 +85,14 @@ function generateTOC(attr = "") {
                     str_before += "<ul>";
                     str_after = "</ul>" + str_after;
                 }else if(next_node["h_level"] == 2){
-                    str_before += "<ol class=\"upperroman\">";
+                    str_before += "<ol class=\"upperroman\" style=\"counter-reset: listcounter ";
+                    str_before += (next_node["counter"] - 1);
+                    str_before += "\">"
                     str_after = "</ol>" + str_after;
                 }else{
-                    str_before += "<ol>";
+                    str_before += "<ol style=\"counter-reset: listcounter ";
+                    str_before += (next_node["counter"] - 1);
+                    str_before += "\">"
                     str_after = "</ol>" + str_after;
                 }
             } else {
