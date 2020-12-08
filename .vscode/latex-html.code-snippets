@@ -14,7 +14,7 @@
 	// }
 	"colored italic": {
 		"prefix": ["textit"],
-    	"body": ["<font color=\"Teal\"><em>$0</em></font>"],
+    	"body": ["<em style=\"color: teal;\">$0</em>"],
     	"description": "colored italic"
 	},
 	"colored proposition": {
@@ -85,9 +85,9 @@
 	"equation": {
 		"prefix": ["equation"],
     	"body": [
-		"<script>eq_before();</script>",
+		"<p hidden>",
 		"$0",
-		"</p><script>eq_id()</script>"
+		"</p><script>eq()</script>"
 		],
     	"description": "equation"
 	},
