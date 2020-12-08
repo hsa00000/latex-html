@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8"/>
+    <title>Note on Algebraic Number Theory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link rel="stylesheet" href="styles/hackmd.css" />
@@ -36,13 +39,13 @@
 <body>  
 <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
 
-<!-- Write below -->
-
 <h3>Contents</h3>
-<span class="toc">
+<div class="toc">
 <ul class="tocpage" id="toc-only">
 </ul>
-</span>
+</div>
+
+<!-- Write below -->
 
 <script>
     section("part","Analysis")
@@ -66,7 +69,7 @@ theorem("Lemma",{"label":"CEL"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> Let $X$ be a topologial space and $x\in X$. The <font color="Teal"><em>quasi-component</em></font> of $x$ is the intersection of all clopen subsets of $X$ containing $x$.
+</script> Let $X$ be a topologial space and $x\in X$. The <em style="color: teal;">quasi-component</em> of $x$ is the intersection of all clopen subsets of $X$ containing $x$.
 </div>
 
 <div class="alert alert-info">
@@ -81,7 +84,7 @@ theorem("Proposition",{"label":"QCCC"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> A topological space $X$ is <font color="Teal"><em>totally disconnected</em></font> if for every point $x\in X$, the connected component of $x$ consists of only $x$ itself.
+</script> A topological space $X$ is <em style="color: teal;">totally disconnected</em> if for every point $x\in X$, the connected component of $x$ consists of only $x$ itself.
 </div>
 
 <div class="alert alert-info">
@@ -90,7 +93,7 @@ theorem("Proposition",{"label":"LCHT"})
 </script><em> Let $X$ be a LCH space. Then $X$ is totally disconnected if and only if it has a basis of topology consisting of compact open sets.
 </em></div>
 
-<p class="proof"><em>Proof.</em> If $X$ has a clopen topological basis, then for any $x\in X$, we can choose a compact open subset $U$ of $X$ containing $x$ so that $U\setminus\{x\}$ is compact as well. Cover $U\setminus\{x\}$ by compact open subset of $X$, we see that $U\setminus\{x\}$ is a finite union of compact open sets and so $U\setminus\{x\}$ is closed. Hence $\{x\}$ is open in $U$ and so in $X$. It follows that $C(x)=\{x\}$ by ().<br></br>
+<p class="proof"><em>Proof.</em> If $X$ has a clopen topological basis, then for any $x\in X$, we can choose a compact open subset $U$ of $X$ containing $x$ so that $U\setminus\{x\}$ is compact as well. Cover $U\setminus\{x\}$ by compact open subset of $X$, we see that $U\setminus\{x\}$ is a finite union of compact open sets and so $U\setminus\{x\}$ is closed. Hence $\{x\}$ is open in $U$ and so in $X$. It follows that $C(x)=\{x\}$ by ().<br>
 Conversely, assume $X$ is totally disconnected. We first assume $X$ is compact. Take a point $x\in X$ and an open neighborhood $U$ of $x$. Since $Q(x)=C(x)=\{x\}$ by (<script>ref("QCCC");</script>), the definition of $Q(x)$ and (<script>ref("CEL");</script>) implies that there is a clopen set $C$ of $X$ such that $x\in C\subseteq U$. This shows that the clopen sets form a topological basis. For the general case, take a point $x\in X$ and an open neighborhood $U$ of $x$. By the local compactness of $X$, there exists an open neighborhood of $x$ such that $\overline{V}$ is compact and contained in $U$. The compact space $\overline{V}$ is totally disconnected. Hence, by the previous case, there exists a subset $C$ of $\overline{V}$ such that it is compact and open in teh subspace topology and $x\in C\subseteq V$. But then $C$ is open in $X$, as $V$ is open. Thus $C$ is a compact open subset of $X$ and $x\in C\subseteq U$.
 <span style="float:right;">$\square$</span></p>
 
@@ -118,14 +121,14 @@ Thorugh this chapter $\mathbf{F}$ will denote either the real field, $\mathbf{R}
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> If $V$ is a vector space over $\mathbf{F}$, a <font color="Teal"><em>semi-inner</em></font> product on $V$ is a function $u:V\times V\to\mathbf{F}$ such that for all $\alpha,\beta$ in $\mathbf{F}$, and $x,y,z\in V$, the following are satisfies:
+</script> If $V$ is a vector space over $\mathbf{F}$, a <em style="color: teal;">semi-inner</em> product on $V$ is a function $u:V\times V\to\mathbf{F}$ such that for all $\alpha,\beta$ in $\mathbf{F}$, and $x,y,z\in V$, the following are satisfies:
 <ol class="parenthesis">
     <li>$u(\alpha x+\beta y,z)=\alpha u(x,z)+\beta u(y,z)$,</li>
     <li>$u(x,\alpha y+\beta z)=\overline{\alpha}u(x,y)+\overline{\beta}u(x,z)$,</li>
     <li>$u(x,x)\geq 0$,</li>
     <li>$u(x,y)=\overline{u(y,x)}$.</li>
 </ol>
-An <font color="Teal"><em>inner product</em></font> on $V$ is a semi-innver product that also satisfies the following:
+An <em style="color: teal;">inner product</em> on $V$ is a semi-innver product that also satisfies the following:
 <ol class="parenthesis" style="counter-reset: listcounter 4;">
     <li>If $u(x,x)=0$ then $x=0$.</li>
 </ol>
@@ -164,16 +167,15 @@ proving the inequality. The proof of the necessary and sufficient condition is r
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Corollary")
-</script><em> If $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$ and $\Vert x\Vert:=\langle x,x\rangle^{1/2}$ for all $x\in V$, then
-<ol class="parenthesis">
+</script><em> If $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$ and $\Vert x\Vert:=\langle x,x\rangle^{1/2}$ for all $x\in V$, then</em>
+<ol class="parenthesis" style="font-style: italic;">
     <li>$\Vert x+y\Vert\leq\Vert x\Vert+\Vert y\Vert$ for all $x,y\in V$,</li>
     <li>$\Vert\alpha x\Vert=\vert\alpha\vert\Vert x\Vert$ for all $\alpha\in\mathbf{F}$ and $x\in V$.</li>
-</ol>
+</ol><em>
 If $\langle\cdot,\cdot\rangle$ is an innre product, then
-<ol class="parenthesis" style="counter-reset: listcounter 2;">
+</em><ol class="parenthesis" style="counter-reset: listcounter 2;font-style: italic;">
     <li>$\Vert x\Vert=0$ implies $x=0$</li>
-</ol>
-</em></div>
+</ol></div>
 
 <p class="proof"><em>Proof.</em> The proof of (ii) and (iii) are easy. To see (i), note that for $x$ and $y$ in $V$,
 $$
@@ -205,7 +207,7 @@ theorem("Proposition",{"label":"L2HS"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> A <font color="Teal"><em>Hilbert</em></font> space if a vector space $H$ over $\mathbf{F}$ togehter with an inner product $\langle\cdot,\cdot\rangle$ such that relative to the metric $d(x,y)=\Vert x-y\Vert$ induced by the norm, $H$ is a complete metric space.
+</script> A <em style="color: teal;">Hilbert</em> space if a vector space $H$ over $\mathbf{F}$ togehter with an inner product $\langle\cdot,\cdot\rangle$ such that relative to the metric $d(x,y)=\Vert x-y\Vert$ induced by the norm, $H$ is a complete metric space.
 </div>
 
 <div class="alert alert-warning">
@@ -213,9 +215,9 @@ theorem("Definition")
 theorem("Definition")
 </script> If $G$ is an open subset of the complex plane $\mathbf{C}$, then $L_a^2(G)$ denote the collection of all analytic functions $f:G\to\mathbf{}$ such that
 $$
-\Vert f\Vert_2:=\iint_G\vert f(x+iy)\vert^2dxdy< \infty.
+\Vert f\Vert_2:=\iint_G\vert f(x+iy)\vert^2dxdy&lt; \infty.
 $$
-$L^2_a(G)$ is called the <font color="Teal"><em>Bergman space</em></font> for $G$.
+$L^2_a(G)$ is called the <em style="color: teal;">Bergman space</em> for $G$.
 </div>
 
 <div class="alert alert-info">
@@ -243,7 +245,7 @@ $$
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Corollary")
-</script><em> if $f\in L^2_a(G)$, $a\in G$, and $0< r< \dist(a,\partial G)$, then
+</script><em> if $f\in L^2_a(G)$, $a\in G$, and $0&lt; r&lt; \dist(a,\partial G)$, then
 $$
 \vert f(a)\vert\leq\frac{1}{r\sqrt{\pi}}\Vert f\Vert_2
 $$
@@ -265,7 +267,7 @@ theorem("Proposition")
 </script><em> $L^2_a(G)$ is a Hilbert space.
 </em></div>
 
-<p class="proof"><em>Proof.</em> $L^2a(G)\subseteq L^2(\mu)$ and $L^2(\mu)$ is a Hilbert space by (<script>ref("L2HS");</script>). It suffices to show that $L^2_a(G)$ is closed in $L^2(\mu)$. Let $\{f_n\}$ be a sequence in $L^2_a(G)$ and let $f\in L^2(\mu)$ such that $\int\abs{f_n-f}^2d\mu\to 0$ as $n\to\infty$. Suppose $\overline{B}(a,r)\subseteq G$ and let $0< \rho< \dist(B(a,r),\partial G)$. By the precedding corollary there is a constant $C$ such that $\abs{f_n(z)-f_m(z)}\leq C\norm{f_n-f_m}_2$ fro all $n,m$ and for $\abs{z-a}\leq \rho$. Thus $\{f_n\}$ is a uniformly Cauchy sequence on any closed disk in $G$. By () there is an analytic function $g$ on $G$ such that $f_n(z)\to g(z)$ uniformly on compact subsets of $G$. But since $\int\abs{f_n-f}^2d\mu\to 0$, it converges in measure and so there is a subsequence $\{f_{n_k}\}$ such that $f_{n_k}(z)\to f(z)$ a.e. $[\mu]$. Thus $f=g$ a.e. $[\mu]$ and so $f\in L^2_a(G)$.
+<p class="proof"><em>Proof.</em> $L^2a(G)\subseteq L^2(\mu)$ and $L^2(\mu)$ is a Hilbert space by (<script>ref("L2HS");</script>). It suffices to show that $L^2_a(G)$ is closed in $L^2(\mu)$. Let $\{f_n\}$ be a sequence in $L^2_a(G)$ and let $f\in L^2(\mu)$ such that $\int\abs{f_n-f}^2d\mu\to 0$ as $n\to\infty$. Suppose $\overline{B}(a,r)\subseteq G$ and let $0&lt; \rho&lt; \dist(B(a,r),\partial G)$. By the precedding corollary there is a constant $C$ such that $\abs{f_n(z)-f_m(z)}\leq C\norm{f_n-f_m}_2$ fro all $n,m$ and for $\abs{z-a}\leq \rho$. Thus $\{f_n\}$ is a uniformly Cauchy sequence on any closed disk in $G$. By () there is an analytic function $g$ on $G$ such that $f_n(z)\to g(z)$ uniformly on compact subsets of $G$. But since $\int\abs{f_n-f}^2d\mu\to 0$, it converges in measure and so there is a subsequence $\{f_{n_k}\}$ such that $f_{n_k}(z)\to f(z)$ a.e. $[\mu]$. Thus $f=g$ a.e. $[\mu]$ and so $f\in L^2_a(G)$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -312,7 +314,7 @@ Now add.
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> If $V$ is a vector space over $\mathbf{F}$ and $A\subseteq V$, then $A$ is a <font color="Teal"><em>convex</em></font> set if for any $x$ and $y$ in $A$ and $0\leq t\leq 1$, $tx+(1-t)y\in A$.
+</script> If $V$ is a vector space over $\mathbf{F}$ and $A\subseteq V$, then $A$ is a <em style="color: teal;">convex</em> set if for any $x$ and $y$ in $A$ and $0\leq t\leq 1$, $tx+(1-t)y\in A$.
 </div>
 
 <div class="alert alert-info">
@@ -332,11 +334,11 @@ Let $d=\dist(0,K)$. By definition, there is a seuqence $\{k_n\}$ in $K$ such tha
 $$
 \Norm{\frac{k_n-k_m}{2}}=\frac{1}{2}(\norm{k_n}^2+\norm{k_m}^2)-\Norm{\frac{k_n+l_m}{2}}^2.
 $$
-Since $K$ is convex, $(k_n+k_m)/2\in K$. Hence $\norm{(k_n+k_m)/2}^2\geq d^2$. If $\varepsilon>0$, choose $N$ such that for all $n\geq N$, $\norm{k_n}^2< d^2+\varepsilon^2/4$. By the equation above, if $n,m\geq N$, then
+Since $K$ is convex, $(k_n+k_m)/2\in K$. Hence $\norm{(k_n+k_m)/2}^2\geq d^2$. If $\varepsilon>0$, choose $N$ such that for all $n\geq N$, $\norm{k_n}^2&lt; d^2+\varepsilon^2/4$. By the equation above, if $n,m\geq N$, then
 $$
-\Norm{\frac{k_n-k_m}{2}}^2< \frac{1}{2}(2d^2+\frac{\varepsilon^2}{2})-d^2=\frac{\varepsilon^2}{4}.
+\Norm{\frac{k_n-k_m}{2}}^2&lt; \frac{1}{2}(2d^2+\frac{\varepsilon^2}{2})-d^2=\frac{\varepsilon^2}{4}.
 $$
-Thus $\norm{k_n-k_m}< \varepsilon$ for $n,m\geq N$ and $\{k_n\}$ is Caushy. Since $H$ is complete and $K$ is closed, there is a $k_0$ in $K$ such that $\norm{k_n-k_0}\to 0$. Also for all $k_n$,
+Thus $\norm{k_n-k_m}&lt; \varepsilon$ for $n,m\geq N$ and $\{k_n\}$ is Caushy. Since $H$ is complete and $K$ is closed, there is a $k_0$ in $K$ such that $\norm{k_n-k_0}\to 0$. Also for all $k_n$,
 $$
 d\leq\norm{k_0}=\norm{k_0-k_n+k_n}\leq\norm{k_0-k_n}+\norm{k_n}\to d.
 $$
@@ -407,20 +409,19 @@ theorem("Corollary",{"label":"OGPC"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition",{"label":"OGPD"})
-</script> By (<script>ref("OGPD");</script>) if $M$ is a closed linear subspace of $H$ and $h\in H$, a function $P=P_M:H\to M$ can be defined so that $h-Ph\perp M$. $P$ is called the <font color="Teal"><em>orthogonal projection</em></font> of $H$ onto $M$.
+</script> By (<script>ref("OGPD");</script>) if $M$ is a closed linear subspace of $H$ and $h\in H$, a function $P=P_M:H\to M$ can be defined so that $h-Ph\perp M$. $P$ is called the <em style="color: teal;">orthogonal projection</em> of $H$ onto $M$.
 </div>
 
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Theorem",{"label":"BPOP"})
-</script><em> If $M$ is a closed linear subspace of $H$ and $h\in H$, then
-<ol class="parenthesis">
+</script><em> If $M$ is a closed linear subspace of $H$ and $h\in H$, then</em>
+<ol class="parenthesis" style="font-style: italic;">
     <li>$P$ is a linear transformation on $H$,</li>
     <li>$\norm{Ph}\leq\norm{h}$ for every $h$ in $H$,</li>
     <li>$P^2=P$,</li>
     <li>$\Ker P=M^\perp$ and $\Ima P=M$.</li>
-</ol>
-</em></div>
+</ol></div>
 
 <p class="proof"><em>Proof.</em> Keep in mind that for every $h\in H$, $h-Ph\in M^\perp$ and $\norm{h-Ph}=\dist(h,M)$. (i) Let $h_1$, $h_2\in H$ and $\alpha_1$, $\alpha_2\in\mathbf{F}$. If $f\in M$ then $$
         \begin{align}
@@ -435,7 +436,7 @@ theorem("Theorem",{"label":"BPOP"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> We introduce the notation $M\leq H$ to signify that $M$ is a closed linear subspace of $H$. We will use the term <font color="Teal"><em>linaer manifold</em></font> to designate a linear subspace of $H$ that is not necessarily clsoed. A <font color="Teal"><em>linear subsapce</em></font> of $H$ will always mean a closed linear subsapce.
+</script> We introduce the notation $M\leq H$ to signify that $M$ is a closed linear subspace of $H$. We will use the term <em style="color: teal;">linaer manifold</em> to designate a linear subspace of $H$ that is not necessarily clsoed. A <em style="color: teal;">linear subsapce</em> of $H$ will always mean a closed linear subsapce.
 </div>
 
 <div class="alert alert-info">
@@ -450,18 +451,18 @@ theorem("Corollary",{"label":"PPLS"})
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> If $A\subseteq H$, let $\wedge A$ be the intersection of all clsoed linear subspae of $H$ that contain $A$. $\wedge A$ is called the <font color="Teal"><em>closed linear span</em></font> of $A$.
+</script> If $A\subseteq H$, let $\wedge A$ be the intersection of all clsoed linear subspae of $H$ that contain $A$. $\wedge A$ is called the <em style="color: teal;">closed linear span</em> of $A$.
 </div>
 
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Proposition",{"label":"CLS"})
-</script><em> Let $A\subseteq H$.
-    <ol class="parenthesis">
+</script><em> Let $A\subseteq H$.</em>
+    <ol class="parenthesis" style="font-style: italic;">
         <li>$\wedge A\leq H$. In particular, $\wedge A$ is the smallest closed linear subsapce of $H$ that contains $A$.</li>
         <li>$\wedge A$ is the closure of $\{\sum_{k=1}^n\alpha_kf_k\mid n\geq 1,\ \alpha_k\in\mathbf{F},\ f_k\in A\}$.</li>
     </ol>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> $\wedge A$ is clearly closed in $H$ and so $\wedge A\leq H$. Hence the first reslut follows. It is easy to see that the closure of $\{\sum_{k=1}^n\alpha_kf_k\mid n\geq 1,\ \alpha_k\in\mathbf{F},\ f_k\in A\}$ is the smallest closed linear subsapce of $H$ that contains $A$. Hence the second result follows.
 <span style="float:right;">$\square$</span></p>
@@ -487,14 +488,14 @@ theorem("Corollary",{"label":"DIP0"})
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Proposition")
-</script><em> let $H$ be a Hilbert space and $L:H\to\mathbf{F}$ a linear functional. Then the following statements are equivalent:
-<ol class="parenthesis">
+</script><em> let $H$ be a Hilbert space and $L:H\to\mathbf{F}$ a linear functional. Then the following statements are equivalent:</em>
+<ol class="parenthesis" style="font-style: italic;">
     <li>$L$ is continuous.</li>
     <li>$L$ is continuous at $0$.</li>
     <li>$L$ is continuous at some point.</li>
     <li>There is a constant $c>0$ such that $\abs{L(h)}\leq c\norm{h}$ for every $h\in H$.</li>
 </ol>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> If is clearly that (i)$\Rightarrow$(ii)$\Rightarrow$(iii) and (iv)$\Rightarrow$(ii). We will show that (iii)$\Rightarrow$(i) and (ii)$\Rightarrow$(iv). Suppose $L$ is continuous at $h_0$ and $h$ is any point in $H$. If $h_n\to h$ in $H$, then $h_n-h+h_0\to h_0$. By assumption,
 $$
@@ -504,11 +505,11 @@ L(h_0)&=\lim_{n\to\infty}L(h_n-h+h_0)\\
 &=\lim_{n\to\infty}L(h_n)-L(h)+L(h_0).
 \end{align}
 $$
-Hence $L(h)=\lim L(h_n)$, and (iii)$\Rightarrow$(i) is prove. To show that (ii)$\Rightarrow$(iv), assume $L$ is continuous at $0$. Thus $L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}< 1\})$ contains an open neibhnorhood of $0$. So there is a $\delta> 0$ such that $B(0,\delta)\subseteq L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}< 1\})$, that is, $\norm{h}<\delta$ implies $\abs{L(h)}< 1$. If $h$ is an arbitrary element of $H$ and $\varepsilon> 0$, then $\norm{\delta(\norm{h}+\varepsilon)^{-1}}<\delta$. Hence
+Hence $L(h)=\lim L(h_n)$, and (iii)$\Rightarrow$(i) is prove. To show that (ii)$\Rightarrow$(iv), assume $L$ is continuous at $0$. Thus $L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}&lt; 1\})$ contains an open neibhnorhood of $0$. So there is a $\delta> 0$ such that $B(0,\delta)\subseteq L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}&lt; 1\})$, that is, $\norm{h}&lt;\delta$ implies $\abs{L(h)}&lt; 1$. If $h$ is an arbitrary element of $H$ and $\varepsilon> 0$, then $\norm{\delta(\norm{h}+\varepsilon)^{-1}}&lt;\delta$. Hence
 $$
 1> \Abs{L\left[\frac{\delta h}{\norm{h}+\varepsilon}\right]}=\frac{\delta}{\norm{h}+\varepsilon}\abs{L(h)}.
 $$
-Thus $\abs{L(h)}<(\norm{h}+\varepsilon)/\delta$. Let $\varepsilon\to 0$ we see that (iv) holds with $c=1/\delta$.
+Thus $\abs{L(h)}&lt;(\norm{h}+\varepsilon)/\delta$. Let $\varepsilon\to 0$ we see that (iv) holds with $c=1/\delta$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -518,7 +519,7 @@ theorem("Definition")
 $$
 \norm{L}_\op:=\sup\{\abs{L(h)}\mid\norm{h}\leq 1\}.
 $$
-Note that by definition, $\norm{L}_\op < \infty$. $\norm{L}_\op$ is called the <font color="Teal"><em>operator norm</em></font> of $L$.
+Note that by definition, $\norm{L}_\op &lt; \infty$. $\norm{L}_\op$ is called the <em style="color: teal;">operator norm</em> of $L$.
 </div>
 
 <div class="alert alert-info">
@@ -568,12 +569,12 @@ for every $h$ in $L^2(\mu)$.
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> An <font color="Teal"><em>orthonormal</em></font> subset of a Hilbert space $H$ is a subset $E$ such that
+</script> An <em style="color: teal;">orthonormal</em> subset of a Hilbert space $H$ is a subset $E$ such that
 <ol class="parenthesis">
     <li>for every $e\in E$, $\norm{e}=1$,</li>
     <li>if $e_1,e_2\in E$ with $e_1\neq e_2$, $e_1\perp e_2$.</li>
 </ol>
-A <font color="Teal"><em>basis</em></font> for $H$ is a maximal orthonormal set.
+A <em style="color: teal;">basis</em> for $H$ is a maximal orthonormal set.
 </div>
 
 <div class="alert alert-info">
@@ -658,19 +659,19 @@ Since this is a finite sum, $h_F$ is a well-defined element of $H$. Now $\{h_F\}
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition",{"label":"USC"})
-</script> With the notation above, the sum $\sum_{i\in I}h_i$ <font color="Teal"><em>converges</em></font> if the net $\{h_F\mid F\in\mathcal{F}\}$ converges; the value of the sum is the limit of the net.
+</script> With the notation above, the sum $\sum_{i\in I}h_i$ <em style="color: teal;">converges</em> if the net $\{h_F\mid F\in\mathcal{F}\}$ converges; the value of the sum is the limit of the net.
 </div>
 
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Proposition")
-</script><em>
-    <ol class="parenthesis">
+</script>
+    <ol class="parenthesis" style="font-style: italic;">
         <li>If $\{h_n\}$ is a sequence in $H$ and $\sum_{n\in\mathbf{N}}h_n$ converges to $h$ in the sense of <span style="font-style: normal;">(<script>ref("USC");</script>)</span>, then $\sum_{k=1}^\infty h_k=h$, and the converes is false.</li>
         <li>If $\{h_n\}$ is a sequence in $H$ and $\sum_{n=1}^\infty h_n$ converges absolutly, then $\sum_{n\in\mathbf{N}}h_n$ converges to $\sum_{n=1}^\infty h_n$ in the sense of <span style="font-style: normal;">(<script>ref("USC");</script>)</span>.</li>
         <li>If $\{\alpha_n\}$ is a sequence in $\mathbf{F}$ then $\sum_{n\in\mathbf{N}}\alpha_n$ converges in the sense of <span style="font-style: normal;">(<script>ref("USC");</script>)</span> if and only if $\sum_{n=1}^\infty\alpha_n$ converges absolutly. In this case, $\sum_{n\in\mathbf{N}}\alpha_n=\sum_{n=1}^\infty\alpha_n$.
     </ol>
-</em></div>
+</div>
 
 <div class="proof"><em>Proof.</em><ol class="parenthesis">
         <li>If $\sum_{n\in\mathbf{N}}h_n$ converges to $h$ then for a given $\varepsilon>0$, there exists $F\in\mathcal{F}$ such that for any $F'\geq F$, $\sum_{n\in F'}h_n\in B(h,\varepsilon)$. Let $N$ be the largest number in $F$ so that for any $k\geq N$, $F:=F\cup\{N+1,\ldots,k\}\geq F$ and $\sum_{k=n}^kh_n=\sum_{k\in F'}h_n\in B(h,\varepsilon)$. Hence $\sum_{n=1}^\infty h_n=h$.</li>
@@ -689,12 +690,12 @@ $$
 converges in $H$.
 </em></div>
 
-<p class="proof"><em>Proof.</em> By (<script>ref("OSCN");</script>), there are vectors $e_1,e_2,\ldots,$ such that $\{e\in E\mid\langle h,e\rangle\neq 0\}=\{e_1,e_2,\ldots\}$. We also know that $\sum_{n=1}^\infty\abs{\langle h,e_n\rangle}^2<\varepsilon^2$. Let $F_0=\{e_1,\ldots,e_{N-1}\}$ and let $\mathcal{F}$ be the st of all finite subsets of $E$. For $F\in\mathcal{F}$, define $h_F=\sum_{e\in F}\langle h,e\rangle$. If $F$ and $G$ in $\mathcal{F}$ and both contain $F_0$, then
+<p class="proof"><em>Proof.</em> By (<script>ref("OSCN");</script>), there are vectors $e_1,e_2,\ldots,$ such that $\{e\in E\mid\langle h,e\rangle\neq 0\}=\{e_1,e_2,\ldots\}$. We also know that $\sum_{n=1}^\infty\abs{\langle h,e_n\rangle}^2&lt;\varepsilon^2$. Let $F_0=\{e_1,\ldots,e_{N-1}\}$ and let $\mathcal{F}$ be the st of all finite subsets of $E$. For $F\in\mathcal{F}$, define $h_F=\sum_{e\in F}\langle h,e\rangle$. If $F$ and $G$ in $\mathcal{F}$ and both contain $F_0$, then
 $$
 \begin{align}
 \norm{h_F-h_G}^2&=\sum\_{e\in(F\setminus G)\cup(G\setminus F)}\abs{\langle h,r\rangle}^2\\
 &\leq\sum_{n=N}^\infty\abs{h,e_n\rangle}^2\\
-&<\varepsilon^2.
+&&lt;\varepsilon^2.
 \end{align}
 $$
 So $\{h_F\mid F\in\mathcal{F}\}$ is a Cauchy net in $H$. Because $H$ is compelte, this net converges. In fact, it converges to $\sum_{n=1}^\infty\langle h,e_n\rangle e_n$.
@@ -703,19 +704,19 @@ So $\{h_F\mid F\in\mathcal{F}\}$ is a Cauchy net in $H$. Because $H$ is compelte
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Theorem",{"label":"ECOB"})
-</script><em> Let $E$ be an orthonormal set in $H$. Then the following statements are equivalent:
-    <ol class="parenthesis">
+</script><em> Let $E$ be an orthonormal set in $H$. Then the following statements are equivalent:</em>
+    <ol class="parenthesis" style="font-style: italic;">
         <li>$E$ is a basis for $H$.</li>
         <li>if $h\in H$ and $h\perp E$ then $h=0$.</li>
         <li>$\wedge E=H$.</li>
         <li>If $h\in H$ then $h=\sum_{e\in E}\langle h,e\rangle e$.</li>
         <li>If $g$ and $h$ in $H$ then $\langle g,h\rangle=\sum_{e\in E}\langle g,e\rangle\langle e,h\rangle$.</li>
-        <li>If $h\in H$ then <script>eq_before();</script>
+        <li>If $h\in H$ then <p hidden>
         \norm{h}^2=\sum_{e\in E}\abs{\langle h,e\rangle}^2.
-        </p><script>eq_id("PARI")</script>
+        </p><script>eq("PARI")</script>
         </li>
-    </ol>
-<span style="font-style: normal;">(<script>ref("PARI");</script>)<span> is called Parseval's Identity.
+    </ol><em>
+<span style="font-style: normal;">(<script>ref("PARI");</script>)</span> is called Parseval's Identity.
 </em></div>
 
 <p class="proof"><em>Proof.</em>(i)$\Rightarrow$(ii) Suppose $h\perp E$ and $h\neq 0$. Then $E\cup\{h/\norm{h}\}$ is an orthonormal set that properly contains $E$, contradicting the maximality. (ii)$\Leftrightarrow$(iii) By (<script>ref("DIP0");</script>), $\wedge E=H$ if and only if $E^\perp=(0)$. (iii)$\Rightarrow$(iv) If $h\in H$ then $f=h-\sum_{e\in E}\langle h,e\rangle r$ is a well-defined vector by (<script>ref("OICT");</script>). If $e_1\in E$ then $\langle f,e_1\rangle=\langle h,e_1\rangle-\sum_{e\in E}\langle h,e\rangle\langle e,e_1\rangle=\langle h,e_1\rangle-\langle h,e_1\rangle=0$, where we use the the continuity of inner product so that it maps convergent nets to convergent nets. (iv)$\Rightarrow$(v) is similarly. (v)$\Rightarrow$(i) Since $\norm{h}^2=\langle h,h\rangle$, this is immediate. If $E$ is not a basis, then there is a unit vector $e_0$ in $H$ such that $e_0\perp E$. Hence $0=\sum_{e\in E}\abs{\langle e_0,e\rangle}^2$, contradicting the assumption.
@@ -727,13 +728,13 @@ theorem("Proposition")
 </script><em> If $H$ is a Hilbert space, then any two bases have the same cardinality.
 </em></div>
 
-<p class="proof"><em>Proof.</em> Let $E$ and $F$ be two bases for $H$. Let $\kappa$ be the cardinlaity of $E$, and $\mu$ the cardinality of $F$. If $\kappa$ or $\mu$ is finite,then since $E$ and $F$ are maimal linearly independent sets, we see that $\kappa=\mu$, as otherwise $\kappa< \mu$ implies that we can choose $h\in H$ such that $E\cup\{h\}$ is linearly independent, and we may assume that $E\cup\{h\}$ is an orthonormal set by (<script>ref("GSOP");</script>). Suppose both $\varepsilon$ and $\eta$ are infinite. For $e\in E$, let $\mathcal{F}_e=\{f\in\mathcal{F}\mid\langle e,g\rangle\neq 0\}$. Thus $\mathcal{F}_e$ is countable. By (ii) of (<script>ref("ECOB");</script>), each $f\in\mathcal{F}$ belongs to at least one set $\mathcal{F}_e$, $e\in E$. Therefore $\mathcal{F}=\bigcup_{e\in E}\mathcal{F}_e$ and $\mu\leq\kappa\cdot\aleph_0=\kappa$. Similarly $\kappa\leq\mu$.
+<p class="proof"><em>Proof.</em> Let $E$ and $F$ be two bases for $H$. Let $\kappa$ be the cardinlaity of $E$, and $\mu$ the cardinality of $F$. If $\kappa$ or $\mu$ is finite,then since $E$ and $F$ are maimal linearly independent sets, we see that $\kappa=\mu$, as otherwise $\kappa&lt; \mu$ implies that we can choose $h\in H$ such that $E\cup\{h\}$ is linearly independent, and we may assume that $E\cup\{h\}$ is an orthonormal set by (<script>ref("GSOP");</script>). Suppose both $\varepsilon$ and $\eta$ are infinite. For $e\in E$, let $\mathcal{F}_e=\{f\in\mathcal{F}\mid\langle e,g\rangle\neq 0\}$. Thus $\mathcal{F}_e$ is countable. By (ii) of (<script>ref("ECOB");</script>), each $f\in\mathcal{F}$ belongs to at least one set $\mathcal{F}_e$, $e\in E$. Therefore $\mathcal{F}=\bigcup_{e\in E}\mathcal{F}_e$ and $\mu\leq\kappa\cdot\aleph_0=\kappa$. Similarly $\kappa\leq\mu$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
 <script type="text/javascript" >
 theorem("Definition")
-</script> The <font color="Teal"><em>dimension</em></font> of a Hilbert space is the cardinality of a basis and is denoted by $\dim H$.
+</script> The <em style="color: teal;">dimension</em> of a Hilbert space is the cardinality of a basis and is denoted by $\dim H$.
 </div>
 
 <p>
@@ -764,17 +765,17 @@ theorem("Proposition")
 <div class="alert alert-info">
 <script type="text/javascript" >
 theorem("Proposition")
-</script><em> Let $X$ be a LCTD space and $C\subseteq X$ a closed subset. Then we have exact sequences
-<script>eq_before();</script>
+</script><em> Let $X$ be a LCTD space and $C\subseteq X$ a closed subset. Then we have exact sequences</em>
+<p hidden>
 0\to C_c^\infty(X-C)\to C_c^\infty(X)\to C_c^\infty(C)\to 0
-</p><script>eq_id("DES1")</script>
-and
-<script>eq_before();</script>
+</p><script>eq("DES1")</script><em>
+and</em>
+<p hidden>
 0\to D(C)\to D(X)\to D(X-C)\to 0.
-</p><script>eq_id("DES2")</script>
-</em></div>
+</p><script>eq("DES2")</script>
+</div>
 
-<p class="proof"><em>Proof.</em> We proves (<script>ref("DES1");</script>) so that (<script>ref("DES2");</script>) follows by dualizing. We obtain a map $C_c^\infty(X-C)\to C_c^\infty(X)$ by extending a function $f\in C_c^\infty(X-C)$ by zero on $C$ ot a function in $C_c^\infty(X)$, where the continuity follows from the fact that $f$ is of compact support, and the map $C_c^\infty(X)\to C_c^\infty(C)$ just a restriction of functions to $C$. Regarding the exactness of (<script>ref("DES1");</script>), the only point that is not clear is the surjectivity of restriction to $C$. Let $f\in C_c^\infty(C)$. Because $f$ is compactly supported and locally constant, there exist disjoint open and compact sets $U_i\subseteq C$ and $a_i\in\mathbf{C}$ such that $f(x)=a_i$ if $x\in U_i$ and $f(x)=0$ off $\bigcup_i U_i$. Let $V_i$ be open and compact subsets of $X$ such that $U_i=V_i\cap C$, see (<script>ref("COID");</script>). We may arrange that the $V_i$ are disjoint by successively replacing $V_i$ by $V_i-\bigcup_{j< i}V_j$, which are also open and compact and give the $U_i$ on intersection with $C$. Then we extend the function $f$ to $X$ by letting $f(x)=a_i$ if $x\in V_i$ and $f(x)=0$ off $\bigcup V_i$. This proves the exactness of (<script>ref("DES1");</script>).
+<p class="proof"><em>Proof.</em> We proves (<script>ref("DES1");</script>) so that (<script>ref("DES2");</script>) follows by dualizing. We obtain a map $C_c^\infty(X-C)\to C_c^\infty(X)$ by extending a function $f\in C_c^\infty(X-C)$ by zero on $C$ ot a function in $C_c^\infty(X)$, where the continuity follows from the fact that $f$ is of compact support, and the map $C_c^\infty(X)\to C_c^\infty(C)$ just a restriction of functions to $C$. Regarding the exactness of (<script>ref("DES1");</script>), the only point that is not clear is the surjectivity of restriction to $C$. Let $f\in C_c^\infty(C)$. Because $f$ is compactly supported and locally constant, there exist disjoint open and compact sets $U_i\subseteq C$ and $a_i\in\mathbf{C}$ such that $f(x)=a_i$ if $x\in U_i$ and $f(x)=0$ off $\bigcup_i U_i$. Let $V_i$ be open and compact subsets of $X$ such that $U_i=V_i\cap C$, see (<script>ref("COID");</script>). We may arrange that the $V_i$ are disjoint by successively replacing $V_i$ by $V_i-\bigcup_{j&lt; i}V_j$, which are also open and compact and give the $U_i$ on intersection with $C$. Then we extend the function $f$ to $X$ by letting $f(x)=a_i$ if $x\in V_i$ and $f(x)=0$ off $\bigcup V_i$. This proves the exactness of (<script>ref("DES1");</script>).
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -793,14 +794,14 @@ theorem("Definition")
 
 
 
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -822,18 +823,18 @@ theorem("Definition")
         <i class="fa fa-bars"></i>
         </a>
         <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-            <div class="toc">
+            <li class="toc">
                 <ul class="nav">
                     <script>
                         generateTOC();    
                     </script>
                 </ul>
-            </div>
-            <div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+            </li>
+            <li class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></li>
         </ul>
     </div>
 </div>
-<div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+<div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;">
     <div class="toc">
         <ul class="nav">
             <script>

@@ -30,14 +30,12 @@ function ref(id) {
     document.write("<a href=#", id, ">", label[id][0], ".", label[id][1], "</a>");
 }
 
-function eq_before() {
+function eq(id) {
     theoremcounter++;
-    document.write("<p id=\"", "eq", theoremcounter, "\" hidden>");
-}
-
-function eq_id(id) {
-    var hidden_id = "eq" + theoremcounter;
-    var str = document.getElementById(hidden_id).innerHTML;
+    var elements = document.getElementsByTagName("p");
+    var lastnum = elements.length - 1;
+    var last_element = elements[lastnum];
+    var str = last_element.innerHTML;
     document.write("<p id=", id, "></p>");
     document.write("\\begin{equation}\\tag{", levelcounter["section"], ".", theoremcounter, "}");
     document.write(str);
