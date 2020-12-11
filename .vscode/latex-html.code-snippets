@@ -67,6 +67,16 @@
 		"</div>\n\n"],
     	"description": "colored definition"
 	},
+	"colored example": {
+		"prefix": ["example"],
+    	"body": [
+		"<div class=\"alert alert-secondary\">",
+		"<script type=\"text/javascript\" >",
+		"theorem(\"Example\")",
+		"</script>$0",
+		"</div>\n\n"],
+    	"description": "colored example"
+	},
 	"refernce": {
 		"prefix": ["ref","\\ref"],
     	"body": [

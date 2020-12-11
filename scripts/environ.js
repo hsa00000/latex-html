@@ -46,7 +46,7 @@ function eq(id) {
 
 function section(level, name) {
     levelcounter[level]++;
-    id = name.replace(/\s+/g, '-');
+    id = name.replace(/\s+/g, '-').toLowerCase();
     h_level = section_level.indexOf(level);
     h_level++;
     document.write("<h", h_level, " id=", id, ">");
