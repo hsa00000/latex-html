@@ -290,10 +290,6 @@
     padding-right: 39px
 }
 
-.markdown-body {
-    font-family: Times New Roman
-}
-
 .ui-affix-toc {
     position: fixed;
     top: 0;
@@ -341,5 +337,4 @@ body {
     text-shadow: 0 0 1em transparent, 1px 1px 1.2px rgba(0, 0, 0, .004);
     -webkit-overflow-scrolling: touch;
     letter-spacing: .025em;
-    font-family: Times New Roman
 }

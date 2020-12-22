@@ -111,6 +111,26 @@
 		"$$"
 		],
     	"description": "align"
+	},
+	"etale": {
+		"prefix": ["etale"],
+    	"body": [
+		"étale"
+		],
+    	"description": "etale"
+	},
+	"Etale": {
+		"prefix": ["Etale"],
+    	"body": [
+		"Étale"
+		],
+    	"description": "etale"
+	},
+	"less than": {
+		"prefix": ["\\<"],
+    	"body": [
+		"&lt;"
+		],
+    	"description": "less than"
 	}
-
 }

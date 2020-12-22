@@ -1,2 +1,3 @@
 **/*.min.*
 fonts
+node_modules

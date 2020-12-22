@@ -49,7 +49,7 @@ function section(level, name) {
     id = name.replace(/\s+/g, '-').toLowerCase();
     h_level = section_level.indexOf(level);
     h_level++;
-    document.write("<h", h_level, " id=", id, ">");
+    document.write("<h", h_level, " id=", id, " role=\"button\" data-toggle=\"collapse\" data-target=\"#content-", id,"\"", ">");
     if (level == "chapter"){
         document.write(romanize(levelcounter[level]),". ");
     }else if(level == "section"){
@@ -76,7 +76,7 @@ function generateTOC(attr = "") {
         if (i != (toc_tree.length - 1)) {
             var next_node = toc_tree[i + 1]
         }
-        var str_before = "<li><a href=\"#" + this_node["id"] + "\">" + this_node["name"] + "</a>";
+        var str_before = "<li><a href=\"#content-" + this_node["id"] + "\" data-toggle=\"collapse\" role=\"button\">" + this_node["name"] + "</a>";
         var str_after = "</li>";
         if (next_node["h_level"] > this_node["h_level"]) {
             if (attr == "page") {
