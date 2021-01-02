@@ -132,5 +132,30 @@
 		"&lt;"
 		],
     	"description": "less than"
-	}
+	},
+	"enumerate": {
+		"prefix": ["enumerate"],
+    	"body": [
+		"<ol class=\"parenthesis\">",
+        "<li>$0</li>",
+        "</ol>"
+		],
+    	"description": "ordered list"
+	},
+	"return": {
+		"prefix": ["ret"],
+    	"body": [
+		"<a href=#$0></a>"
+		],
+    	"description": "reference after"
+	},
+	"reset": {
+		"prefix": ["reset"],
+    	"body": [
+		"style=\"counter-reset: listcounter $0;\""
+		],
+    	"description": "reset counter"
+	},
+
+
 }

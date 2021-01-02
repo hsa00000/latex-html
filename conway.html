@@ -19,14 +19,13 @@
     <link rel="stylesheet" href="styles/hackmd.min.css" />
     <link rel="stylesheet" href="styles/latex.min.css" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script type="text/javascript" id="MathJax-script" async src="node_modules/mathjax/es5/tex-chtml.js">
-    </script>
     <script>
         MathJax = {
             loader: {load: ['[tex]/amscd', '[tex]/textmacros']},
             tex: {
                 packages: {'[+]': ['amscd','textmacros']},
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                inlineMath: [['¥', '¥']],
+                displayMath: [['¥¥', '¥¥']],
                 macros:{
                     Abs: ['\\left\\lvert #1 \\right\\rvert',1],
                     abs: ['\\lvert #1 \\rvert',1],
@@ -45,14 +44,23 @@
             }    
         };
     </script>
-    <script type="text/javascript" src="scripts/environ.min.js"></script>
-    <script type="text/javascript">
+    <script id="MathJax-script" async src="node_modules/mathjax/es5/tex-chtml.js">
+    </script>
+    <script src="scripts/environ.min.js"></script>
+    <script>
         $(document).ready(function(){
             $('.collapse').on('show.bs.collapse', function () {
-                $(this).parents(".collapse").collapse("show");
+                if ($(this).children(".collapse").length == 0 && $(this).children(".collapsing").length == 0) {
+                    $(this).get(0).innerHTML = $(this).get(0).innerHTML.replace(/\$/g, "¥");
+                    setTimeout(function(){
+                        MathJax.typesetPromise();
+                    },0);
+                }
+                $(this).parent(".collapse").collapse("show");
             });
         });
     </script>
+    
 </head>
 
 <body>  
@@ -75,19 +83,19 @@
 </script>
 <div class="collapse" id="content-limit">
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $I$ be a small category and $\mathcal{A}$ a category. The <em style="color: teal;">diagonal functor</em> $\delta:\mathcal{A}\to\mathcal{A}^I$ is defined by $A\mapsto\Delta A$ with $(\Delta A)_i=A$ for all $i\in I$, and $\id_A:(\Delta A)_i\to(\Delta A)_j$ for all $i\to j$ in $I$.
 </div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $F:I\to\mathcal{A}$ be a functor $i\mapsto F_i$ with $I$ small. The <em style="color: teal;">colimit</em> of $F$ is an object $X$ in $\mathcal{A}$ such that $F\to\Delta X$ universally. This universal property implies that the colimit is unique whenever it exists, which is denoted by $\colim_i F_i$. Denote $\rho_i$ the canonical map $F_i\to\colim_iF$ for each i, called the <em style="color: teal;">insertion</em>.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $I$ be a small category, $\mathcal{A}$ a category, $F:I\to\mathcal{A}$ functor with its colimit exists in $\mathcal{A}$ and $f,g:\colim F_i\to Z$ two morphisms in $\mathcal{A}$. Then $f=g$ if and only if $f\circ\rho_i=g\circ\rho_i$ for all $i\in I$.
 </em></div>
@@ -100,13 +108,13 @@ F_j @>>> \colim_iF_j@>>>Z
 commutes. By the universal property of colimit, $h$ factor through colimit as $$h:F\xrightarrow{\rho}\Delta\colim_iF_i\to\Delta Z$$ uniquely. Thus $f=g$.
 <span style="float:right;">$\square$</span></p>
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A functor $\mathcal{A}$ is called <em style="color: teal;">cocomplete</em> if the limit of every functor $F:I\to\mathcal{A}$ exists whenever $I$ is small.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $I$ be a small category and $\mathcal{A}$ a cocomplete category. Then $$\colim:\mathcal{A}^I\to\mathcal{A}$$ forms a functor.
 </em></div>
@@ -121,43 +129,43 @@ Set $\colim\Phi$ to be the map $\Delta\colim_iF_i\to\Delta\colim_iG_i$ in $\math
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> A category $\mathcal{A}$ is cocomplete if and only if $\mathcal{A}$ admits all coproduct and coequalizer.
 </em></div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> We say a functor $F:\mathcal{A}\to\mathcal{B}$ <em style="color: teal;">preserves colimit</em> if for every functor $A_i$ from a small category $I$ to $\mathcal{A}$ with colimit exists in $\mathcal{A}$, the colimit of the functor $F(A_i)$ exists in $\mathcal{B}$ and $\colim_iF(A_i)\cong F(\colim_iA_i)$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Every left adjoint functor preserves colimit.
 </em></div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $F:I\to\mathcal{A}$ is a functor with $I$ a directed set, then $\colim_iF_i$ is called a <em style="color: teal;">direct limit</em> whenever it eixsts and is denoted by $\varinjlim_iF_i$.
 </div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $X:I\to\mathcal{A}$ be a functor with $I$ a direct set. Then for any $i\leq j$ in $I$, there is a morphism $i\to j$. Write $\varphi_{ij}=X(i\to j):X_i\to X_j$. Then $\{X_i,\varphi_{ij},I\}$ is called a <em style="color: teal;">direct system</em> of $\mathcal{A}$.
 </div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $F:I\to\mathcal{A}$ is a contravariant functor with $I$ a direct set, then $\colim_iF_i$ is called an <em style="color: teal;">inverse limit</em> whenever it eixsts and is denoted by $\varprojlim_iF_i$.
 </div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition",{"label":"INSYS"})
 </script> Let $X:I\to\mathcal{A}$ be a contravariant functor with $I$ a direct set. Then for any $i\geq j$ in $I$, there is a morphism $j\to i$. Write $\varphi_{ij}=X(j\to i):X_i\to X_j$. Then $\{X_i,\varphi_{ij},I\}$ is called an <em style="color: teal;">inverse system</em> of $\mathcal{A}$.
 </div>
@@ -168,7 +176,7 @@ theorem("Definition",{"label":"INSYS"})
 <script>
     section("part","Analysis")
 </script>
-<div class="collapse show" id="content-analysis">
+<div class="collapse" id="content-analysis">
 
 <script>
     section("chapter","Topology")
@@ -185,7 +193,7 @@ Now we consider inverse systems (<script>ref("INSYS");</script>) in the category
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of topological spaces (respectively, topological groups) over a directed poset $I$. Then There exists an inverse limit of the inverse system $\{X_i,\varphi_{ij},I\}$ uniquely up to isomorphism, and is denoted by $\varprojlim X_i$.
 </em></div>
@@ -194,7 +202,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"ILIC"})
 </script><em> Let $\{X_i,\varphi_{ij}\}$ be a inverse system of Hausdorff topological spaces (respectively, topological groups), then $\varprojlim X_i$ is a closed subspace (respectively, closed subgroup) of $\prod_{i\in I}X_i$.
 </em></div>
@@ -203,7 +211,7 @@ theorem("Proposition",{"label":"ILIC"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of compact Hausdorff totally disconnected topological spaces (respectively, topological groups) over the directed set $I$. Then $\varprojlim X_i$ is also a compact Hausdorff totally disconnected topological space (respectively, topological group).
 </em></div>
@@ -212,7 +220,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"CHNE"})
 </script><em> Let $\{X_i,\varphi_{ij}\}$ be an inverse system of compact Hausdorff non-empty topological spaces $X_i$ over the directed set $I$. Then $\varprojlim X_i$ is non-empty. In particular, the inverse limit of an inverse system of non-empty finite sets is non-empty.
 </em></div>
@@ -221,13 +229,13 @@ theorem("Proposition",{"label":"CHNE"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $\{X_i,\varphi_{ij}\}$ and $\{X'_i,\varphi'_{ij}\}$ be inverse system of topological spaces over the same directed poset $I$. A <em style="color: teal;">morphism</em> of inverse system $\Theta=\{\theta_i\}:\{X_i,\varphi_{ij}\}\to \{X'_i,\varphi'_{ij}\}$ is a natural transformation $X\to X'$. We say that the mappings $\theta_i$ are the <em style="color: teal;">components</em> of $\Theta$. A map $\Theta:\{X_i,\varphi_{ij}\}\to\{X_i,\varphi_{ij}\}$ of an inverse system to itself, whose components are identity mappings, is called the identity map of the system $\{X_i,\varphi_{ij}\}$, and it is usually denoted by $\id$. 
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\{\theta_i\}:\{X_i,\varphi_{ij},I\}\to\{X'_i,\varphi'_{ij},I\}$ be a morphism of inverse systems of topological spaces (respectively, topological groups) such that each component $\theta_i:X_i\to X_i'$ is injective (respectively, bijective). Then $\varprojlim\theta_i$ is injective (respectively, bijective).
 </em></div>
@@ -236,13 +244,13 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> Let $\{A_i,f_{ij}\}$, $\{B_i,g_{ij}\}$ and $\{C_i,h_{ij}\}$ be three inverse system of topological spaces (respectively, topological groups) over the same directed poset $I$ such that the sequence $0\to A_i\to B_i\to C_i\to 0$ is exact for each $i\in I$. Then the induced sequence $0\to\varprojlim A_i\to\varprojlim B_i\to\varprojlim C_i$ is exact.
 </em></div>
 
 <div class="alert alert-secondary">
-<script type="text/javascript" >
+<script >
 theorem("Example")
 </script> In contrast, if each of the components $\theta_i$ is an onto mapping, $\varprojlim\theta_i$ is not necessarily onto. For example, consider the natural numbers $I=\mathbf{N}$, with the usual partial ordering, as our indexing poset; define two inverse systems over $I$ as follows: the constant inverse system $\{\mathbf{Z},\id\}$, and the inverse system $\{\mathbf{Z}/p^n\mathbf{Z},\varphi_{nm}\}$, where $\varphi_{nm}:\mathbf{Z}/p^n\mathbf{Z}\to\mathbf{Z}/p^m\mathbf{Z}$ is the natural projection for $m\leq n$. For each $n\in\mathbf{N}$, define $\theta_n\mathbf{Z}\to\mathbf{Z}/p^n\mathbf{Z}$ to be the canonical epimorphism. Then $\theta_n$ form a morphism of inverse systems. Observe that the inverse limit of the first system is $\mathbf{Z}$, while the inverse limit of the second can be identified with 
 $
@@ -252,7 +260,7 @@ The image of $\mathbf{Z}$ in $\varprojlim\mathbf{Z}/p^n\mathbf{Z}$ under $\varpr
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\Theta:\{X_i,\varphi_{ij},I\}\to\{X'_i,\varphi'_{ij}mI\}$ be a map of inverse systems of compact Hausdorff topological spaces (respectively, topological groups), and assume that each component $\theta_i:X_i\to X_i'$ is onto. Then $\varprojlim\theta_i$ is onto.
 </em></div>
@@ -261,7 +269,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"CHSS"})
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of compact Hausdorff spaces and $X$ a compact Hausdorff space. Suppose that $\{\varphi_i:X\to X_i\}_{i\in I}$ is a set of compatible continuous surjective mappings. Then the corresponding induced mapping $\theta:X\to\varprojlim X_i$ is onto.
 </em></div>
@@ -270,7 +278,7 @@ theorem("Corollary",{"label":"CHSS"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma")
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of topological spaces over a directed set $I$, and let $\rho_i:X\to X_i$ by compatible surjections from the space $X$ onto the spaces $X_i$. Then either $\varprojlim X_i=\emptyset$ or the corresponding induced mapping $\rho:X\to\varprojlim X_i$ maps $X$ onto a dense subset of $\varprojlim X_i$.
 </em></div>
@@ -279,13 +287,13 @@ theorem("Lemma")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $(I,\leq)$ be a directed poset. Assume that $I'$ is a subset of $I$ in such a way that $(I',\leq)$ becomes a directed poset. We say that $I'$ is <em style="color: teal;">cofinal</em> in $I$ if for every $i\in I$ there is some $i'\in I'$ such that $i\leq i'$. If $\{X_i,\varphi_{ij},I\}$ is an inverse system and $I'$ is cofinal in $I$, then $\{X_i,\varphi_{ij},I'\}$ becomes an inverse system in an obvious way, and we say that $\{X_i,\varphi_{ij},I'\}$ is a cofinal subsystem of $\{X_i,\varphi_{ij},I\}$. Denote by $(\varprojlim_{i'\in I'}X_{i'},\varphi'_{i'})$ and $(\varprojlim_{i\in I}X_i,\varphi_i)$ their corresponding inverse limits. For $j\in I$, let $j'\in I'$ be such that $j'\geq j$. Define $\overline{\varphi}_j:\varprojlim_{I'}X_{i'}\to X_j$ as the composition of canonical mappings $\varphi_{j'j}\varphi'_{j'}$. Observe that the maps $\overline{\varphi}_j$ are well-defined (independent of the choice of $j'$) and compatible. Hence they induce a map $\overline{\varphi}:\varprojlim_{I'}X_{i'}\to\varprojlim_I X_i$ such that $\varphi_j\overline{\varphi}=\overline{\varphi}_j$ for $j\in I$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma")
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of compact topological spaces (respectively, compact topological groups) over a directed poset $I$ and assume that $I'$ is a cofinal subset of $I$. Then the canonical map $\varprojlim_{i\in I}X_i\to \varprojlim_{i'\in I'}X_{i'}$ is a topologically isomorphism.
 </em></div>
@@ -294,7 +302,7 @@ theorem("Lemma")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> An inverse system $\{X_i,\varphi_{ij},I\}$ is called a <em style="color: teal;">surjective inverse system</em> if each of the mappings $\varphi_{ij}$ with $i\geq j$ is surjective.
 </div>
@@ -304,7 +312,7 @@ Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of topological spaces $X_i$ ov
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\{X_i,\varphi_{ij},I\}$ be a surjective inverse system of compact Hausdorff non-empty topological spaces $X_i$ over a directed poset $I$. Then for each $j\in I$, the projection map $\varphi_j:\varprojlim X_i\to X_j$ is a surjection.
 </em></div>
@@ -313,7 +321,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A topological space is <em style="color: teal;">profintie</em> if it is homeomorphic to an inverse limit (over a direct poset) of finite discrete spaces.
 </div>
@@ -327,13 +335,13 @@ theorem("Definition")
 
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"COCF"})
 </script><em> Let $G$ be a compact topological group and $U$ a subgroup of $G$. Then $U$ is open if and only if $U$ is closed of finite index.
 </em></div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"OFON"}) 
 </script><em> Let $G$ be a topological group and $H$ an open subgroup of $G$ of finite index. Then $H$ contains an open normal subgroup of $G$.
 </em></div>
@@ -342,7 +350,7 @@ theorem("Proposition",{"label":"OFON"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma",{"label":"CEL"})
 </script><em> Let $X$ be a compact space, $U\subseteq X$ open subset and $\mathcal{C}$ a collection of closed subsets of $X$ such that $\bigcap_{C\in\mathcal{C}} C\subseteq U$. Then there exists $C_1,\ldots,C_n\in\mathcal{C}$ such that $C_1\cap\cdots\cap C_n\subseteq U$.
 </em></div>
@@ -351,13 +359,13 @@ theorem("Lemma",{"label":"CEL"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $X$ be a topologial space and $x\in X$. The <em style="color: teal;">quasi-component</em> of $x$ is the intersection of all clopen subsets of $X$ containing $x$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"QCCC"})
 </script><em> Let $X$ be Hausdorff, $x\in X$, $C(x)$ the connected component of $X$ and $Q(x)$ the quasi-component of $x$. Then $C(x)\subseteq Q(x)$, with the eqaulity holds if $X$ is compact.
 </em></div>
@@ -366,13 +374,13 @@ theorem("Proposition",{"label":"QCCC"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A topological space $X$ is <em style="color: teal;">totally disconnected</em> if for every point $x\in X$, the connected component of $x$ consists of only $x$ itself.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"LCHT"})
 </script><em> Let $X$ be a LCH space. Then $X$ is totally disconnected if and only if it has a basis of topology consisting of compact open sets.
 </em></div>
@@ -382,7 +390,7 @@ Conversely, assume $X$ is totally disconnected. We first assume $X$ is compact. 
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"COID"})
 </script><em> Let $X$ be a totally disconnected LCH space and $K$ a closed subset of $X$. Then every clopen set in $K$ is an intersection of $K$ with a clopen set of $X$.
 </em></div>
@@ -391,25 +399,23 @@ theorem("Corollary",{"label":"COID"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma",{"label":"CPSS"})
 </script><em> Let $G$ be a topological group and $U$ a compact open subset of $G$ containing the identity. Then $U$ contains a compact open subgroup.
 </em></div>
 
 <p class="proof"><em>Proof.</em> Fix $x\in U$. Since $U$ is open, there is a open neighborhood $V_x$ such that $xV_x^2\subseteq U$. By the compactness, we can extract a finite subcover $\{V_{x_i}\}_{i=1}^n$ of $U$. Define $V=\bigcap_{i=1}^n V_{x_i}$. Then $$UV\subseteq\left(\bigcup_{i=1}^nx_iV_{x_i}\right)V\subseteq\bigcup_{i=1}^nx_iV_{x_i}^2\subseteq U.$$ Set $W=U\cap U^{-1}\cap V\cap V^{-1}$. Then $W^{-1}=W$ and by induction, we see that
-$$
 \begin{align}
 W&\subseteq U\\
 W^2&=WW\subseteq UV\subseteq U\\
 &\vdots\\
 W^{n+1}&=W^nW\subseteq UV\subseteq U
 \end{align}
-$$
 for all $n\in\mathbf{N}$. Thus the subgroup  $Q$ generated by $W$, which is equal to $\bigcup_{n\geq 1}W^n$, is open and included in $U$. Since every open subgroup is closed and since $U$ is compact, $Q$ is compact, as desired.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"PROF"})
 </script><em> Let $G$ be a topological group. Then the following statements are equivalent:</em>
 <ol class="parenthesis" style="font-style: italic;">
@@ -429,13 +435,13 @@ A non-compact generalization of a profinite group is a locally profinite group:
 </p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition",{"label":"DOLP"})
 </script> A topolgoical group $G$ is called <em style="color: teal;">locally profinite</em> if every open neighborhood of the identity element contains a compact open subgroup. By (<script>ref("LCHT");</script>) and (<script>ref("CPSS");</script>), this is equivalent to say that $G$ is locally copmact and totally disconnected.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> Every locally profinite group is profinite.
 </em></div>
@@ -448,21 +454,21 @@ theorem("Corollary")
 <script>
     section("chapter","Real Analysis")
 </script>
-<div class="collapse show" id="content-real-analysis">
+<div class="collapse" id="content-real-analysis">
 
 <script>
     section("section","Differential")
 </script>
-<div class="collapse show" id="content-differential">
+<div class="collapse" id="content-differential">
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A set function is a real-valued function $F$ defiend on a $\sigma$-algebra $\Sigma$ of measurable sets is called a <em style="color: teal;">set function</em> if $F(E)$ is finite for every $E\in\Sigma$ and that $F$ is countably additive.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Given $f\in L(A)$ with $A$ a measurable subset of $\mathbf{R}^n$, define $F(E)=\int_E(f)$ for any measurable subset $E$ of $A$. Then $E\mapsto F(E)$ is a set function.
 </em></div>
@@ -471,13 +477,13 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A set function $F$ is called <em style="color: teal;">continuous</em> if $F(E)$ tends to zero as the diameter of $E$ tends to zero, that is, $F$ is continuous if, given $\varepsilon>0$, there exists $\delta>0$ such that $\abs{F(E)}&lt;\varepsilon$ whenever the diameter of $E$ is less then $\delta$. A set function $F$ is called <em style="color: teal;">absolutely continuous</em> (with respect to Lebesgue measure) if $F(E)$ tends to zero as the measure of $E$ tends to zero
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> A set function that is absolutely continuous is continuous.
 </em></div>
@@ -486,8 +492,8 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
-theorem("Theorem")
+<script >
+theorem("Theorem",{"label":"IIIA1"})
 </script><em> If $f\in L(A)$, its indefinite integral is absolutely continuous.
 </em></div>
 
@@ -499,7 +505,7 @@ if $\abs{E}$ is small enough. This complete the proof.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $f\in L(\mathbf{R}^n)$ and $F$ the indefinite integral of $f$. Let $Q$ denote an $n$-dimensional cube. Given $x\in\mathbf{R}^n$, we consider those $Q$ centered at $x$ and ask whether the average
 $$
@@ -513,15 +519,19 @@ and say that the indefinite integral of $f$ is <em style="color: teal;">differen
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"name":"Lebesgue","label":"LGDT"})
 </script><em> If $f\in L(\mathbf{R}^n)$, its indefinite integral is differentiable with derivative $f(x)$ at almost every $x\in\mathbf{R}^n$.
 </em></div>
 
-<p>To prove this, we need some new ideas.</p>
+<p class="proof"><em>Proof.</em> The theorem is easy to prove for continuous functins. In fact, if $f$ is continuous at $x$ and $Q$ is a cube with center $x$, then
+$$
+\Abs{\frac{1}{\abs{Q}}\int_Qf(y)dy-f(x)}=\Abs{\frac{1}{\abs{Q}}\int_Qf(y)-f(x)dy}\leq\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy\leq\sup_{y\in Q}\abs{f(y)-f(x)},
+$$
+which tends to zero as $Q$ shrinks to $x$ by the continuity of $f$. To prove the general case, we need some new ideas.</p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma")
 </script><em> Let $\mu$ be an outer Radon measure on a locally compact Hausdorff space $X$. Then the sapce $C_c(X)$ is dense in $L^p(\mu)$ for every $1\leq p&lt;\infty$.
 </em></div>
@@ -534,7 +544,7 @@ shows the claim.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma",{"name":"Simple Vitali Lemma","label":"SVCL"})
 </script><em> Let $E$ be a subset of $\mathbf{R}^n$ with $\abs{E}_e&lt;+\infty$, and let $K$ be a collection of cubes $Q$ covering $E$. Then there exist a positive constant $\beta$, depending only on $n$, and a finite number of disjoint cubes $Q_1,\ldots,Q_N$ in $K$ such that
 $$
@@ -567,7 +577,7 @@ Hence, given $\beta$ with $0&lt;\beta&lt;5^{-n}$, there exists an $N$ such that 
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition") 
 </script> Let $f\in L(\mathbf{R}^n)$. The maximal function $Mf$ of $f$ is
 $$
@@ -577,7 +587,7 @@ where the sup is taken over all $Q$ center $x$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $f\in L(\mathbf{R}^n)$. Then $Mf$ is lower semicontinuous in $\mathbf{R}^n$. In particular, it is measurable.
 </em></div>
@@ -598,7 +608,7 @@ It follows that $x'\in E_t$, which proves that $E_t$ is open.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> For any $f\in L(\mathbf{R}^n)$ integrable or not, $f$ is siad to be <em style="color: teal;">weak integrable</em> on $\mathbf{R}^n$ if there is a constant $c$ such that for any $\alpha>0$,
 $$
@@ -607,9 +617,9 @@ $$
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
-theorem("Lemma",{"name":"Hardy-Littlewood"})
-</script><em> If $f\in L(\mathbf{R}^n)$, then $f^\ast$ is weak integrable.
+<script >
+theorem("Lemma",{"name":"Hardy-Littlewood","label":"HDLW"})
+</script><em> If $f\in L(\mathbf{R}^n)$, then $Mf$ is weak integrable.
 </em></div>
 
 <p class="proof"><em>Proof.</em> Fix $\alpha>0$ and let $E=\{Mf\geq\alpha\}$. If $x\in E$, then by the definition of $E$ and $Mf$, there is a cube $Q_x$ with center $x$ such that
@@ -622,15 +632,463 @@ $$
 $$
 The collection of such $Q_x$ covers $E$. For $k=1,2,\ldots$, the sets $E_k$ defined by $E_k=E\cap\{x:\abs{x}&lt;l\}$ are also covered and have finite measure. By (<script>ref("SVCL");</script>) applied to each $E_k$, there exists $\beta>0$ (depending only on $n$) and a finite number of points $\{x_j^{(k)}\}_j\subseteq E$ such that the cubes $Q_{x_j^{(k)}}$ are disjoint in $j$ (for each $k$) and $\abs{E_k}&lt;\beta^{-1}\sum_j\abs{Q_{x_j^{(k)}}}$. Therefore,
 $$
-\abs{E_k}&lt;\frac{1}{\beta}\sum_j\frac{1}{\alpha}\int_{x_j^{(k)}}\abs{f}=\frac{1}{\beta\alpha}\int_{\bigcup_jx_j^{(k)}}\abs{f}\leq\frac{1}{\beta}\int_{\mathbf{R}^n}\abs{f}.
+\abs{E_k}&lt;\frac{1}{\beta}\sum_j\frac{1}{\alpha}\int_{Q_{x_j}^{(k)}}\abs{f}=\frac{1}{\beta\alpha}\int_{\bigcup_jQ_{x_j}^{(k)}}\abs{f}\leq\frac{1}{\beta\alpha}\int_{\mathbf{R}^n}\abs{f}.
 $$
-Since $E_k^nearrow E$ as $k\to\infty$, it follows from () that $\abs{E}\leq\frac{1}{\beta\alpha}\int_{\mathbf{R}^n}\abs{f}$, which proves the lemma with $c=\beta^{-1}$.
+Since $E_k\nearrow E$ as $k\to\infty$, it follows from () that $\abs{E}\leq\frac{1}{\beta\alpha}\int_{\mathbf{R}^n}\abs{f}$, which proves the lemma with $c=\beta^{-1}$.
 <span style="float:right;">$\square$</span></p>
 
-<p class="proof"><em>Proof of <span style="font-style: normal;">(<script>ref("LGDT");</script>)</span>.</em>
+<p class="proof"><em>Proof of <span style="font-style: normal;">(<script>ref("LGDT");</script>)</span>.</em> Given $f\in L(\mathbf{R}^n)$, there exists by () a sequence of continuous integrable $C_k$ such that $\int_{\mathbf{R}^n}\abs{f-C_k}\to 0$. Let $F(Q)=\int_Qf$ and $F_k(Q)=\int_QC_k$. Then for any $k$,
+$$
+\limsup_{Q\searrow x}\Abs{\frac{F(Q)}{\abs{Q}}-f(x)}\leq\limsup_{Q\searrow x}\Abs{\frac{F(Q)}{\abs{Q}}-\frac{F_k(Q)}{\abs{Q}}}+\limsup_{Q\searrow x}\Abs{\frac{F_k(Q)}{\abs{Q}}-C_k(x)}+\abs{C_k(x)-f(x)}.
+$$
+Since $C_k$ is continuous, the second term on the right is zero. Moreover,
+$$
+\Abs{\frac{F(Q)}{\abs{Q}}-\frac{F_k(Q)}{\abs{Q}}}\leq\frac{1}{\abs{Q}}\int_Q\abs{f-C_k}\leq M(f-C_k)(x),
+$$
+and therefore, the first term on the right is majorized by $M(f-C_k)(x)$. Hence, for every $k$,
+<p hidden>
+\limsup_{Q\searrow x}\Abs{\frac{F(Q)}{\abs{Q}}-f(x)}\leq M(f-C_k)(x)+\abs{f(x)-C_k(x)}.
+</p><script>eq("LDTI1")</script>
+Given $\varepsilon>0$, let $E_\varepsilon$ be the set on which the left side of (<script>ref("LDTI1");</script>) exceeds $\varepsilon$. By (<script>ref("LDTI1");</script>),
+$$
+E_\varepsilon\subseteq\left\{x:M(f-C_k)(x)>\frac{\varepsilon}{2}\right\}\cup\left\{x:\abs{f(x)-C_k(x)}>\frac{\varepsilon}{2}\right\}.
+$$
+Applying (<script>ref("HDLW");</script>) to thie first set on the right and () to the second, we obtain
+$$
+\abs{E_\varepsilon}_e\leq c\frac{\varepsilon}{2}^{-1}\int_{\mathbf{R}^n}\abs{f-C_k}+\frac{\varepsilon}{2}^{-1}\int_{\mathbf{R}^n}\abs{f-C_k}.
+$$
+Since $c$ is independent of $k$, it follows by letting $k\to\infty$ that $\abs{E_\varepsilon}_e=0$. Let $E$ be the set where the left side of (<script>ref("LDTI1");</script>) is positive. Then $E=\bigcup_kE_{\varepsilon_k}$ for any sequence $\varepsilon_k\to 0$, and therefore $\abs{E}=0$. This means that $\lim_{Q\searrow x}F(Q)/\abs{Q}$ exists and equals $f(x)$ for almost every $x$, which completes the proof.
 <span style="float:right;">$\square$</span></p>
 
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> A measurable function $f$ defined on $\mathbf{R}^n$ is said to be <em style="color: teal;">locally integrable</em> on $\mathbf{R}^n$ if it is integrable over every bounded measurable subset of $\mathbf{R}^n$. This is easily seen to be equivalent to the integrability of $f$ over every compact set.
+</div>
 
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"LLDT"})
+</script><em> The conclusion of Lebesgue's theorem is valid if, instead of being integrable, $f$ is locally integrable on $\mathbf{R}^n$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> It is enough to show that the conclusion holds a.e. in every open ball. Fix a ball and replace $f$ by zero outside it. This new function is integrable over $\mathbf{R}^n$, its integral is differentiable a.e., and since differentiability is a locally property, the initial function $f$ is differentiable a.e. in the ball. This completes the proof.
+<span style="float:right;">$\square$</span></p>
+
+<p>
+For any measurable $E$, note that
+$$
+\frac{1}{\abs{Q}}\int_Q\chi_E=\frac{\abs{E\cap Q}}{\abs{Q}}.
+$$
+By (<script>ref("LLDT");</script>), the left-hand side tends to $\chi_E(x)$ a.e. as $Q\searrow x$, that is,
+<p hidden>
+\lim_{Q\searrow x}\frac{\abs{E\cap Q}}{\abs{Q}}=\chi_E(x)\quad\text{a.e.}
+</p><script>eq("PODOE")</script>
+</p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> Let $E$ be a measurable set in $\mathbf{R}^n$. A point $x\in\mathbf{R}^n$ for which the limit (<script>ref("PODOE");</script>) is $1$ is called a <em style="color: teal;">point of density</em> of $E$, and a point for which it is zero is called a <em style="color: teal;">point of despersion</em> of $E$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem")
+</script><em> Let $E$ and $E'$ be a measurable sets. Then
+<ol class="parenthesis">
+    <li>almost every point of $E$ is a point of density of $E$;</li>
+    <li>$x$ is a point of density of $E$ if and only if $x$ is a point of desperation of $E$;</li>
+    <li>if $x$ is a point of density of $E$ and $E'$ then $x$ is a point of density of $E\cap E'$.</li>
+</ol>
+</em></div>
+
+<p class="proof"><em>Proof.</em> For (i), see (<script>ref("PODOE");</script>). For (ii), note that $\abs{E\cap Q}=\abs{Q}-\abs{E^c\cap Q}$ and so $$\frac{\abs{E\cap Q}}{\abs{Q}}=1-\frac{\abs{E^c\cap Q}}{\abs{Q}}.$$ For (iii), to show that $x$ is a point of density of $E\cap E'$, we prove that $x$ is a point of desperation of $E^c\cup E'^c$. But
+$$
+\lim_{Q\searrow x}\frac{\abs{(E^c\cup E'^c)\cap Q}}{\abs{Q}}\leq\lim_{Q\searrow x}\frac{\abs{E^c\cap Q}}{\abs{Q}}+\lim_{Q\searrow x}\frac{\abs{E'^c\cap Q}}{\abs{Q}}=0.
+$$
+<span style="float:right;">$\square$</span></p>
+
+<p>
+The formula $$\lim_{Q\searrow x}\frac{1}{\abs{Q}}\int_Qf(y)dy=f(x)$$ can be written
+$$
+\lim_{Q\searrow x}\frac{1}{\abs{Q}}\int_Qf(y)-f(x)dy=0
+$$
+and is valid for almost every $x$ if $f$ is locally integrable. This suggests the more stronger statement:
+</p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> Let $f$ be integrable. A point $x$ satisfies
+$$
+\lim_{Q\searrow x}\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy=0
+$$
+is valid is called a <em style="color: teal;">Lebsgue point</em> of $f$, and the collection of all such points is called the <em style="color: teal;">Lebesgue set</em> of $f$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem")
+</script><em> Let $f$ be locally integrable in $\mathbf{R}^n$. Then almost every point of $\mathbf{R}^n$ is a Lebesgue point of $f$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Let $\{r_k\}$ be the rational numbers, and let $Z_k$ be the set where the formula
+$$
+\lim_{Q\searrow x}\frac{1}{\abs{Q}}\int_Q\abs{f(y)-r_k}dy=\abs{f(x)-r_k}
+$$
+is not valid. Since $\abs{f(y)-r_k}$ is locally integrable, we have $\abs{Z_k}=0$. Let $Z=\bigcup Z_k$. Then $\abs{Z}=0$. For any $Q$, $x$ and $r_k$,
+\begin{align}
+\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy&\leq\frac{1}{\abs{Q}}\int_Q\abs{f(y)-r_k}dy+\frac{1}{\abs{Q}}\int_Q\abs{f(x)-r_k}dy\\
+&=\frac{1}{\abs{Q}}\int_Q\abs{f(y)-r_k}dy+\abs{f(x)-r_k}.
+\end{align}
+Therefore, if $x\notin Z$,
+$$
+\limsup_{Q\searrow x}\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy\leq 2\abs{f(x)-r_k}
+$$
+for every $r_k$. For $x$ at which $f(x)$ is finite (in particular, almost everwhere), we can choose $r_k$ such that $\abs{f(x)-r_k}$ is arbitrarily small. This shows that the left side of the last formula is zero a.e. and completes the proof.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> A family $\{S\}$ of measurable sets is said to be <em style="color: teal;">shrink regularly</em> to $x$ provided that the diameters of the sets $S$ tends to zero and that if $Q$ is the smallest cube with center $x$ containing $S$, there is a constant $k$ independent of $S$ such that $\abs{Q}\leq k\abs{S}$. nThe sets $S$ need not contain $x$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"SLDT"})
+</script><em> Let $f$ be locally integrable in $\mathbf{R}^n$. Then at every point $x$ of the Lebesgue set of $f$ (in particular, almost everywhere),
+$$
+\frac{1}{\abs{S}}\int_S\abs{f(y)-f(x)}dy\to 0
+$$
+for any family $\{S\}$ that shrinks regularly to $x$. Thus, also
+$$
+\frac{1}{\abs{S}}\int_Sf(y)dy\to f(x)\quad\text{a.e.}
+$$
+</em></div>
+
+<p class="proof"><em>Proof.</em> If $S\subseteq Q$, we have $$\int_Q\abs{f(y)-f(x)}dy\leq\int_Q\abs{f(y)-f(x)}dy.$$ Hence if $\{S\}$ shrinks regularly to $x$ and $Q$ is the least cube with center $x$ containing $S$, then $$\frac{1}{\abs{S}}\int_S\abs{f(y)-f(x)}dy\leq\frac{\abs{Q}}{\abs{S}}\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy\leq k\frac{1}{\abs{Q}}\int_Q\abs{f(y)-f(x)}dy.$$ If $x$ is a Lebesgue point of $f$, the last expression tends to zero, and the theorem follows.
+<span style="float:right;">$\square$</span></p>
+
+<p>
+In particular, for function $f$ of a single variable, we obtain
+$$
+\lim_{x\to 0}\frac{1}{h}\int_x^{x+h}f(y)dy=f(x)\quad\text{a.e.}
+$$
+</p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> A family $K$ of cubes is said to cover a set $E$ <em style="color: teal;">in the Vitali sense</em> if for every $x\in E$ and $\eta>0$, there is a cube in $K$ containing $x$ whose diameter is less than $\eta$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"name":"Vitali Covering Lemma","label":"CVCL"}) 
+</script><em> Suppose that $E$ is coverred in the Vitali sense by a family $K$ of cubes and that $\abs{E}_e&lt;\infty$. Then, given $\varepsilon>0$, there is a sequence $\{Q_j\}$ of disjoint cubes in $K$ such that $\abs{E-\bigcup_jQ_j}=0$ and $\sum_j\abs{Q_j}&lt;(1+\varepsilon)\abs{E}_e$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> The second relation is automatically satisfied if we choose an open set $G$ containing $E$ with $\abs{G}&lt;(1+\varepsilon)\abs{E}_e$ and consider only those $Q$ in $K$ which lie in $G$. By (), there exists a constant $\beta$ dependin only on the dimension with $0&lt;\beta&lt;1$, and disjoint $Q_1,\ldots,Q_{N_1}$ in $K$ such that $\sum_{j=1}^{N_1}\abs{Q_j}>\beta\abs{E}_e$. Therefore
+$$\Abs{E-\bigcup_{j=1}^{N_1}Q_j}_e\leq\Abs{G-\bigcup_{j=1}^{N_1}Q_j}=\abs{G}-\sum_{j=1}^{N_1}\abs{Q_j}&lt;\abs{E}_e(1+\varepsilon-\beta).$$
+Hence, by considering from the start only those $\varepsilon$ with $0&lt;\varepsilon&lt;\beta/2$, we have $$\Abs{E-\bigcup_{j=1}^{N_1}Q_j}_e&lt;\abs{E}_e(1-\frac{\beta}{2}).$$ Thus, the part of $E$ not covered by the cubes obtained from the simple Vitali lemma has outer measure less than $\abs{E}_e(1-\beta/2)$. We now repeat the process for the set $E_1=E-\bigcup_{j=1}^{N_1}Q_j$, which is still covered in the Vitali sense y those cubes in $K$ that are disjoint from $Q_1,\ldots,Q_{N_1}$. We obtain $Q_{N_1+1},\ldots,Q_{N_2}$, disjoint from each other and from $Q_1,\ldots,Q_{N_1}$, such that
+$$\Abs{E-\bigcup_{j=1}^{N_2}Q_j}_e=\Abs{E_1-\bigcup_{j=N_1+1}^{N_2}Q_j}_e&lt;\abs{E_1}_e(1-\frac{\beta}{2}))&lt;\abs{E}_e(1-\frac{\beta}{2})^2.$$
+Continuing in this way, we obtain at the $m$-th stage disjoint $Q_1,\ldots,Q_{N_m}$ in $K$ such that $$\Abs{E-\bigcup_{j=1}^{N_m}Q_j}_e&lt;\abs{E}_e(1-\frac{\beta}{2})^m.$$ Since $(1-\beta/2)^m\to 0$ a  $m\to\infty$, there is a sequence of disjoint cubes in $K$ with the desired properties.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script >
+theorem("Corollary",{"label":"VCLC"})
+</script><em> Suppose that $R$ is covered in the Vitali sense by a family $K$ of cubes and $0&lt;\abs{E}_e&lt;\infty$. Then, given $\varepsilon>0$, there is a finite collection $Q_1,\ldots,Q_N$ of disjoint cubes in $K$ such that $$\abs{E-\bigcup_{j=1}^NQ_j}&lt;\varepsilon$$ and
+<p hidden>
+\sum_{j=1}^N\abs{Q_j}&lt;(1+\varepsilon)\abs{E}_e.
+</p><script>eq("VCLC1")</script>
+In particular, we have
+<p hidden>
+\abs{E}_e-\varepsilon&lt;\abs{E\cap\bigcup_{j=1}^NQ_j}_e
+</p><script>eq("VCLC2")</script>
+and
+<p hidden>
+\abs{E}_e-\varepsilon&lt;\sum_{j=1}^N\abs{Q}_j.
+</p><script>eq("VCLC3")</script>
+</em></div>
+
+<p class="proof"><em>Proof.</em> (<script>ref("VCLC1");</script>) follows from the proof of (<script>ref("CVCL");</script>). By (), $$\abs{E}_e=\abs{E-\bigcup_{j=1}^NQ_j}+\abs{E\cap\bigcup_{j=1}^NQ_j}_e$$ so that (<script>ref("VCLC2");</script>) and (<script>ref("VCLC3");</script>) follows.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> If $f(x)$, $x\in\mathbf{R}$ is a real-valued function defined and finite in a neighborhood of $x_0$, consider the four <em style="color: teal;">Dini derivatives</em>
+\begin{align}
+D_1f(x_0)=\limsup_{h\to 0^+}\frac{f(x_0+h)-f(x_0)}{h},\\
+D_2f(x_0)=\liminf_{h\to 0^+}\frac{f(x_0+h)-f(x_0)}{h},\\
+D_3f(x_0)=\limsup_{h\to 0^-}\frac{f(x_0+h)-f(x_0)}{h},\\
+D_4f(x_0)=\liminf_{h\to 0^-}\frac{f(x_0+h)-f(x_0)}{h}.
+\end{align}
+Clearly, $D_2f\leq D_1f$ adn $D_4f\leq D_3f$. If all four Dini derivatives are equal, that is, if $$\lim_{h\to 0}\frac{f(x_0+h)-f(x_0)}{h}$$ exists, finite or infinite, we say that $f$ has a <em style="color: teal;">derivative</em> at $x_0$ and call the common value the <em style="color: teal;">derivative</em> $f'(x_0)$ at $x_0$. Thus, $-\infty\leq f'(x_0)\leq\infty$ if $f'(x_0)$ exists.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem")
+</script><em> Let $f$ be monotone increasing and finite on an open interval $(a,b)\subseteq\mathbf{R}$. Then $f$ has a measurable, nonnegative,finite derivative $f'$ almost everywhere in $(a,b)$. Moreover, <p hidden>
+0\leq\int_a^bf'\leq f(b^-)-f(a^+).
+</p><script>eq("MDTI")</script>
+</em></div>
+
+<p class="proof"><em>Proof.</em> We may assume that $(a,b)$ is finite; the general case follows from this by passage to the limit. We will show that the set $$x\in(a,b):D_1f(x)>D_4f(x)\}$$ has measure zero. A similar argument will apply to any two Dini numbers of $f$. It is enough to show that each set $$A_{r,s}=\{x\in(a,b):D_1f(x)>r>s>D_4f(x)\}$$ has measure zero since the original set sis the union of these over rational $r$ and $s$. We may assume $r,s>0$ since $f$ is increasing. Fix $r$ and $s$ with $r>s>0$, write $A=A_{r,s}$, and suppose that $\abs{A}_e>0$. If $x\in A$, the fact that $D_4f(x)&lt;s$ implies the existence of arbitrarily small $h>0$ such that
+<p hidden>
+\frac{f(x-h)-f(x)}{h}&lt;s.
+</p><script>eq("MDTE1")</script>
+Given $\varepsilon$, by (<script>ref("VCLC");</script>) there exist disjoint intervals $[x_j-h_j,x_j]$ for $j=1,\ldots,N$ such that
+<ol class="parenthesis">
+    <li>by (<script>ref("MDTE1");</script>), $f(x_j)-f(x_j-h_j)&lt;sh_j$;</li>
+    <li>by (<script>ref("VCLC2");</script>), $\abs{A\cap\bigcup_{j=1}^N[x_j-h_j,x_j]}_e>\abs{A}_e-\varepsilon$;</li>
+    <li>by (<script>ref("VCLC1");</script>), $\sum_{j=1}^Nh_j&lt;(a+\varepsilon)\abs{A}_e$.</li>
+</ol>
+Combining (i) and (iii), we obtain
+<p hidden>
+\sum_{j=1}^Nf(x_j)-f(x_j-h_j)&lt;s(1+\varepsilon)\abs{A}_e.
+</p><script>eq("MDTE2")</script>
+Let $B=A\cap\bigcup_{j=1}^N[x_j-h_j,x_j]$. By (ii), $\abs{B}_e>\abs{A}_e-\varepsilon$. For every $y\in B$ that is not an endpoint of some $[x_j-h_j,x_j]$, the fact that $D_1f(y)>r$ implies that there exist arbitrarily small $k>0$ such that $[y,y+k]$ lies in some $[x_j-h_j,x_j]$ and
+<p hidden>
+\frac{f(y+k)-f(y)}{k}>r.
+</p><script>eq("MDTE3")</script>
+Hence by (<script>ref("VCLC");</script>) there exist dsijoint intervals $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$ for $i=1,\ldots,M$ such that
+<ol class="parenthesis" style="counter-reset: listcounter 3;">
+    <li>by (<script>ref("MDTE3");</script>), $f(y_i+k_i)-f(y_i)>rk_i$;</li>
+    <li>by (<script>ref("VCLC1");</script>), $\sum_{i=1}^Mk_i>\abs{B}_e-\varepsilon>\abs{A}_e-2\varepsilon$.</li>
+</ol>
+Therefore
+<p hidden>
+\sum_{i=1}^M[f(y_i+k_i)-f(y_i)>r(\abs{A}_e-2\varepsilon)
+</p><script>eq("MDTE4")</script>
+Since $f$ is increasing and $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$,
+$$
+\sum_{i=1}^Mf(y_i+k_i)-f(y_i)\leq\sum_{j=1}^Nf(x_j)-f(x_j-h_j).
+$$
+Combining this inequality with (<script>ref("MDTE3");</script>) and (<script>ref("MDTE4");</script>), we obtain
+$$
+r(\abs{A}_e-2\varepsilon)&lt;s(1+\varepsilon)\abs{A}_e.
+$$
+Since $\varepsilon>0$ is arbitrary, this gives $r\leq s$, which is a contradiction. Hence $\abs{A}_e=0$. Since an anlogous argument applies to any two Dini derivatives, it follows that $f'(x)$ exists for almost every $x$ in $(a,b)$. Extend the definition of $f$ to $(a,\infty)$ by setting $f(x)=f(b^-)$ for $x\geq b$, and let
+$$
+f_k(x)=\frac{f(x+h)-f(x)}{h},\quad h=\frac{1}{k}
+$$
+for $x\in(a,b)$ and $k\in\mathbf{N}$. Each $f_k$ is non-negative an measurable, and $f_k\to f'$ a.e. in $(a,b)$. Hence $f'$ is measurable on $(a,b)$, and by (), $\int_a^bf'\leq\liminf_{k\to\infty}\int_a^bf_k$. Now we may assume $f(b^-)$ is finite as otherwise (<script>ref("MDTI");</script>) is obvious. We have
+$$
+\int_a^bf_k=\frac{1}{h}\int_{a+h}^{b+h}f-\frac{1}{h}\int_a^bf=\frac{1}{h}\int_b^{b+h}f-\frac{1}{h}\int_a^{a+h}f=f(b^-)-\frac{1}{h}\int_a^{a+h}f.
+$$
+Since $f(a^+)\leq(1/h)\int_a^{a+h}f\leq f(a+h)$, the limit in the right-hand side of the equality exists, and we obtain
+$$
+\int_a^bf'\leq\liminf_{k\to\infty}\int_a^bf_k=\lim_{k\to\infty}\int_a^bf_k=f(b^-)-f(a^+),
+$$
+which proves (<script>ref("MDTI");</script>). It remaind to show that $f'$ is finite a.e. in $(a,b)$. This follows from (<script>ref("MDTI");</script>) if $f(b^-)-f(a^+)&lt;\infty$ since then $f'\in L(a,b)$. Since $f$ is finite on $(a,b)$, it follows in any case by applying (<script>ref("MDTI");</script>) to a sequence of intervals $(a_k,b_k)$ in creasing to $(a,b)$, $a&lt;a_k&lt;b_k&lt;b$, and the proof is complete.
+<span style="float:right;">$\square$</span></p>
+
+<p>
+We shall return in (<a href=#ACDT></a>) to the question of equality in (<script>ref("MDTI")</script>).
+</p>
+
+<div class="alert alert-info">
+<script >
+theorem("Corollary",{"label":"BVID"})
+</script><em> If $f$ is of bounded variation on $[a,b]$, then $f'$ exists a.e. in $[a,b]$, and $f'\in L[a,b]$.
+</em></div>
+
+<p>
+If $f$ is of bounded variation on $[a,b]$ and $V(x)$ denotes its total variation on $[a,x]$, $a\leq x\leq b$, then $V$ is monotone increasing by (). The next result gives an important relation between $V$ and $f'$.
+</p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"BVDT"})
+</script><em> If $f$ is of bounded variation on $[a,b]$ and $V(x)$ is the variation of $f$ on $[a,x]$, $a\leq x\leq v$, then $V'(x)=\abs{f'(x)}$ for a.e. $x\in[a,b]$.
+</em></div>
+
+<p>
+We will prove this with the help of the next lemma, which is of independent interest.
+</p>
+
+<div class="alert alert-info">
+<script >
+theorem("Lemma",{"name":"Fubini","label":"FLOS"})
+</script><em> Let $\{f_k\}$ be a sequence of montone increasing functions on $[a,b]$. If the series $s(x)=\sum f_k(x)$ converges on $[a,b]$ (equivalently, if $s(a)$ and $s(b)$ are finite), then $s'(x)=\sum f_k'(x)$ a.e. in $[a,b]$. In particular, $f_k'\to 0$ a.e. in $[a,b]$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Let $s_m=\sum_{k=1}^mf_k$ and $r_m=\sum_{k=m+1}^\infty f_k$. Then $s_m$ and $r_m$ are monotone increasing functions and $s=s_m+r_m$. With the exception of a set $Z_m$ with $\abs{Z_m}=0$, there three functions together with $f_1,\ldots,f_m$ are differentiable and $s'=s_m+r_,'$. In particular, $s'\geq s_m'=\sum_{k=1}^mf_k'$ except in $Z_m$. It follows that $$s_m'\leq\sum_{k=1}^\infty f_k'\leq s'=s_m'+r_m'$$ except in $Z=\bigcup_{m=1}^\infty Z_m$. To prove that $\sum_{k=1}^\infty f_k'=s'$ a.e., it is enough to show that $r_,'\to 0$ a.e. for $m$ running through a seqeunce of stricrtly increasing values $\{m_j\}$. Since $r_m\searrow 0$ a.e., we can select $\{m_j\}$ increasing so rapidly that $\sum r_{m_j}(x)$ converges at both $x=a$ and $x=b$. This implies the convergence of $\sum_jr_{m_j}(b)-r_{m_j}(a)$ and also, in view of the monotonicity of $r_{m_j}$, of $\sum_jr_{m_j}(b^-)-r_{m_j}(a^+)$. By (<script>ref("MDTI");</script>), we have
+$$
+0\leq\int_a^b\sum r'_{m_j}=\sum\int_a^br'_{m_j}\leq\sum r_{m_j}(b^-)-r_{m_j}(a^+).
+$$
+Thus $\sum r'_{m_j}$ is integrable over $(a,b)$ and therefore, it is finite a.e. in $(a,b)$. Thus $r'_{m_j}\to 0$ a.e., and the proof is complete.
+<span style="float:right;">$\square$</span></p>
+
+<p class="proof"><em>Proof of <span style="font-style: normal;">(<script>ref("BVDT");</script>)</span>.</em> Let $f$ be of bounded variation on $[a,b]$ and let $V(x)=V([a,x]$ be its variation on $[a,x]$, $a\leq x\leq b$. Then $V(a)=0$ and $V(b)$ is the variation of $f$ on $[a,b]$. Select a sequence $\{\Gamma_k:\Gamma_k=\{x_j^k\}\}$ of partitions of $[a,b]$ such that $0\leq V(b)-S_{\Gamma_k}&lt;2^{-k}$, where $S_{\Gamma_k}=\sum_j\abs{f(x_j^k)-f(x_{j-1}^k)}$. For each $k$, define a function $f_k$ on $[a,b]$ as follows: if $x\in[x_{j-1}^k,x_j^k]$, let
+$$
+f_k(x)=\begin{cases}
+f(x)+c_j^k&\text{ if }f(x_j^k)\geq f(x_{j-1}^k),\\
+-f(x)+c_j^k&\text{ if }f(x_j^k)&lt;f(x_{j-1}^k),
+\end{cases}
+$$
+where the $c_j^k$ are constants chosen so that $f_k(a)=0$ and $f_k$ is well-defined at $x_j^k$ for every $j$. Then for all $k$ and $j$,
+$$
+f_k(x_j^k)-f_k(x_{j-1}^k)=\abs{f(x_j^k)-f(x_{j-1}^k)}
+$$
+so that
+$$
+S_{\Gamma_k}=\sum_jf_k(x_j^k)-f_k(x_{j-1}^k)=f_k(b).
+$$
+Hence for any $k$, we obtain $0\leq V(b)-f_k(b)&lt;2^{-l}$. We will show that each $V(x)-f_k(x)$ is an increasing function of $x$. This amounts to showing that if $x&lt;y$, then $f_k(y)-f_k(x)\leq V(y)-V(x)$. If $x$ and $y$ both belong to the same partitioning interval of $\Gamma_k$, then $f_k(y)-f_k(x)\leq\abs{f(y)-f(x)}$ and therefore
+$$
+f_k(y)-f_k(x)\leq V[x,y]=V(y)-V(x).
+$$
+In the general case, if $x_l^k,x_{l+1}^k,\ldots,x_m^k$ are the points of $\Gamma_k$ between $x$ and $y$, the result follows by adding the inequalities for the intervals $[x,x_l^k],[x_l^k,x_{l+1}^k],\ldots,[x_m^k,y]$. Since $V(a)=f_k(a)=0$ and $V(b)-f_k(b)&lt;2^{-k}$, it follows that $0\leq V(x)-f_k(x)&lt;2^{-k}$ for all L$x\in[a,b]$. Hence
+$$
+\sum_k V(x)-f_k(x)&lt;\sum 2^{-k}&lt;\infty
+$$
+for $x\in[a,b]$ so that by (<script>ref("FLOS");</script>), the series $\sum_k V'(x)-f_k'(x)$ converges a.e. in $[a,b]$. Hence $f_k'\to V'$ a.e. However, $\abs{f_k'}=\abs{f'}$ a.e. so that $\abs{f'}=\abs{V'}$ a.e. The theorem now follows from the fact that $V'$ is a non-negative whenever it exists.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> A finite function $f$ on a finite interval $[a,b]$ is said to be <em style="color: teal;">absolutely continuous</em> on $[a,b]$ if given $\varepsilon>0$, there exists $\delta>0$ such that for any collection $\{[a_i,b_i]\}$ of non-overlapping subintervals of $[a,b]$, $\sum\abs{f(b_i)-f(a_i)}&lt;\varepsilon$ if $\sum(b_i-a_i)&lt;\delta$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"IIIA2"})
+</script><em> If $g$ is integrable on $[a,b]$ and $f(x)=\int_a^xg$ for $a\leq x\leq b$, then $f(x)$ is absolutely continuous.
+</em></div>
+
+<p class="proof"><em>Proof.</em> For any non-overlapping intervals $[a_i,b_i]$,
+$$
+\sum\abs{f(b_i)-f(a_i)}\leq\int_{\bigcup_i[a_i,b_i]}\abs{g}.
+$$
+By (<script>ref("IIIA1");</script>), $\int_E\abs{g}$ is an absolutely continuous set function and therefore $f$ is an absolutely continuous function on $[a,b]$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"ACIB"})
+</script><em> If $f$ is absolutely continuous on $[a,b]$, then it is of bounded variation on $[a,b]$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Choose $\delta$ so that $\sum\abs{f(b_i)-f(a_i)}\leq 1$ for any collection of non-overlapping intervals with $\sum(b_i-a_i)\leq\delta$. Then the variation of $f$ over any subinterval of $[a,b]$ with length less than $\delta$ is at most $1$. Hence if we split $[a,b]$ into $N$ intervals each with length less than $\delta$, then $V[a,b]\leq N$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script >
+theorem("Definition")
+</script> A function $f$ for which $f'$ is zero a.e. in $[a,b]$ is said to be <em style="color: teal;">singular</em> on $[a,b]$.
+</div>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"ACSC"})
+</script><em> If $f$ is both absolutely continuous and singular on $[a,b]$, then it is constant on $[a,b]$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> It is enough to show that $f(a)=f(b)$ since this result aplied to any subinterval proves that $f$ is constant. Let $E$ be the subset of $(a,b)$ where $f'=0$, so that $\abs{E}=b-a$. Given $\varepsilon>0$ and $x\in E$. Given $\varepsilon>0$ and $x\in E$, we have $[x,x+h]\subseteq (a,b)$ and
+<p hidden>
+\abs{f(x+h)-f(x)}&lt;\varepsilon h
+</p><script>eq("ACSE")</script>
+for all sufficiently small $h>0$. Let $\delta$ be the number corresponding to $\varepsilon$ in the definition of the absolute continuity of $f$. By (<script>ref("CVCL");</script>), there exists disjoint $Q_j=[x_j,x_j+h_j]\subseteq (a,b)$ for $j=1,\ldots,N$ such that
+<ol class="parenthesis">
+    <li>by (<script>ref("ACSE");</script>), $\abs{f(x_j+h_j)-f(x_j)}&lt;\varepsilon h_j$;</li>
+    <li>by (<script>ref("VCLC3");</script>), $\sum_{j=1}^N\abs{Q_j}>(b-a)-\delta$.</li>
+</ol>
+By (i), $\sum_{j=1}^N\abs{f(x_j+h_j)-f(x_j)}&lt;\varepsilon\sum_{j=1}^N\abs{Q_j}\leq\varepsilon(b-a)$. Moreover, since by (ii) the total length of the complementary intervals is less than $\delta$, the sum of the absolute values of the increments of $f$ over them is less than $\varepsilon$. Thus the sum of the absolute values of the increments of $f$ over the $Q_j$ and the complementary intervals is less than $\varepsilon(b-a)+\varepsilon$. Hence $\abs{f(b)-f(a)}&lt;\varepsilon(b-a)+\varepsilon$, so that $f(b)-f(a)$. This compltes the proof.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"label":"ACDT"})
+</script><em> A function $f$ is absolutely continuous on $[a,b]$ if and only if $f'$ exists a.e. in $[a,b]$, $f'$ is integrable on $[a,b]$, and
+$$
+f(x)-f(a)=\int_a^xf',\quad a\leq x\leq b.
+$$
+</em></div>
+
+<p class="proof"><em>Proof.</em> By (<script>ref("IIIA2");</script>), any function of the form $G(x)=\int_a^xg$, $g\in L[a,b]$, is absolutely continuous on $[a,b]$. Hence the sufficiency part of the theorem follows. Conversely, if $f$ is absolutely continuous, let $F(x)=\int_a^xf'$. $F$ is well-defined by virtue of (<script>ref("ACIB");</script>) and (<script>ref("BVID");</script>). Moreover, by (<script>ref("SLDT");</script>), $F'=f'$ a.e. in $[a,b]$. It follows that $F(x)-f(x)$ is both absolutely continuous and singular on $[a,b]$. Hence, by (<script>ref("ACSC");</script>), we obtain $F(x)-f(x)=F(a)-f(a)$ for $x\in[a,b]$. Since $F(a)=0$, the proof is complete.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem")
+</script><em> If $f$ is of bounded variation on $[a,b]$, then $f$ can be written $f=g+h$, where $g$ is absolutely continuous on $[a,b]$ and $h$ is singular on $[a,b]$. Moreover, $g$ and $h$ are unique up to additive constants.
+</em></div>
+
+<p class="proof"><em>Proof.</em> Let $g(x)=\int_a^xf'$ and $h=f-g$. Then $h'=f'-g'=f'-f'=0$ a.a. in $[a,b]$, so that $h$ is singular, and the fomrula $f=g+h$ gives the desired decomposition. If $f=g_1+h_1$ is another such decomposition, then $g-g_1=h_1-h$. Since $g-g_1$ is absolutely continuous and $h_1-h$ is singular, it follows from (<script>ref("ACSC");</script>) that $g-g_1=h_1-h$ is constant, which completes the proof.
+<span style="float:right;">$\square$</span></p>
+
+<p>
+Here is an analogue of ().
+</p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem")
+</script><em> Let $f$ be absolutely continuous on $[a,b]$ and let $V(x)$, $P(x)$ and $N(x)$ denote its total, positive, and negative variations on $[a,x]$, $a\leq x\leq b$. Then $V$, $P$ and $N$ are absolutely continuous on $[a,b]$, and
+$$
+V(x)=\int_a^x\abs{f'},\quad P(x)=\int_a^x(f')^+,\quad N(x)=\int_a^x(f')^-.
+$$
+</em></div>
+
+<p class="proof"><em>Proof.</em> We will fist show that $V$ is absolutely continuous. If $[\alpha,\beta]$ is a subinterval of $[a,b]$ and $\Gamma=\{x_k\}$ is a partition of $[\alpha,\beta]$, then by (<script>ref("ACDT");</script>),
+$$
+V(\beta)-V(\alpha)=V[\alpha,\beta]=\sup_\Gamma\sum\abs{f(x_k)-f(x_{k-1})}=\sup_\Gamma\sum\Abs{\int_{x_{k-1}}^{x_k}f'}\leq\int_\alpha^\beta\abs{f'}.
+$$
+Hence if $\{[\alpha_i,\beta_i]\}$ is a collection of non-overlapping subintervals of $[a,b]$, then
+$$
+\sum_iV(\beta_i)-V(\alpha_i)\leq\int_{\bigcup_i[\alpha_i,\beta_i]}\abs{f'}.
+$$
+From this inequality and (<script>ref("IIIA1");</script>), it follows that $V$ is absolutely continuous on $[a,b]$. Therefore by (<script>ref("ACDT");</script>) and the fact that $V(a)=0$, we have $V(x)=\int_a^xV'$. Since $V'=\abs{f'}$ a.e. by (<script>ref("BVDT");</script>), we obtain $V(x)=\int_a^x\abs{f'}$, as desired. The fact that $P$ and $N$ are absolutely continouous and the formulas for $P$ and $N$ now follow from the relations
+$$
+V(x)=\int_a^x\abs{f'},\quad f(x)=f(a)+\int_a^xf'
+$$
+and
+$$
+\quad P(x)=\frac{1}{2}(V(x)+f(x)-f(a)),\quad N(x)=\frac{1}{2}(V(x)-f(x)+f(a)),
+$$
+see (). This completes the proof.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script >
+theorem("Theorem",{"name":"Integration by Parts"})
+</script><em>
+<ol class="parenthesis">
+<li>If $g$ is continuous on $[a,b]$ and $f$ is absolutely continuous on $[a,b]$, then
+$$
+\int_a^bgdf=\int_a^bgf'dx.
+$$</li>
+<li>If both $f$ and $g$ are absolutely continuous on $[a,b]$, then
+$$
+\int_a^bgf'dx=g(b)f(b)-g(a)f(a)-\int_a^bg'fdx.
+$$
+</li>
+</ol>
+</em></div>
+
+<p class="proof"><em>Proof.</em> To prove (i), frist note that the integrals in the conlcusion exsit and are finite by () and (). Let $\Gamma=\{x_i\}$ be a partition of $[a,b]$ with norm $\abs{\Gamma}$. Then
+$$
+\int_a^bgf'=\sum\int_{x_{i-1}}^{x_i}gf'dx=\sum g(x_{i-1})\int_{x_{i-1}}^{x_i}f'(x)dx+\sum\left(\int_{x_{i-1}}^{x_i}g(x)-g(x_{i-1})\right)f'(x)dx.
+$$
+The first term on the right equals $\sum g(x_{i-1})(f(x_i)-f(x_{i-1}))$, which converges to $\int_a^bgdf$ as $\abs{\Gamma}\to 0$. The second term on the right is majorized in absolute value by
+$$
+\left(\sup_{\abs{x-y}\leq\abs{\Gamma}}\abs{g(x)-g(y)}\right)\sum\int_{x_{i-1}}^{x_i}\abs{f'}dx=\left(\sup_{\abs{x-y}\leq\abs{\Gamma}}\abs{g(x)-g(y)}\right)\int_a^b\abs{f'}dx.
+$$
+Since $g$ is uniformly continous on $[a,b]$, the last expression tends to $0$ as $\abs{\Gamma}\to 0$. This proves (i). We can easily deduce (ii) from (i) by using (). In fact, if $f$ and $g$ are absolutely continuous, then
+\begin{align}
+\int_a^bgf'dx&=\int_a^bgdf\\
+&=g(b)f(b)-g(a)f(a)-\int_a^bfdg\\
+&=g(b)f(b)-g(a)f(a)-\int_a^bfg'dx.
+\end{align}
+This proves (ii).
+<span style="float:right;">$\square$</span></p>
 
 
 </div>
@@ -650,7 +1108,7 @@ Thorugh this chapter $\mathbf{F}$ will denote either the real field, $\mathbf{R}
 </p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $V$ is a vector space over $\mathbf{F}$, a <em style="color: teal;">semi-inner</em> product on $V$ is a function $u:V\times V\to\mathbf{F}$ such that for all $\alpha,\beta$ in $\mathbf{F}$, and $x,y,z\in V$, the following are satisfies:
 <ol class="parenthesis">
@@ -666,7 +1124,7 @@ An <em style="color: teal;">inner product</em> on $V$ is a semi-innver product t
 An inner product in this chapter will be denoted by $\langle x,y\rangle=u(x,y)$.
 </div>
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"CBSI", "name": "Cauchy–Bunyakovsky–Schwarz inequality"})
 </script><em> $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$, then
 $$
@@ -680,14 +1138,12 @@ $$
 0\leq\langle x-\alpha y,x-\alpha y\rangle=\langle x,x\rangle-\alpha\langle y,x\rangle-\overline{\alpha}\langle x,y\rangle+\vert\alpha\vert^2\langle y,y\rangle.
 $$
 Suppose $\langle y,x\rangle=be^{i\theta}$, $b\geq 0$, and let $\alpha=e^{-i\theta}t$, $t\in\mathbf{R}$. The above inequality becomes
-$$
 \begin{align}
 0&\leq\langle x,x\rangle-e^{-i\theta}tbe^{i\theta}-e^{i\theta}tbt^{-i\theta}+t^2\langle y,y\rangle\\
 &=\langle x,x\rangle-2bt+t^2\langle y,y\rangle\\
 &=c-2bt+at^2\\
 &=:q(t),
 \end{align}
-$$
 where $c=\langle x,x\rangle$ and $a=\langle y,y\rangle$. Thus $q(t)$ is a quadratic polynomial in the real variable $t$ and $q(t)\geq 0$ for all $t$. This implies tha the quation $q(t)=0$ has at most one real solution $t$. From the equadratic formula we find that the discriminant is not positive; that is, $0\geq 2b^2-4ac$. Hence
 $$
 0\geq b^2-ac=\vert\langle x,y\rangle\vert^2-\langle x,x\rangle\langle y,y\rangle,
@@ -696,7 +1152,7 @@ proving the inequality. The proof of the necessary and sufficient condition is r
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> If $\langle\cdot,\cdot\rangle$ is a semi-inner product on $V$ and $\Vert x\Vert:=\langle x,x\rangle^{1/2}$ for all $x\in V$, then</em>
 <ol class="parenthesis" style="font-style: italic;">
@@ -709,25 +1165,21 @@ If $\langle\cdot,\cdot\rangle$ is an innre product, then
 </ol></div>
 
 <p class="proof"><em>Proof.</em> The proof of (ii) and (iii) are easy. To see (i), note that for $x$ and $y$ in $V$,
-$$
 \begin{align}
 \Vert x+y\Vert^2&=\langle x+y,x+y\rangle\\
 &=\Vert x\Vert^2+\langle y,x\rangle+\langle x,y\rangle+\Vert y\Vert^2\\
 &=\Vert x\Vert^2+2\Re\langle x,y\rangle+\Vert y\Vert^2.
 \end{align}
-$$
 By the (<script>ref("CBSI");</script>), $\Re\langle x,y\rangle\leq\vert\langle x,y\rangle\vert\leq\Vert x\Vert\Vert y\Vert$. Hence
-$$
 \begin{align}
 \Vert x+y\Vert^2&\leq\Vert x\Vert^2+2\Vert x\Vert y\Vert y\Vert+\Vert y\Vert^2\\
 &=(\Vert x\Vert+\Vert y\Vert)^2.
 \end{align}
-$$
 The inequality now follows by taking square roots.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"L2HS"})
 </script><em> $L^2(\mu)$ is a Hilbert space.
 </em></div>
@@ -736,13 +1188,13 @@ theorem("Proposition",{"label":"L2HS"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A <em style="color: teal;">Hilbert</em> space if a vector space $H$ over $\mathbf{F}$ togehter with an inner product $\langle\cdot,\cdot\rangle$ such that relative to the metric $d(x,y)=\Vert x-y\Vert$ induced by the norm, $H$ is a complete metric space.
 </div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $G$ is an open subset of the complex plane $\mathbf{C}$, then $L_a^2(G)$ denote the collection of all analytic functions $f:G\to\mathbf{}$ such that
 $$
@@ -752,7 +1204,7 @@ $L^2_a(G)$ is called the <em style="color: teal;">Bergman space</em> for $G$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma")
 </script><em> If $f$ is analytic in a neighborhood of $\overline{B}(a,r)$, then
 $$
@@ -765,16 +1217,14 @@ $$
 f(a)=\frac{1}{2\pi}\int^\pi_{-\pi}f(a+te^{i\theta})d\theta
 $$
 Hence
-$$
 \begin{align}
 (\pi r^2)^{-1}\iint_{B(a,r)}f&=(\pi r^2)^{-1}\int_0^r\left[\int_{-\pi}^\pi f(a+te^{i\theta}d\theta)\right]dt\\
 &=\frac{2}{r^2}\int_0^rtf(a)dt=df(a).
 \end{align}
-$$
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> if $f\in L^2_a(G)$, $a\in G$, and $0&lt; r&lt; \dist(a,\partial G)$, then
 $$
@@ -783,17 +1233,15 @@ $$
 </em></div>
 
 <p class="proof"><em>Proof.</em> Since $\overline{B}(a,r)\subseteq G$, the preceding lemma and (<script>ref("CBSI");</script>) implies
-$$
 \begin{align}
 \abs{f(a)}&=\frac{1}{\pi r^2}\abs{\iint_{B(a,r)}f\cdot 1}\\
 &\leq\frac{1}{\pi r^2}\left[\iint_{B(a,r)}\abs{f}^2\right]^{1/2}\left[\iint_{B(a,r)}1\right]^{1/2}\\
 &\leq\dfrac{1}{\pi r^2}\norm{f}_2r\sqrt{\pi}.
 \end{align}
-$$
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> $L^2_a(G)$ is a Hilbert space.
 </em></div>
@@ -802,13 +1250,13 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $H$ is a Hilbert space and $f,g\in H$, then $f$ adn $g$ are orthogonal if $\langle f,g\rangle$. In symbols, $f\perp g$. If $A,B\subseteq H$, then $A\perp B$ if $f\perp g$ for every $f$ in $A$ and $g$ in $B$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"name":"Pythagorean Theorem","label":"PT"})
 </script><em> If $f_1,f_2,\ldots,f_n$ are pairwise orthogonal vectors in $H$, then
 $$
@@ -824,7 +1272,7 @@ Since $f_1\perp f_2$, this implies the resilt for $n=2$. The remainder of the pr
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"PL"})
 </script><em> If $H$ is a Hilbert space and $f,g\in H$, then
 $$
@@ -833,23 +1281,21 @@ $$
 </em></div>
 
 <p class="proof"><em>Proof.</em> For any $f$ and $g$ in $H$,
-$$
 \begin{align}
 \norm{f+g}^2=\norm{f}^2+2\Re\langle f,g\rangle+\norm{g}^2,\\
 \norm{f-g}^2=\norm{f}^2-2\Re\langle f,g\rangle+\norm{g}^2.
 \end{align}
-$$
 Now add.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $V$ is a vector space over $\mathbf{F}$ and $A\subseteq V$, then $A$ is a <em style="color: teal;">convex</em> set if for any $x$ and $y$ in $A$ and $0\leq t\leq 1$, $tx+(1-t)y\in A$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"OGPU"})
 </script><em> If $H$ is a Hilbert space, $K$ a closed convex non-empty subset of $H$ and $h\in H$, then there is a unique points $k_0$ in $K$ such that
 $$
@@ -889,38 +1335,34 @@ If the convex set in the preceding theorem is in fact a closed linear subspace o
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"OGPE"})
 </script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $\norm{h-f_0}=\dist(h,M)$, then $h-f_0\perp M$. Conversely, if $f_0\in M$ such that $h-f_0\in M$, then $\norm{h-f_0}=\dist(h,M)$.
 </em></div>
 
 <p class="proof"><em>Proof.</em> Suppose $f_0\in M$ and $\norm{h-f_0}=\dist(h,M)$. If $f\in M$, then $f_0+f\in M$ and so
-$$
 \begin{align}
 \norm{h-f_0}^2&\leq\norm{h-(f_0+f)}^2\\
 &=\norm{(h-f_0)-f}^2\\
 &=\norm{h-f_0}^2-2\Re\langle h-f_0,f\rangle+\norm{f}^2.
 \end{align}
-$$
 Thus $$2\Re\langle h-f_0,f\rangle\leq\norm{f}^2$$ for any $f$ in $M$. Fix $f$ in $M$ and substitute $te^{i\theta}f$ for $f$ in the preceding inequality, where $\langle h-f_0,f\rangle=re^{i\theta}$, $r\geq 0$. This yields $2\Re(te^{-i\theta}re^{i\theta})\leq t^2\norm{f}^2$, or $2tr\leq t^2\norm{f}^2$. Letting $t\to 0$, we see that $r=0$, that is, $h-f_0\perp f$. For the converse, suppose $f_0\in M$ usch that $h-f_0\perp M$. If $f\in M$, then $h-f_0\perp f_0-f$ so that by (<script>ref("PT");</script>),
-$$
 \begin{align}
 \norm{h-f}^2&=\norm{(h-f_0)+(f_0-f)}^2\\
 &=\norm{h-f_0}^2+\norm{f_0-f}^2\\
 &\geq\norm{h-f_0}^2.
 \end{align}
-$$
 Thus $\norm{h-f_0}=\dist(h,M)$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $H$ is a Hilbert space and $A\subseteq H$, then define $A^\perp=\{f\in H\mid f\perp g\ \textrm{ for all }g\textrm{ in }A\}$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"PIOL"})
 </script><em> Let $A\subseteq H$. Then $A^\perp$ is a closed linear subsepace of $H$.
 </em></div>
@@ -929,7 +1371,7 @@ theorem("Proposition",{"label":"PIOL"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"OGPC"})
 </script><em> If $M$ is a closed linear subspace of $H$, $h\in H$ and $f_0$ is the unique element of $M$ such that $h-f_0\in M^\perp$.
 </em></div>
@@ -938,13 +1380,13 @@ theorem("Corollary",{"label":"OGPC"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition",{"label":"OGPD"})
 </script> By (<script>ref("OGPD");</script>) if $M$ is a closed linear subspace of $H$ and $h\in H$, a function $P=P_M:H\to M$ can be defined so that $h-Ph\perp M$. $P$ is called the <em style="color: teal;">orthogonal projection</em> of $H$ onto $M$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"BPOP"})
 </script><em> If $M$ is a closed linear subspace of $H$ and $h\in H$, then</em>
 <ol class="parenthesis" style="font-style: italic;">
@@ -965,13 +1407,13 @@ theorem("Theorem",{"label":"BPOP"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> We introduce the notation $M\leq H$ to signify that $M$ is a closed linear subspace of $H$. We will use the term <em style="color: teal;">linaer manifold</em> to designate a linear subspace of $H$ that is not necessarily clsoed. A <em style="color: teal;">linear subsapce</em> of $H$ will always mean a closed linear subsapce.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"PPLS"})
 </script><em> If $M\leq H$ then $(M^\perp)^\perp=M$.
 </em></div>
@@ -980,13 +1422,13 @@ theorem("Corollary",{"label":"PPLS"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $A\subseteq H$, let $\wedge A$ be the intersection of all clsoed linear subspae of $H$ that contain $A$. $\wedge A$ is called the <em style="color: teal;">closed linear span</em> of $A$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"CLS"})
 </script><em> Let $A\subseteq H$.</em>
     <ol class="parenthesis" style="font-style: italic;">
@@ -999,7 +1441,7 @@ theorem("Proposition",{"label":"CLS"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"PPLM"})
 </script><em> If $A\subseteq H$, then $(A^\perp)^\perp$ is the closed linear span of $A$ in $H$.
 </em></div>
@@ -1008,7 +1450,7 @@ theorem("Corollary",{"label":"PPLM"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"DIP0"})
 </script><em> If $Y$ is a linear manifold in $H$, then $Y$ is dense in $H$ if and only if $Y^\perp=(0)$.
 </em></div>
@@ -1017,7 +1459,7 @@ theorem("Corollary",{"label":"DIP0"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> let $H$ be a Hilbert space and $L:H\to\mathbf{F}$ a linear functional. Then the following statements are equivalent:</em>
 <ol class="parenthesis" style="font-style: italic;">
@@ -1029,13 +1471,11 @@ theorem("Proposition")
 </div>
 
 <p class="proof"><em>Proof.</em> If is clearly that (i)$\Rightarrow$(ii)$\Rightarrow$(iii) and (iv)$\Rightarrow$(ii). We will show that (iii)$\Rightarrow$(i) and (ii)$\Rightarrow$(iv). Suppose $L$ is continuous at $h_0$ and $h$ is any point in $H$. If $h_n\to h$ in $H$, then $h_n-h+h_0\to h_0$. By assumption,
-$$
 \begin{align}
 L(h_0)&=\lim_{n\to\infty}L(h_n-h+h_0)\\
 &=\lim_{n\to\infty}\big(L(h_n)-L(h)+L(h_0)\big)\\
 &=\lim_{n\to\infty}L(h_n)-L(h)+L(h_0).
 \end{align}
-$$
 Hence $L(h)=\lim L(h_n)$, and (iii)$\Rightarrow$(i) is prove. To show that (ii)$\Rightarrow$(iv), assume $L$ is continuous at $0$. Thus $L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}&lt; 1\})$ contains an open neibhnorhood of $0$. So there is a $\delta> 0$ such that $B(0,\delta)\subseteq L^{-1}(\{\alpha\in\mathbf{F}\mid\abs{\alpha}&lt; 1\})$, that is, $\norm{h}&lt;\delta$ implies $\abs{L(h)}&lt; 1$. If $h$ is an arbitrary element of $H$ and $\varepsilon> 0$, then $\norm{\delta(\norm{h}+\varepsilon)^{-1}}&lt;\delta$. Hence
 $$
 1> \Abs{L\left[\frac{\delta h}{\norm{h}+\varepsilon}\right]}=\frac{\delta}{\norm{h}+\varepsilon}\abs{L(h)}.
@@ -1044,7 +1484,7 @@ Thus $\abs{L(h)}&lt;(\norm{h}+\varepsilon)/\delta$. Let $\varepsilon\to 0$ we se
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> A bounded linear functional $L$ on $H$ is a linear functional for which there is a constant $c> 0$ such that $\abs{L(h)}\leq c\norm{h}$ for all $h\in H$. In light of the preceding proposition, a linear functional is bounded if ando nly if it is continuous. In this case, define
 $$
@@ -1054,16 +1494,14 @@ Note that by definition, $\norm{L}_\op &lt; \infty$. $\norm{L}_\op$ is called th
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $L$ be a bounded linear functional on $H$. Then
-$$
 \begin{align}
 \norm{L}_\op&=\sup\{\abs{L(h)}\mid\norm{h}=1\}\\
 &=\sup\{\abs{L(h)}/\norm{h}\mid h\in H,\ h\neq 0\}\\
 &=\inf\{c> 0:\abs{L(h)}\leq c\norm{h},\ h\in H\}.
 \end{align}
-$$
 Also, $\abs{L(h)}\leq\norm{L}_\op\norm{h}$ for every $h$ in $H$.
 </em></div>
 
@@ -1075,7 +1513,7 @@ Fix an $h_0$ in $H$ and define $L:H\to\mathbf{F}$ by $L(h)=\langle h,h_0\rangle$
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"RRT","name": "Riesz Representation Theorem"})
 </script><em> Let $L:H\to\mathbf{F}$ be a bounded linear functional. Then there is a unique vector $h_0\in H$ such that $L(h)=\langle h,h_0\rangle$ for every $h\in H$. Moreover, $\norm{L}_\op=\norm{h_0}$.
 </em></div>
@@ -1088,7 +1526,7 @@ So if $h_0=\norm{f_0}^{-2}f_0$ then $L(h)=\langle h,h_0\rangle$ for all $h$ in $
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> If $(X,\Omega,\mu)$ is a measure space and $F:L^2(\mu)\to\mathbf{F}$ is a bounded linear functional, then there is a unique $h_0$ in $L^2(\mu)$ such that
 $$
@@ -1098,7 +1536,7 @@ for every $h$ in $L^2(\mu)$.
 </em></div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> An <em style="color: teal;">orthonormal</em> subset of a Hilbert space $H$ is a subset $E$ such that
 <ol class="parenthesis">
@@ -1109,7 +1547,7 @@ A <em style="color: teal;">basis</em> for $H$ is a maximal orthonormal set.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> If $E$ is an orthonormal set in $H$, then there is a basis for $H$ that contains $E$.
 </em></div>
@@ -1117,7 +1555,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"name":"Gram-Schmidt Process","label":"GSOP"})
 </script><em> If $H$ is a Hilbert space and $\{h_n\}_{n\in\mathbf{N}}$ is a linearly independent subset of $H$, then there is an orthonormal set $\{e_n\}_{n\in\mathbf{N}}$ such that for every $n$, the linear space of $\{e_1,\ldots,e_n\}$ equals the linear space of $\{h_1,\ldots,h_n\}$.
 </em></div>
@@ -1126,7 +1564,7 @@ theorem("Theorem",{"name":"Gram-Schmidt Process","label":"GSOP"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $\{e_1,\ldots,e_n\}$ be an orthonormal set in $H$ and let $M=\wedge\{e_1,\ldots,e_n\}$ and $P$ the orthogonal projection of $H$ onto $M$. Then
 $$
@@ -1139,7 +1577,7 @@ for all $h$ in $H$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"name":"Bessel's Inequality","label":"BI"})
 </script><em> If $\{e_n\}_{n\in\mathbf{N}}$ is an orthonormal set and $h\in H$, then
 $$
@@ -1148,18 +1586,16 @@ $$
 </em></div>
 
 <p class="proof"><em>Proof.</em> Let $h_n=h-\sum_{k=1}^n\langle h,e_k\rangle e_k$. Then $h_n\perp e_k$ for $1\leq k\leq n$. By (<script>ref("PT");</script>),
-$$
 \begin{align}
 \norm{h}^2&=\norm{h_n}^2+\Norm{\sum_{k=1}^n\langle h,e_k\rangle e_k}^2\\
 &=\norm{h_n}^2+\sum_{k=1}^n\abs{\langle, h,e_k\rangle}^2\\
 &\geq\sum_{k=1}^n\abs{\langle h,e_k\rangle}^2.
 \end{align}
-$$
 Since $n$ was arbitrary, the result is proved.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"OSCN"})
 </script><em> Let $E$ be an orthonormal set in $H$ and $h\in H$. Then $\langle h,e\rangle\neq 0$ for at most a countable number of vectors $e$ in $E$.
 </em></div>
@@ -1168,7 +1604,7 @@ theorem("Corollary",{"label":"OSCN"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary",{"label":"PIN"})
 </script><em> Let $E$ be an orthonormal set and $h\in H$. Then
 $$
@@ -1188,13 +1624,13 @@ Since this is a finite sum, $h_F$ is a well-defined element of $H$. Now $\{h_F\}
 </p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition",{"label":"USC"})
 </script> With the notation above, the sum $\sum_{i\in I}h_i$ <em style="color: teal;">converges</em> if the net $\{h_F\mid F\in\mathcal{F}\}$ converges; the value of the sum is the limit of the net.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script>
     <ol class="parenthesis" style="font-style: italic;">
@@ -1212,7 +1648,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Lemma",{"label":"OICT"})
 </script><em> Let $E$ be an orthonormal set and $h\in H$. Then
 $$
@@ -1222,18 +1658,16 @@ converges in $H$.
 </em></div>
 
 <p class="proof"><em>Proof.</em> By (<script>ref("OSCN");</script>), there are vectors $e_1,e_2,\ldots,$ such that $\{e\in E\mid\langle h,e\rangle\neq 0\}=\{e_1,e_2,\ldots\}$. We also know that $\sum_{n=1}^\infty\abs{\langle h,e_n\rangle}^2&lt;\varepsilon^2$. Let $F_0=\{e_1,\ldots,e_{N-1}\}$ and let $\mathcal{F}$ be the st of all finite subsets of $E$. For $F\in\mathcal{F}$, define $h_F=\sum_{e\in F}\langle h,e\rangle$. If $F$ and $G$ in $\mathcal{F}$ and both contain $F_0$, then
-$$
 \begin{align}
 \norm{h_F-h_G}^2&=\sum\_{e\in(F\setminus G)\cup(G\setminus F)}\abs{\langle h,r\rangle}^2\\
 &\leq\sum_{n=N}^\infty\abs{h,e_n\rangle}^2\\
 &&lt;\varepsilon^2.
 \end{align}
-$$
 So $\{h_F\mid F\in\mathcal{F}\}$ is a Cauchy net in $H$. Because $H$ is compelte, this net converges. In fact, it converges to $\sum_{n=1}^\infty\langle h,e_n\rangle e_n$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Theorem",{"label":"ECOB"})
 </script><em> Let $E$ be an orthonormal set in $H$. Then the following statements are equivalent:</em>
     <ol class="parenthesis" style="font-style: italic;">
@@ -1254,7 +1688,7 @@ theorem("Theorem",{"label":"ECOB"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> If $H$ is a Hilbert space, then any two bases have the same cardinality.
 </em></div>
@@ -1263,7 +1697,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> The <em style="color: teal;">dimension</em> of a Hilbert space is the cardinality of a basis and is denoted by $\dim H$.
 </div>
@@ -1273,7 +1707,7 @@ If $(X,d)$ is a metric space that is separable and $\{B_i=B(x_i,\varepsilon_i)\m
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $H$ be an infinite dimensional Hibert sapce. Then $H$ is separable if and only if $\dim H=\aleph_0$.
 </em></div>
@@ -1299,7 +1733,7 @@ theorem("Proposition")
 <div class="collapse" id="content-distribution-and-sheaf">
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"KCCOS"})
 </script><em> Let $G$ be a locally profinite group and $\psi:G\to GL_m(\mathbf{C})$ a continuous group homomorphism. Then the kernel of $\psi$ contains an open subgroup of $G$.
 </em></div>
@@ -1308,7 +1742,7 @@ theorem("Proposition",{"label":"KCCOS"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"ESOD"})
 </script><em> Let $X$ be a locally profinite space and $C\subseteq X$ a closed subset. Then we have exact sequences</em>
 <p hidden>
@@ -1324,7 +1758,7 @@ and</em>
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $G$ be a LCTD group. We define actions of $G$ on $G$, $C_c^\infty$ and $D(G)$ by right and left translation as follows:
 <ol class="parenthesis">
@@ -1336,7 +1770,7 @@ The arrangement of inverse in these formulas is determined by the requirement th
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a locally profinite group, $\xi$ a character of $G$ and $T$ a distribution on $G$ that satisfies $\lambda(h)T=\xi(h)^{-1}T$ for $h\in G$. Then there exists a constant $c$ such that
 <p hidden>
@@ -1349,7 +1783,6 @@ Of course, a similar statement is true for the right Haar measure.
 </p>
 
 <p class="proof"><em>Proof.</em> We define another distribution by $T':f\mapsto T(\xi^{-1}f)$; since $\xi^{-1}$ a character, its kernel contains an open subgroup of $G$ by (<script>ref("KCCOS");</script>) and so $\xi^{-1}$ is locally constant; thus the distribution $T'$ is well-defined. For any $h\in G$,
-$$
 \begin{align}
 \lambda(h)T'(f)&=T'(\lambda(h)^{-1}f)\\
 &=T'(f(\lambda\square))\\
@@ -1359,7 +1792,6 @@ $$
 &=\xi(h)\xi(h)^{-1}T(\xi^{-1}f)\\
 &=T'(f).
 \end{align}
-$$
 Hence we may assume that $\xi=1$ by replacing $T$ with $T'$. Let $K$ be a fixed open copmact subgroup of $G$, which exists by the locally profiniteness. We will show that (<script>ref("DIAI");</script>) is valid for all $f$ with
 $$
 c=T\left(\frac{1_K}{\vol(K)}\right).
@@ -1377,7 +1809,6 @@ Apply this formula with $f=1_K/\vol(K)$. Then $S(f)=K$ and $K_0$ can be any open
 c=T\left(\frac{1_{K}}{\vol(K)}\right)=T(f)=\vol(K_0)\frac{r}{\vol(K)}T\left(\frac{1_{K_0}}{\vol(K_0)}\right)=T\left(\frac{1_{K_0}}{\vol(K_0)}\right)
 </p><script>eq("KCCOS2")</script>
 Now let $f$ be general. Substite (<script>ref("KCCOS2");</script>) into (<script>ref("KCCOS1");</script>) so that
-$$
 \begin{align}
 T(f)&=\vol(K_0)\sum_{i=1}^ra_ic\\
 &=c\sum_{i=1}^r\int_Ga_i1_{h_iK_0}(h)dh\\
@@ -1385,12 +1816,11 @@ T(f)&=\vol(K_0)\sum_{i=1}^ra_ic\\
 &=c\int_G\sum_{i=1}^ra_i\lambda(h_i)1_{K_0}(h)dh\\
 &=c\int_Gf(h)dh,
 \end{align}
-$$
 which completes this proof.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a locally profinite group and $H$ a closed subgroup. Then $\Lambda:C_c^\infty(G)\to C_c^\infty(G/H)$ is surjective.
 </em></div>
@@ -1410,7 +1840,7 @@ Note that $\psi$ is smooth, that is, locally constant.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $X$ and $Y$ be locally profinite spaces. Then $C_c^\infty(X)\otimes C_c^\infty(Y)\cong C_c^\infty(X\times Y)$ which maps $\phi_1\otimes\phi_2$ to the function $(x,y)\mapsto\phi_1(x)\phi_2(y)$.
 </em></div>
@@ -1431,13 +1861,13 @@ with $c_{ij}\in\mathbf{C}$, $\{U_i'\}$ pairwisely disjoint and so is $\{V_j'\}$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $\mathcal{F}$ be a sheaf of $X$ and $U$ an open subset of $X$. If $s$ a section of $\mathcal{F}$ over $U$, then the <em style="color: teal;">support</em> $\supp(s)$ of $s$ is the subset of $U$ defined by $\{x\in U\mid s(x)\neq 0\}$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $s:U\to\hat{\mathcal{F}}$ be a section of a sheaf $\mathcal{F}$. Then the support of $s$ is closed.
 </em></div>
@@ -1446,7 +1876,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf on $X$. Then there exists an abelian group $F_c$ and sheaf $\mathcal{F}'$ isomorphic to $\mathcal{F}$ such that for any open set $U$ of $X$, $\mathcal{F}'(U)\subseteq F_c$ and such that if $U\supseteq V$ are open sets, then $\mathcal{F}'(V)\subseteq\mathcal{F}'(U)$ and, if $f\in\mathcal{F}'(V)$, then the image of $f$ under the restriction map $\rho^U_V:\mathcal{F}'(U)\to\mathcal{F}'(V)$ is $f$ itself, whereas the image of $f$ under the restriction map $\rho^U_{U-V}:\mathcal{F}'\to\mathcal{F}'(U-V)$ is zero. Moreover, we may assume that $F_c$ is the union of the spaces $\mathcal{F}(U)$ with $U\in B$.
 </em></div>
@@ -1459,7 +1889,7 @@ To clarify the meaning of this proposition, let us consider the special case of 
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $X$ be a locally profinite space. We call a $C_c^\infty(X)$-module or $C^\infty(X)$-module $M$ <em style="color: teal;">cosmooth</em> if for every $x\in M$, there exists an open compact subset $U$ of $X$ such that $1_U\cdot x=x$.
 </div>
@@ -1469,7 +1899,7 @@ Actually, there is no difference between cosmooth modules for the two rings $C_c
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"CCICI"})
 </script><em> Let $X$ be a locally profinite space and $M$ be a cosmooth $C_c^\infty(X)$-module. Then the action of $M$ may be extended in a unique way to make $M$ a $C^\infty(X)$-module.
 </em></div>
@@ -1482,7 +1912,7 @@ Now it is not hard to check that this definition makes $M$ a $C^\infty(X)$-modul
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"CCIXS"})
 </script><em> Let $X$ be a locally profinite space and $M$ a cosmooth $C_c^\infty(X)$-module. We associate a presheaf $\mathcal{M}$ with $M$ in the following way. Denote $B$ the open compact subset of $X$. If $U\in B$, let $\mathcal{M}(U)=1_U\cdot M$. If $U\supseteq V$ with $U$, $V\in B$, we define a restriction map $\rho^U_V:\mathcal{M}(U)\to\mathcal{M}(V)$ by $\rho^U_V(m)=1_V\cdot m$. Then $\mathcal{M}$ is a sheaf.
 </em></div>
@@ -1500,7 +1930,7 @@ a characterization that is easier to work with. The verification that $U\mapsto\
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"MSIT"})
 </script><em> Let $X$ be a locally profinite space, $M$ a cosmooth module over $C_c^\infty(X)$ and $\mathcal{M}$ the corresponding sheaf consatructed in <span style="font-style: normal;">(<script>ref("CCIXS");</script>)</span>. Then for any $\in X$, the stalk $\mathcal{M}_x$ is isomorphic to $M/M(x)$, where $M(x)$ is the submodule of all $m\in M$ such that $1_U\cdot m=0$ for some $U$ open in $X$ containing $x$; an equivalent condition is that $m=1_V\cdot m$ for some $V$ open in $X$ not containing $x$.
 </em></div>
@@ -1514,7 +1944,7 @@ To see that $1_U\cdot m=0$ for some $U$ open in $X$ contaiing $x$ if and only if
 <p>Now we may generalize the notion of a distribution</p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf on $X$. Let $\mathcal{F}_c$ be the corresponding cosmooth module of compactly supported secitons. By an <em style="color: teal;">$\mathcal{F}$-distribution</em> on $X$, we mean a complex linear functional on the vector sapce $\mathcal{F}_c$. Let $D(X,\mathcal{F})$ denote the space of $\mathcal{F}$-distribution on $X$.
 </div>
@@ -1524,7 +1954,7 @@ Suppose that $Z$ is closed in $X$ and $\mathcal{F}$ a sheaf on $X$. Denote $\mat
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"ESODX"})
 </script><em> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf of $C^\infty(X)$-module. We have exact sequences
 <p hidden>
@@ -1540,7 +1970,7 @@ and
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $X$ be a topological space, $\mathcal{F}$ a sheaf on $X$ and $G$ a group acting on $X$. We say $G$ <em style="color: teal;">acts</em> on $\mathcal{F}$ if $g\cdot U$ is open in $X$ for every $g$ in $G$ and $U$ open in $X$. In this case, if $s\in\mathcal{F}(U)$ is a section over $U$ then $g\cdot s\in\mathcal{F}(g\cdot U)$ is a section over $gU$ defined by $g\cdot s(x)=s(g^{-1}\cdot x)$ for $x\in gU$.
 </div>
@@ -1550,7 +1980,7 @@ If $G$ acts on $X$ and $\mathcal{F}$, then we denote $\mathcal{F}_c(\chi)$ the s
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $X$ and $Y$ be locally profinite sapces, $p:X\to Y$ a continuous map, $\mathcal{F}$ a sheaf on $X$, $G$ a group acting on btoh $X$ and $\mathcal{F}$, and $\chi$ a character of $G$.
 <ol class="parenthesis" style="font-style: italic;">
@@ -1589,13 +2019,13 @@ which proves (i). We note that (ii) is an immediate consequence of (i). Indeed, 
 <div class="collapse" id="content-smooth-and-admissible-representation">
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $G$ be a locally profinite group and $(\pi,V)$ a group representation of $G$. The representation $(\pi,V)$ is called <em style="color: teal;">smooth</em> if, for every $v\in V$, the stabilizer $\{g\in G\mid\pi(g)v=v\}$ is open. A smooth representation $(\pi,V)$ is called <em style="color: teal;">admissible</em> if the space $V^K$ is finite-dimensional for each open subgroup $U$ of $G$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"ECSR"})
 </script><em> Let $G$ be a locally profinite group and $(\pi,G)$ a representation of $G$. Then $\pi$ is smooth if and only if for each $v\in V$, therer exists a compact open subgroup $K$ of $G$ such that $\pi(K)$ fixes $v$.
 </em></div>
@@ -1604,13 +2034,13 @@ theorem("Proposition",{"label":"ECSR"})
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a locally profinite group and $(\rho,GL_n(\mathbf{C}))$ a smooth representation of $G$. Then the kernel of $\rho$ is open if and only if $\rho$ is continuous.
 </em></div>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $G$ be a locally profinite group. Denote $[G]$ the set of equivalence class of irreducible representation of $G$ whose kernel is open.
 </div>
@@ -1624,7 +2054,7 @@ where $V(\rho)$ is the sum of all invariant subspaces of $V$ that are isomorphic
 </p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"SSPGT"})
 </script><em> Let $(\pi,V)$ be a smooth representation of $G$ and $K$ an open compact subgroup of $G$. Then
 <p hidden>
@@ -1642,13 +2072,13 @@ Thus $V$ is the sum of the sapces  $V(\rho)$. We now show that the sum is direct
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $(\pi,V)$ be a smooth representation of $G$ and $K$ an open compact subgroup of $G$. Let $V_K$ denote the subspace of $V$ consists of elements of the form $v-\pi(k)v$ with $v\in V$ and $k\in K$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $(\pi,V)$ be a smooth representation of $G$ and $K$ an open compact subgroup of $G$. Then $V=V^K\oplus V_K$.
 </em></div>
@@ -1665,13 +2095,13 @@ Hence $V_K\subseteq W$. Conversely, for any $1\neq\rho\in[K]$, there exist $v\in
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. If $\hat{v}:V\to\mathbf{C}$ is a linear functional, we write $\langle v,\hat{v}\rangle$ for $\hat{v}(v)$ when $v\in V$. We say $\hat{v}$ is <em style="color: teal;">smooth</em> if there exists an open neighborhood $U$ of the identity of $G$ such that $\langle\pi(g)v,\hat{v}\rangle=\langle v,\hat{v}\rangle$ whenever $g\in U$, $v\in V$. Let $\hat{V}$ be the vector subspace of smooth linear functionals on $V$. We define a representation $(\hat{\pi},\hat{V})$, called the <em style="color: teal;">contragredient representation</em> by letting $g$ act on $\hat{V}$ by $\langle v,\hat{\pi}(g)\hat{v}\rangle=\langle\pi(g^{-1})v,\hat{v}\rangle$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. Then $(\hat{\pi},\hat{V})$ is a smooth representation of $G$ as well.
 </em></div>
@@ -1680,7 +2110,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"SLFC"})
 </script><em> Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$ and $\hat{v}$ a linear functional on $V$ and consider a decomposition
 $$
@@ -1701,7 +2131,7 @@ Since $K/K'$ is finite, $[K/K']$ is finite as well, which proves the only if par
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition",{"label":"CGDT"})
 </script><em> Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$ and $K$ a compact open subgroup of $G$ so that
 $$
@@ -1722,7 +2152,7 @@ By (<script>ref("SLFC");</script>), a linear functional on $V$ is smooth if and 
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Corollary")
 </script><em> Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$. Then $\pi$ is admissible if and only if $\hat{\pi}$ is admissible. In this case, $\hat{\pi}\cong\pi$.
 </em></div>
@@ -1731,13 +2161,13 @@ theorem("Corollary")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
-<script type="text/javascript" >
+<script >
 theorem("Definition")
 </script> If $G$ is a unimodular locally profinite group. Denote $H_G$ the space of smooth (that is, locally constant) compactly supported complex-valued functions on $G$ equipped with the convolution $\ast$ on $H_G$. The algerba $(H_G,\ast)$ is called the <em style="color: teal;">Hecke algebra</em>. $G$ acts on $H_G$ by $(\lambda(g)f(x)=f(g^{-1}x)$ and $(\rho(g)f)(x)=f(xg)$. If $K$ is an open comapct subgroup of $H$ then denote $H^K$ the subspace of $K$-biinvariant functions in $H$.
 </div>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a unimodular locally profinite group and $K$ an open compact subgroup of $G$. Then $H^K$ is a unital algebra.
 </em></div>
@@ -1746,7 +2176,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition") 
 </script><em> Let $G$ be a unimodular locally profinite group and $U$ a compact open subgroup of $G$. Then $e_K\in H^K$ defined by $$e_K(g)=\frac{1_K}{\vol(K)}$$ is an idempotent. In fact, it is the unit in $G^K$.
 </em></div>
@@ -1775,7 +2205,7 @@ Hence $e_K$ is the unit in $H^K$.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script type="text/javascript" >
+<script >
 theorem("Proposition")
 </script><em> Let $G$ be a unimodular locally profinite group. Then there is an equivalence of category between the category of smooth representations $(\pi,V)$ of $G$ and the category of smooth $H_G$-algebra.
 </em></div>
@@ -1786,27 +2216,26 @@ theorem("Proposition")
 </div>
 </div>
 </div>
-<!-- Diagonal arrow example
-<div style="position: relative;width:300px;margin:auto;"> 
-   <svg preserveAspectRatio="none" width="60pt" height="60pt" viewBox="-3 -3 60 60" style="position: absolute;top:15px;left:160px">
-      <path style="fill:none;stroke-width:0.39848;stroke-linecap:butt;stroke-linejoin:miter;stroke:#333;stroke-opacity:1;stroke-miterlimit:10;" d="M 0 0 L 0 57" transform="rotate(-60)"/>
-      <path style="fill:none;stroke-width:0.39848;stroke-linecap:round;stroke-linejoin:round;stroke:#333;stroke-opacity:1;stroke-miterlimit:10;" d="M -2.63972 -2.07037 C -1.05675 -1.65199 -0.306242 -0.720266 0 0.219957 C 0.306242 -0.720266 1.05675 -1.65199 2.63972 -2.07037" transform="rotate(-60) translate(0,57)"/>
-      <text x="25" y="13" style="font-family: MyMathJax;font-size: 14px;fill:#333">&epsi;</text>
-   </svg>
-    \begin{CD}
-    F_i @>>> \colim_iF_i@>>>Z\\
-    @VVV @VVV @|\\
-    F_j @>>> \colim_iF_j@>>>Z
-    \end{CD}
-</div>
--->
-
 <!-- Write above -->
 </div>
+
+<!-- TOC -->
 
 <script>
     document.getElementById("toc-only").innerHTML = generateTOC("page");
 </script>
+
+<!-- TOC -->
+
+<!-- Show section-->
+
+<script>
+    $(document).ready(function(){
+            $("#content-differential").collapse("show");
+    });
+</script>
+
+<!-- Show section-->
 
 <!-- popup -->
 <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
