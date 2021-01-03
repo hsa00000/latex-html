@@ -39,7 +39,9 @@
                     colim: ["\\operatorname\{colim\}"],
                     vol: ["\\operatorname\{vol\}"],
                     supp: ["\\operatorname\{supp\}"],
-                    span: ["\\operatorname\{span\}"]
+                    span: ["\\operatorname\{span\}"],
+                    esssup: ["\\operatorname\{ess\ sup\}"],
+                    sign: ["\\operatorname\{sgn\}"],
                 }
             }    
         };
@@ -49,6 +51,16 @@
     <script src="scripts/environ.min.js"></script>
     <script>
         $(document).ready(function(){
+            $("<span style=\"float:right;\">$\\square$</span>").appendTo("div.proof");
+            $("<em>Proof.</em>").prependTo("div.proof");
+            $("div.theorem, div.proposition, div.lemma, div.corollary").addClass("alert alert-info");
+            $("div.theorem, div.proposition, div.lemma, div.corollary").attr("style", "font-style: italic;");
+            $("div.definition").addClass("alert alert-warning");
+            $("div.example").addClass("alert alert-secondary");
+
+
+            
+            $("<strong style=\"font-style: normal;\">Theorem "+"123"+".</strong>").prependTo("div.theorem");
             $('.collapse').on('show.bs.collapse', function () {
                 if ($(this).children(".collapse").length == 0 && $(this).children(".collapsing").length == 0) {
                     $(this).get(0).innerHTML = $(this).get(0).innerHTML.replace(/\$/g, "¥");
@@ -645,11 +657,11 @@ Since $C_k$ is continuous, the second term on the right is zero. Moreover,
 $$
 \Abs{\frac{F(Q)}{\abs{Q}}-\frac{F_k(Q)}{\abs{Q}}}\leq\frac{1}{\abs{Q}}\int_Q\abs{f-C_k}\leq M(f-C_k)(x),
 $$
-and therefore, the first term on the right is majorized by $M(f-C_k)(x)$. Hence, for every $k$,
+and therefore, the first term on the right is majorized by $M(f-C_k)(x)$. Hence, for every $k$,</p>
 <p hidden>
 \limsup_{Q\searrow x}\Abs{\frac{F(Q)}{\abs{Q}}-f(x)}\leq M(f-C_k)(x)+\abs{f(x)-C_k(x)}.
 </p><script>eq("LDTI1")</script>
-Given $\varepsilon>0$, let $E_\varepsilon$ be the set on which the left side of (<script>ref("LDTI1");</script>) exceeds $\varepsilon$. By (<script>ref("LDTI1");</script>),
+<p>Given $\varepsilon>0$, let $E_\varepsilon$ be the set on which the left side of (<script>ref("LDTI1");</script>) exceeds $\varepsilon$. By (<script>ref("LDTI1");</script>),
 $$
 E_\varepsilon\subseteq\left\{x:M(f-C_k)(x)>\frac{\varepsilon}{2}\right\}\cup\left\{x:\abs{f(x)-C_k(x)}>\frac{\varepsilon}{2}\right\}.
 $$
@@ -680,11 +692,10 @@ For any measurable $E$, note that
 $$
 \frac{1}{\abs{Q}}\int_Q\chi_E=\frac{\abs{E\cap Q}}{\abs{Q}}.
 $$
-By (<script>ref("LLDT");</script>), the left-hand side tends to $\chi_E(x)$ a.e. as $Q\searrow x$, that is,
+By (<script>ref("LLDT");</script>), the left-hand side tends to $\chi_E(x)$ a.e. as $Q\searrow x$, that is,</p>
 <p hidden>
 \lim_{Q\searrow x}\frac{\abs{E\cap Q}}{\abs{Q}}=\chi_E(x)\quad\text{a.e.}
 </p><script>eq("PODOE")</script>
-</p>
 
 <div class="alert alert-warning">
 <script >
@@ -695,13 +706,13 @@ theorem("Definition")
 <div class="alert alert-info">
 <script >
 theorem("Theorem")
-</script><em> Let $E$ and $E'$ be a measurable sets. Then
-<ol class="parenthesis">
+</script><em> Let $E$ and $E'$ be a measurable sets. Then</em>
+<ol class="parenthesis" style="font-style: italic;">
     <li>almost every point of $E$ is a point of density of $E$;</li>
     <li>$x$ is a point of density of $E$ if and only if $x$ is a point of desperation of $E$;</li>
     <li>if $x$ is a point of density of $E$ and $E'$ then $x$ is a point of density of $E\cap E'$.</li>
 </ol>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> For (i), see (<script>ref("PODOE");</script>). For (ii), note that $\abs{E\cap Q}=\abs{Q}-\abs{E^c\cap Q}$ and so $$\frac{\abs{E\cap Q}}{\abs{Q}}=1-\frac{\abs{E^c\cap Q}}{\abs{Q}}.$$ For (iii), to show that $x$ is a point of density of $E\cap E'$, we prove that $x$ is a point of desperation of $E^c\cup E'^c$. But
 $$
@@ -800,19 +811,19 @@ Continuing in this way, we obtain at the $m$-th stage disjoint $Q_1,\ldots,Q_{N_
 <div class="alert alert-info">
 <script >
 theorem("Corollary",{"label":"VCLC"})
-</script><em> Suppose that $R$ is covered in the Vitali sense by a family $K$ of cubes and $0&lt;\abs{E}_e&lt;\infty$. Then, given $\varepsilon>0$, there is a finite collection $Q_1,\ldots,Q_N$ of disjoint cubes in $K$ such that $$\abs{E-\bigcup_{j=1}^NQ_j}&lt;\varepsilon$$ and
+</script><em> Suppose that $R$ is covered in the Vitali sense by a family $K$ of cubes and $0&lt;\abs{E}_e&lt;\infty$. Then, given $\varepsilon>0$, there is a finite collection $Q_1,\ldots,Q_N$ of disjoint cubes in $K$ such that $$\abs{E-\bigcup_{j=1}^NQ_j}&lt;\varepsilon$$ and</em>
 <p hidden>
 \sum_{j=1}^N\abs{Q_j}&lt;(1+\varepsilon)\abs{E}_e.
 </p><script>eq("VCLC1")</script>
-In particular, we have
+<em>In particular, we have</em>
 <p hidden>
 \abs{E}_e-\varepsilon&lt;\abs{E\cap\bigcup_{j=1}^NQ_j}_e
 </p><script>eq("VCLC2")</script>
-and
+<em>and</em>
 <p hidden>
 \abs{E}_e-\varepsilon&lt;\sum_{j=1}^N\abs{Q}_j.
 </p><script>eq("VCLC3")</script>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> (<script>ref("VCLC1");</script>) follows from the proof of (<script>ref("CVCL");</script>). By (), $$\abs{E}_e=\abs{E-\bigcup_{j=1}^NQ_j}+\abs{E\cap\bigcup_{j=1}^NQ_j}_e$$ so that (<script>ref("VCLC2");</script>) and (<script>ref("VCLC3");</script>) follows.
 <span style="float:right;">$\square$</span></p>
@@ -833,39 +844,39 @@ Clearly, $D_2f\leq D_1f$ adn $D_4f\leq D_3f$. If all four Dini derivatives are e
 <div class="alert alert-info">
 <script >
 theorem("Theorem")
-</script><em> Let $f$ be monotone increasing and finite on an open interval $(a,b)\subseteq\mathbf{R}$. Then $f$ has a measurable, nonnegative,finite derivative $f'$ almost everywhere in $(a,b)$. Moreover, <p hidden>
+</script><em> Let $f$ be monotone increasing and finite on an open interval $(a,b)\subseteq\mathbf{R}$. Then $f$ has a measurable, nonnegative,finite derivative $f'$ almost everywhere in $(a,b)$. Moreover, </em><p hidden>
 0\leq\int_a^bf'\leq f(b^-)-f(a^+).
 </p><script>eq("MDTI")</script>
-</em></div>
+</div>
 
-<p class="proof"><em>Proof.</em> We may assume that $(a,b)$ is finite; the general case follows from this by passage to the limit. We will show that the set $$x\in(a,b):D_1f(x)>D_4f(x)\}$$ has measure zero. A similar argument will apply to any two Dini numbers of $f$. It is enough to show that each set $$A_{r,s}=\{x\in(a,b):D_1f(x)>r>s>D_4f(x)\}$$ has measure zero since the original set sis the union of these over rational $r$ and $s$. We may assume $r,s>0$ since $f$ is increasing. Fix $r$ and $s$ with $r>s>0$, write $A=A_{r,s}$, and suppose that $\abs{A}_e>0$. If $x\in A$, the fact that $D_4f(x)&lt;s$ implies the existence of arbitrarily small $h>0$ such that
+<p class="proof"><em>Proof.</em> We may assume that $(a,b)$ is finite; the general case follows from this by passage to the limit. We will show that the set $$x\in(a,b):D_1f(x)>D_4f(x)\}$$ has measure zero. A similar argument will apply to any two Dini numbers of $f$. It is enough to show that each set $$A_{r,s}=\{x\in(a,b):D_1f(x)>r>s>D_4f(x)\}$$ has measure zero since the original set sis the union of these over rational $r$ and $s$. We may assume $r,s>0$ since $f$ is increasing. Fix $r$ and $s$ with $r>s>0$, write $A=A_{r,s}$, and suppose that $\abs{A}_e>0$. If $x\in A$, the fact that $D_4f(x)&lt;s$ implies the existence of arbitrarily small $h>0$ such that</p>
 <p hidden>
 \frac{f(x-h)-f(x)}{h}&lt;s.
 </p><script>eq("MDTE1")</script>
-Given $\varepsilon$, by (<script>ref("VCLC");</script>) there exist disjoint intervals $[x_j-h_j,x_j]$ for $j=1,\ldots,N$ such that
+<p>Given $\varepsilon$, by (<script>ref("VCLC");</script>) there exist disjoint intervals $[x_j-h_j,x_j]$ for $j=1,\ldots,N$ such that</p>
 <ol class="parenthesis">
     <li>by (<script>ref("MDTE1");</script>), $f(x_j)-f(x_j-h_j)&lt;sh_j$;</li>
     <li>by (<script>ref("VCLC2");</script>), $\abs{A\cap\bigcup_{j=1}^N[x_j-h_j,x_j]}_e>\abs{A}_e-\varepsilon$;</li>
     <li>by (<script>ref("VCLC1");</script>), $\sum_{j=1}^Nh_j&lt;(a+\varepsilon)\abs{A}_e$.</li>
 </ol>
-Combining (i) and (iii), we obtain
+<p>Combining (i) and (iii), we obtain</p>
 <p hidden>
 \sum_{j=1}^Nf(x_j)-f(x_j-h_j)&lt;s(1+\varepsilon)\abs{A}_e.
 </p><script>eq("MDTE2")</script>
-Let $B=A\cap\bigcup_{j=1}^N[x_j-h_j,x_j]$. By (ii), $\abs{B}_e>\abs{A}_e-\varepsilon$. For every $y\in B$ that is not an endpoint of some $[x_j-h_j,x_j]$, the fact that $D_1f(y)>r$ implies that there exist arbitrarily small $k>0$ such that $[y,y+k]$ lies in some $[x_j-h_j,x_j]$ and
+<p>Let $B=A\cap\bigcup_{j=1}^N[x_j-h_j,x_j]$. By (ii), $\abs{B}_e>\abs{A}_e-\varepsilon$. For every $y\in B$ that is not an endpoint of some $[x_j-h_j,x_j]$, the fact that $D_1f(y)>r$ implies that there exist arbitrarily small $k>0$ such that $[y,y+k]$ lies in some $[x_j-h_j,x_j]$ and</p>
 <p hidden>
 \frac{f(y+k)-f(y)}{k}>r.
 </p><script>eq("MDTE3")</script>
-Hence by (<script>ref("VCLC");</script>) there exist dsijoint intervals $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$ for $i=1,\ldots,M$ such that
+<p>Hence by (<script>ref("VCLC");</script>) there exist dsijoint intervals $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$ for $i=1,\ldots,M$ such that</p>
 <ol class="parenthesis" style="counter-reset: listcounter 3;">
     <li>by (<script>ref("MDTE3");</script>), $f(y_i+k_i)-f(y_i)>rk_i$;</li>
     <li>by (<script>ref("VCLC1");</script>), $\sum_{i=1}^Mk_i>\abs{B}_e-\varepsilon>\abs{A}_e-2\varepsilon$.</li>
 </ol>
-Therefore
+<p>Therefore</p>
 <p hidden>
 \sum_{i=1}^M[f(y_i+k_i)-f(y_i)>r(\abs{A}_e-2\varepsilon)
 </p><script>eq("MDTE4")</script>
-Since $f$ is increasing and $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$,
+<p>Since $f$ is increasing and $[y_i,y_i+k_i]$ lies in some $[x_j-h_j,x_j]$,
 $$
 \sum_{i=1}^Mf(y_i+k_i)-f(y_i)\leq\sum_{j=1}^Nf(x_j)-f(x_j-h_j).
 $$
@@ -991,16 +1002,16 @@ theorem("Theorem",{"label":"ACSC"})
 </script><em> If $f$ is both absolutely continuous and singular on $[a,b]$, then it is constant on $[a,b]$.
 </em></div>
 
-<p class="proof"><em>Proof.</em> It is enough to show that $f(a)=f(b)$ since this result aplied to any subinterval proves that $f$ is constant. Let $E$ be the subset of $(a,b)$ where $f'=0$, so that $\abs{E}=b-a$. Given $\varepsilon>0$ and $x\in E$. Given $\varepsilon>0$ and $x\in E$, we have $[x,x+h]\subseteq (a,b)$ and
+<p class="proof"><em>Proof.</em> It is enough to show that $f(a)=f(b)$ since this result aplied to any subinterval proves that $f$ is constant. Let $E$ be the subset of $(a,b)$ where $f'=0$, so that $\abs{E}=b-a$. Given $\varepsilon>0$ and $x\in E$. Given $\varepsilon>0$ and $x\in E$, we have $[x,x+h]\subseteq (a,b)$ and</p>
 <p hidden>
 \abs{f(x+h)-f(x)}&lt;\varepsilon h
 </p><script>eq("ACSE")</script>
-for all sufficiently small $h>0$. Let $\delta$ be the number corresponding to $\varepsilon$ in the definition of the absolute continuity of $f$. By (<script>ref("CVCL");</script>), there exists disjoint $Q_j=[x_j,x_j+h_j]\subseteq (a,b)$ for $j=1,\ldots,N$ such that
+<p>for all sufficiently small $h>0$. Let $\delta$ be the number corresponding to $\varepsilon$ in the definition of the absolute continuity of $f$. By (<script>ref("CVCL");</script>), there exists disjoint $Q_j=[x_j,x_j+h_j]\subseteq (a,b)$ for $j=1,\ldots,N$ such that</p>
 <ol class="parenthesis">
     <li>by (<script>ref("ACSE");</script>), $\abs{f(x_j+h_j)-f(x_j)}&lt;\varepsilon h_j$;</li>
     <li>by (<script>ref("VCLC3");</script>), $\sum_{j=1}^N\abs{Q_j}>(b-a)-\delta$.</li>
 </ol>
-By (i), $\sum_{j=1}^N\abs{f(x_j+h_j)-f(x_j)}&lt;\varepsilon\sum_{j=1}^N\abs{Q_j}\leq\varepsilon(b-a)$. Moreover, since by (ii) the total length of the complementary intervals is less than $\delta$, the sum of the absolute values of the increments of $f$ over them is less than $\varepsilon$. Thus the sum of the absolute values of the increments of $f$ over the $Q_j$ and the complementary intervals is less than $\varepsilon(b-a)+\varepsilon$. Hence $\abs{f(b)-f(a)}&lt;\varepsilon(b-a)+\varepsilon$, so that $f(b)-f(a)$. This compltes the proof.
+<p>By (i), $\sum_{j=1}^N\abs{f(x_j+h_j)-f(x_j)}&lt;\varepsilon\sum_{j=1}^N\abs{Q_j}\leq\varepsilon(b-a)$. Moreover, since by (ii) the total length of the complementary intervals is less than $\delta$, the sum of the absolute values of the increments of $f$ over them is less than $\varepsilon$. Thus the sum of the absolute values of the increments of $f$ over the $Q_j$ and the complementary intervals is less than $\varepsilon(b-a)+\varepsilon$. Hence $\abs{f(b)-f(a)}&lt;\varepsilon(b-a)+\varepsilon$, so that $f(b)-f(a)$. This compltes the proof.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
@@ -1059,8 +1070,8 @@ see (). This completes the proof.
 <div class="alert alert-info">
 <script >
 theorem("Theorem",{"name":"Integration by Parts"})
-</script><em>
-<ol class="parenthesis">
+</script>
+<ol class="parenthesis" style="font-style: italic;">
 <li>If $g$ is continuous on $[a,b]$ and $f$ is absolutely continuous on $[a,b]$, then
 $$
 \int_a^bgdf=\int_a^bgf'dx.
@@ -1071,7 +1082,7 @@ $$
 $$
 </li>
 </ol>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> To prove (i), frist note that the integrals in the conlcusion exsit and are finite by () and (). Let $\Gamma=\{x_i\}$ be a partition of $[a,b]$ with norm $\abs{\Gamma}$. Then
 $$
@@ -1089,6 +1100,228 @@ Since $g$ is uniformly continous on $[a,b]$, the last expression tends to $0$ as
 \end{align}
 This proves (ii).
 <span style="float:right;">$\square$</span></p>
+
+</div>
+
+<script>
+    section("section","Classes")
+</script>
+<div class="collapse" id="content-classes">
+
+<div class="alert alert-warning">
+<script>
+theorem("Definition")
+</script> Let $E$ is a measurable subset of $\mathbf{R}^n$ and $f$ a measurable functino on $E$. The <em style="color: teal;">essential supremum</em> is defined by
+<ol class="parenthesis">
+<li> if $\abs{E}>0$ then $\esssup_Ef=\inf_\alpha\abs{\{\alpha:w(\alpha)=0\}}$.
+</li>
+<li>if $\abs{E}=0$ then $\esssup_Ef=0$.</li>
+</ol>
+Note that $\esssup_Ef=\infty$ if $\abs{E}>0$ but $w(\alpha)>0$ for all $\alpha$.
+</div>
+
+<div class="alert alert-info">
+<script>
+theorem("Proposition")
+</script><em> $\esssup_Ef$ is the smallest number $M$ with $-\infty\leq M\leq\infty$ such that $f(x)\leq M$ e.a. on $E$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> If $\abs{E}=0$ or $\esssup_Ef=\infty$ then the result is clearly. Since the distribution function $w(\alpha)$ is continuous from the right by (), it follows that $w(\esssup_Ef)=0$ if and only if $\esssup_Ef$ is finite, and the result follows.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-warning">
+<script>
+theorem("Definition")
+</script> Let $E$ be a measurable subset of $\mathbf{R}^n$ and $p$ satisfies $0&lt;p\leq\infty$.
+<ol class="parenthesis">
+<li>If $p&lt;\infty$ then $$\norm{f}_p=\left(\int_E\abs{f}^p\right)^{1/p}.$$</li>
+<li>If $p=\infty$ then $$\norm{f}_\infty=\esssup_E\abs{f}.$$</li>
+</ol>
+Denote $L^p(E)$ the class of measruable $f$ for which $\norm{f}_p$ is finite.
+</div>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem")
+</script><em> If $\abs{E}>\infty$ then $\norm{f}_\infty=\lim_{p\to\infty}\norm{f}_p$.
+</em></div>
+
+<p class="proof"><em>Proof.</em> We may assume that $\abs{E}>0$ since $\norm{f}_\infty$ and $\norm{f}_p$ are both $0$ if $\abs{E}=0$. Let $M=\norm{f}_\infty$. If $M'&lt;M$, then the set
+$$
+A=\{x\in E:\abs{f(x)}>M'\}
+$$
+has positive measure. Moreover, $\norm{f}_p\geq(\int_A\abs{f}^p)^{1/p}\geq M'\abs{A}^{1/p}$. Since $\abs{A}^{1/p}\to 1$ as $p\to\infty$, it follows that $\liminf_{p\to\infty}\norm{f}_p\geq M'$ and therefore $\liminf_{p\to\infty}\norm{f}_p\geq M$. However, we also have $\norm{f}_p\leq(\int_EM^p)^{1/p}=M\abs{E}^{1/p}$. Hence $\limsup_{p\to\infty}\norm{f}_p\leq M$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem")
+</script><em> Let $0&lt;p_1&lt;p_2\leq\infty$.</em>
+<ol class="parenthesis" style="font-style: italic;">
+<li>If $\norm{f}_\infty&lt;\infty$ then $L^{p_1}\subseteq L^{p_2}$.</li>
+<li>If $\abs{E}&lt;\infty$ then $L^{p_2}\subseteq L^{p_2}$.</li>
+</ol>
+</div>
+
+<div class="proof"><em>Proof.</em>
+<ol class="parenthesis">
+<li>Assume $f\in L^{p_1}$ with $\abs{f}\leq M$ a.e. on $E$ for some positive integer $M$. If $p_2=\infty$ then $\norm{f}_\infty\leq M&lt;\infty$. If $p_2&lt;\infty$ then note that
+$$
+\begin{align}
+\int_A\abs{f}^{p_2}&=\int_{E_1}\abs{f}^{p_2}+\int_{E_2}\abs{f}^{p_2}\\
+&\leq\abs{E_1}+\int_{E_2}\abs{f}^{p_2-p_1}\abs{f}^{p_1}\\
+&\leq\abs{E}_1+\norm{f}_\infty^{p_2-p_1}\int_{E_2}\abs{f}^{p_1}\\
+&\leq\abs{E_1}+M\int_{E_2}\abs{f}^{p_2}\\
+&&lt;\infty.
+\end{align}
+$$
+</li>
+<li> Let $f\in L^{p_2}$ and assume $\abs{E}&lt;\infty$. If $p_2=\infty$ then $\int_E\abs{f}^{p_1}\leq\int_E\norm{f}_\infty^{p_1}=\norm{f}_\infty^{p_1}\abs{E}&lt;\infty$. If $p_2&lt;\infty$ then write $E=E_1\cup E_2$ where $E_1$ is the set where $\abs{f}\leq 1$ and $E_2$ the set where $\abs{f}>1$. Thus $\int_E\abs{f}^{p_1}=\int_{E_1}\abs{f}^{p_1}+\int_{E_2}\abs{f}^{p_1}\leq\abs{E_1}+\int_{E_2}\abs{f}^{p_2}&lt;\infty$.</li>
+</ol>
+<span style="float:right;">$\square$</span></div>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem")
+</script><em> If $0&lt;p&lt;\infty$ then $L^p(E)$ forms a real vector space.
+</em></div>
+
+<p class="proof"><em>Proof.</em> For any real number $c$ and  $f\in L^p(E)$, $\norm{cf}_p=\abs{c}\norm{f}_p$ clearly. Hence $cf\in L^p(E)$.  Given $f,g\in L^p(E)$,
+$$
+\abs{f+g}^p\leq(2\max\{\abs{f}\abs{g})^p\leq2^p(\abs{f}^p+\abs{g}^p).
+$$
+Hence $f+g\in L^p(E)$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem",{"name":"Young's Inquality","label":"YSIE"})
+</script><em> Let $y=\phi(x)$ be continuous, real-valued, and strictly increasing for $x\geq 0$ and let $\phi(0)=0$. If $x=\psi(y)$ is the inverse of $\phi$, then for $a,b>0$,
+$$
+ab\leq\int_0^a\phi(x)dx+\int_0^b\psi(y)dy.
+$$
+Equality holds if and only if $b=\phi(a)$.
+</em></div>
+
+<div class="alert alert-warning">
+<script>
+theorem("Definition")
+</script> If $1&lt;p&lt;\infty$ then define $p'=1/p$. If $p=1$ then $p'=\infty$, and if $p=\infty$ then $p'=1$. $p'$ is calle the <em style="color: teal;">conjugate</em> of $p$.
+</div>
+
+<div class="alert alert-info">
+<script>
+theorem("Corollary",{"label":"YSIEC"})
+</script><em> if $a,b\geq 0$ and $1&lt;p&lt;\infty$, then
+$$
+ab\leq\frac{a^p}{p}+\frac{b^{p'}}{p'}.
+$$
+</em></div>
+
+<p class="proof"><em>Proof.</em> If $\phi(x)=x^\alpha$, $\alpha>0$ then its admits the inverse $\psi(y)=y^{1/\alpha}$. Now (<script>ref("YSIE");</script>) becomes
+$$
+ab\leq\frac{a^{1+\alpha}}{1+\alpha}+\frac{b^{1+\frac{1}{\alpha}}}{1+\frac{1}{\alpha}}.
+$$
+Setting $p=\alpha+1$ and $p'=1+1/\alpha$, we obtain the desired inequality.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem",{"name":"Holder's Inequality","label":"HSIE"})
+</script><em> If $1\leq p&lt;\infty$ then $\norm{fg}_1\leq\norm{f}_p\norm{g}_{p'}$, that is, if $1&lt;p&lt;\infty$ then
+$$
+\int_E\abs{fg}\leq\left(\int_E\abs{f}^p\right)^{1/p}\left(\int_E\abs{g}^{p'}\right)^{1/p'},
+$$
+and if $p=\infty$ then
+$$
+\int_E\abs{fg}\leq\left(\esssup_E\abs{f}\right)\int_E\abs{g}.
+$$
+</em></div>
+
+<p class="proof"><em>Proof.</em> The last inequality, which corresponds to the case $p=\infty$, is obvious. Let us suppose then that $1&lt;p&lt;\infty$. In case $\norm{f}_p=\norm{g}_{p'}=1$, (<script>ref("YSIEC");</script>) implies that
+$$
+\int_E\abs{fg}\leq\int_E\left(\frac{\abs{f}^p}{p}+\frac{\abs{g}^{p'}}{p'}\right)
+=\frac{\norm{f}_p^p}{p}+\frac{\norm{g}_{p'}^{p'}}{p'}
+=\frac{1}{p}+\frac{1}{p'}
+=1
+=\norm{f}_p\norm{g}_{p'}.
+$$
+For the general case, we may assume that neither $\norm{f}_p$ nor $\norm{g}_{p'}$ is zero; otherwise, $fg$ is zero a.e. in $E$, and the result is immediate. We may also assume that neither $\norm{f}_p$ nor $\norm{g}_{p'}$ is infinite. If we set $f_1=f/\norm{f}_p$ and $g_1=g/\norm{g}_{p'}$, then $\norm{f_1}_p=\norm{g_1}=1$. Therefore, by the case already considered, we have $\int_E\abs{f_1g_1}\leq 1$, that is, $\int_E\abs{fg}\leq\norm{f}_p\norm{g}_{p'}$.
+<span style="float:right;">$\square$</span></p>
+
+<div class="alert alert-info">
+<script>
+theorem("Theorem",{"label":"CHI"})
+</script><em> Let $f$ be real-valued and measurable on $E$, and let $1\leq p\leq\infty$. Then</em>
+<p hidden>
+\norm{f}_p=\sup\int_Efg
+</p><script>eq("CHIE")</script>
+<em>where the supremum is taken overa all real-valued $g$ such that $\norm{g}_{p'}\leq 1$ and $\int_Efg$ exists.
+</em></div>
+
+<div class="proof"><em>Proof.</em> The left-hand side of (<script>ref("CHIE");</script>) is majorize the right-hand side follows from (<script>ref("HSIE");</script>). To show that opposite inequality, let us consider serveral cases:
+<ol class="parenthesis">
+<li>Assume $f\geq 0$ and $1&lt;p&lt;\infty$. If $\norm{f}_p=0$ then $f=0$ a.e. in $E$, and the result is obvious. If $0&lt;\norm{f}_p&lt;\infty$ we may further assume that $\norm{f}_p=1$ by dividing both sides of (<script>ref("CHIE");</script>) by $\norm{f}_p$. Now let $g=f^{p/p'}$. It is easy to verify that $\norm{g}_{p'}=1$ and $\int_Efg=1$, which completes the proof in this case. If $\norm{f}_p=\infty$, define functions $f_k$ on $E$ by setting
+$$
+f_k(x)=\begin{cases}
+0&\text{ if }\abs{x}>k;\\
+\min\{f(x),k\}&\text{ if }\abs{x}\leq k.
+\end{cases}
+$$
+Then each $f_k$ belongs to $L^p$ and $\norm{f_k}_p\to\norm{f}_p=\infty$. By the case already considered, we have $\norm{f_k}_p=\int_Ef_kg_k$ for some $g_k\geq 0$ with $\norm{g_k}_{p'}=1$. Since $f\geq f_k$, it follows that $\int_Efg_k\geq\int_Ef_kg_k\to\infty$. This shows that
+$$
+\sup_{\norm{g}_{p'}=1}\int_Efg=\infty=\norm{f}_p.
+$$
+</li>
+<li>Assume $f\geq 0$ and $p=\infty$. If $0&lt;\norm{f}_\infty&lt;\infty$ then we can assume $\norm{f}_\infty=1$ by the same reason as in case (i). For each positive inter $n$, define the set
+$$
+E_n=\{x\in E:f(x)>1-\frac{1}{n}\text{ and }\abs{x}&lt;n\},
+$$
+which satisfies $0&lt;\abs{E_n}&lt;\infty$. Define
+$$
+g_n(x)=\begin{cases}
+0&\text{ if }x\notin E_n;\\
+\displaystyle\frac{1}{E_n}&\text{ if }x\notin E_n.
+\end{cases}
+$$
+Then $\int_{E_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{E_n}fg_n\geq(1-1/n)\int_{E_n}g_n=1-1/n$. Hence $$\sup_{\norm{g}\leq 1}\int_Efg=1=\norm{f}_\infty.$$
+For general case, if $\norm{f}_\infty=0$ then the result is clear, and if $\norm{f}_\infty=\infty$, that is, $w(\alpha)>0$ for all $\alpha$, then for each positive integer $n$, define
+$$
+F_n=\{x\in E:f(x)>n\}.
+$$
+For all $n$ large enough, say $n\geq N$, we have $0&lt;\abs{F_n}&lt;\infty$. Define
+$$
+g_n(x)=\begin{cases}
+0&\text{ if }x\notin F_n;\\
+\displaystyle\frac{1}{F_n}&\text{ if }x\notin F_n.
+\end{cases}
+$$
+for $n\geq N$. Then $\int_{F_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{F_n}fg_n\geq n\int_{F_n}g_n=n$ for all $n\geq N$. Hence $$\sup_{\norm{g}_\infty\leq 1}\int fg=\infty=\norm{f}_\infty.$$
+</li>
+<li> Assume $f\geq 0$ and $p=1$. Then we can choose $g=1$ so that $\norm{g}_\infty=1$ and clearly we have $\int_E fg=\norm{f}_1$.
+</li>
+<li> Assume $f$ is arbitrary and $1\leq p\leq\infty$. To dispose of the restriction $f\geq 0$, apply the result above to $\abs{f}$. Thus, there exists $g_k$ with $\norm{g_k}_{p'}=1$ such that
+$$
+\norm{f}_p=\lim\int_E\abs{f}g_l=\lim\int_Ef(g_k\sign f)
+$$
+Since $\norm{g_k\sign f}_{p'}=1$, the result follows.
+</li>
+</ol>
+<span style="float:right;">$\square$</span></div>
+
+<div class="theorem" data-name="name" data-label="label">
+If $1\leq p\leq\infty$, then $\norm{f+g}_p\leq\norm{f}_p+\norm{g}_p$, that is, if $1\leq p\leq\infty$ then
+$$
+\left(\int_E\abs{f+g}^p\right)^{1/p}\leq\left(\int_E\abs{f}^p\right)^{1/p}+\left(\int_E\abs{g}^p\right)^{1/p},
+$$
+and if $p=\infty$ then
+$$
+\esssup_E\abs{f+g}\leq\esssup_E\abs{f}+\esssup_E\abs{g}.
+$$
+</div>
+
+<div class="proof"> trivial.
+</div>
 
 
 </div>
@@ -1772,17 +2005,17 @@ The arrangement of inverse in these formulas is determined by the requirement th
 <div class="alert alert-info">
 <script >
 theorem("Proposition")
-</script><em> Let $G$ be a locally profinite group, $\xi$ a character of $G$ and $T$ a distribution on $G$ that satisfies $\lambda(h)T=\xi(h)^{-1}T$ for $h\in G$. Then there exists a constant $c$ such that
+</script><em> Let $G$ be a locally profinite group, $\xi$ a character of $G$ and $T$ a distribution on $G$ that satisfies $\lambda(h)T=\xi(h)^{-1}T$ for $h\in G$. Then there exists a constant $c$ such that</em>
 <p hidden>
 T(f)=c\int_G\xi(h)f(h)dh,
 </p><script>eq("DIAI")</script>
-where $dh$ denotes the left Haar measure.
+<em>where $dh$ denotes the left Haar measure.
 </em></div>
 <p>
 Of course, a similar statement is true for the right Haar measure.
 </p>
 
-<p class="proof"><em>Proof.</em> We define another distribution by $T':f\mapsto T(\xi^{-1}f)$; since $\xi^{-1}$ a character, its kernel contains an open subgroup of $G$ by (<script>ref("KCCOS");</script>) and so $\xi^{-1}$ is locally constant; thus the distribution $T'$ is well-defined. For any $h\in G$,
+<div class="proof"><em>Proof.</em> We define another distribution by $T':f\mapsto T(\xi^{-1}f)$; since $\xi^{-1}$ a character, its kernel contains an open subgroup of $G$ by (<script>ref("KCCOS");</script>) and so $\xi^{-1}$ is locally constant; thus the distribution $T'$ is well-defined. For any $h\in G$,
 \begin{align}
 \lambda(h)T'(f)&=T'(\lambda(h)^{-1}f)\\
 &=T'(f(\lambda\square))\\
@@ -1817,7 +2050,7 @@ T(f)&=\vol(K_0)\sum_{i=1}^ra_ic\\
 &=c\int_Gf(h)dh,
 \end{align}
 which completes this proof.
-<span style="float:right;">$\square$</span></p>
+<span style="float:right;">$\square$</span></div>
 
 <div class="alert alert-info">
 <script >
@@ -1876,7 +2109,7 @@ theorem("Proposition")
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-info">
-<script >
+<script>
 theorem("Proposition")
 </script><em> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf on $X$. Then there exists an abelian group $F_c$ and sheaf $\mathcal{F}'$ isomorphic to $\mathcal{F}$ such that for any open set $U$ of $X$, $\mathcal{F}'(U)\subseteq F_c$ and such that if $U\supseteq V$ are open sets, then $\mathcal{F}'(V)\subseteq\mathcal{F}'(U)$ and, if $f\in\mathcal{F}'(V)$, then the image of $f$ under the restriction map $\rho^U_V:\mathcal{F}'(U)\to\mathcal{F}'(V)$ is $f$ itself, whereas the image of $f$ under the restriction map $\rho^U_{U-V}:\mathcal{F}'\to\mathcal{F}'(U-V)$ is zero. Moreover, we may assume that $F_c$ is the union of the spaces $\mathcal{F}(U)$ with $U\in B$.
 </em></div>
@@ -1885,7 +2118,7 @@ theorem("Proposition")
 To clarify the meaning of this proposition, let us consider the special case of the sheaf $C^\infty:U\mapsto C^\infty(U)$ for $U$ open in $X$. If $U$ is a compact and open set of $X$, we embed $C^\infty(U)$ in $C^\infty(X)$ be extending a function in $C^\infty(U)$ y zero off $U$. Then it is clear that if $U\supseteq V$, then $C^\infty(V)\subseteq C^\infty(U)$, and that if $f\in C^\infty(V)$ is extended to $U$ and then restricted back to $V$, it is unchanged, but if extended to $U$ and then restricted to $U-V$, it is zero. The meaning of the proposition is that any sheaf on $X$ is isomorphic to a sheaf of this type. Of course, this type of topological space is very special, and usually one would not expect a sheaf to be realizable in this way.
 </p>
 
-<p class="proof"><em>Proof.</em> Because we may replace $\mathcal{F}$ by an isomorphic sheaf, we take $\mathcal{F}$ to be the sheaf of sections of an étale space $\hat{\mathcal{F}}$. Let $\mathcal{F}_c$ be the space of all compactly supported sections in $\mathcal{F}(X)$. If $U\in B$, we embed $\mathcal{F}(U)$ in $\mathcal{F}_c$ by extending the section $s:U\to X$ by zero off $U$. Because $X-U$ is open, this is a section. All the assertions of the proposition are now easily checked.
+<p class="proof"><em>Proof.</em> Because we may replace $\mathcal{F}$ by an isomorphic sheaf, we take $\mathcal{F}$ to be the sheaf of sections of an &eacute;tale space $\hat{\mathcal{F}}$. Let $\mathcal{F}_c$ be the space of all compactly supported sections in $\mathcal{F}(X)$. If $U\in B$, we embed $\mathcal{F}(U)$ in $\mathcal{F}_c$ by extending the section $s:U\to X$ by zero off $U$. Because $X-U$ is open, this is a section. All the assertions of the proposition are now easily checked.
 <span style="float:right;">$\square$</span></p>
 
 <div class="alert alert-warning">
@@ -1935,13 +2168,13 @@ theorem("Proposition",{"label":"MSIT"})
 </script><em> Let $X$ be a locally profinite space, $M$ a cosmooth module over $C_c^\infty(X)$ and $\mathcal{M}$ the corresponding sheaf consatructed in <span style="font-style: normal;">(<script>ref("CCIXS");</script>)</span>. Then for any $\in X$, the stalk $\mathcal{M}_x$ is isomorphic to $M/M(x)$, where $M(x)$ is the submodule of all $m\in M$ such that $1_U\cdot m=0$ for some $U$ open in $X$ containing $x$; an equivalent condition is that $m=1_V\cdot m$ for some $V$ open in $X$ not containing $x$.
 </em></div>
 
-<p class="proof"><em>Proof.</em> If $U$ is open in $X$ containing $x$, let $\pi_U:M(U)\to M/M(x)$ be the composition of the inclusion $M(U)\to M$ with the projection $M\to M/M(x)$. We claim that if $U\supseteq V$ are open sets of $X$ containing $x$, then $\pi_V\circ\rho^U_v=\pi_U$. Indeed, if $m\in M(U)$, then $\pi_v\circ\rho^U_V(m)-\pi_U(m)$ is the image in $M/M(x)$ of $1_V\cdot m-m$. However, this element is in $M(x)$ because $1_v\cdot(1_V\cdot m-m)=0$. Now by the universal property of the direct limit, there exists a homomorphism $\sigma:\mathcal{M}_x\to M/M(x)$ such that $\sigma\circ\rho^U_x=\pi_U$ for any $x\in U$ with $U$ open in $X$. It is clear that $\sigma$ is surjective since $M$ is cosmooth,: since every $m\in M$ admits $U$ open in $X$ with $1_U\cdot m$, $m\in\mathcal{M}(U)$ and so $\sigma(\rho^U_x(m))$ mapsto the image of $x$ in $M/M(x)$. $\sigma$ is also injective since if $\sigma(\rho^U_x(m))=0$ for some $m\in M(U)$ with $U$ open in $X$, then $m\in M(x)$ and $1_V\cdot m=0$ for some $V$ open in $X$; thus $\rho^U_{U\cap V}(m)=0$ and $\rho^U_x(m)=0$.</p>
+<div class="proof"><em>Proof.</em><p> If $U$ is open in $X$ containing $x$, let $\pi_U:M(U)\to M/M(x)$ be the composition of the inclusion $M(U)\to M$ with the projection $M\to M/M(x)$. We claim that if $U\supseteq V$ are open sets of $X$ containing $x$, then $\pi_V\circ\rho^U_v=\pi_U$. Indeed, if $m\in M(U)$, then $\pi_v\circ\rho^U_V(m)-\pi_U(m)$ is the image in $M/M(x)$ of $1_V\cdot m-m$. However, this element is in $M(x)$ because $1_v\cdot(1_V\cdot m-m)=0$. Now by the universal property of the direct limit, there exists a homomorphism $\sigma:\mathcal{M}_x\to M/M(x)$ such that $\sigma\circ\rho^U_x=\pi_U$ for any $x\in U$ with $U$ open in $X$. It is clear that $\sigma$ is surjective since $M$ is cosmooth,: since every $m\in M$ admits $U$ open in $X$ with $1_U\cdot m$, $m\in\mathcal{M}(U)$ and so $\sigma(\rho^U_x(m))$ mapsto the image of $x$ in $M/M(x)$. $\sigma$ is also injective since if $\sigma(\rho^U_x(m))=0$ for some $m\in M(U)$ with $U$ open in $X$, then $m\in M(x)$ and $1_V\cdot m=0$ for some $V$ open in $X$; thus $\rho^U_{U\cap V}(m)=0$ and $\rho^U_x(m)=0$.</p>
 <p>
 To see that $1_U\cdot m=0$ for some $U$ open in $X$ contaiing $x$ if and only if $1_V\cdot m=m$ for some $V$ open in $X$ not containing $x$, first let $U$ be given. Let $W$ be a sufficiently large open and compact set containing both $x$ and $U$ such that $1_W\cdot m=m$; such a set exsits because $M$ is cosmooth so that $1_Z\cdot m=m$ for some $Z$ open in $X$, and for any $W$ open in $X$ with $W\supseteq Z$, $1_W\cdot m=1_W\cdot (1_V\cdot m)=1_V\cdot m=m$, that is, we may replace $V$ by arbitrarily large $W$. In this situation, we may take $V=W-U$. Similarly if $V$ is given.
 </p>
-<span style="float:right;">$\square$</span></p>
+<span style="float:right;">$\square$</span></div>
 
-<p>Now we may generalize the notion of a distribution</p>
+<p>Now we may generalize the notion of a distribution.</p>
 
 <div class="alert alert-warning">
 <script >
@@ -1956,15 +2189,15 @@ Suppose that $Z$ is closed in $X$ and $\mathcal{F}$ a sheaf on $X$. Denote $\mat
 <div class="alert alert-info">
 <script >
 theorem("Proposition",{"label":"ESODX"})
-</script><em> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf of $C^\infty(X)$-module. We have exact sequences
+</script><em> Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf of $C^\infty(X)$-module. We have exact sequences</em>
 <p hidden>
 0\to(\mathcal{F}_{X-Z})_c\to\mathcal{F}_c\to(\mathcal{F}_Z)_c\to 0
 </p><script>eq("DES1X")</script>
-and
+<em>and</em>
 <p hidden>
 0\to D(Z,\mathcal{F}_Z)\to D(X,\mathcal{F})\to D(X-Z,\mathcal{F}_{X-Z})\to 0.
 </p><script>eq("DES2X")</script>
-</em></div>
+</div>
 
 <p class="proof"><em>Proof.</em> The proof is identical to the proof of equations (<script>ref("DES1");</script>) and (<script>ref("DES1");</script>). Again, the only subtle part is the surjectivity of the restriciton $\mathcal{F}_c\to(\mathcal{F}_Z)_c$, and the proof is the same as (<script>ref("ESOD");</script>).
 <span style="float:right;">$\square$</span></p>
@@ -1982,7 +2215,7 @@ If $G$ acts on $X$ and $\mathcal{F}$, then we denote $\mathcal{F}_c(\chi)$ the s
 <div class="alert alert-info">
 <script >
 theorem("Proposition")
-</script><em> Let $X$ and $Y$ be locally profinite sapces, $p:X\to Y$ a continuous map, $\mathcal{F}$ a sheaf on $X$, $G$ a group acting on btoh $X$ and $\mathcal{F}$, and $\chi$ a character of $G$.
+</script><em> Let $X$ and $Y$ be locally profinite sapces, $p:X\to Y$ a continuous map, $\mathcal{F}$ a sheaf on $X$, $G$ a group acting on btoh $X$ and $\mathcal{F}$, and $\chi$ a character of $G$.</em>
 <ol class="parenthesis" style="font-style: italic;">
     <li>Let $y\in Y$, $Z=p^{-1}(y)$. Then $M:=\mathcal{F}_c/\mathcal{F}_c(\chi)$ is a cosmooth $C^\infty(Y)$-module; let $\mathcal{G}$ be the corresponding sheaf on $Y$ constructed by <span style="font-style: normal;">(<script>ref("CCIXS");</script>)</span>. If $y\in Y$, then the stalk $\mathcal{G}_y$ is isomorphic to $(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$.</li>
     <li> Assume that there are no non-zero distribution $D$ in $D(Z,\mathcal{F}_Z)$ that satisfy
@@ -1992,13 +2225,13 @@ theorem("Proposition")
      for any $Z=p^{-1}(y)$ and any $y\in Y$. Then there are no non-zero distributions in $D(X,\mathcal{F})$ satisfying <span style="font-style: normal;">(<script>ref("GDXD");</script>)</span>.
     </li>
 </ol>
-</em></div>
+</div>
 
-<p class="proof"><em>Proof.</em> We first prove (i). $M$ is a $C^\infty(X)$-module naturally. The $C^\infty(Y)$-module structure on $M$ is defined via the pullback of $p:X\to Y$, that is, $$h\cdot_Y m:=(h\circ p)\cdot m.$$ By (<script>ref("ESODX");</script>), the canonical homomorphism $\mathcal{F}_c\to(\mathcal{F}_Z)_c$ is surjective. We show that its kernel consists of the submodule $L$ generated by elements of the form $(\phi\circ p)\cdot f$, where $\phi\in C_c^\infty(Y)$ vanishes at $y$, and $f\in\mathcal{F}_c$. It is clear that $L$ is contained in this kernel. Conversely, let $f\in\mathcal{F}_c$ be in the kernel. Then $\supp(f)$ is compact and disjoint from $Z$, so its image under $p$ is a compact subset of $Y$ that does not contain $y$. Hence there is an open and compact subset of $Y$ containing $p(\supp(f))$ but not $y$. If $\phi$ is the characteristic function of this set, then $f=(\phi\circ p)\cdot f$, showing that $f\in L$.</p>
-<p> Because $(\mathcal{F}_Z)_c\cong\mathcal{F}_c/L$, we see that
+<div class="proof"><em>Proof.</em><p> We first prove (i). $M$ is a $C^\infty(X)$-module naturally. The $C^\infty(Y)$-module structure on $M$ is defined via the pullback of $p:X\to Y$, that is, $$h\cdot_Y m:=(h\circ p)\cdot m.$$ By (<script>ref("ESODX");</script>), the canonical homomorphism $\mathcal{F}_c\to(\mathcal{F}_Z)_c$ is surjective. We show that its kernel consists of the submodule $L$ generated by elements of the form $(\phi\circ p)\cdot f$, where $\phi\in C_c^\infty(Y)$ vanishes at $y$, and $f\in\mathcal{F}_c$. It is clear that $L$ is contained in this kernel. Conversely, let $f\in\mathcal{F}_c$ be in the kernel. Then $\supp(f)$ is compact and disjoint from $Z$, so its image under $p$ is a compact subset of $Y$ that does not contain $y$. Hence there is an open and compact subset of $Y$ containing $p(\supp(f))$ but not $y$. If $\phi$ is the characteristic function of this set, then $f=(\phi\circ p)\cdot f$, showing that $f\in L$.</p>
+<p> Because $(\mathcal{F}_Z)_c\cong\mathcal{F}_c/L$, we see that</p>
 <p hidden>
 (\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)\cong(\mathcal{F}_c/L)/(\mathcal{F}_c/L)(\chi)=(\mathcal{F}_c/L)/(\mathcal{F}_c(\chi)L/L)\cong\mathcal{F}_c/\mathcal{F}_c(\chi)L
-</p><script>eq("FCFCFC")</script>
+</p><script>eq("FCFCFC")</script><p>
 which is isomorphic to $(\mathcal{F}_c/\mathcal{F}_c(\chi))/(\mathcal{F}_c(\chi)L/\mathcal{F}_c(\chi))$. Hence the canonical surjective homomorphism $\mathcal{F}_c/\mathcal{F}_c(\chi)\to(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$ has kernel $L\mathcal{F}_c(\chi)/\mathcal{F}_c(\chi)$, which is the submodule of $M$ generated by elements of the form $(\phi\circ p)\cdot\overline{f}$, where $\phi\in C_c^\infty(Y)$ vanishes at $y$, and $f\in\mathcal{F}_c/\mathcal{F}_c(\chi)=M$.
 On the other hand, by (<script>ref("MSIT");</script>),
 $$
@@ -2008,8 +2241,8 @@ where for any $\overline{s}\in M(y)$, there exists $V$ open in $Y$ not containin
 $$
 \mathcal{G}_y\cong M/M(y)\cong(\mathcal{F}_c/\mathcal{F}_c(\chi))/(L\mathcal{F}_c(\chi)/\mathcal{F}_c(\chi))\cong\mathcal{F}_c/L\mathcal{F}_c(\chi)\cong (\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi),
 $$
-which proves (i). We note that (ii) is an immediate consequence of (i). Indeed, the action of $g$ on $\mathcal{F}$-distribution has the effect $(gD)(f)=D(g^{-1}f)$, so $D\in D(X,\mathcal{F})$ satisfies (<script>ref("GDXD");</script>) if and only if $D(g^{-1}f)=D(\chi(g)f)$ for any $g\in G$ and $f\in\mathcal{F}_c$, that is $D$ annihilates $\mathcal{F}_c(\chi)$. Hence it sufficient to show $M=0$, or equivalently, that $\mathcal{G}$ is the zero sheaf, and this will follow if each stalk $\mathcal{G}_y$ is zero. Because $\mathcal{G}_y\cong(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$, the assumption that there are no non-zero $\mathcal{F}_Z$-distribution in $D(Z,\mathcal{F}_Z)$ is precisely the condition that this stalk be zero.
-<span style="float:right;">$\square$</span></p>
+which proves (i). We note that (ii) is an immediate consequence of (i). Indeed, the action of $g$ on $\mathcal{F}$-distribution has the effect $(gD)(f)=D(g^{-1}f)$, so $D\in D(X,\mathcal{F})$ satisfies (<script>ref("GDXD");</script>) if and only if $D(g^{-1}f)=D(\chi(g)f)$ for any $g\in G$ and $f\in\mathcal{F}_c$, that is $D$ annihilates $\mathcal{F}_c(\chi)$. Hence it sufficient to show $M=0$, or equivalently, that $\mathcal{G}$ is the zero sheaf, and this will follow if each stalk $\mathcal{G}_y$ is zero. Because $\mathcal{G}_y\cong(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$, the assumption that there are no non-zero $\mathcal{F}_Z$-distribution in $D(Z,\mathcal{F}_Z)$ is precisely the condition that this stalk be zero.</p>
+<span style="float:right;">$\square$</span></div>
 
 </div>
 
@@ -2046,21 +2279,21 @@ theorem("Definition")
 </div>
 
 <p>
-Recall that if $\Gamma$ is a finite group, then for any representation $(\pi,V)$ of $G$,
+Recall that if $\Gamma$ is a finite group, then for any representation $(\pi,V)$ of $G$,</p>
 <p hidden>
 V=\bigoplus_{\rho\in[\Gamma]}V(\rho)
 </p><script>eq("SSFGR")</script>
-where $V(\rho)$ is the sum of all invariant subspaces of $V$ that are isomorphic as $\Gamma$-modules to $(\rho,V_\rho)$. We will generalize the decomposition (<script>ref("SSFGR");</script>) to smooth representations of a locally profinite group $G$.
+<p>where $V(\rho)$ is the sum of all invariant subspaces of $V$ that are isomorphic as $\Gamma$-modules to $(\rho,V_\rho)$. We will generalize the decomposition (<script>ref("SSFGR");</script>) to smooth representations of a locally profinite group $G$.
 </p>
 
 <div class="alert alert-info">
 <script >
 theorem("Proposition",{"label":"SSPGT"})
-</script><em> Let $(\pi,V)$ be a smooth representation of $G$ and $K$ an open compact subgroup of $G$. Then
+</script><em> Let $(\pi,V)$ be a smooth representation of $G$ and $K$ an open compact subgroup of $G$. Then</em>
 <p hidden>
 V=\bigoplus_{\rho\in[K]}V(\rho)
 </p><script>eq("SSPGR")</script>
-as vector space direct sum. The representation $\pi$ is admissible if and only if each of the $V(\rho)$ is finite dimensional.
+<em>as vector space direct sum. The representation $\pi$ is admissible if and only if each of the $V(\rho)$ is finite dimensional.
 </em></div>
 
 <p class="proof"><em>Proof.</em> We show first that $V$ is the sum of the spaces $V(\rho)$. Indeed, if $v\in V$, then because $\pi$ is smooth, $v$ is fixed by some compact open subgroup $K_0$ of $K$, which by (<script>ref("COCF");</script>) and (<script>ref("OFON");</script>) may be chosen to be normal. Note that a representation $\rho$ of $K$ will fix $K_0$ if and only if $\rho$ is a representation of $K/K_0$. Then by (<script>ref("SSFGR");</script>) with the finite group $\Gamma=K/K_0$,
@@ -2231,7 +2464,7 @@ theorem("Proposition")
 
 <script>
     $(document).ready(function(){
-            $("#content-differential").collapse("show");
+            $("#content-classes").collapse("show");
     });
 </script>
 

@@ -11,7 +11,7 @@ function theorem(name, info = "") {
         document.write(" id=", info["label"]);
         label[info["label"]] = [levelcounter["section"], theoremcounter];
     }
-    document.write("><strong>", name, "</span> ", levelcounter["section"], ".", theoremcounter);
+    document.write("><strong style=\"font-style: normal\">", name, "</span> ", levelcounter["section"], ".", theoremcounter);
     if (info != "" && "name" in info) {
         document.write(" (", info["name"], ")");
     }

@@ -21,7 +21,7 @@
 		"prefix": ["proposition"],
     	"body": [
 		"<div class=\"alert alert-info\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Proposition\")",
 		"</script><em>$0",
 		"</em></div>\n\n"],
@@ -31,7 +31,7 @@
 		"prefix": ["theorem"],
     	"body": [
 		"<div class=\"alert alert-info\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Theorem\")",
 		"</script><em>$0",
 		"</em></div>\n\n"],
@@ -41,7 +41,7 @@
 		"prefix": ["lemma"],
     	"body": [
 		"<div class=\"alert alert-info\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Lemma\")",
 		"</script><em>$0",
 		"</em></div>\n\n"],
@@ -51,7 +51,7 @@
 		"prefix": ["cor"],
     	"body": [
 		"<div class=\"alert alert-info\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Corollary\")",
 		"</script><em>$0",
 		"</em></div>\n\n"],
@@ -61,7 +61,7 @@
 		"prefix": ["definition"],
     	"body": [
 		"<div class=\"alert alert-warning\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Definition\")",
 		"</script>$0",
 		"</div>\n\n"],
@@ -71,7 +71,7 @@
 		"prefix": ["example"],
     	"body": [
 		"<div class=\"alert alert-secondary\">",
-		"<script type=\"text/javascript\" >",
+		"<script>",
 		"theorem(\"Example\")",
 		"</script>$0",
 		"</div>\n\n"],
@@ -115,7 +115,7 @@
 	"etale": {
 		"prefix": ["etale"],
     	"body": [
-		"étale"
+		"&eacute;tale"
 		],
     	"description": "etale"
 	},
