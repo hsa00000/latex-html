@@ -20,84 +20,73 @@
 	"colored proposition": {
 		"prefix": ["proposition"],
     	"body": [
-		"<div class=\"alert alert-info\">",
-		"<script>",
-		"theorem(\"Proposition\")",
-		"</script><em>$0",
-		"</em></div>\n\n"],
+		"<div class=\"proposition\">",
+        "$0",
+        "</div>"],
     	"description": "colored proposition"
 	},
 	"colored theorem": {
 		"prefix": ["theorem"],
     	"body": [
-		"<div class=\"alert alert-info\">",
-		"<script>",
-		"theorem(\"Theorem\")",
-		"</script><em>$0",
-		"</em></div>\n\n"],
+		"<div class=\"theorem\">",
+        "$0",
+        "</div>"],
     	"description": "colored theorem"
 	},
 	"colored lemma": {
 		"prefix": ["lemma"],
     	"body": [
-		"<div class=\"alert alert-info\">",
-		"<script>",
-		"theorem(\"Lemma\")",
-		"</script><em>$0",
-		"</em></div>\n\n"],
+		"<div class=\"lemma\">",
+        "$0",
+        "</div>"],
     	"description": "colored lemma"
 	},
 	"colored corollary": {
 		"prefix": ["cor"],
     	"body": [
-		"<div class=\"alert alert-info\">",
-		"<script>",
-		"theorem(\"Corollary\")",
-		"</script><em>$0",
-		"</em></div>\n\n"],
+		"<div class=\"corollary\">",
+        "$0",
+        "</div>"],
     	"description": "colored corollary"
 	},
 	"colored definition": {
 		"prefix": ["definition"],
     	"body": [
-		"<div class=\"alert alert-warning\">",
-		"<script>",
-		"theorem(\"Definition\")",
-		"</script>$0",
-		"</div>\n\n"],
+		"<div class=\"definition\">",
+        "$0",
+        "</div>"],
     	"description": "colored definition"
 	},
 	"colored example": {
 		"prefix": ["example"],
-    	"body": [
-		"<div class=\"alert alert-secondary\">",
-		"<script>",
-		"theorem(\"Example\")",
-		"</script>$0",
-		"</div>\n\n"],
+     	"body": [
+		"<div class=\"example\">",
+        "$0",
+        "</div>"],
     	"description": "colored example"
 	},
 	"refernce": {
 		"prefix": ["ref","\\ref"],
     	"body": [
-		"<script>ref($0);</script>"
+		"(<a href=#$0></a>)"
 		],
     	"description": "reference"
 	},
 	"proof": {
 		"prefix": ["proof"],
     	"body": [
-		"<p class=\"proof\"><em>Proof.</em>$0",
-		"<span style=\"float:right;\">$\\square$</span></p>"
+		"<div class=\"proof\">",
+        "$0",
+        "</div>"
 		],
     	"description": "proof"
 	},
 	"equation": {
 		"prefix": ["equation"],
     	"body": [
-		"<p hidden>",
-		"$0",
-		"</p><script>eq()</script>"
+		"<div class=\"equation\" data-label=\"\">",
+        "$0",
+		"</div>"
 		],
     	"description": "equation"
 	},
@@ -156,6 +145,25 @@
 		],
     	"description": "reset counter"
 	},
-
-
+	"section": {
+		"prefix": ["section"],
+    	"body": [
+		"<div class=\"section\" data-name=\"$0\">"
+		],
+    	"description": "section"
+	},
+	"chapter": {
+		"prefix": ["chapter"],
+    	"body": [
+		"<div class=\"chapter\" data-name=\"$0\">"
+		],
+    	"description": "chapter"
+	},
+	"part": {
+		"prefix": ["part"],
+    	"body": [
+		"<div class=\"part\" data-name=\"$0\">"
+		],
+    	"description": "part"
+	}
 }

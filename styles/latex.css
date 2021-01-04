@@ -30,6 +30,7 @@ ol.parenthesis > li::before {
 }
 .proof {
     overflow: hidden;
+    margin-bottom: 20px;
 }
 .tocpage ol{
     margin-left: 0px;
