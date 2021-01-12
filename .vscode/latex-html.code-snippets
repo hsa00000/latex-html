@@ -93,13 +93,29 @@
 	"align": {
 		"prefix": ["align"],
     	"body": [
-		"$$",
 		"\\begin{align}",
 		"$0",
-		"\\end{align}",
-		"$$"
+		"\\end{align}"
 		],
     	"description": "align"
+	},
+	"cases": {
+		"prefix": ["cases"],
+    	"body": [
+		"\\begin{cases}",
+		"$0",
+		"\\end{cases}"
+		],
+    	"description": "cases"
+	},
+	"bmatrix": {
+		"prefix": ["bmatrix"],
+    	"body": [
+		"\\begin{bmatrix}",
+		"$0",
+		"\\end{bmatrix}"
+		],
+    	"description": "bmatrix"
 	},
 	"etale": {
 		"prefix": ["etale"],

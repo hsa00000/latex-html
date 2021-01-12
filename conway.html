@@ -25,7 +25,7 @@
             tex: {
                 packages: {'[+]': ['amscd','textmacros']},
                 inlineMath: [['{jax}', '{jax}']],
-                displayMath: [['{jax}{jax}', '{jax}{jax}']],
+                displayMath: [['{jax}{jax}', '{jax}{jax}'],['\\[','\\]']],
                 macros:{
                     Abs: ['\\left\\lvert #1 \\right\\rvert',1],
                     abs: ['\\lvert #1 \\rvert',1],
@@ -42,6 +42,8 @@
                     span: ["\\operatorname\{span\}"],
                     esssup: ["\\operatorname\{ess\ sup\}"],
                     sign: ["\\operatorname\{sgn\}"],
+                    tr: ["\\operatorname\{tr\}"],
+                    Aut: ["\\operatorname\{Aut\}"]
                 }
             }
         };
@@ -153,7 +155,6 @@
                             window.location.reload();
                         }
                     } catch(e) {
-                        console.log(e);
                     } finally {
                         firsttypeset = false;
                     }
@@ -603,7 +604,7 @@ and say that the indefinite integral of $f$ is <em style="color: teal;">differen
 </div>
 
 <div class="theorem" data-name="Lebesgue" data-label="LGDT">
- If $f\in L(\mathbf{R}^n)$, its indefinite integral is differentiable with derivative $f(x)$ at almost every $x\in\mathbf{R}^n$.
+If $f\in L(\mathbf{R}^n)$, its indefinite integral is differentiable with derivative $f(x)$ at almost every $x\in\mathbf{R}^n$.
 </div>
 
 <div class="proof">
@@ -981,12 +982,12 @@ Thus $\sum r'_{m_j}$ is integrable over $(a,b)$ and therefore, it is finite a.e.
 
 <div class="proof" data-name="&lt;em>Proof of&lt;/em> (&lt;a href=#BVDT>&lt;/a>).">
 Let $f$ be of bounded variation on $[a,b]$ and let $V(x)=V([a,x]$ be its variation on $[a,x]$, $a\leq x\leq b$. Then $V(a)=0$ and $V(b)$ is the variation of $f$ on $[a,b]$. Select a sequence $\{\Gamma_k:\Gamma_k=\{x_j^k\}\}$ of partitions of $[a,b]$ such that $0\leq V(b)-S_{\Gamma_k}&lt;2^{-k}$, where $S_{\Gamma_k}=\sum_j\abs{f(x_j^k)-f(x_{j-1}^k)}$. For each $k$, define a function $f_k$ on $[a,b]$ as follows: if $x\in[x_{j-1}^k,x_j^k]$, let
-$$
+\[
 f_k(x)=\begin{cases}
 f(x)+c_j^k&\text{ if }f(x_j^k)\geq f(x_{j-1}^k),\\
 -f(x)+c_j^k&\text{ if }f(x_j^k)&lt;f(x_{j-1}^k),
 \end{cases}
-$$
+\]
 where the $c_j^k$ are constants chosen so that $f_k(a)=0$ and $f_k$ is well-defined at $x_j^k$ for every $j$. Then for all $k$ and $j$,
 $$
 f_k(x_j^k)-f_k(x_{j-1}^k)=\abs{f(x_j^k)-f(x_{j-1}^k)}
@@ -1221,7 +1222,7 @@ Equality holds if and only if $b=\phi(a)$.
 </div>
 
 <div class="definition">
-If $1&lt;p&lt;\infty$ then define $p'=1/p$. If $p=1$ then $p'=\infty$, and if $p=\infty$ then $p'=1$. $p'$ is calle the <em style="color: teal;">conjugate</em> of $p$.
+If $1&lt;p&lt;\infty$ then define $p'=1/p$. If $p=1$ then setb $p'=\infty$, and if $p=\infty$ then set $p'=1$. $p'$ is calle the <em style="color: teal;">conjugate</em> of $p$.
 </div>
 
 <div class="corollary" data-label="YSIEC">
@@ -1267,55 +1268,52 @@ Let $f$ be real-valued and measurable on $E$, and let $1\leq p\leq\infty$. Then
 <div class="equation" data-label="CHIE">
 \norm{f}_p=\sup\int_Efg
 </div>
-where the supremum is taken overa all real-valued $g$ such that $\norm{g}_{p'}\leq 1$ and $\int_Efg$ exists.
+where the supremum is taken overa all real-valued $g$ such that $\norm{g}_{p'}\leq 1$ and $\int_Efg$ exists. We will see in the proof that the supremun can take only over all real-valued $g$ such that $\norm{g}_{p'}=1$ and $\int_Efg$ exists.
 </div>
 
 <div class="proof">
 The left-hand side of (<a href=#CHIE></a>) is majorize the right-hand side follows from (<a href=#HSIE></a>). To show that opposite inequality, let us consider serveral cases:
 <ol class="parenthesis">
 <li>Assume $f\geq 0$ and $1&lt;p&lt;\infty$. If $\norm{f}_p=0$ then $f=0$ a.e. in $E$, and the result is obvious. If $0&lt;\norm{f}_p&lt;\infty$ we may further assume that $\norm{f}_p=1$ by dividing both sides of (<a href=#CHIE></a>) by $\norm{f}_p$. Now let $g=f^{p/p'}$. It is easy to verify that $\norm{g}_{p'}=1$ and $\int_Efg=1$, which completes the proof in this case. If $\norm{f}_p=\infty$, define functions $f_k$ on $E$ by setting
-$$
+\[
 f_k(x)=\begin{cases}
 0&\text{ if }\abs{x}>k;\\
 \min\{f(x),k\}&\text{ if }\abs{x}\leq k.
 \end{cases}
-$$
-Then each $f_k$ belongs to $L^p$ and $\norm{f_k}_p\to\norm{f}_p=\infty$. By the case already considered, we have $\norm{f_k}_p=\int_Ef_kg_k$ for some $g_k\geq 0$ with $\norm{g_k}_{p'}=1$. Since $f\geq f_k$, it follows that $\int_Efg_k\geq\int_Ef_kg_k\to\infty$. This shows that
-$$
-\sup_{\norm{g}_{p'}=1}\int_Efg=\infty=\norm{f}_p.
-$$
+\]
+Then each $f_k$ belongs to $L^p$ and $\norm{f_k}_p\to\norm{f}_p=\infty$. By the case already considered, we have $\norm{f_k}_p=\int_Ef_kg_k$ for some $g_k\geq 0$ with $\norm{g_k}_{p'}=1$. Since $f\geq f_k$, it follows that $\int_Efg_k\geq\int_Ef_kg_k\to\infty$. This shows that $\sup_{\norm{g}_{p'}=1}\int_Efg=\infty=\norm{f}_p.$
 </li>
 <li>Assume $f\geq 0$ and $p=\infty$. If $0&lt;\norm{f}_\infty&lt;\infty$ then we can assume $\norm{f}_\infty=1$ by the same reason as in case (i). For each positive inter $n$, define the set
 $$
 E_n=\{x\in E:f(x)>1-\frac{1}{n}\text{ and }\abs{x}&lt;n\},
 $$
 which satisfies $0&lt;\abs{E_n}&lt;\infty$. Define
-$$
+\[
 g_n(x)=\begin{cases}
 0&\text{ if }x\notin E_n;\\
 \displaystyle\frac{1}{E_n}&\text{ if }x\notin E_n.
 \end{cases}
-$$
-Then $\int_{E_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{E_n}fg_n\geq(1-1/n)\int_{E_n}g_n=1-1/n$. Hence $$\sup_{\norm{g}\leq 1}\int_Efg=1=\norm{f}_\infty.$$
+\]
+Then $\int_{E_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{E_n}fg_n\geq(1-1/n)\int_{E_n}g_n=1-1/n$. Hence $\sup_{\norm{g}=1}\int_Efg=1=\norm{f}_\infty$.
 For general case, if $\norm{f}_\infty=0$ then the result is clear, and if $\norm{f}_\infty=\infty$, that is, $w(\alpha)>0$ for all $\alpha$, then for each positive integer $n$, define
 $$
 F_n=\{x\in E:f(x)>n\}.
 $$
 For all $n$ large enough, say $n\geq N$, we have $0&lt;\abs{F_n}&lt;\infty$. Define
-$$
+\[
 g_n(x)=\begin{cases}
 0&\text{ if }x\notin F_n;\\
 \displaystyle\frac{1}{F_n}&\text{ if }x\notin F_n.
 \end{cases}
-$$
-for $n\geq N$. Then $\int_{F_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{F_n}fg_n\geq n\int_{F_n}g_n=n$ for all $n\geq N$. Hence $$\sup_{\norm{g}_\infty\leq 1}\int fg=\infty=\norm{f}_\infty.$$
+\]
+for $n\geq N$. Then $\int_{F_n}g_n=1$ so that $\norm{g}_1=1$ and $\int_Efg_n=\int_{F_n}fg_n\geq n\int_{F_n}g_n=n$ for all $n\geq N$. Hence $\sup_{\norm{g}_\infty=1}\int fg=\infty=\norm{f}_\infty$.
 </li>
 <li> Assume $f\geq 0$ and $p=1$. Then we can choose $g=1$ so that $\norm{g}_\infty=1$ and clearly we have $\int_E fg=\norm{f}_1$.
 </li>
 <li> Assume $f$ is arbitrary and $1\leq p\leq\infty$. To dispose of the restriction $f\geq 0$, apply the result above to $\abs{f}$. Thus, there exists $g_k$ with $\norm{g_k}_{p'}=1$ such that
-$$
-\norm{f}_p=\lim\int_E\abs{f}g_l=\lim\int_Ef(g_k\sign f)
-$$
+$
+\norm{f}_p=\lim\int_E\abs{f}g_l=\lim_k\int_Ef(g_k\sign f).
+$
 Since $\norm{g_k\sign f}_{p'}=1$, the result follows.
 </li>
 </ol>
@@ -1984,12 +1982,12 @@ Let $G$ be a locally profinite group and $H$ a closed subgroup. Then $\Lambda:C_
 
 <div class="proof">
 Let $\phi\in C_c(G/H)$ and let $U\subseteq G/H$ be the support of $\phi$. Then $U$ is open and compact by the localy constant-ness. Its preimage $p^{-1}(U)$ in $G$ may not be compact, but we will prove the existsence of an open and compact set $V\subseteq G$ such that $p(V)=U$. Indeed, $p^{-1}(U)$ has an open cover $\{V_i\}_{i\in I}$ by open and open compact sets of $G$. Each set $p(V_i)$ is open, and the sets $p(V_i)$ cover $U$. Because $U$ is compact, the index set $I$ has a finite subset $J$ such that the sets $p(V_j)$ cover $U$. Let $V\subseteq G$ be the union of the $V_j$, $j\in J$. Then $V$ is open and compact and $p(V)=U$. Consider $1_V$ the characteristic function of $V$. $\Lambda(1_V)$ and $\phi$ have the same support $U$ since $\supp(\Lambda(1_V))\subseteq p(\supp(1_V))=p(V)=U$ in general by (), and if $p(g)\notin\supp(\Lambda(1_V))$ with $g\in v$, then $\Lambda(1_V)\equiv 0$ on some open neighborhood $W$ of $p(g)$ in $G/H$, that is, $\int_H1_V((-)h)dh\equiv 0$ on $p^{-1}(W)\cap V$. By (), $1_V\equiv 0$ on $(p^{-1}(W)\cap V)H$, which is an open neighborhood of $g$. Hence $g\notin\supp(1_V)=V$ and $p(g)\notin p(V)=U$. Now if we define
-$$
+\[
 \psi(x)=\begin{cases}
 \phi(p(x))/\Lambda(1_V)(p(x))&\textrm{ if }x\in V;\\
 0&\textrm{otherwise},
 \end{cases}
-$$
+\]
 we have $\Lambda(\psi)=\phi$ since if $x\in V$ and $h\in H$, then $p(xh)=p(x)\in p(V)=U$ and so
 $$
 \Lambda(\psi)(p(x))=\int_H\frac{\phi(p(xh))}{\Lambda(1_V)(p(xh))}dh=\frac{\phi(p(x))}{\Lambda(1_V)(p(x))}\vol(H)=\phi(p(x)).
@@ -2041,6 +2039,8 @@ To clarify the meaning of this proposition, let us consider the special case of 
 Because we may replace $\mathcal{F}$ by an isomorphic sheaf, we take $\mathcal{F}$ to be the sheaf of sections of an &eacute;tale space $\hat{\mathcal{F}}$. Let $\mathcal{F}_c$ be the space of all compactly supported sections in $\mathcal{F}(X)$. If $U\in B$, we embed $\mathcal{F}(U)$ in $\mathcal{F}_c$ by extending the section $s:U\to X$ by zero off $U$. Because $X-U$ is open, this is a section. All the assertions of the proposition are now easily checked.
 </div>
 
+<div>We prove</div>
+
 <div class="definition">
 Let $X$ be a locally profinite space. We call a $C_c^\infty(X)$-module or $C^\infty(X)$-module $M$ <em style="color: teal;">cosmooth</em> if for every $x\in M$, there exists an open compact subset $U$ of $X$ such that $1_U\cdot x=x$.
 </div>
@@ -2090,7 +2090,22 @@ To see that $1_U\cdot m=0$ for some $U$ open in $X$ contaiing $x$ if and only if
 <p>Now we may generalize the notion of a distribution.</p>
 
 <div class="definition">
-Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf on $X$. Let $\mathcal{F}_c$ be the corresponding cosmooth module of compactly supported secitons. By an <em style="color: teal;">$\mathcal{F}$-distribution</em> on $X$, we mean a complex linear functional on the vector sapce $\mathcal{F}_c$. Let $D(X,\mathcal{F})$ denote the space of $\mathcal{F}$-distribution on $X$.
+Let $X$ be a locally profinite space and $\mathcal{F}$ a sheaf of $C^\infty$-module on $X$. Let $\mathcal{F}_c$ be the corresponding cosmooth module of compactly supported secitons. By an <em style="color: teal;">$\mathcal{F}$-distribution</em> on $X$, we mean a complex linear functional on the vector sapce $\mathcal{F}_c$. Let $D(X,\mathcal{F})$ denote the space of $\mathcal{F}$-distribution on $X$.
+</div>
+
+<div class="proposition">
+Let $X$ be a locally profinite space and $\mathcal{F}$ be the sheaf $C^\infty$. Then $D(X,\mathcal{F})=D(X)$.
+</div>
+
+<div class="proof">
+Clearly $\mathcal{F}$ is a sheaf of $C^\infty$-module by left multiplication of a smooth function. It suffice to prove that $\mathcal{F}_c\cong C^\infty_c(X)$ canonically. If $s:X\to\hat{\mathcal{F}}$ is a smooth section of compact support for some open set $U$ of $X$, then for any $x\in X$, $s(x)$ is a germ in the stalk $\mathcal{F}_x$, which is represented by a function which takes value $s_x$. Define $f_s:X\to\mathbf{C}$ by
+$$
+f_s(x)=\begin{cases}
+s_x&\text{if }x\in U;\\
+0&\text{if }x\notin U.
+\end{cases}
+$$
+Note that $f_s$ is locally constant and of compact support since $s$ is. Clearly the map $s\mapsto f_s$ is an isomorphism $\mathcal{F}_c\cong C^\infty_c(X)$ of $\mathbf{C}$-vector spaces, and the isomorphism is natural in $X$.
 </div>
 
 <p>
@@ -2120,21 +2135,12 @@ Let $X$ be a topological space, $\mathcal{F}$ a sheaf on $X$ and $G$ a group act
 If $G$ acts on $X$ and $\mathcal{F}$, then we denote $\mathcal{F}_c(\chi)$ the submodule of $\mathcal{F}_c$ generated by elements of the form $g\cdot f-\chi(g)^{-1}f$ for $f\in\mathcal{F}_c$ and $g\in G$.
 </p>
 
-<div class="proposition">
- Let $X$ and $Y$ be locally profinite sapces, $p:X\to Y$ a continuous map, $\mathcal{F}$ a sheaf on $X$, $G$ a group acting on btoh $X$ and $\mathcal{F}$, and $\chi$ a character of $G$.
-<ol class="parenthesis">
-    <li>Let $y\in Y$, $Z=p^{-1}(y)$. Then $M:=\mathcal{F}_c/\mathcal{F}_c(\chi)$ is a cosmooth $C^\infty(Y)$-module; let $\mathcal{G}$ be the corresponding sheaf on $Y$ constructed by <span style="font-style: normal;">(<a href=#CCIXS></a>)</span>. If $y\in Y$, then the stalk $\mathcal{G}_y$ is isomorphic to $(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$.</li>
-    <li> Assume that there are no non-zero distribution $D$ in $D(Z,\mathcal{F}_Z)$ that satisfy
-    <div class="equation" data-label="GDXD">
-    gD=\chi(g)D,\quad g\in G,
-    </div>
-    for any $Z=p^{-1}(y)$ and any $y\in Y$. Then there are no non-zero distributions in $D(X,\mathcal{F})$ satisfying <span style="font-style: normal;">(<a href=#GDXD></a>)</span>.
-    </li>
-</ol>
+<div class="theorem" data-name="Bernstein-Zelevinsky" data-label="BZOS">
+Let $X$ and $Y$ be locally profinite sapces, $p:X\to Y$ a continuous map, $\mathcal{F}$ a sheaf of $C^\infty$-module on $X$, $G$ a group acting on btoh $X$ and $\mathcal{F}$ and $\chi$ a character of $G$. If $y\in Y$ and $Z=p^{-1}(y)$, then $M:=\mathcal{F}_c/\mathcal{F}_c(\chi)$ is a cosmooth $C^\infty(Y)$-module; let $\mathcal{G}$ be the corresponding sheaf on $Y$ constructed by <span style="font-style: normal;">(<a href=#CCIXS></a>)</span>. Then the stalk $\mathcal{G}_y$ is isomorphic to $(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$.
 </div>
 
 <div class="proof">
-We first prove (i). $M$ is a $C^\infty(X)$-module naturally. The $C^\infty(Y)$-module structure on $M$ is defined via the pullback of $p:X\to Y$, that is, $$h\cdot_Y m:=(h\circ p)\cdot m.$$ By (<a href=#ESODX></a>), the canonical homomorphism $\mathcal{F}_c\to(\mathcal{F}_Z)_c$ is surjective. We show that its kernel consists of the submodule $L$ generated by elements of the form $(\phi\circ p)\cdot f$, where $\phi\in C_c^\infty(Y)$ vanishes at $y$, and $f\in\mathcal{F}_c$. It is clear that $L$ is contained in this kernel. Conversely, let $f\in\mathcal{F}_c$ be in the kernel. Then $\supp(f)$ is compact and disjoint from $Z$, so its image under $p$ is a compact subset of $Y$ that does not contain $y$. Hence there is an open and compact subset of $Y$ containing $p(\supp(f))$ but not $y$. If $\phi$ is the characteristic function of this set, then $f=(\phi\circ p)\cdot f$, showing that $f\in L$.<br>
+$M$ is a $C^\infty(X)$-module naturally. The $C^\infty(Y)$-module structure on $M$ is defined via the pullback of $p:X\to Y$, that is, $$h\cdot_Y m:=(h\circ p)\cdot m.$$ By (<a href=#ESODX></a>), the canonical homomorphism $\mathcal{F}_c\to(\mathcal{F}_Z)_c$ is surjective. We show that its kernel consists of the submodule $L$ generated by elements of the form $(\phi\circ p)\cdot f$, where $\phi\in C_c^\infty(Y)$ vanishes at $y$, and $f\in\mathcal{F}_c$. It is clear that $L$ is contained in this kernel. Conversely, let $f\in\mathcal{F}_c$ be in the kernel. Then $\supp(f)$ is compact and disjoint from $Z$, so its image under $p$ is a compact subset of $Y$ that does not contain $y$. Hence there is an open and compact subset of $Y$ containing $p(\supp(f))$ but not $y$. If $\phi$ is the characteristic function of this set, then $f=(\phi\circ p)\cdot f$, showing that $f\in L$.<br>
 Because $(\mathcal{F}_Z)_c\cong\mathcal{F}_c/L$, we see that
 <div class="equation" data-label="FCFCFC">
 (\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)\cong(\mathcal{F}_c/L)/(\mathcal{F}_c/L)(\chi)=(\mathcal{F}_c/L)/(\mathcal{F}_c(\chi)L/L)\cong\mathcal{F}_c/\mathcal{F}_c(\chi)L
@@ -2148,7 +2154,19 @@ where for any $\overline{s}\in M(y)$, there exists $V$ open in $Y$ not containin
 $$
 \mathcal{G}_y\cong M/M(y)\cong(\mathcal{F}_c/\mathcal{F}_c(\chi))/(L\mathcal{F}_c(\chi)/\mathcal{F}_c(\chi))\cong\mathcal{F}_c/L\mathcal{F}_c(\chi)\cong (\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi),
 $$
-which proves (i). We note that (ii) is an immediate consequence of (i). Indeed, the action of $g$ on $\mathcal{F}$-distribution has the effect $(gD)(f)=D(g^{-1}f)$, so $D\in D(X,\mathcal{F})$ satisfies (<a href=#GDXD></a>) if and only if $D(g^{-1}f)=D(\chi(g)f)$ for any $g\in G$ and $f\in\mathcal{F}_c$, that is $D$ annihilates $\mathcal{F}_c(\chi)$. Hence it sufficient to show $M=0$, or equivalently, that $\mathcal{G}$ is the zero sheaf, and this will follow if each stalk $\mathcal{G}_y$ is zero. Because $\mathcal{G}_y\cong(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$, the assumption that there are no non-zero $\mathcal{F}_Z$-distribution in $D(Z,\mathcal{F}_Z)$ is precisely the condition that this stalk be zero.
+which proves this theorem.
+</div>
+
+<div class="corollary" data-label="BZOSC">
+Assume the same as in (<a href=#BZOS></a>) and that there are no non-zero distribution $D$ in $D(Z,\mathcal{F}_Z)$ that satisfy
+<div class="equation" data-label="GDXD">
+g\cdot D=\chi(g)D,\quad g\in G,
+</div>
+for any $Z=p^{-1}(y)$ and any $y\in Y$. Then there are no non-zero distributions in $D(X,\mathcal{F})$ satisfying <span style="font-style: normal;">(<a href=#GDXD></a>)</span>.
+</div>
+
+<div class="proof">
+This is an immediate consequence of (<a href=#BZOS></a>). Indeed, the action of $g$ on $\mathcal{F}$-distribution has the effect $(gD)(f)=D(g^{-1}f)$, so $D\in D(X,\mathcal{F})$ satisfies (<a href=#GDXD></a>) if and only if $D(g^{-1}f)=D(\chi(g)f)$ for any $g\in G$ and $f\in\mathcal{F}_c$, that is $D$ annihilates $\mathcal{F}_c(\chi)$. Hence it sufficient to show $M=0$, or equivalently, that $\mathcal{G}$ is the zero sheaf, and this will follow if each stalk $\mathcal{G}_y$ is zero. Because $\mathcal{G}_y\cong(\mathcal{F}_Z)_c/(\mathcal{F}_Z)_c(\chi)$, the assumption that there are no non-zero $\mathcal{F}_Z$-distribution in $D(Z,\mathcal{F}_Z)$ is precisely the condition that this stalk be zero.
 </div>
 
 </div>
@@ -2156,7 +2174,19 @@ which proves (i). We note that (ii) is an immediate consequence of (i). Indeed, 
 <div class="section" data-name="Smooth and Admissible Representation">
 
 <div class="definition">
-Let $G$ be a locally profinite group and $(\pi,V)$ a group representation of $G$. The representation $(\pi,V)$ is called <em style="color: teal;">smooth</em> if, for every $v\in V$, the stabilizer $\{g\in G\mid\pi(g)v=v\}$ is open. A smooth representation $(\pi,V)$ is called <em style="color: teal;">admissible</em> if the space $V^K$ is finite-dimensional for each open subgroup $U$ of $G$.
+Let $G$ be a locally profinite group and $(\pi,V)$ a group representation of $G$. The representation $(\pi,V)$ is called <em style="color: teal;">smooth</em> if, for every $v\in V$, the stabilizer $\{g\in G\mid\pi(g)v=v\}$ is open.
+</div>
+
+<div class="definition">
+A smooth representation $(\pi,V)$ is called <em style="color: teal;">admissible</em> if the space $V^U$ is finite-dimensional for each open subgroup $U$ of $G$.
+</div>
+
+<div class="proposition">
+Let $G$ be a locally profinite group and $(\pi,G)$ a representation of $G$. Then $\pi$ is admissible if and only if $V^K$ is finite-dimensional for each comapct open subgroup $K$ of $G$.
+</div>
+
+<div class="proof">
+If $V^K$ is finite-dimensional for each comapct open subgroup $K$ of $G$, then given any open subgroup $U$ of $G$, by the local profiniteness, we can find a compact open subgroup $K$ of $G$ contained in $H$. Thus $V^H\subseteq V^K$ is finite-dimensional.
 </div>
 
 <div class="proposition" data-label="ECSR">
@@ -2281,18 +2311,31 @@ Use (<a href=#SSPGT></a>), (<a href=#CGDT></a>) and the fact that the dual space
 </div>
 
 <div class="definition">
-If $G$ is a unimodular locally profinite group. Denote $H_G$ the space of smooth (that is, locally constant) compactly supported complex-valued functions on $G$ equipped with the convolution $\ast$ on $H_G$. The algerba $(H_G,\ast)$ is called the <em style="color: teal;">Hecke algebra</em>. $G$ acts on $H_G$ by $(\lambda(g)f(x)=f(g^{-1}x)$ and $(\rho(g)f)(x)=f(xg)$. If $K$ is an open comapct subgroup of $H$ then denote $H^K$ the subspace of $K$-biinvariant functions in $H$.
+If $G$ is a unimodular locally profinite group. Denote $H_G$ the space of smooth (that is, locally constant) compactly supported complex-valued functions on $G$ equipped with the convolution $\ast$ on $H_G$. The algerba $(H_G,\ast)$ is called the <em style="color: teal;">Hecke algebra</em>. $G$ acts on $H_G$ by $(\lambda(g)f(x)=f(g^{-1}x)$ and $(\rho(g)f)(x)=f(xg)$. If $K$ is an open comapct subgroup of $H$ then denote $H^K$ the subspace of <em style="color: teal;">$K$-biinvariant</em> functions in $H$, that is, those $f\in H$ satisfying $\lambda(g)f=\rho(g)f$ for all $g\in H$.
+</div>
+
+<div class="proposition" data-label="HATU">
+Let $G$ be a unimodular locally profinite group. Then $H_G=\bigcup_KH^K$ where the union runs through the compact open subgroup $K$ of $G$.
+</div>
+
+<div class="proof">
+Let $f\in H_G$ and $x\in G$. Since $f$ is locally constant, there exists a compact open subgroup $K_x$ of $G$ such that $\lambda(g)f(x)=f(x)=\rho(g)f(x)$ for all $g\in K_x$. These $K_x$ coveres the support of $f$. Since $f$ is of compact support, finite of them will do, say $x_1,\ldots,x_r$. Let $K=\bigcup_{i=1}^rK_{x_i}$. Then $K$ is a compact open subgroup of $G$. Clearly
+<div class="equation" data-label="HATUE">
+\lambda(g)f(x)=f(x)=\rho(g)f(x),\ g\in K,\ x\in\supp(f).
+</div>
+To show that $f$ is $K$-biinvariant, let $x\in G-\supp(f)$ so that $f(x)=0$ and we need to showt that $f(gx)=0=f(xg)$ if $g\in K$. If $f(gx)\neq 0$, that is, if $gx\in\supp(f)$, then ((<a href=#HATUE></a>) implies that $f(gx)=\lambda(g)f(gx)=f(x)=0$, a contradiction. Hence $f$ is left $K$-invariant and similarly is right $K$-invariant. Therefore $f\in H^K$.
 </div>
 
 <div class="proposition">
 Let $G$ be a unimodular locally profinite group and $K$ an open compact subgroup of $G$. Then $H^K$ is a unital algebra.
 </div>
 
-<p class="proof"><em>Proof.</em> This follows from the following proposition ().
-<span style="float:right;">$\square$</span></p>
+<div class="proof">
+This follows from the following proposition (<a href=#IPGK></a>).
+</div>
 
-<div class="proposition">
-Let $G$ be a unimodular locally profinite group and $U$ a compact open subgroup of $G$. Then $e_K\in H^K$ defined by $$e_K(g)=\frac{1_K}{\vol(K)}$$ is an idempotent. In fact, it is the unit in $G^K$.
+<div class="proposition" data-label="IPGK">
+Let $G$ be a unimodular locally profinite group and $K$ a compact open subgroup of $G$. Then $e_K\in H^K$ defined by $$e_K(g)=\frac{1_K}{\vol(K)}$$ is an idempotent in $H_G$, called an <em style="color: teal;">elementary idempotent</em>. In fact, it is the unit in $G^K$.
 </div>
 
 <div class="proof">
@@ -2319,12 +2362,267 @@ $$
 Hence $e_K$ is the unit in $H^K$.
 </div>
 
-<div class="proposition">
+In particular, if $K'\subseteq K$ are compact open subgroup, then $e_K$ is $K'$-invariant and so
+<div class="equation" data-label="EKEK">
+e_K\ast e_{K'}=e_K= e_{K'}\ast e_K.
+</div>
+
+<div class="corollary" data-label="IPGKC1">
+Let $G$ be a unimodular locally profinite group, $K$ a compact open subgroup of $G$ and $f\in H_G$. Then $f$ is left $K$-invariant if and only if $e_K\ast f=f$.
+</div>
+
+<div class="proof">
+If $f$ is left $K$-invariant then $e_K\ast f=f$ by (<a href=#IPGK></a>). The other direction follows from ().
+</div>
+
+<div class="corollary" data-label="IPGKC2">
+Let $G$ be a unimodular locally profinite group and $K$ a compact open subgroup of $G$. Then $H^K=e_k\ast H_G\ast e_K$.
+</div>
+
+<div class="proof">
+This follows immediately from the definition of $H^K$ and (<a href=#IPGKC1></a>).
+</div>
+
+<div class="definition">
+Let $G$ be a unimodular locally profinite group and $M$ an $H_G$-module. $M$ is called <em style="color: teal;">smooth</em> if for every $m\in M$, there exists $f\in H_G$ such that $f\cdot v=v$.
+</div>
+
+<div class="proposition" data-label="HGSE">
+Let $G$ be a unimodular locally profinite group and $M$ an $H_G$-module. Then $M$ is smooth if and only if for each $m\in M$, there exists a compact open subgroup $K$ of $G$ such that $e_K\cdot m=m$.
+</div>
+
+<div class="proof">
+If $M$ is smooth then for each $m\in M$, there exists $f\in H_G$ such that $f\cdot m=m$. By (<a href=#HATU></a>), there exists an open compact subgrup $K$ of $G$ fixing $f$ by left and right action. Hence $e_K\cdot m=e_K\cdot(f\cdot m)=(e_K\ast f)\cdot m=f\cdot m=m$.
+</div>
+
+<div class="proposition" data-label="VHET">
 Let $G$ be a unimodular locally profinite group. Then there is an equivalence of category between the category of smooth representations $(\pi,V)$ of $G$ and the category of smooth $H_G$-algebra.
 </div>
 
 <div class="proof">
+Let $(\pi,V)$ be a smooth representation of $G$. Define the operation
+<div class="equation" data-label="FVTH">
+(f,v)\mapsto\pi(f)v:=\int_Gf(g)\pi(g)vdg,\quad v\in V,\ f\in H_G
+</div>
+where $dg$ is the Haar measure on $G$. We first show that $f\mapsto\pi(f)$ is a homomorphism of $\mathbf{C}$-algebra. In fact, we hvae,
+\begin{align}
+\pi(f_1\ast f_2)v&=\int_Gf_1\ast f_2(g)\pi(g)vdg\\
+&=\iint f_1(h)f_2(h^{-1}g)\pi(g)vdhdg\\
+&=\iint f_1(h)f_2(h^{-1}g)\pi(g)vdgdh\\
+&=\iint f_1(h)f_2(g)\pi(hg)vdgdh\\
+&=\int f_1(h)\pi(h)\int f_2(g)\pi(g)vdgdh\\
+&=\int f_1(h)\pi(h)\pi(f_2)vdh\\
+&=\pi(f_1)\pi(f_2)v.
+\end{align}
+Hence $V$ admits the structure of $H_G$-module. To show this structure is smooth, given $v\in V$. Since the representation $(\pi,V)$ is smooth, there exists a compact open subgroup $K$ of $G$ such that $v\in G^K$. It follows  that
+$$
+\pi(e_K)v=\int_Ge_K(g)\pi(g)vdg=\int_Ke_K(g)\pi(g)vdg=\int_Ke_K(g)vdg=\left(\int_Ke_K(g)dg\right)=v.
+$$
+Finally, if $\phi:(\pi,V)\to(\pi',V')$ is an intertwining operator, then
+\begin{align}
+\phi(\pi(f)v)&=\phi(\int_Gf(g)\pi(g)vdg)\\
+&=\int_G\phi(f(g)\pi(g)v)dg\\
+&=\int_Gf(g)\pi'(g)\phi(v)dg\\
+&=\pi'(f)(\phi(v)).
+\end{align}
+Hence $\phi$ is also an $H_G$-homomorphism, and (<a href=#FVTH></a>) defines a functor. Conversely, let $M$ be a smooth $H_G$-module. We construct a smooth representation $(\pi_H,M)$ of $G$ as follows. Consider the canonical map
+<div class="equation" data-label="VHETE1">
+H_G\otimes_{H_G}M\to M.
+</div>
+This is surjective by the definition of smoothness. To show that it is injective, let $\sum_{1\leq i\leq r}f_i\otimes m_i$ lie in the kernel. We choose a compact open subgroup $K$ of $G$ which fixes each $f_i$ on either side, which can be done by (<a href=#HATU></a>). Since each $m_i$ is fixed by $e_{K_i}$ for some compact open subgroup $K_i$ of $G$ by (<a href=#HGSE></a>), we may assume $e_K\ast\cdot m=m$ by intersecting $K$ with each $K_i$. Then $$\sum_{i=1}^rf_i\otimes m_i=\sum_{i=1}^r(e_K\ast f_i)\otimes m_i=e_K\otimes \sum_{i=1}^rf_i\ast m_i=0.$$
+Therefore the map (<a href=#VHETE1></a>) is injective. Now (<a href=#VHETE1></a>) is an $H_G$-isomorphism $H_G\otimes_{H_G}M\cong M$ and the tensor product carries a smooth representation of $G$ via left translation on the first facotr. The isomorphism transfer the $G$-action to $M$, so we otbain a representation $(\pi_H,M)$ of $G$. On can write this action more explicitly. Take $m\in M$ and choose a compact open subgroup $K$ of $G$ such that $e_K\cdot m=m$. For $g\in G$, we have
+<div class="equation" data-label="VHETE2">
+\pi(g)m=\lambda(g)e_K\cdot m.
+</div>
+Thus $\pi(g)m=m$ for any $g\in G$, and so the representation $(\pi,M)$ is smooth. Finally, if $\phi:M\to M'$ is an $H_G$-homomorphism, $g\in G$ and $m\in M$ such that $e_K\cdot m=m$, then we obtain the representations $(\pi_H,M)$ and $(\pi_H',M')$. We need to show that the map $\phi$ is an intertwining operator $(\pi_H,M)\to(\pi_H',M')$. Since $e_K\cdot \phi(m)=\phi(e_K\cdot m)=\phi(e_K)$, w can apply (<a href=#VHETE2></a>) and obtain $$\phi(\pi_H(g)m)=\phi(\lambda(g)e_K\cdot m)=\lambda(g)e_K\cdot\phi(m)=\pi_H'(g)\phi(m).$$
+Therefore the assignment $(M,\cdot)\mapsto(\pi_H,M)$ defines a functor indeed. Now we verify that the functors are the quasi-inverse of each others. In fact, if $(\pi,V)$ is a smooth $G$-representation then for $v\in V$ and $g\in G$, then there exists a compact open subgroup $K$ of $G$ such that $\pi(g)v=v$ for all $g\in K$, so $e_K\cdot v=v$ and
+\begin{align}
+\pi_H(g)v&=\lambda(g)e_K\cdot v\\
+&=e_{gK}\cdot v=\pi(e_{gK})v\\
+&=\int_Ge_{gK}(g')\pi(g')dg'\\
+&=\vol(K)\sum_{g\in G/K}e_{gK}(g')\pi(g')v\\
+&=\vol(K)\frac{1}{\vol(K)}\pi(g)v\\
+&=\pi(g)v.
+\end{align}
+On the other hand, if $M$ is an $H_G$-module then for any $f\in H_g$ and $m\in M$,
+$$
+\pi_H(f)m=\int_Gf(g)\pi_H(g)mdg=\int_Gf(g)\dfrac{\lambda(g)1_K}{\vol(K)}\cdot mdg=\frac{1}{\vol(K)}\int_Gf(g)1_{gK}\cdot mdg.
+$$
+Choose a compact open subgroup $K$ of $G$ such that $f$ is right $K$-invariant. By (), this integral becomes
+$$
+\frac{1}{\vol(K)}\vol(K)\sum_{g\in G/K}f(g)1_{gK}\cdot m=\sum_{g\in G/K}f(g)1_{gK}\cdot m=f\cdot m.
+$$
+</div>
 
+<div class="definition">
+Let $G$ be a unimodular locally profinite group. A smooth $H_G$-moduke $M$ is called <em style="color: teal;">admissible</em> if for every elementary idempotents $e_K$, $e_K\cdot M$ is finite dimensional.
+</div>
+
+<div class="proposition">
+Let $G$ be a unimodular locally profinite group and $M$ a smooth $G$-representation. Then $M$ is adimissible as an $H_G$-module if and only if $M$ is admissible as a $G$-representation.
+</div>
+
+<div class="proof">
+Assume $M$ is adimissible as an $H_G$-module. If $K$ is a compact open subgroup then clearly $M^K=e_K\cdot M$. Hence $M^K$ is finite-dimensional. Conversely, if $M$ is admissible as a $G$-representation, then it is also clear that $M^K=e_K\cdot m$. Hence $e_K\cdot m$ is finite-dimensional.
+</div>
+
+<div class="proposition" data-label="IRED">
+Let $G$ be a unimodular locally profinite group and $(\pi,V)$ be a smooth representation of $G$. Assume that $V$ is non-zero. Then the following statements are equivalent:
+<ol class="parenthesis">
+<li>The representation $\pi$ is irreducible.</li>
+<li>$V$ is simple as an $H_G$-module.</li>
+<li>$V^K$ is either zero or simple as an $H^K$-module for all open subgroups $K$ of $G$</li>
+</ol>
+</div>
+
+<div class="proof">
+A $G$-invariant subspace is clearly $H_G$-invariant, so the implication (ii)$\Rightarrow$(i) is trivial. Conversely, suppose that $W\subseteq V$ is an $H_G$-invariant subspace; we show it is $G$-invariant. If not, there exists $g\in G$ and $w\in W$ such that $\pi(g)w\notin W$. Now $w$ is fixed by some neighborhood $N$ of the identity, so letting $\phi\in H_G$ be the characteristic function of $gN$ divided by its volume, we see that $\pi(g)w=\pi(g)w\notin W$. This contradicts our assumption that $W$ is $H_G$-invariant; we have proved tha (i) and (ii) are equivalent. The proof that (iii)$\Rightarrow$(i) is also simple. Suppose that $W$ is a non-zero proper $H$-invariant subspace. Then because $V=\bigcup_K V^K$ where $K$ runs over all compact open subgroup $K$ of $G$, we can find $K$ small enough that $W^K$ is a non-zero proper subspace of $V^K$, contradicting (iii).<br>
+The only difficult part is (ii)$\Rightarrow$(iii). To prove this, let $W\subseteq V^K$ be a proper non-zero $H^K$-submodule. We will show that $\pi(H_G)W\cap V^K=W$. Note that this is sufficient to contradict (ii), for its shows that $\pi(H_G)W$ is a proper non-zero subspace of $V$, and it is clear that it is $H_G$-invariant. By definition, $\pi(H_G)W$ is the set of vectors that are finite sums $\sum_i\pi(\phi_i)w_i$ with $\phi_i\in H_G$ and $w_i\in W$. We assume that such a vector lie ine $V^K$; we must show it is in $W$. Because $w_i\in W\subseteq V^K$, $\pi(e_K)w_i=w_i$, and because $\sum_i\pi(\phi_i)w_i\in V^K$, we have $\pi(e_K)\sum_i\pi(\phi_i)w_i=\sum_i\pi(\phi_i)w_i$. Thus $\sum_i\pi(\phi_i)w_i=\sum_i\pi(e_K\ast\phi_i\ast e_K)w_i$. However, $e_K\ast \phi_i\ast e_K\in H^K$, and because $W$ is stable under $H^K$, this shows that $\sum_i\pi(\phi_i)w_i\in W$, as required.
+</div>
+
+<div class="proposition">
+Let $G$ be a locally profinite group, $(\pi,V)$ an admissible representation of $G$ and $K$ a compact open subgroup of $G$. Then the canonical pairing between $V$ and $\hat{V}$ induces a non-degenerate pairing between $V^K$ and $\hat{V}^K$.
+</div>
+
+<div class="proof">
+Let $0\neq v\in V^K$. We will show that there eixsts a vector $\hat{v}\in\hat{V}^K$ such that $\langle v,\hat{v}\rangle\neq 0$. By symmetry, this is sufficient because $\hat{\hat{V}}\cong V$ by (), so the same reasoning shows that the pairing is non-degenerate on the other side also. Since $\hat{\hat{V}}\cong V$, we can choose $\hat{v}_1\in\hat{V}$ such that $\langle v,\hat{v_1}\rangle\neq 0$. Because $v\in V^K$, we have $v=\pi(e_K)v$. Now $\langle v,\hat{v}_1\rangle=\langle\pi(e_K)v,\hat{v}_1\rangle=\langle v,\hat{\pi}(e_K)\hat{v}_1\rangle$, so we may take $\hat{v}=\hat{\pi}(e_K)\hat{v}_1$, which is a $K$-invarient vecotr in $\hat{V}$.
+</div>
+
+<div>To define a character of a representation, we need some preliminaries on the trace. Let $U$ be a finite-dimensional vector space, and let $f:U\to U$ be an endomorphism. Let $U_0$ be any subspace contaning the image of $f$. Then $f$ induces an endomorphism $\left.f\right|_{U_0}:U_0\to U_0$. We observe that
+<div class="equation" data-label="TORM">
+\text{the trace of }f\text{ equals the trace of }\left.f\right|_{U_0}.
+</div>
+Now suppose that $V$ is possibly infinite-dimensional vector space and $f:V\to V$ is an enomorphism. We recall that $f$ is said to have <em style="color: teal;">finite rank</em> if its image is finite dimensional. In this case, we may define the trace of $f$ as follows. Let $U$ be any finite-dimensional subspace of $V$ containing the image of $f$. Then $f$ induces an endomorphism $\left.f\right|_U$ of $U$, and we define the trace $\tr(f)$ of $f$ to be the trace of $\left.f\right|_U$. It is a simiple consequence of (<a href=#TORM></a>) that this definition is independent of the choice of $U$, so long as $U$ contains the image of $f$.
+</div>
+
+<div class="proposition" data-label="ARFR">
+Let $(\pi,V)$ be an adimissible representation of $G$ and $f\in H_G$. Then $\pi(f)$ has finite rank.
+</div>
+
+<div class="proof">
+By (), $f\in H_K$ for some compact open subgroup $K$. The endomorphism $\pi(f)$ has its image in $V^K$, which form a finite-dimensional vector space by the definition of admissibility. Thus $\pi(f)$ has finite rank.
+</div>
+
+<div class="definition">
+Let $(\pi,V)$ be an adimissible representation of $G$. The <em style="color: teal;">trace</em> of $\pi$ is the distribution $\chi:H_G\to\mathbf{C}$ defined by $\chi(f)=\tr(\pi(f))$. By (<a href=#ARFR></a>), this is well-defined.
+</div>
+
+<div class="proposition" data-label="STSP">
+Let $R$ be an algebra over a field $k$ of characteristic zero. Let $E_1$ and $E_2$ be simple $R$-modules that are finite dimensional as vector spaces over $k$. For each $\phi\in R$, multiplication by $\phi$ induces endomorphisms $\lambda_i(\phi)$ of $E_i$, $i=1$, $2$. Assume that $\tr(\lambda_1(\phi))=\tr(\lambda_2(\phi))$ for all $\phi\in R$. Then the $R$-modules $E_1$ and $E_2$ are isomorphic.
+</div>
+
+<div class="proof">
+Bump p.432.
+</div>
+
+<div class="proposition" data-label="ARLI">
+Let $G$ be a locally profinite group and $(\pi_1,V)$ and $(\pi_2,V_2)$ be irreducible admissible representation such that $V_1^K\cong V_2^K$ as $H^K$-modules for every ope compact subgroup $K$ of $G$. Then $\pi_1\cong\pi_2$.
+</div>
+
+<div class="proof">
+Let us fix $K_0$ small enough that $V_1^{K_0}$ and $V_2^{K_0}$ are non-zero. Then by hypothesis, $V_1^{K_0}$ and $V_2^{K_0}$ are isomorhpic as $H^{K_0}$-modules. We fix an isomorphism $\sigma_0:V_1^{K_0}\to V_2^{K_0}$. By Shur's lemma, $\sigma_0$ is determined up to scalar multiple, because by (<a href=#IRED></a>), $V_1^{K_0}$ and $V_2^{K_0}$ are irreducible. We observe that if $K_1$ is an open subgroup of $K_0$, then $\sigma_0$ can be extended uniquely to an $H^{K_1}$-module isomorphism $\sigma_1:V_1^{K_1}\to V_2^{K_1}$. Indeed, the existence of an isomorphism $\sigma_{K_1}$ is out hypothesis; we observe that $\pi(e_{K_0})V_i^{K_1}\subseteq V_i^{K_0}$ and so $V_i^{K_0}=\pi(e_{K_0})V_i^{K_1}$ by the irreducibility; becaus $\sigma_{K_1}$ is a ring homomorphism, we see that
+$$
+\sigma_{K_1}(V_1^{K_0})=\sigma_{K_1}(\pi_1(e_{K_0})V_1^{K_1})=\pi_2(e_{K_0})(\sigma_{K_1}V_1^{K_1})=\pi_2(e_{K_0})V_2^{K_1}.
+$$
+Thus $\sigma_{K_1}$ maps $V_1^{K_0}$ int $V_2^{K_0}$ and induces an $H^{K_0}$-isomorphism of these spaces. By the uniqueness of $\sigma_0$, $\sigma_{K_1}$ restricted to $V_1^{K_0}$ agrees with $\sigma_0$ up to a scalar, which we can normalize equal one. The uniqueness of $\sigma_{K_1}$ follows from the irreduciblity of $V_1^{K_1}$ and $V_2^{K_1}$ just aas with $\sigma_0$. It follows from a repetition of this argument that if $K_2$ is an open compact subgroup of $K_1$ then $\sigma_{K_2}$ agrees with $\sigma_{K_1}$ on $V_1^{K_1}$. We may therefore define a map $\sigma:V_1\to V_2$ as follows. If $v\in V_1$, then because $\pi_1$ is smooth, $v\in V_1^{K_1}$ for some $K_1$, and we define $\sigma(v)=\sigma_{K_1}(v)$. It follwos from what goes before that this map is independent of the choice of $K_1$, and it is clear that is is an $H_G$-isomorphism.<br>
+Thus we are reduced to showing that if $\sigma:V_1\to V_2$ is an $H^G$-module isomorphism, then it is an intertwining operator. To see this, let $g\in G$, $v\in V_1$. We can find a compact open subgroup $K_1$ of $G$ such that $v\in V_1^{K_1}$ and $\sigma(v)\in V_2^{K_1}$. Let $\phi=1_{gK_1}/\vol(K)\in H^{K_1}$. Then it is clear that $\pi_1(\phi)v=\pi_1(g)v$ and $\pi_2(\phi)\sigma(v)=\pi_2(g)\sigma(v)$. Thus
+$$
+\sigma(\pi_1(g)v)=\sigma(\pi_1(\phi)v)=\pi_2(\phi)\sigma(v)=\pi_2(g)\sigma(v).
+$$
+We see that $\sigma$ is indeed an intertwining operator, and the representations $\pi_1$ and $\pi_2$ are therefore equivalent.
+</div>
+
+<div class="theorem">
+Let $G$ be a locally profinite group and $(\pi_1,V_1)$ and $(\pi_2,V_2)$ be irreducible admissible representations of $G$. If the characters of $\pi_1$ and $\pi_2$ agree, then the two representations are equivalent.
+</div>
+
+<div class="proof">
+If the characters of $\pi_1$ and $\pi_2$ agree, then the hypothesis of (<a href=#STSP></a>) are satisfied with $k=\mathbf{C}$, $R=H^{K_1}$, $E_1=V_1^{K_1}$ and $E_2=V_2^{K_1}$. Thus $V_1^{K_1}\cong V_2^{K_1}$ as $H^{K_1}$-modules. By (<a href=#ARLI></a>), $\pi_1\cong \pi_2$.
+</div>
+
+<div class="lemma">
+Let $F$ be a non-archimedean local field, $x\in GL_2(F)$, $Y$ a topological subspace of $GL_2(F)$ such that $\sigma:GL_2(F)\to Y$ defined by $g\mapsto gxg^{-1}$ is a continuous surjection. Then the induced map $GL_2(F)/H\to Y$ is a homeomorphism, where $H$ is the centralizer of $x$.
+</div>
+
+<div class="proof">
+By (), the induced map $\sigma:GL_2(F)/H\to Y$ is a continuous bijection. To show that $\sigma$ is a homeomorphism, we need to show that $\sigma^{-1}$ is continuous. Since $\sigma(gU)=g\sigma(U)g^{-1}$ for any $g\in GL_2(F)$ and any unit-neighborhood $U$, it suffices to show that $\sigma^{-1}$ is continuous near the identity. To accomplish this, let $\{g_i\}$ be a net in $GL_2(F)$ such that $y_i:= g_ixg_i^{-1}$ converges to $x$ and by (), we need to prove that there eixsts a convergent subnet $\{y_{i_k}\}$ such that $g_{i_k}H=\sigma^{-1}(y_{i_k})$ converges to $\sigma^{-1}(x)=eH$. It sufficient to show that there exists a subnet $\{g_{i_k}\}$ such that $g_{i_k}$ converges to some element in $H$. Note that by multiplying $g$ by an element of the center smalll enough, we may assume the net $\{g_i\}$ lies in the compact set $GL_2(\mathfrak{o})$. Hence exists a subnet $\{g_{i_k}\}$ converges to some $g\in GL_2(\mathfrak{o})$ by (). But then $g_{i_k}xg_{i_k}^{-1}$ converges to $gxg^{-1}=x$, that is, $g\in H$.
+</div>
+
+<div>Recall the group action on distrbutions, see ().</div>
+
+<div class="theorem" data-label="CITI"> Let $F$ be a non-archimedean local field, $G=GL_2(F)$ and $D$ a distrbution on $G$ that is invariant under conjugation. Then $D$ is also invariant under transpose.
+</div>
+
+<div class="proof"> Replacing $D$ by $D-D^\top$, we may assume that $D^\top=-D^\top$, in which case our problem is to show that $D=0$. This motivates us introduce the following group. Let $\{1,\tau\}$ be a cyclic group of order two with $\tau^2=1$. We have a homomorphism from this group into $\Aut(GL_2(F))$ that sends $\tau$ to the automorphism $g\mapsto g^{-\top}$. This group action is continuous; see (). Therefore we can consider the semidirect product
+$$
+GL_2(F)\rtimes \{1,\tau\}
+$$
+satisfying $\tau g\tau^{-1}=g^{-\top}$ for $g\in GL_2(F)$; this group is locally profinite, see (). By (), the group $GL_2(F)\rtimes \{1,\tau\}$ acts on $GL_2(F)$ with $GL_2(F)$ acting by conjugation and $\tau$ acting by transpose; in fact, if $x\in GL_2(F)$, then the action of $GL_2(F)$ and $\tau$ satisfy
+$$
+\tau\cdot(g\cdot(\tau^{-1}\cdot x)))=\tau\cdot(g\cdot(x^\top))=\tau\cdot(gx^top g^{-1})=g^{-\top}xg^\top=(\tau g\tau^{-1})\cdot x
+$$
+for all $g\in GL_2(F)$. Let $\chi$ be the character of $GL_2(F)\rtimes \{1,\tau\}$ that is $1$ on $GL_2(F)$ and $-1$ on the non-identity coset; the continuity of this character follows from (). Thus our task is to show that a distribution $D$ on $GL_2(F)$ that satisfies
+<div class="equation" data-label="CITI1">
+(g,h)\cdot D=\chi(g,h)D,\quad (g,h)\in GL_2(F)\rtimes \{1,\tau\},
+</div>
+is zero. We will denote by $GL_2(F)_r$ the subset of $g\in GL_2(F)$ having distinct eigenvalues and by $GL_2(F)_s$ the subset of $g$ having equal eigenvalues. We note that $GL_2(F)$ is the locus of the discriminant $\tr(g)^2-4\det(g)$ of the characteristic polynomial of $g$, and is hence a closed set in $GL_2(F)$. We have, by (<a href=#DES2></a>), an exact sequence
+<div class="equation" data-label="CITI2">
+1\to D(GL_2(F)_s)\to D(GL_2(F))\to D(GL_2(F)_r)\to 0.
+</div>
+We will first show that the image $D$ in $D(GL_2(F)_r)$ is zero; then exactness will show that that $D$ lives in $D(GL_2(F)_s)$, which we will need to further analyze: We will apply (<a href=#BZOSC></a>) with $X=GL_2(F)_r$. We need to construct a suitable space $Y$ to parametrize the conjugacy classes. We take
+$$
+Y=\{(x,y)\in F\times F\mid x^2\neq 4y\},
+$$
+and let $p:X\to Y$ be defined by $p(g)=(\tr(g),\det(g))$. This map is clearly continuous, and the fibers are exactly the conjugacy classes in $GL_2(F)$ by (). Now (<a href=#BZOSC></a>) shows that it is sufficient for our pruposes to show that there no non-zero distribution satisfying (<a href=#CITI1></a>) on a single conjugacy class $Z=p^{-1}(y)$. Let  $x\in GL_2(F)_r$ be a representative of this conjugacy class, and let $H\subseteq GL_2(F)$ be the centralizer of $x$. By (), we obtain a continuous bijection
+$$
+\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}.
+$$
+To show that $\sigma$ is a homeomorphism, we need to show that $\sigma^{-1}$ is continuous. Since $\sigma(gU)=g\sigma(U)g^{-1}$, it suffices to show that $\sigma^{-1}$ is continuous at identity. Thus it is necessary to check that if $gxg^{-1}$ is near $x$, then $g$ is near an element of $H$. To accomplish this, let $K$ be the field obtain from $F$ by adjoining the eigenvalues of $x$. There exists an element $\gamma$ of $GL_2(K)$ such that $x'=\gamma x\gamma^{-1}$ is diagonal, and so $H=H'\cap GL_2(F)$ where $H'$ is the centralizer of $x$ in $GL_2(K)$. Since
+$$
+H'=C_{GL_2(K)}(x)=C_{GL_2(K)}(\gamma^{-1}x'\gamma)=\gamma^{-1}C_{GL_2(K)}(x')\gamma=\gamma^{-1}T\gamma
+$$
+by (), where $T$ is the group of diagonal matrices in $GL_2(K)$, we have $H=\gamma^{-1}T\gamma\cap GL_2(F)$. Now if
+$$
+g'=\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix}\in GL_2(K)\quad\text{and}\quad x'=\begin{bmatrix}
+e&0\\
+0&f
+\end{bmatrix}\in T
+$$
+then
+\begin{align}
+g_1x_1g_1^{-1}\text{ near }x_1&\Leftrightarrow g_1x_1\text{ near }x_1g_1\\
+&\Leftrightarrow \begin{bmatrix}
+ae&bf\\
+ce&df
+\end{bmatrix}\text{ near } \begin{bmatrix}
+ae&be\\
+cf&df
+\end{bmatrix}\\
+&\Leftrightarrow \begin{bmatrix}
+0&b(e-f)\\
+c(e-f)&0
+\end{bmatrix}\text{ near }0\\
+&\Leftrightarrow b(e-f)\text{ near }0\text{ and }c(e-f)\text{ near }0.
+\end{align}
+Since $e\neq f$, this is equivalent to say that the off-diagonal entries of $g'$ are small. Applying this to $g'=\gamma g\gamma^{-1}$, we see that $g'$ is near an element of $T$, and so $g$ is near an element of $H$. Therefore $\sigma$ is a homeomorphism. Now we may regard a $GL_2(F)$-invariant distribution on $Z$ as an $GL_2(F)$-invariant distribution on the quoteit space $GL_2(F)/H$. Because (as noted in the preceding pargraph) $H$ is conjugate in $GL_2(K)$ to a subgroup of $T$, it is abelian and hence unimordular. Therefore () implies that $G/H$ admits the Haar measure, and the distribution is just integration with respect to the haar measure on $GL_2(F)$. It follwos that this distribution is transpose invariant, so we see that a distribution on a regular conjugacy class $Z$ that satisfies (<a href=#CITI1></a>) is zero. By (<a href=#BZOSC></a>), this implies that the image of $D$ in $D(GL_2(F)_r)$ is zero, and therefore by the exactness of (<a href=#CITI2></a>), $D$ resides in $D(GL_2(F)_s)$.<br>
+Now we divide $GL_2(F)$ into two pieces. Let $C$ be the center of $GL_2(F)$, consisting of scalar matrices. Then we have an exact sequence
+$$
+0\to D(C)\to D(GL_2(F)_s)\to D(GL_2(F)_s-C)\to 0$.
+$$
+We may show that the image of $D$ in $D(GL_2(F)_s-C)$ is zero by the same method; this time a parameter space $Y$ for the conjugacy classes in $GL_2(F)_s-C$ is just $F^\times$ because each conjugacy class has a unique representative of the form
+$$
+x_a=\begin{bmatrix}
+a&1\\
+0&a
+\end{bmatrix},
+$$
+and we fiber $GL_2(F)_s-C$ over $F^\times$ by $x_a\mapsto a$. Let $Z$ be the conjugacy class of $x_a$, and $H\subseteq GL_2(F)$ be the centralizer of $x_a$. By (), we obtain a continuous bijection
+$$
+\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}.
+$$
 </div>
 
 </div>
@@ -2337,7 +2635,7 @@ Let $G$ be a unimodular locally profinite group. Then there is an equivalence of
 
 <script>
     $(document).ready(function(){
-        $("#content-lp-classes").collapse("show");
+        $("#content-smooth-and-admissible-representation").collapse("show");
     });
 </script>
 
@@ -2366,11 +2664,7 @@ Let $G$ be a unimodular locally profinite group. Then there is an equivalence of
     </div>
     <div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
 </div>
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
--->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
 <script>
     var markdown = $(".markdown-body");
