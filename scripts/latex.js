@@ -18,7 +18,7 @@ $(document).ready(function() {
         $("#hackmd-content").remove();
         document.getElementById("tocbr").innerHTML = generateTOC();
         document.getElementById("tocr").innerHTML = generateTOC();
-        $.getScript("scripts/hackmd_content.js");
+        $.getScript("ajax/hackmd_content.js");
     });
 
     $(".proof").append("<span style=\"float:right;\">$\\square$</span>");
