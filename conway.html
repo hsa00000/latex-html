@@ -3,244 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <title>Note on Algebraic Number Theory</title>
-    <!--
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    -->
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
-    <!--
-    <link rel="stylesheet" href="styles/bs3.min.css" />
-    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="styles/hackmd.min.css" />
     <link rel="stylesheet" href="styles/latex.min.css" />
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+
+    <script src="scripts/mathjax-config.js" defer></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script src="scripts/latex.min.js"></script>
     <script>
-        MathJax = {
-            loader: {load: ['[tex]/amscd', '[tex]/textmacros']},
-            tex: {
-                packages: {'[+]': ['amscd','textmacros']},
-                inlineMath: [['{jax}', '{jax}']],
-                displayMath: [['{jax}{jax}', '{jax}{jax}'],['\\[','\\]']],
-                macros:{
-                    Abs: ['\\left\\lvert #1 \\right\\rvert',1],
-                    abs: ['\\lvert #1 \\rvert',1],
-                    Norm: ['\\left\\lVert #1 \\right\\rVert',1],
-                    norm: ['\\lVert #1 \\rVert',1],
-                    op: ['\\textrm{op}'],
-                    dist: ["\\operatorname\{dist\}"],
-                    Ker: ["\\operatorname\{Ker\}"],
-                    Ima: ["\\operatorname\{Im\}"],
-                    id: ["\\operatorname\{id\}"],
-                    colim: ["\\operatorname\{colim\}"],
-                    vol: ["\\operatorname\{vol\}"],
-                    supp: ["\\operatorname\{supp\}"],
-                    span: ["\\operatorname\{span\}"],
-                    esssup: ["\\operatorname\{ess\ sup\}"],
-                    sign: ["\\operatorname\{sgn\}"],
-                    tr: ["\\operatorname\{tr\}"],
-                    Aut: ["\\operatorname\{Aut\}"]
-                }
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="node_modules/mathjax/es5/tex-chtml.js">
-    </script>
-    <script>
-        var theoremcounter = 0;
-        var levelcounter = {
-            "part": 0,
-            "chapter": 0,
-            "section": 0
-        };
-        var section_level = ["part", "chapter", "section"];
-        var toc_tree = [];
-        var label = {};
-        $(document).ready(function() {
-            $(".proof").append("<span style=\"float:right;\">$\\square$</span>");
-
-            $(".proof").each(function() {
-                if ($(this).data("name")) {
-                    $(this).prepend($(this).data("name"));
-                } else {
-                    $(this).prepend("<em>Proof</em>.")
-                }
-            });
-
-            $(".theorem, .proposition, .lemma, .corollary").attr("style", "font-style: italic;");
-
-            $(".part, .chapter, .section, .theorem, .proposition, .lemma, .corollary, .example, .equation, .definition").each(function() {
-                if ($(this).hasClass("part") || $(this).hasClass("chapter") || $(this).hasClass("section")) {
-                    var level = $(this).attr("class").split(" ")[0];
-                    levelcounter[level]++;
-                    var name = $(this).data("name");
-                    var id = name.replace(/\s+/g, '-').toLowerCase();
-                    name = name.replace(/\$/g, "{jax}");
-                    id = id.replace(/[^\w\s-]/g, '');
-                    $(this).attr("id", "content-" + id);
-                    $(this).addClass("collapse");
-                    var h_level = section_level.indexOf(level);
-                    h_level++;
-                    var numbered_name = name;
-                    if (level == "chapter") {
-                        numbered_name = romanize(levelcounter[level]) + ". " + name;
-                    } else if (level == "section") {
-                        numbered_name = levelcounter[level] + ". " + name;
-                        theoremcounter = 0;
-                    }
-                    toc_tree.push({
-                        "h_level": h_level,
-                        "id": id,
-                        "name": name,
-                        "counter": levelcounter[level]
-                    });
-                    $(this).before("<h" + h_level + " id=" + id + " role=\"button\" data-toggle=\"collapse\" data-target=\"#content-" + id + "\">" + numbered_name + "</" + h_level + ">");
-                } else if ($(this).hasClass("theorem") || $(this).hasClass("proposition") || $(this).hasClass("lemma") || $(this).hasClass("corollary") || $(this).hasClass("example") || $(this).hasClass("definition")) {
-                    var theoremtype = $(this).attr("class").split(" ")[0];
-                    theoremcounter++;
-                    if ($(this).data("label")) {
-                        $(this).attr("id", $(this).data("label"));
-                        label[$(this).data("label")] = [levelcounter["section"], theoremcounter];
-                    }
-                    var theoremtitlestr = "<strong style=\"font-style: normal\">" + theoremtype[0].toUpperCase() + theoremtype.substring(1) + " " + levelcounter["section"] + "." + theoremcounter;
-                    if ($(this).data("name")) {
-                        theoremtitlestr = theoremtitlestr + " (" + $(this).data("name") + ")";
-                    }
-                    theoremtitlestr += "</strong>";
-                    $(this).prepend(theoremtitlestr);
-                    if ($(this).data("label")) {
-                        var id = $(this).data("label");
-                        var qstr = "[href='#" + id + "']";
-                        var allref = document.querySelectorAll(qstr);
-                        for (i = 0; i < allref.length; i++) {
-                            allref[i].innerHTML = label[id][0] + "." + label[id][1];
-                        }
-                    }
-                } else if ($(this).hasClass("equation")) {
-                    theoremcounter++;
-                    var id = $(this).data("label");
-                    $(this).attr("id", id);
-                    var prependstr = "\\begin{equation}\\tag{" + levelcounter["section"] + "." + theoremcounter + "}";
-                    $(this).prepend(prependstr);
-                    $(this).append("\\end{equation}");
-                    label[id] = [levelcounter["section"], theoremcounter];
-                    var qstr = "[href='#" + id + "']";
-                    var allref = document.querySelectorAll(qstr);
-                    for (i = 0; i < allref.length; i++) {
-                        allref[i].innerHTML = label[id][0] + "." + label[id][1];
-                    }
-                }
-            });
-
-            $(".theorem, .proposition, .lemma, .corollary").addClass("alert alert-info");
-            $(".definition").addClass("alert alert-warning");
-            $(".example").addClass("alert alert-secondary");
-
-            document.getElementById("tocu").innerHTML = generateTOC("page");
-            document.getElementById("tocbr").innerHTML = generateTOC();
-            document.getElementById("tocr").innerHTML = generateTOC();
-
-            var firsttypeset = true;
-
-            $('.collapse').on('show.bs.collapse', function() {
-                if ($(this).children(".collapse").length == 0 && $(this).children(".collapsing").length == 0) {
-                    $(this).get(0).innerHTML = $(this).get(0).innerHTML.replace(/\$/g, "{jax}");
-                    try{
-                        MathJax.typesetPromise();
-                        if (firsttypeset){
-                            window.location.reload();
-                        }
-                    } catch(e) {
-                    } finally {
-                        firsttypeset = false;
-                    }
-                }
-                $(this).parent(".collapse").collapse("show");
-            });
+        $(document).ready(function(){
+            $("#content-smooth-and-admissible-representation").collapse("show");
         });
-        function generateTOC(attr = "") {
-            var toc_html = []
-            var toc_html_label = []
-            for (i = 0; i < toc_tree.length; i++) {
-                var this_node = toc_tree[i];
-                if (i != 0) {
-                    var prev_node = toc_tree[i - 1];
-                }
-                if (i != (toc_tree.length - 1)) {
-                    var next_node = toc_tree[i + 1]
-                }
-                var str_before = "<li><a href=\"#content-" + this_node["id"] + "\" data-toggle=\"collapse\" role=\"button\">" + this_node["name"] + "</a>";
-                var str_after = "</li>";
-                if (next_node["h_level"] > this_node["h_level"]) {
-                    if (attr == "page") {
-                        if (next_node["h_level"] == 1) {
-                            str_before += "<ul>";
-                            str_after = "</ul>" + str_after;
-                        } else if (next_node["h_level"] == 2) {
-                            str_before += "<ol class=\"upperroman\" style=\"counter-reset: listcounter ";
-                            str_before += (next_node["counter"] - 1);
-                            str_before += "\">"
-                            str_after = "</ol>" + str_after;
-                        } else {
-                            str_before += "<ol style=\"counter-reset: listcounter ";
-                            str_before += (next_node["counter"] - 1);
-                            str_before += "\">"
-                            str_after = "</ol>" + str_after;
-                        }
-                    } else {
-                        str_before += "<ul class=\"nav\">";
-                        str_after = "</ul>" + str_after;
-                    }
-                }
-                if (i == 0) {
-                    toc_html.push(str_before);
-                    toc_html.push(str_after);
-                } else {
-                    if (prev_node["h_level"] < this_node["h_level"]) {
-                        var insert_index = toc_html_label[i - 1];
-                    } else {
-                        for (j = (i - 1); j >= 0; j--) {
-                            if (toc_tree[j]["h_level"] == this_node["h_level"]) {
-                                var insert_index = toc_html_label[j] + 1;
-                                break;
-                            }
-                        }
-                    }
-                    toc_html.splice(insert_index, 0, str_before, str_after);
-                    for (j = 0; j < i; j++) {
-                        if (toc_html_label[j] >= insert_index) {
-                            toc_html_label[j] += 2;
-                        }
-                    }
-                }
-                var after_index = toc_html.indexOf(str_before) + 1;
-                toc_html_label.push(after_index);
-            }
-            var full_html = "";
-            for (i = 0; i < toc_html.length; i++) {
-                full_html += toc_html[i];
-            }
-            return full_html;
-        }
-        //from https://stackoverflow.com/questions/9083037/
-        function romanize(num) {
-            if (isNaN(num))
-                return NaN;
-            var digits = String(+num).split(""),
-                key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
-                    "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
-                    "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
-                ],
-                roman = "",
-                i = 3;
-            while (i--)
-                roman = (key[+digits.pop() + (i * 10)] || "") + roman;
-            return Array(+digits.join("") + 1).join("M") + roman;
-        }
     </script>
 </head>
 
@@ -2540,12 +2324,12 @@ Let $G$ be a locally profinite group and $(\pi_1,V_1)$ and $(\pi_2,V_2)$ be irre
 If the characters of $\pi_1$ and $\pi_2$ agree, then the hypothesis of (<a href=#STSP></a>) are satisfied with $k=\mathbf{C}$, $R=H^{K_1}$, $E_1=V_1^{K_1}$ and $E_2=V_2^{K_1}$. Thus $V_1^{K_1}\cong V_2^{K_1}$ as $H^{K_1}$-modules. By (<a href=#ARLI></a>), $\pi_1\cong \pi_2$.
 </div>
 
-<div class="lemma">
-Let $F$ be a non-archimedean local field, $x\in GL_2(F)$, $Y$ a topological subspace of $GL_2(F)$ such that $\sigma:GL_2(F)\to Y$ defined by $g\mapsto gxg^{-1}$ is a continuous surjection. Then the induced map $GL_2(F)/H\to Y$ is a homeomorphism, where $H$ is the centralizer of $x$.
+<div class="lemma" data-label="CITIL">
+Let $F$ be a non-archimedean local field, $x\in GL_2(F)$, $Z$ the conjugacy class of $x$ in $GL_2(F)$ so that $\sigma:GL_2(F)\to Z$ defined by $g\mapsto gxg^{-1}$ is a continuous surjection. Then the induced map $GL_2(F)/H\to Z$ is a homeomorphism, where $H$ is the centralizer of $x$.
 </div>
 
 <div class="proof">
-By (), the induced map $\sigma:GL_2(F)/H\to Y$ is a continuous bijection. To show that $\sigma$ is a homeomorphism, we need to show that $\sigma^{-1}$ is continuous. Since $\sigma(gU)=g\sigma(U)g^{-1}$ for any $g\in GL_2(F)$ and any unit-neighborhood $U$, it suffices to show that $\sigma^{-1}$ is continuous near the identity. To accomplish this, let $\{g_i\}$ be a net in $GL_2(F)$ such that $y_i:= g_ixg_i^{-1}$ converges to $x$ and by (), we need to prove that there eixsts a convergent subnet $\{y_{i_k}\}$ such that $g_{i_k}H=\sigma^{-1}(y_{i_k})$ converges to $\sigma^{-1}(x)=eH$. It sufficient to show that there exists a subnet $\{g_{i_k}\}$ such that $g_{i_k}$ converges to some element in $H$. Note that by multiplying $g$ by an element of the center smalll enough, we may assume the net $\{g_i\}$ lies in the compact set $GL_2(\mathfrak{o})$. Hence exists a subnet $\{g_{i_k}\}$ converges to some $g\in GL_2(\mathfrak{o})$ by (). But then $g_{i_k}xg_{i_k}^{-1}$ converges to $gxg^{-1}=x$, that is, $g\in H$.
+By (), the induced map $\sigma:GL_2(F)/H\to Z$ is a continuous bijection. To show that $\sigma$ is a homeomorphism, we need to show that $\sigma^{-1}$ is continuous. Since $\sigma(gU)=g\sigma(U)g^{-1}$ for any $g\in GL_2(F)$ and any unit-neighborhood $U$, it suffices to show that $\sigma^{-1}$ is continuous near the identity. To accomplish this, let $\{g_i\}$ be a net in $GL_2(F)$ such that $z_i:= g_ixg_i^{-1}$ converges to $x$ and by (), we need to prove that there eixsts a convergent subnet $\{z_{i_k}\}$ such that $g_{i_k}H=\sigma^{-1}(z_{i_k})$ converges to $\sigma^{-1}(x)=eH$. It sufficient to show that there exists a subnet $\{g_{i_k}\}$ such that $g_{i_k}$ converges to some element in $H$. Note that by multiplying $g$ by an element of the center smalll enough, we may assume the net $\{g_i\}$ lies in the compact set $GL_2(\mathfrak{o})$. Hence exists a subnet $\{g_{i_k}\}$ converges to some $g\in GL_2(\mathfrak{o})$ by (). But then $g_{i_k}xg_{i_k}^{-1}$ converges to $gxg^{-1}=x$, that is, $g\in H$.
 </div>
 
 <div>Recall the group action on distrbutions, see ().</div>
@@ -2559,7 +2343,7 @@ GL_2(F)\rtimes \{1,\tau\}
 $$
 satisfying $\tau g\tau^{-1}=g^{-\top}$ for $g\in GL_2(F)$; this group is locally profinite, see (). By (), the group $GL_2(F)\rtimes \{1,\tau\}$ acts on $GL_2(F)$ with $GL_2(F)$ acting by conjugation and $\tau$ acting by transpose; in fact, if $x\in GL_2(F)$, then the action of $GL_2(F)$ and $\tau$ satisfy
 $$
-\tau\cdot(g\cdot(\tau^{-1}\cdot x)))=\tau\cdot(g\cdot(x^\top))=\tau\cdot(gx^top g^{-1})=g^{-\top}xg^\top=(\tau g\tau^{-1})\cdot x
+\tau\cdot(g\cdot(\tau^{-1}\cdot x)))=\tau\cdot(g\cdot(x^\top))=\tau\cdot(gx^\top g^{-1})=g^{-\top}xg^\top=(\tau g\tau^{-1})\cdot x
 $$
 for all $g\in GL_2(F)$. Let $\chi$ be the character of $GL_2(F)\rtimes \{1,\tau\}$ that is $1$ on $GL_2(F)$ and $-1$ on the non-identity coset; the continuity of this character follows from (). Thus our task is to show that a distribution $D$ on $GL_2(F)$ that satisfies
 <div class="equation" data-label="CITI1">
@@ -2575,42 +2359,15 @@ Y=\{(x,y)\in F\times F\mid x^2\neq 4y\},
 $$
 and let $p:X\to Y$ be defined by $p(g)=(\tr(g),\det(g))$. This map is clearly continuous, and the fibers are exactly the conjugacy classes in $GL_2(F)$ by (). Now (<a href=#BZOSC></a>) shows that it is sufficient for our pruposes to show that there no non-zero distribution satisfying (<a href=#CITI1></a>) on a single conjugacy class $Z=p^{-1}(y)$. Let  $x\in GL_2(F)_r$ be a representative of this conjugacy class, and let $H\subseteq GL_2(F)$ be the centralizer of $x$. By (), we obtain a continuous bijection
 $$
-\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}.
+\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1},
 $$
-To show that $\sigma$ is a homeomorphism, we need to show that $\sigma^{-1}$ is continuous. Since $\sigma(gU)=g\sigma(U)g^{-1}$, it suffices to show that $\sigma^{-1}$ is continuous at identity. Thus it is necessary to check that if $gxg^{-1}$ is near $x$, then $g$ is near an element of $H$. To accomplish this, let $K$ be the field obtain from $F$ by adjoining the eigenvalues of $x$. There exists an element $\gamma$ of $GL_2(K)$ such that $x'=\gamma x\gamma^{-1}$ is diagonal, and so $H=H'\cap GL_2(F)$ where $H'$ is the centralizer of $x$ in $GL_2(K)$. Since
+which is in fact a homeomorphism by (<a href=#CITIL></a>), so we may regard a $GL_2(F)$-invariant distribution on $Z$ as an $GL_2(F)$-invariant distribution on the quoteit space $GL_2(F)/H$. Note that $H$ is abelian: Let $K$ be the field obtain from $F$ by adjoining the eigenvalues of $x$. There exists an element $\gamma$ of $GL_2(K)$ such that $x'=\gamma x\gamma^{-1}$ is diagonal, and so $H=H'\cap GL_2(F)$ where $H'$ is the centralizer of $x$ in $GL_2(K)$. Since
 $$
 H'=C_{GL_2(K)}(x)=C_{GL_2(K)}(\gamma^{-1}x'\gamma)=\gamma^{-1}C_{GL_2(K)}(x')\gamma=\gamma^{-1}T\gamma
 $$
-by (), where $T$ is the group of diagonal matrices in $GL_2(K)$, we have $H=\gamma^{-1}T\gamma\cap GL_2(F)$. Now if
+by (), where $T$ is the group of diagonal matrices in $GL_2(K)$, we have $H=\gamma^{-1}T\gamma\cap GL_2(F)$; hence $H$ is conjugate in $GL_2(K)$ to a subgroup of $T$ and so abelian and unimordular. Therefore () implies that $G/H$ admits the Haar measure, and the distribution is just integration with respect to the haar measure on $GL_2(F)$. It follwos that this distribution is transpose invariant, so we see that a distribution on a regular conjugacy class $Z$ that satisfies (<a href=#CITI1></a>) is zero. By (<a href=#BZOSC></a>), this implies that the image of $D$ in $D(GL_2(F)_r)$ is zero, and therefore by the exactness of (<a href=#CITI2></a>), $D$ resides in $D(GL_2(F)_s)$.<br> Now we divide $GL_2(F)$ into two pieces. Let $C$ be the center of $GL_2(F)$, consisting of scalar matrices. Then we have an exact sequence
 $$
-g'=\begin{bmatrix}
-a&b\\
-c&d
-\end{bmatrix}\in GL_2(K)\quad\text{and}\quad x'=\begin{bmatrix}
-e&0\\
-0&f
-\end{bmatrix}\in T
-$$
-then
-\begin{align}
-g_1x_1g_1^{-1}\text{ near }x_1&\Leftrightarrow g_1x_1\text{ near }x_1g_1\\
-&\Leftrightarrow \begin{bmatrix}
-ae&bf\\
-ce&df
-\end{bmatrix}\text{ near } \begin{bmatrix}
-ae&be\\
-cf&df
-\end{bmatrix}\\
-&\Leftrightarrow \begin{bmatrix}
-0&b(e-f)\\
-c(e-f)&0
-\end{bmatrix}\text{ near }0\\
-&\Leftrightarrow b(e-f)\text{ near }0\text{ and }c(e-f)\text{ near }0.
-\end{align}
-Since $e\neq f$, this is equivalent to say that the off-diagonal entries of $g'$ are small. Applying this to $g'=\gamma g\gamma^{-1}$, we see that $g'$ is near an element of $T$, and so $g$ is near an element of $H$. Therefore $\sigma$ is a homeomorphism. Now we may regard a $GL_2(F)$-invariant distribution on $Z$ as an $GL_2(F)$-invariant distribution on the quoteit space $GL_2(F)/H$. Because (as noted in the preceding pargraph) $H$ is conjugate in $GL_2(K)$ to a subgroup of $T$, it is abelian and hence unimordular. Therefore () implies that $G/H$ admits the Haar measure, and the distribution is just integration with respect to the haar measure on $GL_2(F)$. It follwos that this distribution is transpose invariant, so we see that a distribution on a regular conjugacy class $Z$ that satisfies (<a href=#CITI1></a>) is zero. By (<a href=#BZOSC></a>), this implies that the image of $D$ in $D(GL_2(F)_r)$ is zero, and therefore by the exactness of (<a href=#CITI2></a>), $D$ resides in $D(GL_2(F)_s)$.<br>
-Now we divide $GL_2(F)$ into two pieces. Let $C$ be the center of $GL_2(F)$, consisting of scalar matrices. Then we have an exact sequence
-$$
-0\to D(C)\to D(GL_2(F)_s)\to D(GL_2(F)_s-C)\to 0$.
+0\to D(C)\to D(GL_2(F)_s)\to D(GL_2(F)_s-C)\to 0.
 $$
 We may show that the image of $D$ in $D(GL_2(F)_s-C)$ is zero by the same method; this time a parameter space $Y$ for the conjugacy classes in $GL_2(F)_s-C$ is just $F^\times$ because each conjugacy class has a unique representative of the form
 $$
@@ -2619,10 +2376,18 @@ a&1\\
 0&a
 \end{bmatrix},
 $$
-and we fiber $GL_2(F)_s-C$ over $F^\times$ by $x_a\mapsto a$. Let $Z$ be the conjugacy class of $x_a$, and $H\subseteq GL_2(F)$ be the centralizer of $x_a$. By (), we obtain a continuous bijection
+and we fiber $GL_2(F)_s-C$ over $F^\times$ by $x_a\mapsto a$ to obtain $Z$ the conjugacy class of $x_a$. Let $H\subseteq GL_2(F)$ be the centralizer of $x_a$. By (), we obtain a continuous bijection
 $$
-\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}.
+\sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}
 $$
+which is in fact a homeomorphism by (<a href=#CITIL></a>) again. To show that $H$ is abelian, note that $H$ consisting of matrix of the form
+$$
+\begin{bmatrix}
+b&c\\
+0&b
+\end{bmatrix}
+$$
+that lies in $GL_2(F)$. Finally the proof is reduced to distribution on the center, and because the center is fixed pointwise by transposition, we see that a non-zero distribution satisfying (<a href=#CITI1></a>) is not possible.
 </div>
 
 </div>
@@ -2630,184 +2395,5 @@ $$
 </div>
 <!-- Write above -->
 </div>
-
-<!-- Show section-->
-
-<script>
-    $(document).ready(function(){
-        $("#content-smooth-and-admissible-representation").collapse("show");
-    });
-</script>
-
-<!-- Show section-->
-
-<!-- popup -->
-<div class="ui-toc dropup unselectable hidden-print" style="display:none;">
-    <div class="pull-right dropdown">
-        <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
-        <i class="fa fa-bars"></i>
-        </a>
-        <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-            <li class="toc">
-                <ul class="nav" id="tocbr">
-                </ul>
-            </li>
-            <li class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></li>
-        </ul>
-    </div>
-</div>
-<!-- Content right -->
-<div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;">
-    <div class="toc">
-        <ul class="nav" id="tocr">
-        </ul>
-    </div>
-    <div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
-<script>
-    var markdown = $(".markdown-body");
-    //smooth all hash trigger scrolling
-    function smoothHashScroll() {
-        var hashElements = $("a[href^='#']").toArray();
-        for (var i = 0; i < hashElements.length; i++) {
-            var element = hashElements[i];
-            var $element = $(element);
-            var hash = element.hash;
-            if (hash) {
-                $element.on('click', function(e) {
-                    // store hash
-                    var hash = this.hash;
-                    if ($(hash).length <= 0) return;
-                    // prevent default anchor click behavior
-                    e.preventDefault();
-                    // animate
-                    $('body, html').stop(true, true).animate({
-                        scrollTop: $(hash).offset().top
-                    }, 100, "linear", function() {
-                        // when done, add hash to url
-                        // (default click behaviour)
-                        window.location.hash = hash;
-                    });
-                });
-            }
-        }
-    }
-
-    smoothHashScroll();
-    var toc = $('.ui-toc');
-    var tocAffix = $('.ui-affix-toc');
-    var tocDropdown = $('.ui-toc-dropdown');
-    //toc
-    tocDropdown.click(function(e) {
-        e.stopPropagation();
-    });
-
-    var enoughForAffixToc = true;
-
-    function generateScrollspy() {
-        $(document.body).scrollspy({
-            target: ''
-        });
-        $(document.body).scrollspy('refresh');
-        if (enoughForAffixToc) {
-            toc.hide();
-            tocAffix.show();
-        } else {
-            tocAffix.hide();
-            toc.show();
-        }
-        $(document.body).scroll();
-    }
-
-    function windowResize() {
-        //toc right
-        var paddingRight = parseFloat(markdown.css('padding-right'));
-        var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
-        toc.css('right', right + 'px');
-        //affix toc left
-        var newbool;
-        var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
-        //for ipad or wider device
-        if (rightMargin >= 133) {
-            newbool = true;
-            var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
-            var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
-            tocAffix.css('left', left + 'px');
-        } else {
-            newbool = false;
-        }
-        if (newbool != enoughForAffixToc) {
-            enoughForAffixToc = newbool;
-            generateScrollspy();
-        }
-    }
-    $(window).resize(function() {
-        windowResize();
-    });
-    $(document).ready(function() {
-        windowResize();
-        generateScrollspy();
-    });
-
-    //remove hash
-    function removeHash() {
-        window.location.hash = '';
-    }
-
-    var backtotop = $('.back-to-top');
-    var gotobottom = $('.go-to-bottom');
-
-    backtotop.click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (scrollToTop)
-            scrollToTop();
-        removeHash();
-    });
-    gotobottom.click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (scrollToBottom)
-            scrollToBottom();
-        removeHash();
-    });
-
-    var toggle = $('.expand-toggle');
-    var tocExpand = false;
-
-    checkExpandToggle();
-    toggle.click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        tocExpand = !tocExpand;
-        checkExpandToggle();
-    })
-
-    function checkExpandToggle() {
-        var toc = $('.ui-toc-dropdown .toc');
-        var toggle = $('.expand-toggle');
-        if (!tocExpand) {
-            toc.removeClass('expand');
-            toggle.text('全部展開');
-        } else {
-            toc.addClass('expand');
-            toggle.text('全部收起');
-        }
-    }
-
-    function scrollToTop() {
-        $('body, html').stop(true, true).animate({
-            scrollTop: 0
-        }, 100, "linear");
-    }
-
-    function scrollToBottom() {
-        $('body, html').stop(true, true).animate({
-            scrollTop: $(document.body)[0].scrollHeight
-        }, 100, "linear");
-    }
-</script>
 </body>
 </html>

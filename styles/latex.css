@@ -1,15 +1,18 @@
 .markdown-body, .ui-toc-dropdown {
     font-family: "Times New Roman", Times, serif;
 }
+
 body {
     text-align: justify;
 }
+
 ol {
     margin-left: -17px;
     list-style-type: none;
     padding: 0;
     counter-reset: listcounter;
 }
+
 ol > li::before {
     text-align: right;
     display: inline-block; 
@@ -18,39 +21,44 @@ ol > li::before {
     width: 23px; 
     content: counter(listcounter, decimal) ". ";
 }
+
 ol > li {
     counter-increment: listcounter;
 }
+
 ol.parenthesis{
     margin-bottom: 0;
 }
+
 ol.parenthesis > li::before {
     width: 41px; 
     content: "(" counter(listcounter, lower-roman) ") ";
 }
+
 .proof {
     overflow: hidden;
     margin-bottom: 20px;
 }
+
 .tocpage ol{
     margin-left: 0px;
     padding-left: 30px;
 }
+
 ol.upperroman > li{
     margin-left: -17px;
 }
+
 ol.upperroman > li::before {
     width: 32px;
     content: counter(listcounter, upper-roman) ". ";
 }
 
-@font-face {
-    font-family: MyMathJax;
-    src: url("../fonts/MathJax_Math-Regular.otf") format("opentype");
+div + div {
+    margin-bottom: 20px;
 }
 
 /*https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css*/
-
 
 .alert {
     padding: 15px;
@@ -92,6 +100,7 @@ ol.upperroman > li::before {
     background-color: #f2dede;
     border-color: #ebccd1
 }
+
 /*https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css*/
 
 .alert-primary {
