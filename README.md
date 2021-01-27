@@ -14,6 +14,8 @@ An HTML-based latex-like editor; all formulas are rendered by MathJax.
 5. Cross references are supported: `label`, `ref`.
 * Apply for theorem environments, equation environment.
 6. Contents are supported.
+7. Anchor is supported: `anchor`
+* The editor will jump to where the anchor is located whenever the editor refreshes.
 ## Example
 ```
 <div class="part" data-name="Part">
@@ -38,6 +40,7 @@ a^2 + b^2 = c^2
 (<a href=#>PTE</a>) is trivial.
 </div>
 
+<div id="anchor">anchor</div>
 
 </div>
 </div>
