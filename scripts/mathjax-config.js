@@ -1,4 +1,8 @@
 window.MathJax = {
+    chtml: {
+    scale: 0.9,
+    minScale: 0
+    },
     loader: {
         load: ['[tex]/amscd', '[tex]/textmacros']
     },
@@ -21,6 +25,7 @@ window.MathJax = {
             op: ['\\textrm{op}'],
             dist: ["\\operatorname\{dist\}"],
             Ker: ["\\operatorname\{Ker\}"],
+            Coker: ["\\operatorname\{Coker\}"],
             Ima: ["\\operatorname\{Im\}"],
             id: ["\\operatorname\{id\}"],
             colim: ["\\operatorname\{colim\}"],
@@ -30,7 +35,19 @@ window.MathJax = {
             esssup: ["\\operatorname\{ess\ sup\}"],
             sign: ["\\operatorname\{sgn\}"],
             tr: ["\\operatorname\{tr\}"],
-            Aut: ["\\operatorname\{Aut\}"]
+            Hom: ["\\operatorname\{Hom\}"],
+            Aut: ["\\operatorname\{Aut\}"],
+            End: ["\\operatorname\{End\}"],
+            Ind: ["\\operatorname\{Ind\}"],
+            //https://math.meta.stackexchange.com/questions/23273/
+            iddots: ["\\mathinner\{\\kern1mu\\raise1pt\{.\}\\kern2mu\\raise4pt\{.\}\\kern2mu\\raise7pt\{\\Rule{0pt}{7pt}{0pt}.\}\\kern1mu\}"]
+        }
+    },
+    startup: {
+        pageReady() {
+            return MathJax.startup.defaultPageReady().then(function () {
+                $(firstshow()).collapse("show");
+            });
         }
     }
 };

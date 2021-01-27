@@ -17,6 +17,11 @@
     	"body": ["<em style=\"color: teal;\">$0</em>"],
     	"description": "colored italic"
 	},
+	"roman": {
+		"prefix": ["textrm"],
+    	"body": ["<span style=\"font-style: normal;\">$0</span>"],
+    	"description": "textrm"
+	},
 	"colored proposition": {
 		"prefix": ["proposition"],
     	"body": [
@@ -109,13 +114,22 @@
     	"description": "cases"
 	},
 	"bmatrix": {
-		"prefix": ["bmatrix"],
+		"prefix": ["\\bmatrix"],
     	"body": [
 		"\\begin{bmatrix}",
 		"$0",
 		"\\end{bmatrix}"
 		],
     	"description": "bmatrix"
+	},
+	"pmatrix": {
+		"prefix": ["\\pmatrix"],
+    	"body": [
+		"\\begin{pmatrix}",
+		"$0",
+		"\\end{pmatrix}"
+		],
+    	"description": "pmatrix"
 	},
 	"etale": {
 		"prefix": ["etale"],
@@ -181,5 +195,12 @@
 		"<div class=\"part\" data-name=\"$0\">"
 		],
     	"description": "part"
+	},
+	"anchor": {
+		"prefix": ["aa"],
+    	"body": [
+		"<div id=\"anchor\">anchor</div>"
+		],
+    	"description": "anchor"
 	}
 }

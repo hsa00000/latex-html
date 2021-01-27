@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Note on Algebraic Number Theory</title>
+    <title>Handbook of Algebraic Number Theory</title>
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous"/>
 
-    <link rel="stylesheet" href="styles/hackmd.min.css" />
-    <link rel="stylesheet" href="styles/latex.min.css" />
+    <link rel="stylesheet" href="styles/hackmd.min.css"/>
+    <link rel="stylesheet" href="styles/latex.min.css"/>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
@@ -21,17 +21,12 @@
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <script src="scripts/latex.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#content-smooth-and-admissible-representation").collapse("show");
-        });
-    </script>
 </head>
 
-<body>  
-<div id="doc" class="markdown-body container-fluid">
-<h3>Contents</h3><div class="toc"><ul class="tocpage" id="tocu"></ul></div>
-<!-- Write below -->
+<body>
+<div id="doc" class="markdown-body container-fluid"> <!-- \begin{document} -->
+
+<h3>Contents</h3><div class="toc"><ul class="tocpage" id="tocu"></ul></div> <!-- \tableofcontents -->
 
 <div class="part" data-name="Preliminary">
 <div class="chapter" data-name="Category Theory">
@@ -116,7 +111,7 @@ Let $X:I\to\mathcal{A}$ be a contravariant functor with $I$ a direct set. Then f
 <div class="section" data-name="Inverse Limit">
 
 <p>
-Now we consider inverse systems (<a href=#INSYS></a>) in the category $\mathfrak{Top}$ of topological space. We have known that the category $\mathfrak{Top}$ is complete. Here is an explicit construction of inverse limit of topolgoical spaces:
+Now we consider inverse systems (<a href=#INSYS></a>) in the category $\mathfrak{Top}$ of topological space. We have known that the category $\mathfrak{Top}$ is complete. Here is an explicit construction of inverse limit of topological spaces:
 </p>
 
 <div class="proposition">
@@ -135,12 +130,12 @@ Let $\{X_i,\varphi_{ij}\}$ be a inverse system of Hausdorff topological spaces (
 Let $(x_i)\in\prod X_i\setminus\varprojlim X_i$. Then there exists $r,s\in I$ with $r\geq s$ and $\varphi_{rs}(x_r)\neq x_s$. Choose open disjoint neighborhood $U$ and $V$ of $\varphi_{rs}(x_r)$ and $x_s$ in$X_s$, respectively. Let $U'$ be an open neighborhood of $x_r$ in $X_r$, such that $\varphi_{rs}(U')\subseteq U$. Consider the basic open subset $W=\prod_{i\in I}V_i$ of $\prod_{i\in I}X_i$ where $V_r=U'$, $V_s=V$ and $V_i=X_i$ for $i\neq r,s$. Then $W$ is an open neighborhood of $(x_i)$ in $\prod_{i\in I}X_i$, disjoint from $\varprojlim X_i$. This shows that $\varprojlim X_i$ is closed.
 </div>
 
-<div class="proposition">
-Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of compact Hausdorff totally disconnected topological spaces (respectively, topological groups) over the directed set $I$. Then $\varprojlim X_i$ is also a compact Hausdorff totally disconnected topological space (respectively, topological group).
+<div class="proposition" data-label="ILOP">
+Let $\{X_i,\varphi_{ij},I\}$ be an inverse system of Hausdorff (respectively, totally disconnected, compact, locally compact) topological spaces over the directed set $I$. Then $\varprojlim X_i$ is also a Hausdorff (respectively, totally disconnected, compact, locally compact) topological spaces.
 </div>
 
 <div class="proof">
-If follows from the fact that the product of totally disconnected spaces is totally disconnected, the product of compact sets is compact, a closed set in a compact set is compact, and the previous lemma.
+If follows from the fact that the product of totally disconnected spaces is totally disconnected, the product of compact sets is compact, a closed set in a compact set is compact, and (<a href=#ILIC></a>).
 </div>
 
 <div class="proposition" data-label="CHNE">
@@ -233,10 +228,112 @@ A topological space is <em style="color: teal;">profintie</em> if it is homeomor
 
 </div>
 
-<div class="section" data-name="Connected Set">
+<div class="section" data-name="Topological Group">
+
+<div class="definition">
+A <em style="color: teal;">topological group</em> is a group $G$, together with a topolgy on the set $G$ such that the group multiplication $G\times G\to G$, $(x,y)\mapsto xy$, and inversion $G\to G$, $x\mapsto x^{-1}$, are both continuous maps.
+</div>
+
+<div class="proposition" data-label="TSGC">
+Let $G$ be a group. Then $G$ is a topological group if the topology on $G$ is chosen so that the map $\alpha:G\times G\to G$, $(x,y)\mapsto x^{-1}y$ is continuous. Similarly for the map $\beta:G\times B\to G$, $(x,y)\mapsto xy^{-1}$.
+</div>
+
+<div class="proof">
+Assume that $\alpha$ is continuous. Then the map $G\to G\times $, $x\mapsto (x,e)$ is continuous by (), where $e$ is the identity of $G$. We can thus write the inversion as a composition of continuous maps as follows $x\mapsto(x,e)\,apsto x^{-1}e=x^{-1}$. Then multiplcation can be writtent as the map $(x,y)\mapsto (x^{-1},y)\mapsto x^{-1}y$, so is continuous as well if $\alpha$ is.
+</div>
+
+<div class="proposition" data-label="TIAH">
+Let $G$ be a topological group. Then for any $a\in G$, the translation map $x\mapsto ax$ and $x\mapsto xa$, as well as the inversion $x\mapsto x^{-1}$ are homeomorphism.
+</div>
+
+<div class="proof">
+These maps are continuous by definition of topological group and (). Their inverse are continuous as well.
+</div>
+
+<div class="proposition">
+Let $G$ be a topological group, $U$ a open set in $G$ and $a\in G$.
+<ol class="parenthesis">
+<li>$U$ is a open neighborhood of $a$ if and only if $a^{-1}U$ is a unit-neighborhood of $U$.</li>
+<li>$U$ is a open neighborhood of $a$ if and only if $Ua^{-1}$ is a unit-neighborhood of $U$.</li>
+<li>$U$ is a unit-neighborhood if and only if $U^{-1}$ is a unit neighborhood of $U$.</li>
+</ol>
+</div>
+
+<div class="proof">
+Immediate follows from (<a href=#TIAH></a>).
+</div>
+
+<div class="proposition" data-label="TBOS">
+Let $G$ be a topological group and $U$ a unit-neighborhood. Then there exists a unit-neighborhood $V$ such that $V^{-1}=V$ and $V^2\subseteq U$. In particular, for any positive integer $n$, there exists a unit-neighborhood $V$ such tha $V^{-1}=V$ and $V^n\subsete U$.
+</div>
+
+<div class="proof">
+Since $e\cdot e=e$, by continuity of the multiplication, there are unit-neighborhood $A$ and $B$ such that $AB\subseteq U$. Let $W=A\cap B$ and $V=W\cap W^{-1}$. Then $V^{-1}=V$ and $V^2\subseteq U$, and the first result follows. Now since $V$ is open, we can choose $V'$ an unit-neighborhood such that $V'^{-1}=V'$ and $V'^2\subseteq V$. Hence $V^4\subseteq U$. Inductively, the second result follows.
+</div>
+
+<div class="proposition">
+Let $G$ be a topological group and $A$, $B$ two subset of $G$.
+<ol class="parenthesis">
+<li>If $A$ and $B$ are compact, then $AB$ is compact.</li>
+<li>If $A$ is closed and $B$ is compact, then</li>
+<li>If $A$ or $B$ is open, then $AB$ is open.</li>
+</ol>
+</div>
+
+<div class="proof">
+(i) follows from the fact that the set $AB$ is the image of the compact set $A\times B$ udner the multiplication map. (iii) follows from the fact that $AB=\bigcup_{b\in B}Ab$ with $Ab$ open for each $b\in B$. To see (ii), let $\{x_j=a_jk_j\}$ be a net in $AK$ convergent in $G$ with $a_j\in A$ and $k_j\in K$ for each $j$. As $K$ is compact, one can replace $k_j$ with a subset so that $k_j$ converges in $K$. Since hte composition in $G$ and the inversion are continuous, the net $a_j=x_jk_j^{-1}$ converges too, with limit in $\overline{A}=A$. Therefore the liit of $x_j=a_jk_j$ lies in $AK$, which therefore is clsoed.
+</div>
+
+<div class="proposition">
+Let $H$ be a sbugroup of the topological group $G$. Then its closure $\overline{H}$ is also a subgroup of $G$. If $H$ is normal then so is $\overline{H}$.
+</div>
+
+<div class="proof">
+To show that the closure $\overline{H}$ is a subgroup, it sufficies to show that $x$, $y\in\overline{H}$ implies $xy^{-1}\in\overline{H}$ by (<a href=#TSGC></a>). Let $m$ denote the continuous map $\overline{H}\times\overline{H}\to G$ given by $m(x,y)=xy{^-1}$. The preimage $m^{-1}(\overline{H})$ must be closed and contains $H\times H$. Since $H\times H$ is dense in $m^{-1}(\overline{H})$, we obtain $m^{-1}(\overline{H})=\overline{H}\times\overline{H}$, which proves the claim. Next assume that $H$ is norma. Then for every $g\in G$, the closed set $g\overline{H}g^{-1}$ contains $gHg^{-1}=H$. Therefore $\overline{H}\subseteq g\overline{H}g^{-1}$. Conjugating by $g$ one gets $g^{-1}\overline{H}g\subseteq\overline{H}$. As $g$ varies, the second result follows.
+</div>
+
+<div class="lemma" data-label="T012L">
+Let $G$ be a topological group and $x$, $y\in G$. Then $x\in\overline{\{y\}}$ if and only if $y\in\overline{\{x\}}$.
+</div>
+
+<div class="proof">
+<ul>
+<li>Assume $x\in\overline{\{y\}}$. Let $U$ be a open neighborhood of $x^{-1}$ in $G$. Since the inversion $i$ is continuous, $i^{-1}(U)$ is an open neighborhood of $x$. Since $x\in\overline{\{x\}}$, we have $y\in i^{-1}(U)$, so $y^{-1}\in U$. Since $U$ is an arbitrary open neighborhood of $x^{-1}$, $x^{-1}\in\overline{\{y^{-1}\}}$.</li>
+<li>Now let $V$ be an open neighborhood of $x^{-1}y$ in $G$. Since the multiplication $m$ is continuous, $m^{-1}(V)$ is an open neighborhood of $(x^{-1},y)$ in $G\times G$. Thus there are open set $V'$ and $V''$ of $G$ such that $(x^{-1},y)\in V'\times V''$. From the first paragraph it follows that $y^{-1}\in V'$. Therefore $(y^{-1},y)\in V'\times V''\subseteq m^{-1}(V)$ and $e\in V$. Since $V$ is an arbitrary open neighborhood of $y^{-1}x$, we obtain $x^{-1}y\in\overline{\{e\}}$.</li>
+<li>Now let $W$ be an open neighborhood of $y$ in $G$. Since the multiplication $m$ is continuous, $m^{-1}(W)$ is an open neighborhood of $(x,x^{-1}y)$ in $G\times G$. Hence there are open subset $W'$ and $W''$ of $G$ such that $x\in W'$ and $x^{-1}y\in W''$. By the second paragraph, it follows that $e\in W''$. Therefore $(x,e)\in W'\times W''\subseteq m^{-1}(W)$ and $x=xcdot e\in W$. Since $W$ is an arbitrary open neighborhood of $y$, we have $y\in\overline{\{x\}}$.</li>
+</ul>
+</div>
+
+<div class="proposition" data-label="T012L">
+Let $G$ be a topological group. Then the following statements are equivalent:
+<ol class="parenthesis">
+<li>$G$ is a $T_0$ space.</li>
+<li>$G$ is a $T_1$ space.</li>
+<li>$G$ is a $T_2$ space.</li>
+</ol>
+</div>
+
+<div class="proof">
+<ul>
+<li>Assume $G$ is $T_0$ but not $T_1$. Then there exists $x$, $y\in G$ with $x\neq y$ such that $x\in V$, where $V$ is a open neighborhood of $x$ not containing $y$, and that every open neighborhood of $y$ will contain $x$. But then $y\in\overline{\{x\}}$, so $x\in\overline{\{y\}}$ by (<a href=#T012L></a>), that is, every open neighborhood of $x$ contains $y$. In particular, $y\in V$, a contradiction.</li>
+<li>Assume $G$ is $T_1$. Let $x\neq y$ in $G$ and set $U=G-\{xy^{-1}\}$. Then $U$ is a unit-neighborhood of $G$. Let $V$ be an open subset of $U$ such that $V^{-1}=V$ and $V^2\subseteq U$; see (<a href=#TBOS></a>). Then $V\cap Vxy^{-1}=\emptyset$, for otherwise there would be $a$, $b\in V$ with $a=b^{-1}xy^{-1}$, so $xy^{-1}=ab\in V^2$, a contradiction. It follows that $Vx\cap Vy=\emptyset$, that is, $Vx$ and $Vy$ are disjoint open neighborhood of $x$ and $y$, which means that $G$ is $T_2$.</li>
+</ul>
+</div>
+
+<div class="proposition" data-label="OCST">
+Let $G$ be a topological group. Then every open subgroup of $G$ is cloed, and every closed subgroup of finite index is open.
+</div>
+
+<div class="proof">
+Let $H$ be a subgroup and $I$ the representatives of $G/H$; we may assume $e\in I$. Writing $G$ as a union of left cosets $\bigcup_{g\in I}gH$. The complement $G-H$ is the union of $gH$, $g\in I-\{e\}$. If $H$ is open then so is $gH$ for $g\in I-\{e\}$, so $G-H$ is open and $H$ is clsoed. If $H$ is clsoed with finite index, then $I=\{e,g_1,\ldots,e_n\}$ for some $n$, and $G-H$ is the union $\bigcup_{i=1}^ng_iH$, which is clsoed since each $g_iH$ is closed. Hence $H$ is open.
+</div>
 
 <div class="proposition" data-label="COCF">
-Let $G$ be a compact topological group and $U$ a subgroup of $G$. Then $U$ is open if and only if $U$ is closed of finite index.
+Let $G$ be a compact topological group and $H$ a subgroup of $G$. Then $H$ is open if and only if $H$ is closed of finite index.
+</div>
+
+<div class="proof">
+Given $H$ a subgroup of $G$. By (<a href=#OCST></a>), it suffices to assume $H$ is open and prove that $G/H$ is of finite index. Since the union $\bigcup_{g\in G}gH$ is an open cover for $G$, there exists a finite subcovering so that $G=\bigcup_{n=1}^Ng_iH$. Therefore $[G:H]\leq N$.
 </div>
 
 <div class="proposition" data-label="OFON">
@@ -246,6 +343,34 @@ Let $G$ be a topological group and $H$ an open subgroup of $G$ of finite index. 
 <div class="proof">
 Let $H'$ be the intersection of all conjugate $gHg^{-1}$ of $H$ in $G$, which is open since $H$ is of finite index in $G$. Then $H'$ is normal in $G$ and contained in $H$ since every group is conjugate to itself.
 </div>
+
+<div class="proposition" data-label="QGT1">
+Let $G$ be a topological group and $H$ a subgroup. Then the coset space $G/H$ is a $T_1$ space if and only if $H$ is clsoed in $G$.
+</div>
+
+<div class="proof">
+For every $x\in G$, the set $G-xH$ is mapped to an open set if and only if $H$ is closed. This proves that singletons are clsoed in $G/H$ if and only if $H$ is closed.
+</div>
+
+<div class="proposition">
+Let $G$ be a topological group and $H$ a normal subgroup. Then the coset space $G/H$ is a topological group.
+</div>
+
+<div class="proof">
+We need to show that the multiplcation $G/H\times G/H\to G/H$ is continuous. Let $\{(x_iH,y_i)\}$ be a net in $G/H\times G/H$ converging to $(xH,yH)$ in $G/H$. Let $U$ be an open neighborhood of $xyH$ in $G/H$. Denote $p:G\to G/H$ the canonical projection. Then $p^{-1}(U)$ is open in $G$ containing $xy$, so there exists a unit-neighborhood $V$ of $G$ contained in $x^{-1}p^{-1}(U)y^{-1}$ such that $V^{-1}=V$; see (<a href=#TBOS></a>). Since $x_i\to x\in xV$ and $y_i\to y\in Vy$, there exists an index $j$ such that for all $i\geq j$, $x_i\in xV$ and $y_i\in Vy$, so $x_iy_i\in xVVy\subseteq xVy\subseteq p^{-1}(U)$. Therefore $x_iy_iH\in U$ and the multiplcation map is continuous, as desired.
+</div>
+
+<div>Now we study locally compact groups.</div>
+
+<div class="proposition">
+Let $G$ be a locally compact group and $H$ a closed subgroup. Then the quotient group $G/H$ is locally copmact Hausdorff.
+</div>
+
+<div class="proof">
+$G/H$ is Hausdorff by (<a href=#QGT1></a>) and (<a href=#T123></a>). To show that $G/H$ is locally compact, let $x\in G$. Then there exists a compcat set $U$ in $G$ containing $x$, so $UH$ is compact since it is the image $U$ under the projection $G\to G/H$. Since $UH$ is a heighborhood of $xH$, the result follows.
+</div>
+
+<div>Now we study profinite groups.</div>
 
 <div class="lemma" data-label="CEL">
 Let $X$ be a compact space, $U\subseteq X$ open subset and $\mathcal{C}$ a collection of closed subsets of $X$ such that $\bigcap_{C\in\mathcal{C}} C\subseteq U$. Then there exists $C_1,\ldots,C_n\in\mathcal{C}$ such that $C_1\cap\cdots\cap C_n\subseteq U$.
@@ -280,6 +405,23 @@ If $X$ has a clopen topological basis, then for any $x\in X$, we can choose a co
 Conversely, assume $X$ is totally disconnected. We first assume $X$ is compact. Take a point $x\in X$ and an open neighborhood $U$ of $x$. Since $Q(x)=C(x)=\{x\}$ by (<a href=#QCCC></a>), the definition of $Q(x)$ and (<a href=#CEL></a>) implies that there is a clopen set $C$ of $X$ such that $x\in C\subseteq U$. This shows that the clopen sets form a topological basis. For the general case, take a point $x\in X$ and an open neighborhood $U$ of $x$. By the local compactness of $X$, there exists an open neighborhood of $x$ such that $\overline{V}$ is compact and contained in $U$. The compact space $\overline{V}$ is totally disconnected. Hence, by the previous case, there exists a subset $C$ of $\overline{V}$ such that it is compact and open in teh subspace topology and $x\in C\subseteq V$. But then $C$ is open in $X$, as $V$ is open. Thus $C$ is a compact open subset of $X$ and $x\in C\subseteq U$.
 </div>
 
+<div class="definition">
+A topological space is called <em style="color: teal;">profinite</em> if it is homeomorphic to an inverse limit of finite discrete spaces.
+</div>
+
+<div class="proposition" data-label="PROF"> Let $X$ be a topological space. Then the following conditions are equivalent:
+<ol class="parenthesis">
+<li>$X$ is a profinite space;</li>
+<li>$X$ is compact Hausdorff and totally disconnected.</li>
+<li>$X$ is compact Hausdorff and admits a compact open topological basis.</li>
+</ol>
+</div>
+
+<div class="proof">
+(i) implies (ii) by (<a href=#ILOP></a>). The equivalence of (ii) and (iii) follows from (<a href=#LCHT></a>). To show that (iii) implies (i), suppose that $X$ is compact Hausdorff and admits a base of clopen sets for its topology. Denote by $\mathcal{R}$ the collection of all open equivalence relations $R$ on $X$; for such $R$, the space $X/R$ is finite and discrete since $X$ is compact. The set $\mathcal{R}$ is naturally ordered as follows: if $R,R'\in\mathcal{R}$, then $R\geq R'$ if and only if $xR\subseteq xR'$ for all $x\in X$. Then $\mathcal{R}$ is a poset. To see that this poset is directed. Let $R_1$ and $R_2$ be two equivalence relations on $X$. Define its intersection $R_1\cap R_2$ to be the equivalence relation corresponding to the partition of $X$ obtained by intersecting each equivalence class of $R_1$ with each equivalence class of $R_2$. Clearly $R_1\cap R_2\geq R_1,R_2$. Now, if $R,R'\in\mathcal{R}$ and $R\geq R'$, define $\varphi_{RR'}:X/R\to X/R'$ by $\varphi_{RR'}(xR)=xR'$. Then $\{X/R,\varphi_{RR'}\}$ is an inverse system over $\mathcal{R}$. We shall show that $X\cong\varprojlim_{R\in\mathcal{R}}X/R$. Let $\psi:X\to\varprojlim_{R\
+\mathcal{R}} X/R$ be the continuous mapping induced by the canonical continuous surjections $\psi_R:X\to X/R$. By (<a href=#CHSS></a>), $\psi$ is a continuous surjection. To prove that $\psi$ is a homeomorphism, it suffices to prove that it is an injection, since $X$ is compact and $\varprojlim_{R\in\mathcal{R}}X/R$ is Hausdorff. Let $x,y\in X$ with $x\neq y$. By hypothesis, there exists a clopen neighborhood $U$ of $x$ that excludes $y$. Consider the equivalence relation $R'$ on $X$ with two equivalence class: $U$ and $X\setminus U$. Clearly, $R'\in\mathcal{R}$ and $\psi_{R'}(x)\neq\psi_{R'}(y)$. So $\psi(x)\neq\psi(y)$. Thus, $\psi$ is an injection.
+</div>
+
 <div class="corollary">
 Let $X$ be a totally disconnected LCH space and $K$ a closed subset of $X$. Then every clopen set in $K$ is an intersection of $K$ with a clopen set of $X$.
 </div>
@@ -303,7 +445,7 @@ W^{n+1}&=W^nW\subseteq UV\subseteq U
 for all $n\in\mathbf{N}$. Thus the subgroup  $Q$ generated by $W$, which is equal to $\bigcup_{n\geq 1}W^n$, is open and included in $U$. Since every open subgroup is closed and since $U$ is compact, $Q$ is compact, as desired.
 </div>
 
-<div class="theorem" data-label="PROF">
+<div class="theorem" data-label="PROFG">
  Let $G$ be a topological group. Then the following statements are equivalent:
 <ol class="parenthesis">
     <li>$G$ is profinite.</li>
@@ -314,25 +456,20 @@ for all $n\in\mathbf{N}$. Thus the subgroup  $Q$ generated by $W$, which is equa
 </div>
 
 <div class="proof">
-(i) implies (ii) clearly, and (ii) implies (iii) by (<a href=#LCHT></a>) and (<a href=#CPSS></a>). (iii) implies (iv) by (<a href=#COCF></a>) and (<a href=#OFON></a>). To show that (iv) implies (i), suppose that $X$ is compact Hausdorff and admits a base of clopen sets for its topology. Denote by $\mathcal{R}$ the collection of all open equivalence relations $R$ on $X$; for such $R$, the space $X/R$ is finite and discrete since $X$ is compact. The set $\mathcal{R}$ is naturally ordered as follows: if $R,R'\in\mathcal{R}$, then $R\geq R'$ if and only if $xR\subseteq xR'$ for all $x\in X$. Then $\mathcal{R}$ is a poset. To see that this poset is directed. Let $R_1$ and $R_2$ be two equivalence relations on $X$. Define its intersection $R_1\cap R_2$ to be the equivalence relation corresponding to the partition of $X$ obtained by intersecting each equivalence class of $R_1$ with each equivalence class of $R_2$. Clearly $R_1\cap R_2\geq R_1,R_2$. Now, if $R,R'\in\mathcal{R}$ and $R\geq R'$, define $\varphi_{RR'}:X/R\to X/R'$ by $\varphi_{RR'}(xR)=xR'$. Then $\{X/R,\varphi_{RR'}\}$ is an inverse system over $\mathcal{R}$. We shall show that $X\cong\varinjlim_{R\in\mathcal{R}}X/R$. Let $\psi:X\to\varinjlim_{R\
-\mathcal{R}} X/R$ be the continuous mapping induced by the canonical continuous surjections $\psi_R:X\to X/R$. By (<a href=#CHSS></a>), $\psi$ is a continuous surjection. To prove that $\psi$ is a homeomorphism, it suffices to prove that it is an injection, since $X$ is compact and $\varinjlim_{R\in\mathcal{R}}X/R$ is Hausdorff. Let $x,y\in X$ with $x\neq y$. By hypothesis, there exists a clopen neighborhood $U$ of $x$ that excludes $y$. Consider the equivalence relation $R'$ on $X$ with two equivalence class: $U$ and $X\setminus U$. Clearly, $R'\in\mathcal{R}$ and $\psi_{R'}(x)\neq\psi_{R'}(y)$. So $\psi(x)\neq\psi(y)$. Thus, $\psi$ is an injection.
+Immediate from (<a href=#PROF></a>) and (<a href=#CPSS></a>).
 </div>
 
 <p>
-A non-compact generalization of a profinite group is a locally profinite group:
+A non-compact generalization of a profinite space is a locally profinite space:
 </p>
 
 <div class="definition">
-A topolgoical group $G$ is called <em style="color: teal;">locally profinite</em> if every open neighborhood of the identity element contains a compact open subgroup. By (<a href=#LCHT></a>) and (<a href=#CPSS></a>), this is equivalent to say that $G$ is locally copmact and totally disconnected.
+A topological space is called <em style="color: teal;">locally profinite</em> if it is Hausdorff, locally copmact and totally disconnected.
 </div>
 
-<div class="corollary">
-Every locally profinite group is profinite.
+<div class="corollary"> Let $G$ be a topological group. Then $G$ is locally profinite if and only if every open neighborhood of the identity element contains a compact open subgroup.
 </div>
 
-<p class="proof"><em>Proof.</em> Immediate from (<a href=#PROF></a>).
-<span style="float:right;">$\square$</span></p>
-</div>
 </div>
 
 <div class="chapter" data-name="Real Analysis">
@@ -1104,6 +1241,104 @@ Since $\norm{g_k\sign f}_{p'}=1$, the result follows.
 </div>
 
 </div>
+
+<div class="section" data-name="Abstract Integration">
+
+<div class="definition">
+Let $S$ be a fixed set and let $\Sigma$ be a $\sigma$-algebra of subsets of $S$. Then a function $\phi(E)$, $E\in\Sigma$, is called an <em style="color: teal;">additive set function</em> on $\Sigma$ if $\phi(E)$ is finite real-valued for every $E\in\Sigma$, and $\phi(\bigcup E_k)=\sum\phi(E_k)$ for every countable family $\{E_k\}$ of disjoint sets in $\Sigma$. A set $E$ in $\Sigma$ is said to be <em style="color: teal;">measurable</em>.
+</div>
+
+<div class="theorem" data-label="AFMS">
+Let $\Sigma$ be a $\sigma$-algebra, $\phi$ an additive set function on $\Sigma$ and $\{E_k\}$ a monotone sequence of measurable sets. Then $\phi(E)=\lim_{k\to\infty}\phi(E_k)$.
+</div>
+
+<div class="proof">
+If $E_k\nearrow E$ then $E=\bigcup E_k=E_1\cup(E_2-E_1)\cup(E_3-E_2)\cup\cdots$ and hence by disjointness,
+$$
+\phi(E)=\phi(E_1)+\sum_{k=2}^\infty\phi(E_k-E_{k-1})=\phi(E_1)+\lim_{N\to\infty}\sum_{k=2}^N[\phi(E_k)-\phi(E_{k-1})]=\lim_{N\to\infty}\phi(E_N).
+$$
+On the other hand, if $E_k\searrow E$, then $S-E_k\nearrow S-S$. Therefore, by the case already considered, we have $\phi(S-E_k)\to\phi(S-E)$. Since $\phi(S-E_k)=\phi(S)-\phi(E_k)$ and $\phi(S-E)=\phi(S)-\phi(E)$, the result follows.
+</div>
+
+<div class="proposition" data-label="FLFS">
+Let $\Sigma$ be a $\sigma$-algebra, $\phi$ an additive set function on $\Sigma$ and $\{E_k\}$ a sequence of measurable sets. Then
+$$
+\phi(\liminf E_k)\leq\liminf\phi(E_k)\leq\limsup\phi(E_k)\leq\phi(\limsup E_k).
+$$
+</div>
+
+<div class="proof">
+The set $H_m=\bigcap_{k=m}^\infty E_k$ increase to $\liminf E_k$. Therefore, by (<a href=#AFMS></a>), $\phi(\liminf E_k)=lim\phi(H_m)$. Since $H_m\subseteq E_m$ for each $m$ and $\phi\geq 0$, we have $\phi(H_m)\leq\phi(E_m)$ and $\lim\phi(H_m)\leq\liminf\phi(E_m)$. Therefore, $\phi(\liminf E_k)\leq\liminf\phi(E_m)$, which proves the first inequality. The proof of the third one is similar, and the second is obvious.
+</div>
+
+<div class="definition">
+Let $\Sigma$ be a $\sigma$-algebra and $\phi$ an additive set function on $\Sigma$. For measurable sets $E$, define
+$$
+\overline{V}(E,\phi)=\sup_{A\subseteq E,\, A\in\Sigma}\phi(A),\quad\underline{V}(E,\phi)=-\inf_{A\subseteq E,\,A\in\Sigma}\phi(A),\quad V(E,\phi)=\overline{V}(E,\phi)+\underline{V}(E,\phi),
+$$
+called <em style="color: teal;">upper</em>, <em style="color: teal;">lower</em> and <em style="color: teal;">total variation</em> of $\phi$ on $E$, respectively. We omit $\phi$ in these expression if it is clear from the context.
+</div>
+
+<div class="lemma" aria-label="ASVCS">
+Let $\Sigma$ be a $\sigma$-algebra and $\phi$ an additive set function on $\Sigma$. Then its variations $\overline{V}(E)$, $\underline{V}(E)$ and $V(E)$ are countably subadditive.
+</div>
+
+<div class="proof">
+Let $\{E_k\}$ be a sequence of measurable sets. Set $H_1=E_1$, $H_2=E_2-E_1$, $H_3=E_3-E_2-E_1$ and so on. Then the $H_k$ are disjoint and $\bigcup E_k=\bigcup H_k$. If $A\in\Sigma$ and $A\subseteq\bigcup E_k$, then $A=\bigcup(A\cap H_k)$ and $\phi(A)=\sum\phi(A\cap H_k)$. Therefore, since $A\cap H_k\subseteq E_k$, we have $\phi(A)\leq\sum\overline{V}(E_k)$. Hence $\overline{V}(\bigcup E_k)=\sup_{A\subseteq\bigcup E_k,\,A\in\Sigma}\phi(A)\leq\sum\overline{V}(E_k)$, which proves the result for $\overline{V}$. The proof for $\underline{V}$ is similar, and the result for $V$ follows by adding.
+</div>
+
+<div class="lemma" aria-label="ASVF">
+Let $\Sigma$ be a $\sigma$-algebra and $\phi$ an additive function on $\Sigma$. Then its variations $\overline{V}(E)$, $\underline{V}(E)$ and $V(E)$ are finite for every $E\in\Sigma$.
+</div>
+
+<div class="proof">
+It is enough to show that the result for $V$. Suppose that $V(E)=\infty$ for some $E$. We claim that there would exist sets $E_k\in\Sigma$ for each positive integer $k$ such that $E_k\searrow$ and both $V(E_k)=\infty$ and $\abs{\phi(E_k)}\geq k-1$. To see this, we argue by induction. Let $E_1=E$, and suppose that $E_1\supseteq E_2\supseteq\cdots\supseteq E_N$ have been constructed with $\abs{\phi(E_k)}\geq k-1$ and $V(E_k)=\infty$ for each positive integer $k$ with $1\leq k\leq N$. Since $V(E_N)=\infty$, there exists $A\in\Sigma$ such that $A\subseteq E_N$ and $\abs{\phi(A)}\geq\abs{\phi(E_N)}+N$. If $V(A)=\infty$, let $E_{N+1}=A$, noting that $\abs{\phi(A)}\geq N$. If $V(A)&lt;\infty$, let $E_{N+1}=E_N-A$. Then $V(E_{N+1})=\infty$ since by (<a href=#ASVCS></a>), we have $V(E_N)\leq V(E_{N+1})+V(A)$. Furthermore, $\abs{\phi(E_{N+1})}=\abs{\phi(E_N)-\phi(A)}\geq\abs{\phi(A)}-\abs{\phi(E_N)}\geq N$. This establishes the existence of sets $E_k$ with the desired proerties. Thus, by (<a href=#AFMS></a>), we obtain $\abs{\phi(\bigcap E_k)}=\lim\abs{\phi(E_k)}=\infty$, contradicting the finiteness of $\phi$ and completing this proof.
+</div>
+
+<div class="theorem" aria-label="ASVA">
+Let $\Sigma$ be a $\sigma$-algebra and $\phi$ an additive set function on $\Sigma$. Then its variations $\overline{V}(E)$, $\underline{V}(E)$ and $V(E)$ are additive set function.
+</div>
+
+<div class="proof">
+Let $\{E_k\}$ be a sequence of disjoint measurable sets. By (<a href=#ASVCS></a>), we have $\overline{V}(\bigcup E_k)\leq\sum\overline{V}(E_k)$. To show that opposite inequality, given $\varepsilon>0$, choose $A_k\subseteq E_k$ with $\overline{V}(E_k)\leq\phi(A_k)+\varepsilon 2^{-k}$. This is possible since $\overline{V}(E_k)$ is finite by (<a href=#ASVF></a>). Since the $E_k$ are disjoint, so are the $A_k$, and we obtain $\sum\overline{V}(E_k)\leq(\sum\phi(A_k))+\varepsilon=\phi(\bigcup A_k)+\varepsilon\leq\overline{V}(\bigcup E_k)+\varepsilon$. Since $\varepsilon$ is an arbitrary positive number, the result for $\overline{V}$ follows. The analogous formula for $\underline{V}$ is proved similarly, and the one for $V$ follows by adding.
+</div>
+
+<div class="theorem" data-name="Jordan Decomposition" data-label="JDSF"> Let $\Sigma$ be a $\sigma$-algebra and $\phi$ an additive set function on $\Sigma$. Then $\phi$ is a difference of two non-negatuve additive set functions. In fact, $\phi(E)=\overline{V}(E)-\underline{V}(E)$ for any $E\in\Sigma$.
+</div>
+
+<div class="proof">
+$\overline{V}$ and $\underline{V}$ are additive set functions by (<a href=#ASVA></a>). If $A\subseteq E$ and $A\in\Sigma$, then $\phi(E)=\phi(A)+\phi(E-A)$. Choose measurable sets $A_k\subseteq E$ with $\phi(A_k)\to\overline{A}(E)$ as $k\to\infty$. Then $\phi(E-A_k)\to\phi(E)-\overline{V}(E)$, and $-\underline{V}(E)\leq\phi(E)-\overline{V}(E)$ since $\phi(E-A_k)\geq-\underline{V}(E)$. If it were true that $-\underline{V}(E)&lt;\phi(E)-\overline{V}(E)$, there would be a measurable set $B\subseteq E$ with $\phi(E)&lt;\phi(E)-\overline{V}(E)$, and consequently $\phi(E-B)>\overline{V}(E)$, a contradiction. Hence $-\underline{V}(E)=\phi(E)-\overline{V}(E)$.
+</div>
+
+<div class="definition">
+A sequence $\{E_k\}$ of sets is said to <em style="color: teal;">converge</em> if $\limsup E_k=\liminf E_k$. By (), this is equivalent to say that if each point that belongs to infinitely many $E_k$ belonges to all $E_k$ for $k$ large enough. If $\{E_k\}$ is any seqeuence that converges, it is said to converge to the set $\limsup E_k=\liminf E_k$.
+</div>
+
+<div class="corollary">
+ Let $\Sigma$ be a $\sigma$-algebra, $\phi$ an additive set function on $\Sigma$ and $\{E_k\}$ a sequence of measurable sets convering to $E$. THen $\lim_{k\to\infty}\phi(E_k)=\phi(E)$.
+</div>
+
+<div class="proof">
+If $\phi$ is non-negative, then we can apply (<a href=#FLFS></a>) to obtain $
+\phi(E)=\phi(\liminf E_k)\leq\liminf\phi(E_k)\leq\limsup\phi(E_k)\leq\phi(\limsup E_k)=\phi(E)$. Hence $\lim\phi(E_k)=\phi(E)$. For arbitrary $\phi$, the result follows from (<a href=#JDSF></a>).
+</div>
+
+<div class="definition">
+Let $S$ be a fixed set and let $\Sigma$ be a $\sigma$-algebra of subsets of $S$. Then a function $\mu(E)$, $E\in\Sigma$, is called a <em style="color: teal;">measure</em> on $\Sigma$ if $0\leq\phi(E)\leq\infty$ for every $E\in\Sigma$, and $\phi(\bigcup E_k)=\sum\phi(E_k)$ for every countable family $\{E_k\}$ of disjoint sets in $\Sigma$. The triple $(S,\Sigma,\mu)$ is called a <em style="color: teal;">measure space</em>.
+</div>
+
+<div>The distinction between a measure and an additive set function is that a measure is non-negative, but amy be infinite, while an additive set function may take both positive and negaitive values, but is finite. Any non-negative additive set function is a finite measure and vice veresa.</div>
+
+<div class="theorem">
+Let $(S,\Sigma,\mu)$ be a measure space and $\{E_k\}$ a sequence of measurable sets. Then $\mu(\bigcup E_k)\leq\sum\mu(E_k)$.
+</div>
+
+<div class="proof">
+
+</div>
+
+<div id="anchor">anchor</div>
+
 </div>
 
 <div class="chapter" data-name="Functional Analysis">
@@ -1669,11 +1904,19 @@ Let $E$ be a basis for $H$. If $e_1$, $e_2\in E$, then $\norm{e_1-e_2}^2=\norm{e
 
 </div>
 </div>
+
+<div class="chapter" data-name="Harmonic Analysis">
+
+<div class="section" data-name="Haar Measure">
+
+
+</div>
+</div>
 </div>
 
 <div class="part" data-name="Algebra">
 
-<div class="chapter" data-name="Jacquet-Langlands Theory">
+<div class="chapter" data-name="Local Langlands Theory">
 
 <div class="section" data-name="Distribution and Sheaf">
 
@@ -1804,7 +2047,7 @@ Let $\mathcal{F}$ be a sheaf of $X$ and $U$ an open subset of $X$. If $s$ a sect
 </div>
 
 <div class="proposition">
-Let $s:U\to\hat{\mathcal{F}}$ be a section of a sheaf $\mathcal{F}$. Then the support of $s$ is closed.
+Let $s:U\to\widehat{\mathcal{F}}$ be a section of a sheaf $\mathcal{F}$. Then the support of $s$ is closed.
 </div>
 
 <div class="proof">
@@ -1820,7 +2063,7 @@ To clarify the meaning of this proposition, let us consider the special case of 
 </p>
 
 <div class="proof">
-Because we may replace $\mathcal{F}$ by an isomorphic sheaf, we take $\mathcal{F}$ to be the sheaf of sections of an &eacute;tale space $\hat{\mathcal{F}}$. Let $\mathcal{F}_c$ be the space of all compactly supported sections in $\mathcal{F}(X)$. If $U\in B$, we embed $\mathcal{F}(U)$ in $\mathcal{F}_c$ by extending the section $s:U\to X$ by zero off $U$. Because $X-U$ is open, this is a section. All the assertions of the proposition are now easily checked.
+Because we may replace $\mathcal{F}$ by an isomorphic sheaf, we take $\mathcal{F}$ to be the sheaf of sections of an &eacute;tale space $\widehat{\mathcal{F}}$. Let $\mathcal{F}_c$ be the space of all compactly supported sections in $\mathcal{F}(X)$. If $U\in B$, we embed $\mathcal{F}(U)$ in $\mathcal{F}_c$ by extending the section $s:U\to X$ by zero off $U$. Because $X-U$ is open, this is a section. All the assertions of the proposition are now easily checked.
 </div>
 
 <div>We prove</div>
@@ -1846,12 +2089,11 @@ Now it is not hard to check that this definition makes $M$ a $C^\infty(X)$-modul
 </div>
 
 <div class="proposition" data-label="CCIXS">
-Let $X$ be a locally profinite space and $M$ a cosmooth $C_c^\infty(X)$-module. We associate a presheaf $\mathcal{M}$ with $M$ in the following way. Denote $B$ the open compact subset of $X$. If $U\in B$, let $\mathcal{M}(U)=1_U\cdot M$. If $U\supseteq V$ with $U$, $V\in B$, we define a restriction map $\rho^U_V:\mathcal{M}(U)\to\mathcal{M}(V)$ by $\rho^U_V(m)=1_V\cdot m$. Then $\mathcal{M}$ is a sheaf.
+Let $X$ be a locally profinite space and $M$ a cosmooth $C_c^\infty(X)$-module. We associate with $M$ a sheaf $\mathcal{M}$ of $C^\infty$-module on $X$ in the following way. Denote $B$ the open compact subset of $X$. If $U\in B$, let $\mathcal{M}(U)=1_U\cdot M$. If $U\supseteq V$ with $U$, $V\in B$, we define a restriction map $\rho^U_V:\mathcal{M}(U)\to\mathcal{M}(V)$ by $\rho^U_V(m)=1_V\cdot m$. Then $\mathcal{M}$ is a sheaf.
 </div>
 
-<p>
-Thus we may associate a sheaf of modules over the ringed space $(X,C^\infty)$ with an arbitrary cosmooth module of $C_c^\infty(X)$.
-</p>
+<div>
+Thus we may associate a sheaf of modules over the ringed space $(X,C^\infty)$ with an </div>
 
 <div class="proof">
 We note that because $1_U$ is an idempotent, we have
@@ -1863,12 +2105,28 @@ Let $m_{j,k}=1_{U_j\cap U_k}\cdot m_j=1_{U_j\cap U_k}\cdot m_k$. Because $m_j=1_
 </div>
 
 <div class="proposition" data-label="MSIT">
-Let $X$ be a locally profinite space, $M$ a cosmooth module over $C_c^\infty(X)$ and $\mathcal{M}$ the corresponding sheaf consatructed in <span style="font-style: normal;">(<a href=#CCIXS></a>)</span>. Then for any $\in X$, the stalk $\mathcal{M}_x$ is isomorphic to $M/M(x)$, where $M(x)$ is the submodule of all $m\in M$ such that $1_U\cdot m=0$ for some $U$ open in $X$ containing $x$; an equivalent condition is that $m=1_V\cdot m$ for some $V$ open in $X$ not containing $x$.
+Let $X$ be a locally profinite space, $M$ a cosmooth module over $C_c^\infty(X)$ and $\mathcal{M}$ the corresponding sheaf consatructed in <span style="font-style: normal;">(<a href=#CCIXS></a>)</span>. Then for any $x\in X$, the stalk $\mathcal{M}_x$ is isomorphic to $M/M(x)$, where $M(x)$ is the submodule of all $m\in M$ such that $1_U\cdot m=0$ for some $U$ open in $X$ containing $x$; an equivalent condition is that $m=1_V\cdot m$ for some $V$ open in $X$ not containing $x$.
 </div>
 
 <div class="proof">
-If $U$ is open in $X$ containing $x$, let $\pi_U:M(U)\to M/M(x)$ be the composition of the inclusion $M(U)\to M$ with the projection $M\to M/M(x)$. We claim that if $U\supseteq V$ are open sets of $X$ containing $x$, then $\pi_V\circ\rho^U_v=\pi_U$. Indeed, if $m\in M(U)$, then $\pi_v\circ\rho^U_V(m)-\pi_U(m)$ is the image in $M/M(x)$ of $1_V\cdot m-m$. However, this element is in $M(x)$ because $1_v\cdot(1_V\cdot m-m)=0$. Now by the universal property of the direct limit, there exists a homomorphism $\sigma:\mathcal{M}_x\to M/M(x)$ such that $\sigma\circ\rho^U_x=\pi_U$ for any $x\in U$ with $U$ open in $X$. It is clear that $\sigma$ is surjective since $M$ is cosmooth,: since every $m\in M$ admits $U$ open in $X$ with $1_U\cdot m$, $m\in\mathcal{M}(U)$ and so $\sigma(\rho^U_x(m))$ mapsto the image of $x$ in $M/M(x)$. $\sigma$ is also injective since if $\sigma(\rho^U_x(m))=0$ for some $m\in M(U)$ with $U$ open in $X$, then $m\in M(x)$ and $1_V\cdot m=0$ for some $V$ open in $X$; thus $\rho^U_{U\cap V}(m)=0$ and $\rho^U_x(m)=0$.<br>
+If $U$ is open in $X$ containing $x$, let $\pi_U:\mathcal{M}(U)\to M/M(x)$ be the composition of the inclusion $\mathcal{M}(U)\to M$ with the projection $M\to M/M(x)$. We claim that if $U\supseteq V$ are open sets of $X$ containing $x$, then $\pi_V\circ\rho^U_v=\pi_U$. Indeed, if $m\in\mathcal{M}(U)$, then $\pi_v\circ\rho^U_V(m)-\pi_U(m)$ is the image in $M/M(x)$ of $1_V\cdot m-m$. However, this element is in $M(x)$ because $1_v\cdot(1_V\cdot m-m)=0$. Now by the universal property of the direct limit, there exists a homomorphism $\sigma:\mathcal{M}_x\to M/M(x)$ such that $\sigma\circ\rho^U_x=\pi_U$ for any $x\in U$ with $U$ open in $X$. It is clear that $\sigma$ is surjective since $M$ is cosmooth,: since every $m\in M$ admits $U$ open in $X$ with $1_U\cdot m$, $m\in\mathcal{M}(U)$ and so $\sigma(\rho^U_x(m))$ mapsto the image of $x$ in $M/M(x)$. $\sigma$ is also injective since if $\sigma(\rho^U_x(m))=0$ for some $m\in\mathcal{M}(U)$ with $U$ open in $X$, then $m\in M(x)$ and $1_V\cdot m=0$ for some $V$ open in $X$; thus $\rho^U_{U\cap V}(m)=0$ and $\rho^U_x(m)=0$.<br>
 To see that $1_U\cdot m=0$ for some $U$ open in $X$ contaiing $x$ if and only if $1_V\cdot m=m$ for some $V$ open in $X$ not containing $x$, first let $U$ be given. Let $W$ be a sufficiently large open and compact set containing both $x$ and $U$ such that $1_W\cdot m=m$; such a set exsits because $M$ is cosmooth so that $1_Z\cdot m=m$ for some $Z$ open in $X$, and for any $W$ open in $X$ with $W\supseteq Z$, $1_W\cdot m=1_W\cdot (1_V\cdot m)=1_V\cdot m=m$, that is, we may replace $V$ by arbitrarily large $W$. In this situation, we may take $V=W-U$. Similarly if $V$ is given.
+</div>
+
+<div class="lemma" data-label="CCIXSL">
+Let $X$ be a locally profinite space, $V_1,\ldots,V_k$ compact open subsets of $X$, $M$ a cosmooth module over $C_c^\infty(X)$ and $m\in M$ such that $1_{V_i}\cdot m=0$ for each $i$. Then $1_V\cdot m=0$ where $V=V_1\cup\cdots\cup V_k$.
+</div>
+
+<div class="proof">
+Denote $V^c$ the complement of $V$ in $X$. Then $1_{V^c}=\prod_{i=1}^k(1_X-1_{V_i})$, which can be written as $1_X+f$ where $f$ is a linear combination of multiplication of those $1_{V_i}$. Thus $1_{V^c}\cdot m=(1_X+f)\cdot m=1_X\cdot m$. Hence $1_V\cdot m=(1_X-1_{V^c})=0$.
+</div>
+
+<div class="proposition" data-label="CCIXSC">
+Let $X$ be a locally profinite space, $M$ a cosmooth module over $C_c^\infty(X)$ and $\mathcal{M}$ the corresponding sheaf consatructed in <span style="font-style: normal;">(<a href=#CCIXS></a>)</span>. Then $\mathcal{M}_c\cong M$.
+</div>
+
+<div class="proof">
+Let $s\in\mathcal{M}_c$. Then $s(x)$ is an element in $\mathcal(M)_x$ for each $x\in X$. Since $s$ is of compact support, there exists finitely many $m_i\in M$ and disjoint compact open subsets $U_i$ of $X$ covering $\supp(s)$ such that $s(x)=i_x(1_{U_i}\cdot m_i)$ if $x\in U_i$, where $i_x$ is the insertion. Define $s:M\to\mathcal{M}_c$ by $m\mapsto s_m$ where $s_m$ is the section on $X$ defined by $x\mapsto i_x(1_{U_x}\cdot m)$ where $U_x$ is a compact open subset of $X$ containing $x$; note $s_m$ is of compact support for each $m\in M$: by the cosmoothness, we can choose $U$ a compact open subset of $X$ containing $m$ such that $1_U\cdot m=m$, so for any $x\notin U$, we can choose an open subset $V$ of $X$ containing $x$ such that $U\cap V=\emptyset$ by the Hausdorfness of $X$, which implies that $$s_m(x)=i_x(1_V\cdot m)=i_x(1_V\cdot (1_V\cdot m))=i_x(1_{U\cap V}\cdot m)=0.$$ The map $m\mapsto s_m$ is clearly a group homomorphism, and it is clearly surjective since if $s(x)=i_x(1_{U_i}\cdot m_i)$ if $x\in U_i$, then we can choose $m=\sum_i1_{U_i}\cdot m_i$. To show that it is injective, suppose $m\in M$ with $s_m\equiv 0$. Choose $V$ a compact open subset of $X$ such that $1_V\cdot m=m$, and choose $x\in V$. Use the canonical isomorphism in (<a href=#MSIT></a>), we see that $1_V\cdot m\in M(x)$ since $s_m(x)=0$, so there exists a compact open subset $W_x$ of $X$ containing $x$ such that $1_{W_x}\cdot(1_V\cdot m)=0$. Hence $V$ is covered by finitely many $W_x$ such that $1_{W_x\cap V}\cdot m=0$ and so $m=1_V\cdot m=0$ by (<a href=#CCIXSC></a>), as desired.
 </div>
 
 <p>Now we may generalize the notion of a distribution.</p>
@@ -1882,18 +2140,18 @@ Let $X$ be a locally profinite space and $\mathcal{F}$ be the sheaf $C^\infty$. 
 </div>
 
 <div class="proof">
-Clearly $\mathcal{F}$ is a sheaf of $C^\infty$-module by left multiplication of a smooth function. It suffice to prove that $\mathcal{F}_c\cong C^\infty_c(X)$ canonically. If $s:X\to\hat{\mathcal{F}}$ is a smooth section of compact support for some open set $U$ of $X$, then for any $x\in X$, $s(x)$ is a germ in the stalk $\mathcal{F}_x$, which is represented by a function which takes value $s_x$. Define $f_s:X\to\mathbf{C}$ by
-$$
+Clearly $\mathcal{F}$ is a sheaf of $C^\infty$-module by left multiplication of a smooth function. It suffice to prove that $\mathcal{F}_c\cong C^\infty_c(X)$ canonically. If $s:X\to\widehat{\mathcal{F}}$ is a smooth section of compact support for some open set $U$ of $X$, then for any $x\in X$, $s(x)$ is a germ in the stalk $\mathcal{F}_x$, which is represented by a function which takes value $s_x$. Define $f_s:X\to\mathbf{C}$ by
+\[
 f_s(x)=\begin{cases}
 s_x&\text{if }x\in U;\\
 0&\text{if }x\notin U.
 \end{cases}
-$$
+\]
 Note that $f_s$ is locally constant and of compact support since $s$ is. Clearly the map $s\mapsto f_s$ is an isomorphism $\mathcal{F}_c\cong C^\infty_c(X)$ of $\mathbf{C}$-vector spaces, and the isomorphism is natural in $X$.
 </div>
 
 <p>
-Suppose that $Z$ is closed in $X$ and $\mathcal{F}$ a sheaf on $X$. Denote $\mathcal{F}_Z$ the restriction of the sheaf $\mathcal{F}$ on $Z$. We have a map $\mathcal{F}_c\to(\mathcal{F}_Z)_c$; namely, if $s\in\mathcal{F}_c$ is compactly suppoerted section $U\to\hat{\mathcal{F}}$, its restriction $s:U\cap Z\to\hat{\mathcal{F}_Z}$ is a compatly supported section of $\mathcal{F}_Z$. Similarly, we have a map $(\mathcal{F}_{X-Z})_c\to\mathcal{F}_X$; namely, any compactly supported section of $\mathcal{F}_{X-Z}$ may be extended to $\mathcal{F}$ by making it zero on $Z$. Here is a generalization of (<a href=#ESOD></a>):
+Suppose that $Z$ is closed in $X$ and $\mathcal{F}$ a sheaf on $X$. Denote $\mathcal{F}_Z$ the restriction of the sheaf $\mathcal{F}$ on $Z$. We have a map $\mathcal{F}_c\to(\mathcal{F}_Z)_c$; namely, if $s\in\mathcal{F}_c$ is compactly suppoerted section $U\to\widehat{\mathcal{F}}$, its restriction $s:U\cap Z\to\widehat{\mathcal{F}_Z}$ is a compatly supported section of $\mathcal{F}_Z$. Similarly, we have a map $(\mathcal{F}_{X-Z})_c\to\mathcal{F}_X$; namely, any compactly supported section of $\mathcal{F}_{X-Z}$ may be extended to $\mathcal{F}$ by making it zero on $Z$. Here is a generalization of (<a href=#ESOD></a>):
 </p>
 
 <div class="proposition" data-label="ESODX">
@@ -1961,6 +2219,14 @@ This is an immediate consequence of (<a href=#BZOS></a>). Indeed, the action of 
 Let $G$ be a locally profinite group and $(\pi,V)$ a group representation of $G$. The representation $(\pi,V)$ is called <em style="color: teal;">smooth</em> if, for every $v\in V$, the stabilizer $\{g\in G\mid\pi(g)v=v\}$ is open.
 </div>
 
+<div class="proposition" data-label="ECSR">
+Let $G$ be a locally profinite group and $(\pi,G)$ a representation of $G$. Then $\pi$ is smooth if and only if for each $v\in V$, therer exists a compact open subgroup $K$ of $G$ such that $\pi(K)$ fixes $v$.
+</div>
+
+<div class="proof">
+Let $v\in V$. If therer exists a compact open subgroup $K$ of $G$ such that $\pi(K)$ fixes $v$, then for any $g$ fixes $v$, $gK$ will fixes $v$ as well; hence $gK$ is an open neighborhood of $g$ contained in $\{g\in G\mid\pi(g)v=v\}$. The converse is clearly.
+</div>
+
 <div class="definition">
 A smooth representation $(\pi,V)$ is called <em style="color: teal;">admissible</em> if the space $V^U$ is finite-dimensional for each open subgroup $U$ of $G$.
 </div>
@@ -1973,12 +2239,32 @@ Let $G$ be a locally profinite group and $(\pi,G)$ a representation of $G$. Then
 If $V^K$ is finite-dimensional for each comapct open subgroup $K$ of $G$, then given any open subgroup $U$ of $G$, by the local profiniteness, we can find a compact open subgroup $K$ of $G$ contained in $H$. Thus $V^H\subseteq V^K$ is finite-dimensional.
 </div>
 
-<div class="proposition" data-label="ECSR">
-Let $G$ be a locally profinite group and $(\pi,G)$ a representation of $G$. Then $\pi$ is smooth if and only if for each $v\in V$, therer exists a compact open subgroup $K$ of $G$ such that $\pi(K)$ fixes $v$.
+<div class="lemma" data-name="Schur" data-label="SL-AIR">
+Let $G$ be a locally profinite group, $(\pi,V)$ an irreducible admissible representation of $G$ and $T:V\to V$ an intertwining operator for $\pi$. Then there exists a complex number $c$ such that $T(v)=cv$ for all $v\in V$.
 </div>
 
 <div class="proof">
-Let $v\in V$. If therer exists a compact open subgroup $K$ of $G$ such that $\pi(K)$ fixes $v$, then for any $g$ fixes $v$, $gK$ will fixes $v$ as well; hence $gK$ is an open neighborhood of $g$ contained in $\{g\in G\mid\pi(g)v=v\}$. The converse is clearly.
+Let $K$ be an open compact subgroup of $G$ small enough that $V^K$ is non-zero. Then $V^K$ is finite dimensional because $\pi$ is assumed admissible and it is clearly preserved under $T$. Thus $T$ has an eigenvalue $c$ on $V^K$. If $I:V\to V$ denotes the identity transformation, the kernel of $T-cI$ is a non-zero $G$-invariant subspace, and because $V$ is irreducible, it must be all of $V$.
+</div>
+
+<div class="definition">
+If $G=GL_n(F)$ where $F$ is a non-archimedean local field, then (<a href=#SL-AIR></a>) implies that there exists a quasi-character $\omega$ of $F^\ast$, the so-called <em style="color: teal;">central quasi-character</em>, such that the center $Z(F)$ of $GL_n(F)$ acts by
+\[
+\pi\left(\begin{pmatrix}
+z&&\\
+&\ddots&\\
+&&z
+\end{pmatrix}\right)v=\omega(z)v
+\]
+for all $z\in F^\ast$ and $v\in V$.
+</div>
+
+<div class="corollary" data-label="AGOD">
+Let $G$ be an abelian group. Then any irreducible smooth representation of $G$ is one-dimensional.
+</div>
+
+<div class="proof">
+Since $G$ is abelian, the center of $G$ is itself so that for any irreducible representation $(\pi,V)$ of $G$, $G$ acts on $V$ by the central quasi-character, which induces one-dimensional invariant subspaces of $V$.
 </div>
 
 <div class="proposition">
@@ -2035,35 +2321,35 @@ Hence $V_K\subseteq W$. Conversely, for any $1\neq\rho\in[K]$, there exist $v\in
 </div>
 
 <div class="definition">
-Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. If $\hat{v}:V\to\mathbf{C}$ is a linear functional, we write $\langle v,\hat{v}\rangle$ for $\hat{v}(v)$ when $v\in V$. We say $\hat{v}$ is <em style="color: teal;">smooth</em> if there exists an open neighborhood $U$ of the identity of $G$ such that $\langle\pi(g)v,\hat{v}\rangle=\langle v,\hat{v}\rangle$ whenever $g\in U$, $v\in V$. Let $\hat{V}$ be the vector subspace of smooth linear functionals on $V$. We define a representation $(\hat{\pi},\hat{V})$, called the <em style="color: teal;">contragredient representation</em> by letting $g$ act on $\hat{V}$ by $\langle v,\hat{\pi}(g)\hat{v}\rangle=\langle\pi(g^{-1})v,\hat{v}\rangle$.
+Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. If $\widehat{v}:V\to\mathbf{C}$ is a linear functional, we write $\langle v,\widehat{v}\rangle$ for $\widehat{v}(v)$ when $v\in V$. We say $\widehat{v}$ is <em style="color: teal;">smooth</em> if there exists an open neighborhood $U$ of the identity of $G$ such that $\langle\pi(g)v,\widehat{v}\rangle=\langle v,\widehat{v}\rangle$ whenever $g\in U$, $v\in V$. Let $\widehat{V}$ be the vector subspace of smooth linear functionals on $V$. We define a representation $(\widehat{\pi},\widehat{V})$, called the <em style="color: teal;">contragredient representation</em> by letting $g$ act on $\widehat{V}$ by $\langle v,\widehat{\pi}(g)\widehat{v}\rangle=\langle\pi(g^{-1})v,\widehat{v}\rangle$.
 </div>
 
 <div class="proposition">
-Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. Then $(\hat{\pi},\hat{V})$ is a smooth representation of $G$ as well.
+Let $G$ be a locally profinite group and $(\pi,V)$ a smooth representation of $G$. Then $(\widehat{\pi},\widehat{V})$ is a smooth representation of $G$ as well.
 </div>
 
 <div class="proof">
-Let $\hat{v}\in\hat{V}$. By definition, there exists an open neighborhood $U$ of the identity of $G$ fixing $v$. By the locally profiniteness, $U$ can chosen to be compact. Now apply (<a href=#ECSR></a>).
+Let $\widehat{v}\in\widehat{V}$. By definition, there exists an open neighborhood $U$ of the identity of $G$ fixing $v$. By the locally profiniteness, $U$ can chosen to be compact. Now apply (<a href=#ECSR></a>).
 </div>
 
 <div class="proposition" data-label="SLFC">
-Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$ and $\hat{v}$ a linear functional on $V$ and consider a decomposition
+Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$ and $\widehat{v}$ a linear functional on $V$ and consider a decomposition
 $$
 V=\bigoplus_{\rho\in[K]}V(\rho)
 $$
-induced by any compact open subgroup $K$ of $G$. Then $\hat{v}$ is smooth if and only if $\hat{v}$ acts identically zero on all but finitely many $V(\rho)$, $\rho\in[K]$.
+induced by any compact open subgroup $K$ of $G$. Then $\widehat{v}$ is smooth if and only if $\widehat{v}$ acts identically zero on all but finitely many $V(\rho)$, $\rho\in[K]$.
 </div>
 
 <div class="proof">
-If $\hat{v}$ is smooth, then there exists some open compact subgroup $K'$ of $G$ fixing $\hat{v}$. We first assume $K'=K$ so that $\hat{\pi(k)v}=\hat{v}(v)$ for any $k\in K$ and $v\in $. Then $\hat{v}$ acts identically zero on $V_K$ since
+If $\widehat{v}$ is smooth, then there exists some open compact subgroup $K'$ of $G$ fixing $\widehat{v}$. We first assume $K'=K$ so that $\widehat{\pi(k)v}=\widehat{v}(v)$ for any $k\in K$ and $v\in $. Then $\widehat{v}$ acts identically zero on $V_K$ since
 $$
-\hat{v}(v-\pi(k)v)=\hat{v}(v)-\hat{v}(\pi(k)v)=\hat{v}(v)-\hat{v}(v)=0
+\widehat{v}(v-\pi(k)v)=\widehat{v}(v)-\widehat{v}(\pi(k)v)=\widehat{v}(v)-\widehat{v}(v)=0
 $$
-for any $k\in K$ and $v\in K$, as desired. For the general case, we may assume $K'\subseteq K$ so that $\hat{v}$ acts identically zero on $V_{K'}$. We need to show that $V^{K'}$ contains only finitely many components $V(\rho)$ with $\rho\in[K]$. Since $K/K'$ acts on $V^{K'}$, we have
+for any $k\in K$ and $v\in K$, as desired. For the general case, we may assume $K'\subseteq K$ so that $\widehat{v}$ acts identically zero on $V_{K'}$. We need to show that $V^{K'}$ contains only finitely many components $V(\rho)$ with $\rho\in[K]$. Since $K/K'$ acts on $V^{K'}$, we have
 $$
 V^{K'}=\bigoplus_{\rho\in[K/K']}V(\rho)\subseteq\bigoplus_{\rho\in[K]}V(\rho).
 $$
-Since $K/K'$ is finite, $[K/K']$ is finite as well, which proves the only if part. Now assume that $\hat{v}$ acts identically zero on all but finitely many $V(\rho)$, $\rho\in[K]$, say $\rho_1,\ldots,\rho_r$. For each $i$, there exists $v_i\in V(\rho_i)$ with $\hat{v}(v_i)\neq 0$. Since $\pi$ acts smoothely on $V$, three exists open compact subgroup $K_i$ of $G$ fixing $v_i$. Denote $\hat{v}_i$ the restriction of $\hat{v}$ on $V(\rho_i)$. Then $\hat{v}_i:V(\rho_i)\to\mathbf{C}$ is surjective, and we can write $V(\rho_i)=\span\{v_i\}\oplus\Ker(\hat{v}_i)$. Thus for any $x\in V(\rho_i)$, $\hat{v}(kx)=\hat{v}(x)$ for any $k\in K_i$. Let $K'$ be the intersection of $K_1,\ldots,K_r$. Then $\hat{v}(kx)=\hat{v}(x)$ for any $k\in K'$ and $x\in\oplus_{i=1}^rV(\rho_i)$ and so any $x\in V$, that is, $\hat{v}$ is fixed by $K'$.
+Since $K/K'$ is finite, $[K/K']$ is finite as well, which proves the only if part. Now assume that $\widehat{v}$ acts identically zero on all but finitely many $V(\rho)$, $\rho\in[K]$, say $\rho_1,\ldots,\rho_r$. For each $i$, there exists $v_i\in V(\rho_i)$ with $\widehat{v}(v_i)\neq 0$. Since $\pi$ acts smoothely on $V$, three exists open compact subgroup $K_i$ of $G$ fixing $v_i$. Denote $\widehat{v}_i$ the restriction of $\widehat{v}$ on $V(\rho_i)$. Then $\widehat{v}_i:V(\rho_i)\to\mathbf{C}$ is surjective, and we can write $V(\rho_i)=\span\{v_i\}\oplus\Ker(\widehat{v}_i)$. Thus for any $x\in V(\rho_i)$, $\widehat{v}(kx)=\widehat{v}(x)$ for any $k\in K_i$. Let $K'$ be the intersection of $K_1,\ldots,K_r$. Then $\widehat{v}(kx)=\widehat{v}(x)$ for any $k\in K'$ and $x\in\oplus_{i=1}^rV(\rho_i)$ and so any $x\in V$, that is, $\widehat{v}$ is fixed by $K'$.
 </div>
 
 <div class="proposition" data-label="CGDT">
@@ -2073,7 +2359,7 @@ V=\bigoplus_{\rho\in[K]}V(\rho).
 $$
 Then
 $$
-\hat{V}=\bigoplus_{\rho\in[K]}V(\rho)^\ast
+\widehat{V}=\bigoplus_{\rho\in[K]}V(\rho)^\ast
 $$
 where $V(\rho)^\ast$ is the dual space of $V(\rho)$.
 </div>
@@ -2081,13 +2367,13 @@ where $V(\rho)^\ast$ is the dual space of $V(\rho)$.
 <div class="proof">
 The dual space of an infinite direct sum of vector spaces is the direct product of the dual space. Thus
 $$
-\hat{V}\subseteq V^\ast=\prod_{\rho\in[K]} V(\rho)^\ast.
+\widehat{V}\subseteq V^\ast=\prod_{\rho\in[K]} V(\rho)^\ast.
 $$
-By (<a href=#SLFC></a>), a linear functional on $V$ is smooth if and only if it is zero on all but finitely many of the summand $V(\rho)$, $\rho\in[K]$. Therefore $\hat{V}$ may be identified with the direct sum of the $V(\rho)^\ast$.
+By (<a href=#SLFC></a>), a linear functional on $V$ is smooth if and only if it is zero on all but finitely many of the summand $V(\rho)$, $\rho\in[K]$. Therefore $\widehat{V}$ may be identified with the direct sum of the $V(\rho)^\ast$.
 </div>
 
-<div class="corollary">
-Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$. Then $\pi$ is admissible if and only if $\hat{\pi}$ is admissible. In this case, $\hat{\pi}\cong\pi$.
+<div class="corollary" data-label="DBDI">
+Let $G$ be a locally profinite group, $(\pi,V)$ a smooth representation of $G$. Then $\pi$ is admissible if and only if $\widehat{\pi}$ is admissible. In this case, $\widehat{\pi}\cong\pi$ non-naturally, and $\widehat{\widehat{\pi}}\cong\pi$ naturally.
 </div>
 
 <div class="proof">
@@ -2183,12 +2469,14 @@ If $M$ is smooth then for each $m\in M$, there exists $f\in H_G$ such that $f\cd
 Let $G$ be a unimodular locally profinite group. Then there is an equivalence of category between the category of smooth representations $(\pi,V)$ of $G$ and the category of smooth $H_G$-algebra.
 </div>
 
-<div class="proof">
-Let $(\pi,V)$ be a smooth representation of $G$. Define the operation
+<div class="proof"> Let $(\pi,V)$ be a smooth representation of $G$. Define the operation
 <div class="equation" data-label="FVTH">
 (f,v)\mapsto\pi(f)v:=\int_Gf(g)\pi(g)vdg,\quad v\in V,\ f\in H_G
 </div>
-where $dg$ is the Haar measure on $G$. We first show that $f\mapsto\pi(f)$ is a homomorphism of $\mathbf{C}$-algebra. In fact, we hvae,
+where $dg$ is the Haar measure on $G$. We prove serveral result:
+<ol class="parenthesis">
+<li>
+$V$ admits the structure of $H_G$-module: we need to prove that $f\mapsto\pi(f)$ is a homomorphism of $\mathbf{C}$-algebra:
 \begin{align}
 \pi(f_1\ast f_2)v&=\int_Gf_1\ast f_2(g)\pi(g)vdg\\
 &=\iint f_1(h)f_2(h^{-1}g)\pi(g)vdhdg\\
@@ -2198,18 +2486,25 @@ where $dg$ is the Haar measure on $G$. We first show that $f\mapsto\pi(f)$ is a 
 &=\int f_1(h)\pi(h)\pi(f_2)vdh\\
 &=\pi(f_1)\pi(f_2)v.
 \end{align}
-Hence $V$ admits the structure of $H_G$-module. To show this structure is smooth, given $v\in V$. Since the representation $(\pi,V)$ is smooth, there exists a compact open subgroup $K$ of $G$ such that $v\in G^K$. It follows  that
+</li>
+<li>
+$V$ is a smooth $H_G$-module: to show this structure is smooth, given $v\in V$. Since the representation $(\pi,V)$ is smooth, there exists a compact open subgroup $K$ of $G$ such that $v\in G^K$. It follows that
 $$
 \pi(e_K)v=\int_Ge_K(g)\pi(g)vdg=\int_Ke_K(g)\pi(g)vdg=\int_Ke_K(g)vdg=\left(\int_Ke_K(g)dg\right)=v.
 $$
-Finally, if $\phi:(\pi,V)\to(\pi',V')$ is an intertwining operator, then
+</li>
+<li>The assignment (<a href=#FVTH></a>) defines a functor: if $\phi:(\pi,V)\to(\pi',V')$ is an intertwining operator, then
 \begin{align}
 \phi(\pi(f)v)&=\phi(\int_Gf(g)\pi(g)vdg)\\
 &=\int_G\phi(f(g)\pi(g)v)dg\\
 &=\int_Gf(g)\pi'(g)\phi(v)dg\\
 &=\pi'(f)(\phi(v)).
 \end{align}
-Hence $\phi$ is also an $H_G$-homomorphism, and (<a href=#FVTH></a>) defines a functor. Conversely, let $M$ be a smooth $H_G$-module. We construct a smooth representation $(\pi_H,M)$ of $G$ as follows. Consider the canonical map
+</li>
+</ol>
+<ul>
+<li>
+Conversely, let $M$ be a smooth $H_G$-module. We construct a smooth representation $(\pi_H,M)$ of $G$ as follows. Consider the canonical map
 <div class="equation" data-label="VHETE1">
 H_G\otimes_{H_G}M\to M.
 </div>
@@ -2218,8 +2513,15 @@ Therefore the map (<a href=#VHETE1></a>) is injective. Now (<a href=#VHETE1></a>
 <div class="equation" data-label="VHETE2">
 \pi(g)m=\lambda(g)e_K\cdot m.
 </div>
-Thus $\pi(g)m=m$ for any $g\in G$, and so the representation $(\pi,M)$ is smooth. Finally, if $\phi:M\to M'$ is an $H_G$-homomorphism, $g\in G$ and $m\in M$ such that $e_K\cdot m=m$, then we obtain the representations $(\pi_H,M)$ and $(\pi_H',M')$. We need to show that the map $\phi$ is an intertwining operator $(\pi_H,M)\to(\pi_H',M')$. Since $e_K\cdot \phi(m)=\phi(e_K\cdot m)=\phi(e_K)$, w can apply (<a href=#VHETE2></a>) and obtain $$\phi(\pi_H(g)m)=\phi(\lambda(g)e_K\cdot m)=\lambda(g)e_K\cdot\phi(m)=\pi_H'(g)\phi(m).$$
-Therefore the assignment $(M,\cdot)\mapsto(\pi_H,M)$ defines a functor indeed. Now we verify that the functors are the quasi-inverse of each others. In fact, if $(\pi,V)$ is a smooth $G$-representation then for $v\in V$ and $g\in G$, then there exists a compact open subgroup $K$ of $G$ such that $\pi(g)v=v$ for all $g\in K$, so $e_K\cdot v=v$ and
+Thus $\pi(g)m=m$ for any $g\in G$, and so the representation $(\pi,M)$ is smooth.
+</li>
+</ul>
+<ol class="parenthesis" style="counter-reset: listcounter 3;">
+<li>
+The assignment $(M,\cdot)\mapsto(\pi_H,M)$ defines a functor: if $\phi:M\to M'$ is an $H_G$-homomorphism, $g\in G$ and $m\in M$ such that $e_K\cdot m=m$, then we obtain the representations $(\pi_H,M)$ and $(\pi_H',M')$. We need to show that the map $\phi$ is an intertwining operator $(\pi_H,M)\to(\pi_H',M')$. Since $e_K\cdot \phi(m)=\phi(e_K\cdot m)=\phi(e_K)$, w can apply (<a href=#VHETE2></a>) and obtain $$\phi(\pi_H(g)m)=\phi(\lambda(g)e_K\cdot m)=\lambda(g)e_K\cdot\phi(m)=\pi_H'(g)\phi(m).$$
+</li>
+<li>
+The functors are the quasi-inverse of each others: if $(\pi,V)$ is a smooth $G$-representation then for $v\in V$ and $g\in G$, then there exists a compact open subgroup $K$ of $G$ such that $\pi(g)v=v$ for all $g\in K$, so $e_K\cdot v=v$ and
 \begin{align}
 \pi_H(g)v&=\lambda(g)e_K\cdot v\\
 &=e_{gK}\cdot v=\pi(e_{gK})v\\
@@ -2236,6 +2538,9 @@ Choose a compact open subgroup $K$ of $G$ such that $f$ is right $K$-invariant. 
 $$
 \frac{1}{\vol(K)}\vol(K)\sum_{g\in G/K}f(g)1_{gK}\cdot m=\sum_{g\in G/K}f(g)1_{gK}\cdot m=f\cdot m.
 $$
+</li>
+</ol>
+
 </div>
 
 <div class="definition">
@@ -2260,16 +2565,22 @@ Let $G$ be a unimodular locally profinite group and $(\pi,V)$ be a smooth repres
 </div>
 
 <div class="proof">
-A $G$-invariant subspace is clearly $H_G$-invariant, so the implication (ii)$\Rightarrow$(i) is trivial. Conversely, suppose that $W\subseteq V$ is an $H_G$-invariant subspace; we show it is $G$-invariant. If not, there exists $g\in G$ and $w\in W$ such that $\pi(g)w\notin W$. Now $w$ is fixed by some neighborhood $N$ of the identity, so letting $\phi\in H_G$ be the characteristic function of $gN$ divided by its volume, we see that $\pi(g)w=\pi(g)w\notin W$. This contradicts our assumption that $W$ is $H_G$-invariant; we have proved tha (i) and (ii) are equivalent. The proof that (iii)$\Rightarrow$(i) is also simple. Suppose that $W$ is a non-zero proper $H$-invariant subspace. Then because $V=\bigcup_K V^K$ where $K$ runs over all compact open subgroup $K$ of $G$, we can find $K$ small enough that $W^K$ is a non-zero proper subspace of $V^K$, contradicting (iii).<br>
+<ul>
+<li>
+A $G$-invariant subspace is clearly $H_G$-invariant, so the implication (ii)$\Rightarrow$(i) is trivial. Conversely, suppose that $W\subseteq V$ is an $H_G$-invariant subspace; we show it is $G$-invariant. If not, there exists $g\in G$ and $w\in W$ such that $\pi(g)w\notin W$. Now $w$ is fixed by some neighborhood $N$ of the identity, so letting $\phi\in H_G$ be the characteristic function of $gN$ divided by its volume, we see that $\pi(g)w=\pi(g)w\notin W$. This contradicts our assumption that $W$ is $H_G$-invariant; we have proved tha (i) and (ii) are equivalent. The proof that (iii)$\Rightarrow$(i) is also simple. Suppose that $W$ is a non-zero proper $H$-invariant subspace. Then because $V=\bigcup_K V^K$ where $K$ runs over all compact open subgroup $K$ of $G$, we can find $K$ small enough that $W^K$ is a non-zero proper subspace of $V^K$, contradicting (iii).
+</li>
+<li>
 The only difficult part is (ii)$\Rightarrow$(iii). To prove this, let $W\subseteq V^K$ be a proper non-zero $H^K$-submodule. We will show that $\pi(H_G)W\cap V^K=W$. Note that this is sufficient to contradict (ii), for its shows that $\pi(H_G)W$ is a proper non-zero subspace of $V$, and it is clear that it is $H_G$-invariant. By definition, $\pi(H_G)W$ is the set of vectors that are finite sums $\sum_i\pi(\phi_i)w_i$ with $\phi_i\in H_G$ and $w_i\in W$. We assume that such a vector lie ine $V^K$; we must show it is in $W$. Because $w_i\in W\subseteq V^K$, $\pi(e_K)w_i=w_i$, and because $\sum_i\pi(\phi_i)w_i\in V^K$, we have $\pi(e_K)\sum_i\pi(\phi_i)w_i=\sum_i\pi(\phi_i)w_i$. Thus $\sum_i\pi(\phi_i)w_i=\sum_i\pi(e_K\ast\phi_i\ast e_K)w_i$. However, $e_K\ast \phi_i\ast e_K\in H^K$, and because $W$ is stable under $H^K$, this shows that $\sum_i\pi(\phi_i)w_i\in W$, as required.
+</li>
+</ul>
 </div>
 
 <div class="proposition">
-Let $G$ be a locally profinite group, $(\pi,V)$ an admissible representation of $G$ and $K$ a compact open subgroup of $G$. Then the canonical pairing between $V$ and $\hat{V}$ induces a non-degenerate pairing between $V^K$ and $\hat{V}^K$.
+Let $G$ be a locally profinite group, $(\pi,V)$ an admissible representation of $G$ and $K$ a compact open subgroup of $G$. Then the canonical pairing between $V$ and $\widehat{V}$ induces a non-degenerate pairing between $V^K$ and $\widehat{V}^K$.
 </div>
 
 <div class="proof">
-Let $0\neq v\in V^K$. We will show that there eixsts a vector $\hat{v}\in\hat{V}^K$ such that $\langle v,\hat{v}\rangle\neq 0$. By symmetry, this is sufficient because $\hat{\hat{V}}\cong V$ by (), so the same reasoning shows that the pairing is non-degenerate on the other side also. Since $\hat{\hat{V}}\cong V$, we can choose $\hat{v}_1\in\hat{V}$ such that $\langle v,\hat{v_1}\rangle\neq 0$. Because $v\in V^K$, we have $v=\pi(e_K)v$. Now $\langle v,\hat{v}_1\rangle=\langle\pi(e_K)v,\hat{v}_1\rangle=\langle v,\hat{\pi}(e_K)\hat{v}_1\rangle$, so we may take $\hat{v}=\hat{\pi}(e_K)\hat{v}_1$, which is a $K$-invarient vecotr in $\hat{V}$.
+Let $0\neq v\in V^K$. We will show that there eixsts a vector $\widehat{v}\in\widehat{V}^K$ such that $\langle v,\widehat{v}\rangle\neq 0$. By symmetry, this is sufficient because $\widehat{\widehat{V}}\cong V$ by (), so the same reasoning shows that the pairing is non-degenerate on the other side also. Since $\widehat{\widehat{V}}\cong V$, we can choose $\widehat{v}_1\in\widehat{V}$ such that $\langle v,\widehat{v_1}\rangle\neq 0$. Because $v\in V^K$, we have $v=\pi(e_K)v$. Now $\langle v,\widehat{v}_1\rangle=\langle\pi(e_K)v,\widehat{v}_1\rangle=\langle v,\widehat{\pi}(e_K)\widehat{v}_1\rangle$, so we may take $\widehat{v}=\widehat{\pi}(e_K)\widehat{v}_1$, which is a $K$-invarient vecotr in $\widehat{V}$.
 </div>
 
 <div>To define a character of a representation, we need some preliminaries on the trace. Let $U$ be a finite-dimensional vector space, and let $f:U\to U$ be an endomorphism. Let $U_0$ be any subspace contaning the image of $f$. Then $f$ induces an endomorphism $\left.f\right|_{U_0}:U_0\to U_0$. We observe that
@@ -2288,7 +2599,7 @@ By (), $f\in H_K$ for some compact open subgroup $K$. The endomorphism $\pi(f)$ 
 </div>
 
 <div class="definition">
-Let $(\pi,V)$ be an adimissible representation of $G$. The <em style="color: teal;">trace</em> of $\pi$ is the distribution $\chi:H_G\to\mathbf{C}$ defined by $\chi(f)=\tr(\pi(f))$. By (<a href=#ARFR></a>), this is well-defined.
+Let $(\pi,V)$ be an adimissible representation of $G$. The <em style="color: teal;">character</em> of $\pi$ is the distribution $\chi:H_G\to\mathbf{C}$ defined by $\chi(f)=\tr(\pi(f))$. By (<a href=#ARFR></a>), this is well-defined.
 </div>
 
 <div class="proposition" data-label="STSP">
@@ -2304,7 +2615,7 @@ Let $G$ be a locally profinite group and $(\pi_1,V)$ and $(\pi_2,V_2)$ be irredu
 </div>
 
 <div class="proof">
-Let us fix $K_0$ small enough that $V_1^{K_0}$ and $V_2^{K_0}$ are non-zero. Then by hypothesis, $V_1^{K_0}$ and $V_2^{K_0}$ are isomorhpic as $H^{K_0}$-modules. We fix an isomorphism $\sigma_0:V_1^{K_0}\to V_2^{K_0}$. By Shur's lemma, $\sigma_0$ is determined up to scalar multiple, because by (<a href=#IRED></a>), $V_1^{K_0}$ and $V_2^{K_0}$ are irreducible. We observe that if $K_1$ is an open subgroup of $K_0$, then $\sigma_0$ can be extended uniquely to an $H^{K_1}$-module isomorphism $\sigma_1:V_1^{K_1}\to V_2^{K_1}$. Indeed, the existence of an isomorphism $\sigma_{K_1}$ is out hypothesis; we observe that $\pi(e_{K_0})V_i^{K_1}\subseteq V_i^{K_0}$ and so $V_i^{K_0}=\pi(e_{K_0})V_i^{K_1}$ by the irreducibility; becaus $\sigma_{K_1}$ is a ring homomorphism, we see that
+Let us fix $K_0$ small enough that $V_1^{K_0}$ and $V_2^{K_0}$ are non-zero. Then by hypothesis, $V_1^{K_0}$ and $V_2^{K_0}$ are isomorhpic as $H^{K_0}$-modules. We fix an isomorphism $\sigma_0:V_1^{K_0}\to V_2^{K_0}$. By (<a href=#SL-AIR></a>), $\sigma_0$ is determined up to scalar multiple, because by (<a href=#IRED></a>), $V_1^{K_0}$ and $V_2^{K_0}$ are irreducible. We observe that if $K_1$ is an open subgroup of $K_0$, then $\sigma_0$ can be extended uniquely to an $H^{K_1}$-module isomorphism $\sigma_1:V_1^{K_1}\to V_2^{K_1}$. Indeed, the existence of an isomorphism $\sigma_{K_1}$ is out hypothesis; we observe that $\pi(e_{K_0})V_i^{K_1}\subseteq V_i^{K_0}$ and so $V_i^{K_0}=\pi(e_{K_0})V_i^{K_1}$ by the irreducibility; becaus $\sigma_{K_1}$ is a ring homomorphism, we see that
 $$
 \sigma_{K_1}(V_1^{K_0})=\sigma_{K_1}(\pi_1(e_{K_0})V_1^{K_1})=\pi_2(e_{K_0})(\sigma_{K_1}V_1^{K_1})=\pi_2(e_{K_0})V_2^{K_1}.
 $$
@@ -2316,7 +2627,7 @@ $$
 We see that $\sigma$ is indeed an intertwining operator, and the representations $\pi_1$ and $\pi_2$ are therefore equivalent.
 </div>
 
-<div class="theorem">
+<div class="theorem" data-name="SCSR-L">
 Let $G$ be a locally profinite group and $(\pi_1,V_1)$ and $(\pi_2,V_2)$ be irreducible admissible representations of $G$. If the characters of $\pi_1$ and $\pi_2$ agree, then the two representations are equivalent.
 </div>
 
@@ -2338,62 +2649,1425 @@ By (), the induced map $\sigma:GL_2(F)/H\to Z$ is a continuous bijection. To sho
 </div>
 
 <div class="proof"> Replacing $D$ by $D-D^\top$, we may assume that $D^\top=-D^\top$, in which case our problem is to show that $D=0$. This motivates us introduce the following group. Let $\{1,\tau\}$ be a cyclic group of order two with $\tau^2=1$. We have a homomorphism from this group into $\Aut(GL_2(F))$ that sends $\tau$ to the automorphism $g\mapsto g^{-\top}$. This group action is continuous; see (). Therefore we can consider the semidirect product
-$$
+$
 GL_2(F)\rtimes \{1,\tau\}
-$$
+$
 satisfying $\tau g\tau^{-1}=g^{-\top}$ for $g\in GL_2(F)$; this group is locally profinite, see (). By (), the group $GL_2(F)\rtimes \{1,\tau\}$ acts on $GL_2(F)$ with $GL_2(F)$ acting by conjugation and $\tau$ acting by transpose; in fact, if $x\in GL_2(F)$, then the action of $GL_2(F)$ and $\tau$ satisfy
-$$
+\[
 \tau\cdot(g\cdot(\tau^{-1}\cdot x)))=\tau\cdot(g\cdot(x^\top))=\tau\cdot(gx^\top g^{-1})=g^{-\top}xg^\top=(\tau g\tau^{-1})\cdot x
-$$
+\]
 for all $g\in GL_2(F)$. Let $\chi$ be the character of $GL_2(F)\rtimes \{1,\tau\}$ that is $1$ on $GL_2(F)$ and $-1$ on the non-identity coset; the continuity of this character follows from (). Thus our task is to show that a distribution $D$ on $GL_2(F)$ that satisfies
 <div class="equation" data-label="CITI1">
 (g,h)\cdot D=\chi(g,h)D,\quad (g,h)\in GL_2(F)\rtimes \{1,\tau\},
 </div>
 is zero. We will denote by $GL_2(F)_r$ the subset of $g\in GL_2(F)$ having distinct eigenvalues and by $GL_2(F)_s$ the subset of $g$ having equal eigenvalues. We note that $GL_2(F)$ is the locus of the discriminant $\tr(g)^2-4\det(g)$ of the characteristic polynomial of $g$, and is hence a closed set in $GL_2(F)$. We have, by (<a href=#DES2></a>), an exact sequence
 <div class="equation" data-label="CITI2">
-1\to D(GL_2(F)_s)\to D(GL_2(F))\to D(GL_2(F)_r)\to 0.
+0\to D(GL_2(F)_s)\to D(GL_2(F))\to D(GL_2(F)_r)\to 0.
 </div>
-We will first show that the image $D$ in $D(GL_2(F)_r)$ is zero; then exactness will show that that $D$ lives in $D(GL_2(F)_s)$, which we will need to further analyze: We will apply (<a href=#BZOSC></a>) with $X=GL_2(F)_r$. We need to construct a suitable space $Y$ to parametrize the conjugacy classes. We take
-$$
-Y=\{(x,y)\in F\times F\mid x^2\neq 4y\},
-$$
-and let $p:X\to Y$ be defined by $p(g)=(\tr(g),\det(g))$. This map is clearly continuous, and the fibers are exactly the conjugacy classes in $GL_2(F)$ by (). Now (<a href=#BZOSC></a>) shows that it is sufficient for our pruposes to show that there no non-zero distribution satisfying (<a href=#CITI1></a>) on a single conjugacy class $Z=p^{-1}(y)$. Let  $x\in GL_2(F)_r$ be a representative of this conjugacy class, and let $H\subseteq GL_2(F)$ be the centralizer of $x$. By (), we obtain a continuous bijection
-$$
+We will first show that the image $D$ in $D(GL_2(F)_r)$ is zero; then exactness will show that that $D$ lives in $D(GL_2(F)_s)$, which we will need to further analyze: We will apply (<a href=#BZOSC></a>) with $X=GL_2(F)_r$. We take $Y=\{(x,y)\in F\times F\mid x^2\neq 4y\}$ and let $p:X\to Y$ be defined by $p(g)=(\tr(g),\det(g))$. This map is clearly continuous, and the fibers are exactly the conjugacy classes in $GL_2(F)$ by (), so the fibers are invariant under the action of $G$. Now (<a href=#BZOSC></a>) shows that it is sufficient for our pruposes to show that there are no non-zero distribution satisfying (<a href=#CITI1></a>) on a single conjugacy class $Z=p^{-1}(y)$. Let $x\in GL_2(F)_r$ be a representative of this conjugacy class, and let $H\subseteq GL_2(F)$ be the centralizer of $x$. By (), we obtain a continuous bijection
+\[
 \sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1},
-$$
+\]
 which is in fact a homeomorphism by (<a href=#CITIL></a>), so we may regard a $GL_2(F)$-invariant distribution on $Z$ as an $GL_2(F)$-invariant distribution on the quoteit space $GL_2(F)/H$. Note that $H$ is abelian: Let $K$ be the field obtain from $F$ by adjoining the eigenvalues of $x$. There exists an element $\gamma$ of $GL_2(K)$ such that $x'=\gamma x\gamma^{-1}$ is diagonal, and so $H=H'\cap GL_2(F)$ where $H'$ is the centralizer of $x$ in $GL_2(K)$. Since
-$$
+\[
 H'=C_{GL_2(K)}(x)=C_{GL_2(K)}(\gamma^{-1}x'\gamma)=\gamma^{-1}C_{GL_2(K)}(x')\gamma=\gamma^{-1}T\gamma
-$$
-by (), where $T$ is the group of diagonal matrices in $GL_2(K)$, we have $H=\gamma^{-1}T\gamma\cap GL_2(F)$; hence $H$ is conjugate in $GL_2(K)$ to a subgroup of $T$ and so abelian and unimordular. Therefore () implies that $G/H$ admits the Haar measure, and the distribution is just integration with respect to the haar measure on $GL_2(F)$. It follwos that this distribution is transpose invariant, so we see that a distribution on a regular conjugacy class $Z$ that satisfies (<a href=#CITI1></a>) is zero. By (<a href=#BZOSC></a>), this implies that the image of $D$ in $D(GL_2(F)_r)$ is zero, and therefore by the exactness of (<a href=#CITI2></a>), $D$ resides in $D(GL_2(F)_s)$.<br> Now we divide $GL_2(F)$ into two pieces. Let $C$ be the center of $GL_2(F)$, consisting of scalar matrices. Then we have an exact sequence
-$$
+\]
+by (), where $T$ is the group of diagonal matrices in $GL_2(K)$, we have $H=\gamma^{-1}T\gamma\cap GL_2(F)$; hence $H$ is conjugate in $GL_2(K)$ to a subgroup of $T$ and so abelian and unimordular. Therefore () implies that $G/H$ admits the Haar measure, and the distribution is just integration with respect to the haar measure on $GL_2(F)$. It follwos that this distribution is transpose invariant, so we see that a distribution on a regular conjugacy class $Z$ that satisfies (<a href=#CITI1></a>) is zero. By (<a href=#BZOSC></a>), this implies that the image of $D$ in $D(GL_2(F)_r)$ is zero, and therefore by the exactness of (<a href=#CITI2></a>), $D$ resides in $D(GL_2(F)_s)$. Now we divide $GL_2(F)$ into two pieces. Let $C$ be the center of $GL_2(F)$, consisting of scalar matrices. Then we have an exact sequence
+\[
 0\to D(C)\to D(GL_2(F)_s)\to D(GL_2(F)_s-C)\to 0.
-$$
-We may show that the image of $D$ in $D(GL_2(F)_s-C)$ is zero by the same method; this time a parameter space $Y$ for the conjugacy classes in $GL_2(F)_s-C$ is just $F^\times$ because each conjugacy class has a unique representative of the form
-$$
-x_a=\begin{bmatrix}
+\]
+We may show that the image of $D$ in $D(GL_2(F)_s-C)$ is zero by the same method; this time we choose $Y=F^\times$ and note that the conjugacy classes in $GL_2(F)_s-C$ has a unique representative of the form
+\[
+x_a=\begin{pmatrix}
 a&1\\
 0&a
-\end{bmatrix},
-$$
-and we fiber $GL_2(F)_s-C$ over $F^\times$ by $x_a\mapsto a$ to obtain $Z$ the conjugacy class of $x_a$. Let $H\subseteq GL_2(F)$ be the centralizer of $x_a$. By (), we obtain a continuous bijection
-$$
+\end{pmatrix}.
+\]
+Hence we fiber $GL_2(F)_s-C$ over $F^\times$ by $x_a\mapsto a$ to obtain the conjugacy class $Z$ of $x_a$. Let $H\subseteq GL_2(F)$ be the centralizer of $x_a$. By (), we obtain a continuous bijection
+\[
 \sigma:GL_2(F)/H\to Z,\quad gH\mapsto gxg^{-1}
-$$
+\]
 which is in fact a homeomorphism by (<a href=#CITIL></a>) again. To show that $H$ is abelian, note that $H$ consisting of matrix of the form
-$$
-\begin{bmatrix}
+\[
+\begin{pmatrix}
 b&c\\
 0&b
-\end{bmatrix}
-$$
+\end{pmatrix}
+\]
 that lies in $GL_2(F)$. Finally the proof is reduced to distribution on the center, and because the center is fixed pointwise by transposition, we see that a non-zero distribution satisfying (<a href=#CITI1></a>) is not possible.
+</div>
+
+<div class="theorem" data-label="CITIC"> Let $F$ be a non-archimedean local field, $G=GL_n(F)$ and $(\pi,V)$ be an irreducible admissible representation of $G$.
+<ol class="parenthesis">
+<li>Define a representation $(\pi_1,V)$ on the same space by $\pi_1(g)=\pi(g^{-\top})$. Then $\widehat{\pi}\cong\pi$.</li>
+<li>Suppose that $n=2$. Let $\omega$ be the central quasi-character of $\pi$. Define another representation $(\pi_2,V)$ on the same space by $\pi_2(g)v=\omega(\det(g)^{-1})\pi(g)$. Then $\widehat{\pi}\cong\pi_2$.</li>
+</ol>
+</div>
+
+<div class="proof">
+It is easy to see that the character of an irreducible admissible representation of $GL_2(F)$ is conjugation invariant. By (<a href=#CITI></a>), it is therefore transpose invariant. Let $\chi$ be the character of $\pi$; if $\phi\in C_c^\infty(G)$, let $\phi'(g)=\phi(g^{-1})$ and let $\phi''(g)=\phi(g^{-\top})$. It is easy to see that $\pi_1(\phi)=\phi(\phi'')$, so the character of $\pi_1$ is $\phi\mapsto\chi(\phi'')$, which equals $\chi(\phi')$ because $\chi$ is transpose invariant. On the other hand, it is easy to see that $\pi(\phi)$ and $\widehat{\pi}(\phi')$ are adjoints of each other and hence have equal trace; indeed,
+\begin{align}
+\langle\widehat{\pi}(\phi')\widehat{v},v\rangle&=\langle\int_G\widehat{\pi}(g)\phi'(g)\widehat{v}dg,v\rangle\\
+&=\int_G\langle\widehat{\pi}(g)\phi'(g)\widehat{v},v\rangle dg\\
+&=\int_G\langle\phi'(g)\widehat{v},\pi(g^{-1})v\rangle dg\\
+&=\int_G\langle\widehat{v},\pi(g^{-1})\phi'(g)v\rangle dg\\
+&=\int_G\langle\widehat{v},\pi(g^{-1})\phi(g^{-1})v\rangle dg\\
+&=\int_G\langle\widehat{v},\pi(g^{-1})\phi(g^{-1})v\rangle dg\\
+&=\int_G\langle\widehat{v},\pi(g)\phi(g)v\rangle dg\\
+\end{align}
+by (). This shows that $\pi_1$ and $\widehat{\pi}$ have the same character and hence are isomorphic by (<a href=#SCSR-L></a>). This proves (i). As for (ii), it follows from the identity
+\[
+g^{-\top}=\begin{pmatrix}
+\det(g)&0\\
+0&\det(g)
+\end{pmatrix}^{-1}\omega^{-1}g\omega,\quad\omega=\begin{pmatrix}
+0&-1\\
+1&0
+\end{pmatrix}
+\]
+that $\pi(\omega)$ is an intertwining operator from $(\pi_1,V)$ to $(\pi_2,V)$. Thus the representations $\pi_1$ and $\pi_2$ are equivalent.
+</div>
+
+<div class="proposition" data-label="CGRI">
+Let $F$ be a non-archimedean local field, $G=GL_n(F)$ and $(\pi,V)$ be an admissible representation. Then $\pi$ is irreducibly if and only if $\widehat{\pi}$ is irreducible.
+</div>
+
+<div class="proof">
+If is sufficient to show that $\pi$ is irreducible if and only if the representation $\pi_1$ in (i) of (<a href=#CITIC></a>) is irreducible. But clearly a subspace is invariant $\pi$ if and only if it is invariant under $\pi_1$.
+</div>
+
+<div class="example">
+Let $F$ be a non-archimedean local fiel. We end this section with a discussion of the representations of $F^\times$, whcih is of course isomorphic to $GL_1(F)$, or its $k$-fold Cartesian product $(F^\times)^k$. Because  $(F^\times)^k$ is abelian, ome might expect that an admissible representation would decompose into a direct sum of one-dimensional invariant subspaces. This is not the case, however. Consider the homomorphism $\rho:F^\times\to GL_2(\mathbf{Q})$ given by
+\[
+\rho(a)=\begin{pmatrix}
+1&\log\abs{a}\\
+0&1
+\end{pmatrix}.
+\]
+Evidently, this representation is admissible and has a unique one-dimensional invariant subspace, so it is not irreducible, yet there is no complementary one dimensional inariant subspace. Nevertheless we have the following result.
+</div>
+
+<div class="proposition" data-label="ARFK">
+Let $(\pi,V)$ be an admissible representation of $(F^\times)^k$. Then $V$, if non-zero, contains a one-dimensional invariant subsapce.
+</div>
+
+<div class="proof">
+Because $(\pi,V)$ is smooth, by (), $V=\bigoplus_\chi V_\chi$, where $\chi$ runs through $[(\mathfrak{o}^\times)^k]$ and where $V_\chi$ is the space of vectors $v$ satisfying $\pi(u)v=\chi(u)v$; here we use the fact that $V_\chi=V(\chi)$. Because $\pi$ is admissible, the spaces $V_\chi$ are finite dimensional. Let $\chi$ be such that $V_\chi$ is non-zero. Let
+$$
+p_r=(1,\ldots,1,\varpi,1,\ldots,1)\in(F^\times)^k,
+$$
+where the $\varpi$ is in the $r$-th position for $1,\leq r,\leq k$. Then the operators $\pi(p_r)$ commute with the action of $(\mathfrak{o})^\times)^k$, and thus leave the finite dimensional space invariant, and they commute with each other, so they have a common one-dimensional eigenspace. This space is invariant under a set of generators of $(F^\times)^k$ and hence meets our requirements.
+</div>
+
+</div>
+
+<div class="section" data-name="Whittaker and Kirillov Model">
+
+<div class="definition">
+Let $F$ be a non-archimedean local field and $\psi$ a non-trivial additive character of $F$. We define a character $\psi_N$ of the group $N(F)$ of upper triangular unipotent matrices in $GL_n(F)$ by
+$$
+\psi_N(u)=\psi\left(\sum_{i=1}^{n-1}u_{i,i+1}\right),\quad u=(u_{ij})\in N(F).
+$$
+Let $(\pi,V)$ be a smooth representation of $GL_n(F)$. By a <em style="color: teal;">Whittaker function</em> on $V$, we mean a linear functional $\lambda:V\to\mathbf{C}$ such that $\lambda(\pi(u)x)=\psi_N(u)\lambda(x)$ for all $u\in N(F)$ and $x\in V$. Note that $\lambda$ is not assumed to be smooth. The space of all Whittaker functional on $V$ is denote by $W_\psi(V)$.
+</div>
+
+<div class="theorem" data-name="Uniqueness of Whittaker Models" data-label="UOWM">
+Let $(\pi,V)$ be an irreducible admissible representation of $GL_2(F)$. Then the dimension of the space of Whittaker functionals on $V$ is at most one.
+</div>
+
+We will set up the proof to some extent for the general case. We will be concered with distribution $\Delta\in D(GL_n(F))$ that satisfy
+<div class="equation" data-label="UOWM1">
+\lambda(u)\Delta=\psi_N(u)^{-1}\Delta,\quad\rho(u)\Delta=\psi_N(u)\Delta,\quad u\in N(F).
+</div>
+
+<div class="definition">
+The <em style="color: teal;">involution</em> on $GL_n(F)$ is the map
+\[
+\iota:GL_n(F)\to GL_n(F),\quad\iota(g)=\omega^0g^\top\omega^0,\quad\omega^0=\begin{pmatrix}
+&&1\\
+&\iddots&\\
+1&&
+\end{pmatrix}.
+\]
+$\iota$ also induces involutions on $C_c^\infty(GL_n(F))$ and  $D(GL_n(F))$. We note that $N(F)$ is mapped to itself by $\iota$ and $\psi_N(\iota(u))=\psi_N(u)$ for $u\in N(F)$. If $n=2$ then $\iota(g)=g$ for any $g\in GL_2(F)$.
+</div>
+
+<div class="theorem" data-label="UOWML">
+Let $\Delta\in D(GL_2(F))$ satisfy <span style="font-style: normal;">(<a href=#UOWM1></a>)</span>. Then $\Delta$ is stable under $\iota$.
+</div>
+
+<div class="proof">
+Although we will eventually speicalize to the case $n=2$, let us at least reformulate the statement of the theorem for general $n$. We may replace $\Delta$ by $\Delta-\iota(\Delta)$. This distribution satisfies, in addition to (<a href=#UOWM1></a>), the condition
+<div class="equation" data-label="UOWM2">
+\iota(\Delta)=-\Delta,
+</div>
+and so our task is to show that a distribution satisfying (<a href=#UOWM1></a>) and (<a href=#UOWM2></a>) is zero. We introduce a group $G$ that is the semi-direct product that contains $N(F)\times N(F)$ and an element $e$ that satisfies $e^2=1$ such that $e(u_1,u_2)e^{-1}=(\iota(u_2^{-1}),\iota(u_1^{-1}))$ for $(u_1,u_2)\in N(F)\times N(F).$ Since $e$ acts on $N(F)\times N(F)$ continuously, $G$ is locally profinite by (). We define a character $\chi$ of $G$ by $\chi(u_1,u_2)=\psi_N(u_1^{-1})\psi_N(u_2)$ and $\chi(e)=-1$; by (), this character is well-defined since
+\[
+\chi(\iota(u_2^{-1}),\iota(u_1^{-1}))=\psi_N(\iota(u_2^{-1}))^{-1}\psi_N(\iota(u_1^{-1}))=\psi_N(u_2^{-1})^{-1}\psi_N(u_1^{-1})=\chi(e)\chi(u_1,u_2)\chi(e^{-1}).
+\]
+Now let us define actions $\sigma$ of $G$ on $GL_n(F)$, $C_c^\infty(GL_n(F))$ and $D(GL_n(F))$ by $\sigma(u_1,u_2)=\lambda(u_1)\rho(u_2)$ and $\sigma(e)=\iota$; this action is well-defined by () since for any $x\in GL_n(F)$,
+\[
+\sigma(\iota(u_2^{-1}),\iota(u_1^{-1}))x=\iota(u_2^{-1})x\iota(u_1^{-1})^{-1}=\iota(u_2^{-1})x\iota(u_1)=\sigma(e)\sigma(u_1,u_2)\sigma(e^{-1})x.
+\]
+The conditions (<a href=#UOWM1></a>) and (<a href=#UOWM2></a>) may then be summarized in the single condition
+<div class="equation" data-label="UOWM3">
+\sigma(g)\Delta=\chi(g)\Delta,\quad g\in G.
+</div>
+We will show (when $n=2$) that a distribution satisfying (<a href=#UOWM3></a>) is zero. Specializing now to the case where $n=2$. We will denote by $B(F)$ the Boral subgroup consisting of all upper traiangular matrices in $GL_2(F)$. Let $X=B(F)\omega^0B(F)$ be a coset in (). By (<a href=#ESOD></a>), we have an exact sequence
+<div class="equation" data-label="UOWM4">
+0\to D(B(F))\to D(GL_2(F))\to D(X)\to 0
+</div>
+We will first show that the image in $D(X)$ of $\Delta$ satisfying (<a href=#UOWM3></a>) is zero. We have a continuous mapping $p:X\to Y$, where $Y=F^\times\times F^\times$, is given by
+\[
+p\begin{pmatrix}
+a&b\\
+c&d\end{pmatrix}=(c,(ad-bc)/c).
+\]
+Fix $(x,y)\in Y$. Note that the fiber of $(x,y)$ of this map are invariant under the action $\sigma$ of $G$; in fact, direct computation shows that they are precisely the double cosets
+\[
+P:=N(F)\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}N(F).
+\]
+Applying (<a href=#BZOSC></a>), we see that it is sufficient to show that they are no non-zero distribution $\Delta$ on $P$ that satisfy (<a href=#UOWM3></a>). But $P$ is homeomorphic to $N(F)\times N(F)$ under the map
+\[
+\tau:u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}u_2^{-1}\mapsto(u_1,u_2),\quad (u_1,u_2)\in N(F)\times N(F).
+\]
+Hence $N(F)\times N(F)$ induces the group struction on $P$ by
+\[
+u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}u_2^{-1}\cdot v_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}v_2^{-1}=(u_1v_1)\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}(u_2v_2)^{-1}=u_1v_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}v_2^{-1}u_2^{-1}
+\]
+so that if $f$ is a smooth and compactly supported function on $P$, then
+\begin{align}
+\lambda_P(u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}u_2^{-1})\cdot\Delta(f)&=\Delta(\lambda_P(u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix}u_2^{-1})^{-1}f)\\
+&=\Delta(\lambda_G(u_1^{-1})\rho_G(u_2)f)\\
+&=\sigma(u_1,u_2)\cdot \Delta(f)\\
+&=\chi(u_1,u_2)\Delta(f)
+\end{align}
+and so by (), there exists a constant $c$ such that\begin{align}
+\Delta(f)&=c\int_P\chi\circ\tau(p)^{-1}f(p)dp\\
+&=c\int_{N(F)\times N(F)}\chi(u_1,u_2)^{-1}f\circ\tau(u_1,u_2)du_1du_2\\
+&=c\int_{N(F)\times N(F)}\chi(u_1,u_2)^{-1}f(u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix})u_2^{-1})du_1du_2\\
+&=c\int_{N(F)\times N(F)}\psi_N(u_1)\psi_N(u_2^{-1})f(u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix})u_2^{-1})du_1du_2\\
+&=c\int_{N(F)\times N(F)}\psi_N(u_1)\psi_N(u_2)f(u_1\begin{pmatrix}
+0&x\\
+y&0
+\end{pmatrix})u_2)du_1du_2
+\end{align}
+where the first equality follows from () and the last equality follows from (). Now this distribution is easily seen to be invariant under $\iota$, so (<a href=#UOWM2></a>) implies that $\Delta$ is zero. By the exactness of (<a href=#UOWM4></a>), if $\Delta\in D(GL_2(F))$ satisfies (<a href=#UOWM3></a>), then $\Delta$ resides in $D(B(F))$. We must therefore show that a distribution in $D(B(F))$ that sarisfies (<a href=#UOWM3></a>) is zero. Let $Y=F^\times\times F^\times$, $(a,d)\in Y$ and $p':B(F)\to Y$ the continuous function
+\[
+p'\begin{pmatrix}
+a&b\\
+0&d
+\end{pmatrix}=(a,d).
+\]
+The fiber of this map are stable uunder the action $\sigma$ of $G$. We have a homeomorphism
+\[
+N(F)\to P':=p^{-1}(a,d),\quad\begin{pmatrix}
+1&u\\
+0&1
+\end{pmatrix}\mapsto\begin{pmatrix}
+1&u\\
+0&1
+\end{pmatrix}\begin{pmatrix}
+a&0\\
+0&d
+\end{pmatrix}=\begin{pmatrix}
+a&du\\
+0&d
+\end{pmatrix}.
+\]
+with inverse
+\[
+\tau':\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}\mapsto\begin{pmatrix}
+1&x/d\\
+0&1
+\end{pmatrix}.
+\]
+Using this homeomorphism, we transfer the distribution $\Delta$ to $D(N(F))$: the group structure on $P'$ is defined by
+\[
+\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}\cdot\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}=\begin{pmatrix}
+a&x+y\\
+0&d
+\end{pmatrix}
+\]
+so that if $f$ is a smooth and compactly supported function on $p^{-1}(a,d)$, then the first equation in (<a href=#UOWM1></a>) implies
+\[
+\lambda_{P'}\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}=f\begin{pmatrix}
+a&y-x\\
+0&d
+\end{pmatrix}=\lambda_G\begin{pmatrix}
+1&x/d\\
+0&1
+\end{pmatrix}f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}=\lambda_G\circ\tau'\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}
+\]
+and so there exists a constant $c'$ such that
+<div class="equation" data-label="UOWM5">
+\Delta(f)=c'\int_{N(F)}f(u\delta)\psi_N(u)du,\quad\delta=\begin{pmatrix}
+a&0\\
+0&d
+\end{pmatrix}.
+</div>
+Similarly, using the second equation in (<a href=#UOWM2></a>), we obtain
+\[
+\rho_{P'}\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}=f\begin{pmatrix}
+a&x+y\\
+0&d
+\end{pmatrix}=\rho_G\begin{pmatrix}
+1&x/a\\
+0&1
+\end{pmatrix}f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}=\rho_G\circ\tau'\left[\delta^{-1}\begin{pmatrix}
+a&x\\
+0&d
+\end{pmatrix}\delta\right]f\begin{pmatrix}
+a&y\\
+0&d
+\end{pmatrix}
+\]
+and there exists a constant $c''$ such that
+<div class="equation" data-label="UOWM6">
+\Delta(f)=c''\int_{N(F)}f(u\delta)\psi_N(\delta^{-1}u\delta)du.
+</div>
+If $a\neq d$, then (<a href=#UOWM5></a>) and (<a href=#UOWM6></a>) imply that $c_1=c_2=0$ as otherwise we can choose $u$ such that $c_1\psi_N(u)\neq c_2\psi_N(\delta^{-1}u\delta)$, and then taking a test function $f$ that is the characteristic function of a small neighborhood of $u$ gives a contradiction by (). On the other hand, if $a=d$ then it is easy to see by (<a href=#UOWM5></a>) that the distribution $\Delta$ is invariant under $\iota$, so (<a href=#UOWM2></a>) implies $c'=0$.
+</div>
+
+<div class="proof" data-name="&lt;em>Proof of &lt;/em>(&lt;a href=#UOWM>&lt;/a>).">
+Let $G=GL_2(F)$. We first recall some notation: $V^\ast$ the dual space if $V$, $\widehat{V}$ the space of smooth linear functionals on $V$, $H_G$ the Hecke algebra of $G$ equipped with the convolution $\ast$ as its binary operation. We define another representation $(\pi',V)$ by $\pi'(g)=\pi(\iota(g)^{-1})$. Note that $\pi(\omega^0)$ is an intertwining operator between $\pi'$ and the representation $\pi_1$ in (<a href=#CITIC></a>), so $\pi'$ is isomorphic to $(\widehat{\pi},\widehat{V})$. It follows that there exists a non-degenerate bilinear pairing
+\[
+\langle\cdot,\cdot\rangle:V\times V\to\mathbf{C},\quad\langle\pi(g)\xi,\eta\rangle=\langle\xi,\pi(\iota(g)\eta),\quad(\xi,\eta)\in V\times V
+\]
+by (). Thus if $\Lambda\in\widehat{V}$ then there eixsts an element $[\Lambda]$ of $V$ that satisfies $\langle\xi,[\Lambda]\rangle=\Lambda(\xi)$. Recall that if $\phi\in H_G$ then $\pi(\phi)$ is defined by (). Now if $\Lambda$ is any linear functional on $V$ and if $\phi\in H_G$, then define a linear functional $\Lambda\ast\phi$ on $V$ by
+<div class="equation" data-label="UOWM7">
+(\Lambda\ast\phi)(\xi)=\Lambda(\pi(\phi)\xi)=\int_G\Lambda(\pi(g)\xi)\phi(g)dg
+</div>
+where the second equality follows from (). Note that even if $\Lambda$ is not smooth, the integrand is smooth and compactly supported because the smoothness of $\pi$ and $\phi\in H_G$. Now we prove serveral result:
+<ol class="parenthesis">
+<li>$\Lambda\ast\phi$ is smooth: by () we can choose a compact open subgroup $K$ of $G$ such that $\phi\in H^K$, so
+\[
+(\Lambda\ast\phi)(\pi(k)\xi)=\int_G\Lambda(\pi(gk)\xi)\phi(g)dg=\int_G\Lambda(\pi(g)\xi)\phi(gk^{-1})dg=\int_G\Lambda(\pi(g)\xi)\phi(g)dg=(\Lambda\ast\phi)(\xi).
+\]
+</li>
+<li>$\Lambda\ast(\phi_1\ast\phi_2)=(\Lambda\ast\phi_1)\ast\phi_2$ for any $\phi_1$ and $\phi_2\in H_G$: if $\xi\in V$ then
+\begin{align}
+\Lambda\ast(\phi_1\ast\phi_2)(\xi)&=\int_G\Lambda(\pi(g)\xi)(\phi_1\ast\phi_2)(g)dg\\
+&=\int_G\Lambda(\pi(g)\xi)\int_G\phi_1(x)\phi_2(x^{-1}g)dxdy\\
+&=\int_G\int_G\Lambda(\pi(x)\pi(g)\xi)\phi_1(x)dx\phi_2(g)dg\\
+&=\int_G(\Lambda\ast\phi_1)(\pi(g)\xi)\phi_2(g)dg\\
+&=(\Lambda\ast\phi_1)\ast\phi_2(\xi).
+\end{align}</li>
+<li>$\pi(g)[\Lambda\ast\phi]=[\Lambda\ast\rho(\iota(g^{-1}))\phi]$ for any $\Lambda\in V^\ast$ and $\phi\in H_G$: to see this, we take the inner product with an arbitrary $\xi\in V$ to obtain
+\begin{align}
+\langle\xi,\pi(g)[\Lambda\ast\phi]\rangle&=\langle\pi(\iota(g)\xi,[\Lambda\ast\phi]\rangle\\
+&=\int_G\Lambda(\pi(h)\pi(\iota(g)\xi)\phi(h)dh\\
+&=\int_G\Lambda(\pi(h)\xi)\phi(h\iota(g^{-1}))dh\\
+&=\langle\xi,[\Lambda\ast\rho(\iota(g^{-1})\phi]\rangle
+\end{align}</li>
+<li>$[L\ast\phi]=\pi(\iota(\phi)[L]$ for any $L\in\widehat{V}$: to see this, we take the inner product with an arbitrary $\xi\in V$  to obtain $\langle\xi,[L\ast\phi]\rangle=(L\ast\phi)(\xi)=L(\pi(\phi)\xi)=\langle\pi(\phi)\xi,[L]\rangle=\langle\xi,\pi(\iota(\phi)[L]\rangle$.
+</li>
+<li>$[\Lambda\ast\lambda(u)\phi]=\psi_N(u)[\Lambda\ast\phi]$ for any $\Lambda\in W_\psi(V)$ and $u\in N(F)$: to see this, we take the inner product with an arbitrary $\xi\in V$ to obtain
+\begin{align}
+\langle\xi,[\Lambda\ast\lambda(u)\phi]\rangle&=(\Lambda\ast\lambda(u)\phi)(\xi)\\
+&=\int_G\Lambda(\pi(g)\xi)\phi(u^{-1}g)dg\\
+&=\int_G\Lambda(\pi(u)\pi(g)\xi)\phi(g)dg\\
+&=\psi_N(u)(\Lambda\ast\phi)(\xi)\\
+&=\psi_N(u)\langle\xi,[\Lambda\ast\phi]\rangle.
+\end{align}
+</li>
+</ol>
+<ul>
+<li>
+Now fix $\phi\in H_G$ and two Whittaker functionals $\Lambda_1$ and $\Lambda_2$ on $V$. Define a distribution $\Delta$ on $G$ by $\Delta(\phi)=\Lambda_2([\Lambda_1\ast\phi])$.
+</li>
+</ul>
+<ol class="parenthesis" style="counter-reset: listcounter 5;">
+<li>$\Delta$ satisfies (<a href=#UOWM1></a>): if $\phi\in H_G$ and $u\in N(F)$, then
+\begin{align}
+(\lambda(u)\Delta)(\phi)&=\Delta(\lambda(u^{-1})\phi)\\
+&=\Lambda_2[\Lambda_1\ast\lambda(u^{-1}\phi]\\
+&=\Lambda_2(\psi_N(u^{-1})[\Lambda_1\ast\phi])\\
+&=\psi_N(u^{-1})\Delta(\phi)
+\end{align}
+and
+\begin{align}
+(\rho(u)\Delta)(\phi)&=\Delta(\rho(u^{-1})\phi)\\
+&=\Lambda_2[\Lambda_1\ast\rho(u^{-1})\phi]\\
+&=\Lambda_2(\pi(\iota(u)[\Lambda_1\ast\phi])\\
+&=\psi(\iota(u))\Delta(\phi)\\
+&=\psi_N(u)\Delta(\phi).
+\end{align}
+</li>
+</ol>
+<ul>
+<li>By (<a href=#UOWML></a>), $\Delta$ is stable under $\iota$.</li>
+</ul>
+<ol class="parenthesis" style="counter-reset: listcounter 6;">
+<li>$\Lambda_1\ast\phi=0$ if and only if $\Lambda_2\ast\phi=0$: if $\Lambda_1\ast\phi=0$, then (iii) implies that $[\Lambda_1\ast\rho(g)\phi]=0$ for all $g\in G$ and so $\Lambda_1\ast\rho(g)\phi=0$ for all $g\in G$. Thus $$0=\Lambda_2([\Lambda_1\ast\rho(g)\phi])=\Delta(\rho(g)\phi)=\Delta(\iota(\rho(g)\phi))=\Lambda_2([\Lambda_1\ast\lambda(\iota(g^{-1})\iota(\phi)]).$$
+Replace $g$ by $\iota(g^{-1})$ in the equation to obtain $\Lambda_2([\Lambda_1\ast\lambda(g)\iota(g)])=0$. Now observe that if $\sigma\in H_G$ then
+\[
+(\sigma\ast\iota(\phi))(g)=\int_G\sigma(h)(\lambda(h)\iota(g)dh
+\]
+and so for any $\sigma\in H_G$,
+\begin{align}
+\Lambda([\Lambda_1\ast\phi\ast\iota(\phi)])&=\Lambda_2([\Lambda_1\ast\int_G\sigma(h)(\lambda(h)\iota(\phi))(-)dh])\\
+&=\Lambda_2([\int_G\sigma(h)\Lambda_1\ast(\lambda(h)\iota(\phi))(-)dh])\\
+&=\Lambda_2\int_G\sigma(h)\Lambda_2[\Lambda_1\ast\lambda(h)\iota(\phi)](-)dh\\
+&=0.
+\end{align}
+By (iv), we may rewrite this as
+<div class="equation" data-label="UOWM8">
+\Lambda_2(\pi(\phi)[\Lambda_1\ast\sigma])=0,\quad\sigma\in H_G.
+</div>
+Next we show that if $\Lambda$ is any non-zero linear functional on $V$, then
+<div class="equation" data-label="UOWM9">
+V=\{[\Lambda\ast\sigma]:\sigma\in H_G\}.
+</div>
+Indeed, the right-hand side of (<a href=#UOWM9></a>) is an invariant subspce of $V$ by (iii). Because $V$ is assumed to be irreudicible, we need only show that the right side of (<a href=#UOWM9></a>) contains a non-zero vector. Let $\xi\in V$ such that $\Lambda(\xi)\neq 0$. The stabilizer in $G$ of $V$ is an open set such that $\int\phi(g)dg=1$; then it is wasy to see that $(\Lambda\ast\phi)(\xi)=\Lambda(\xi)\neq 0$, and we get (<a href=#UOWM9></a>). Now (<a href=#UOWM8></a>), (<a href=#UOWM9></a>) and (<a href=#UOWM7></a>) imply that $\Lambda_2\ast\phi=0$, so we proved (vii).
+</li>
+</ol>
+<ul>
+<li>We can define a map $T:V\to V$ by $T([\Lambda_1\ast\phi])=[\Lambda_2\ast\phi]$. This is well defined by (vii); moreover, it is indeed defined on all of $V$ by (<a href=#UOWM9></a>). It is an intertwining operator because by (iii),
+\[
+T(\pi(g)[\Lambda_1\ast\phi])=T([\Lambda_1\ast\rho(\iota(g^{-1}))\phi])=[\Lambda_2\ast\rho(\iota(g^{-1}))\phi]=\pi(g)[\Lambda_2\ast\phi].
+\]
+By (<a href=#SL-AIR></a>), there exists a constant $c$ such that $T(\xi)=c\xi$ for all $\xi\in V$. We may now prove that $\Lambda_2=c\Lambda_1$. Indeed, let $\xi\in V$ by any vector, and let $\phi$ be a smooth function with compact support contained in the (open) stabilizer of $\xi$ such that $\int\phi(g)dg=1$. Then $(\Lambda_1\ast\phi)(\xi)=\Lambda_1(\xi)$, and $(\Lambda_2\ast\phi)(\xi)=\Lambda_2(\xi)$. Then we have
+\[
+\Lambda_2(\xi)=(\Lambda_2\ast\phi)(\xi)=\langle\xi,[\Lambda_2\ast\phi]\rangle=c\langle\xi,[\Lambda_1\ast\phi]\rangle=c\Lambda_1(\xi).
+\]
+This completes the proof of (<a href=#UOWM></a>).</li>
+</ul>
+</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ a smooth representation of the Boreal subgroup $B(F)$ of $GL_2(F)$. We define $V_N$ to be the vector subspace of $V$ generated by elements of the form
+\[
+\pi(u)v-v,\quad u\in N(F),\quad v\in V.
+\]
+Let $T(F)$ be the diagonal elements in $GL_2(F)$. Because if $u\in N(F)$ and $t\in T(F)$, we have
+$$
+\pi(t)(\pi(u)v-v)=\pi(u')v'-v,\quad u'=tut^{-1},\quad v'=\pi(t)v.
+$$
+Thus the group $V_N$ is invariant under $T(F)$, and consequently the quotient $J(V)=V/V_N$ is a $T(F)$-module. Let $T(F)\to\End(J(V))$ be the action of $T(F)$ on $J(V)$. It is obvious that $(\pi_N,J(V))$ is a smooth representation of $T(F)$. $J(V)$ is called the <em style="color: teal;">Jacquet module</em> of $V$.
+</div>
+
+<div class="proposition" data-label="COVN">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ a smooth representation of $B(F)$. Then $v\in V_N$ if and only if for sufficiently large $n$,
+<div class="equation" data-label="COVNE">
+\int_{\mathfrak{p}^{-n}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}vdx=0
+</div>
+</div>
+
+<div class="proof">
+Let
+\[
+v=\pi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}w-w
+\]
+be a typical generator of $V_N$. If $\xi\in\mathfrak{p}^{-n}$ then the change of variable $x\mapsto x-\xi$ shows that
+\[
+\int_{\mathfrak{p}^{-n}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}\pi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}wdx=\int_{\mathfrak{p}^{-n}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}wdx
+\]
+and so (<a href=#COVNE></a>) holds. Conversely, suppose that $v$ satisfies (<a href=#COVNE></a>) for some $n$. Let $m>-n$ be such that $v$ is fixed by
+\[
+\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix},\quad x\in\mathfrak{p}^m.
+\]
+We note that the integran in (<a href=#COVNE></a>) is constant on the coset of $x$ modulo $\mathfrak{p}^m$. Hence (<a href=#COVNE></a>) may be rewritten as
+\[
+\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}v=0.
+\]
+Thus
+\[
+v=v-q^{-(n+m)}\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}v=\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\left[q^{-(n+m)}v-\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}q^{-(n+m)}v\right].
+\]
+This shows that $v\in V_N$.
+</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field. Any homomorphism $V\to W$ between smooth $B(F)$-modules induces a homomorphism $J(V)\to J(W)$ of smooth $T(F)$-modules. Thus the Jacquet module is a functor $V\mapsto J(V)$ from the category of smooth $B(F)$-modules to the category of smooth $T(F)$-modules, called the <em style="color: teal;">Jacquet functor</em>.
+</div>
+
+<div class="proposition" data-label="JFIE">
+Let $F$ be a non-archimedean local field. Then the Jacuqet functor $J$ is exact.
+</div>
+
+<div class="proof">
+Let
+<div class="equation" data-label="JFIEE">
+0\to V'\xrightarrow{i}V\xrightarrow{p}V''\to 0
+</div>
+be a short exact sequence of $B(F)$-modules. First we show that the induced sequence
+\[
+0\to V_N'\xrightarrow{i}V_N\xrightarrow{p}V_N''\to 0
+\]
+is exact. Without loss of generality, we may assume that $V'$ is a submodule of $V$. Thus $i_N$ is the inclusion of a submodule and the injectivity of $i_N$ is clear. The surjectivity of $p_N$ is also easy: Consider a typical generator $\pi''(u)v''-v''$ where $\pi''$ is the representation of $B(F)$ on $V''$, $u\in N(F)$ and $v''\in V''$. Becuase $p$ is surjective, we may find $v\in V$ with $p(v)=v''$. Then $p_N$ maps $\pi(u)v-v$ into $\pi''(v)v''-v''$. Thus the only non-trivial point is exact at $V_N$. Suppose that $v\in V_N$ and regarding $V'$ as a submodule of $V$. Then $\pi(v)=0$ if and only if $v\in V'\cap V_N$, and so exactness at $V_N$ amounts to showing that $V_N'=V'\cap V_N$. However, this is clear from (<a href=#COVN></a>). Hence (<a href=#JFIEE></a>) is exact. Now we have a commutative diagram
+\begin{CD}
+0@>a>>V_N' @>i_N>> V_N@>p_N>>C@>>>0\\
+@.@VVj'V @VVjV @VVj''V\\
+0@>i>>V' @>p>> V@>a>>V''@>a>>0
+\end{CD}
+in the category of smooth $B(F)$-modules, where $j$, $j'$ and $j''$ are the inclusion maps. By (), we have an exact sequence
+$$
+\Ker(j'')\to\Coker(j')\to\Coker(j)\to\Coker(j'')\to 0.
+$$
+Here $\Ker(j'')=0$, $\Coker(j')=J(V')$, $\Coker(j)=J(V)$ and $\Coker(J'')=J(V'')$, so we obtain the exactness of the functor $J$.
+</div>
+
+<div>
+We need a variant of this construction, the twisted Jacquet functor.
+</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field, $\psi$ a non-trivial additive character of $F$ and $(\pi,V)$ a smooth representation of $B(F)$. The vector space $V_{N,\psi}$ is the vector space generated by elements of the form $\pi(u)v-\psi(u)v$ with $u\in N(F)$ and $v\in V$. Let $J_\psi(V)=V/V_{N,\psi}$. We note that unlike $J(V)$, $J_\psi(V)$ is note a module for $T(F)$; it is only a module for the center $Z(F)$ of $GL_2(F)$. $J_\psi$ is a functor from the category of smooth $B(F)$-modules to the category of smooth $Z(F)$-moduels.
+</div>
+
+<div class="proposition" data-label="COVPN">
+Let $F$ be a non-archimedean local field, $\psi$ a non-trivial additive character of $F$ and $(\pi,V)$ a smooth representation of $B(F)$. Then $v\in V_N$ if and only if for sufficiently large $n$,
+<div class="equation" data-label="COVPNE">
+\int_{\mathfrak{p}^{-n}}\overline{\psi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}vdx=0
+</div>
+</div>
+
+<div class="proof">
+Let
+\[
+v=\pi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}w-\psi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}w
+\]
+be a typical generator of $V_{\psi,N}$. If $\xi\in\mathfrak{p}^{-n}$ then the change of variable $x\mapsto x-\xi$ shows that
+\[
+\int_{\mathfrak{p}^{-n}}\overline{\psi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}\left[\pi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}-\psi\begin{pmatrix}
+1&\xi\\
+0&1
+\end{pmatrix}\right]wdx=\int_{\mathfrak{p}^{-n}}\overline{\psi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}wdx
+\]
+and so (<a href=#COVPNE></a>) holds. Conversely, suppose that $v$ satisfies (<a href=#COVPNE></a>) for some $n$. Let $m>-n$ be such that $v$ is fixed by
+\[
+\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix},\quad x\in\mathfrak{p}^m.
+\]
+We note that the integran in (<a href=#COVPNE></a>) is constant on the coset of $x$ modulo $\mathfrak{p}^m$. Hence (<a href=#COVPNE></a>) may be rewritten as
+\[
+\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\overline{\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}v=0.
+\]
+Thus
+\begin{align}
+v&=v-q^{-(n+m)}\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\overline{\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}v\\
+&=\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\left[q^{-(n+m)}v-\overline{\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}}\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}q^{-(n+m)}v\right]\\
+&=\sum_{\alpha\in\mathfrak{p}^{-n}/\mathfrak{p}^{m}}\left[\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}\overline{\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}}q^{-(n+m)}v-\pi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}\overline{\psi\begin{pmatrix}
+1&\alpha\\
+0&1
+\end{pmatrix}}q^{-(n+m)}v\right]\\
+\end{align}
+This shows that $v\in V_N$.
+</div>
+
+<div class="proposition">
+Let $F$ be a non-archimedean local field and $\psi$ an additive character of $F$. Then the twisted Jacuqet functor $J_\psi$. is exact.
+</div>
+
+<div class="proof">
+The proof is identical to that of (<a href=#JFIE></a>), except that we use (<a href=#COVPN></a>) instead of (<a href=#COVN></a>).
+</div>
+
+<div class="proposition" data-label="JPWP">
+Let $F$ be a non-archimedean local field and $\psi$ an additive character of $F$. Then $J_\psi^\ast(V)=W_\psi(V)$.
+</div>
+
+<div class="proof">
+This is clear from the fact that a linear functional on $V$ is a Whittaker functional if and only if it annihilates $V_{N,\psi}$.
+</div>
+
+<div class="proposition" data-label="UOJM">
+Let $F$ be a non-archimedean local field, $\psi$ an additive character of $F$ and $(\pi,V)$ an irreducible admissible representation of $GL_2(F)$. Then $\dim J_\psi(V)\leq 1$.
+</div>
+
+<div class="proof">
+By (<a href=#JPWP></a>), this is just a paraphrase of (<a href=#UOWM></a>).
+</div>
+
+<div class="definition">
+Let $F$ be a local field and $(\pi,V)$ a smooth $B(F)$-module. Let $F\cong N(F)$ acts on $V$ by
+\[
+\rho(x)v=\pi\begin{pmatrix}
+1&-x\\
+0&1
+\end{pmatrix}v,\quad v\in V.
+\]
+Hence we have a cooresponding smooth $(H_F,\ast)$-module $V$; see (). We use the Fourier transform to transfer this to a representation of $(H_G,\cdot)$; see (). Thus if $\phi\in C_c^\infty(F)$, we define
+<div class="equation" data-label="BFHF">
+\phi\cdot v=\int_F\widehat{\phi}(x)\pi\begin{pmatrix}
+1&-x\\
+0&1
+\end{pmatrix}vdx,\quad v\in V.
+</div>
+</div>
+
+<div class="proposition" data-label="BFCS">
+Let $F$ be a local field and $(\pi,V)$ a smooth $B(F)$-module. Then $V$ is a cosmooth module of $H_F$ under the action (<a href=#BFHF></a>).
+</div>
+
+<div class="proof">
+Let $\mathfrak{p}^n$ be the conductor of $\psi$; that is, $\mathfrak{p}^n$ is the largest fractional ideal on wihch $\psi$ is trivial. Then the Fourier transoform of $1_{\mathfrak{p}^{-k}}$ is $\vol(\mathfrak{p}^{-k})1_{\mathfrak{p}^{n+k}}$; see (). Nor for every vector $v\in V$, if $k$ is sufficiently large, then $\rho(x)v=v$ for $x\in\mathfrak{p}^{n+k}$. Hence $1_{\mathfrak{p}^{-k}}\cdot v=\vol(\mathfrak{p}^{-k})\vol(\mathfrak{p}^{n+k})\cdot v=v$. Because $\vol(\mathfrak{p}^{-k})\vol(\mathfrak{p}^{n+k})=1$ with respect to the self-dual Haar measure by (), this shows tha $V$ satisfies the definition of a cosmooth module.
+</div>
+
+<div class="definition">
+Let $F$ be a local field and $(\pi,V)$ a smooth $B(F)$-module. By (<a href=#BFCS></a>) and (<a href=#CCIXS></a>), we associate a sheaf $\mathcal{S}(V)$ on $F$ by $U\mapsto 1_U\cdot V$ if $U$ is open in $F$.
+</div>
+
+<div class="proposition" data-label="SOSV">
+Let $F$ be a local field and $(\pi,V)$ a smooth $B(F)$-module. Then $\mathcal{S}(V)_a\cong J_{\psi_a}(V)$ canonically for any $a\in F$, and $J_{\psi_a}(V)\cong J_\psi(V)$ if $a\neq 0$.
+</div>
+
+<div class="proof">
+Fix $a\in F$. We first prove that the projection map  $V\to \mathcal{S}(V)_a$ is surjective, and its kernel is $V_N$. But thes stalks $\mathcal{S}(V)_a$ are described in (<a href=#MSIT></a>): $\mathcal{S}(V)_a$ is $V$ modulo the subgroup consisting of elements $v$ that satisfy $1_U\cdot v$ whenever $U$ is a sufficiently small neighborhood of $a$. It is sufficient to consider $U$ of the form $a+\mathfrak{p}^k$ for $k$ large, beause if $a+\mathfrak{p}^k\subseteq U$ then $1_{a+\mathfrak{p}^k}\cdot 1_U=1_{a+\mathfrak{p}^k}$. Since $\widehat{1_{a+\mathfrak{p}^k}}(x)=\psi(ax)\vol(\mathfrak{p})1_{\mathfrak{p}^{n-k}}(x)$ by (), the condition of (<a href=#MSIT></a>) for $v$ to be in the kernel of the canonical map $V\to\mathcal{S}(V)_a$ amouts to the condition that
+\[
+\int_{\mathfrak{p}^{n-k}}\psi(ax)\pi\begin{pmatrix}
+1&-x\\
+0&1
+\end{pmatrix}vdx=0
+\]
+for sufficiently large $k$, a condition that we recognize as (<a href=#COVPN></a>). To prove that $J_{\psi_a}(V)\cong J_\psi(V)$ for $a\neq 0$, note that
+\[
+\pi(g_a),\quad g_a=\begin{pmatrix}
+a&1\\
+0&1
+\end{pmatrix}
+\] maps $V_{N,\psi}$ onto $V_{N,\psi}$.
+</div>
+
+<div class="lemma" data-label="NNSL"> Let $F$ be a field. Denote $N_-$ the subgroup of the transpose $N^\top$ in $SL_2(F)$.
+<ol class="parenthesis">
+<li>$SL_2(F)$ is generated by $N(F)$ and $N_-(F)$.</li>
+<li>$SL_2(F)$ is generated by $N(F)$ and an arbitrary element $\gamma\in SL_2(F)-B(F)$.</li>
+</ol>
+</div>
+
+<div class="proof">
+<ol class="parenthesis" style="counter-reset: listcounter 1;">
+<li>If $z\in SL_2(F)-B(F)$ then consider the factorization
+<div class="equation" data-label="NWN">
+z=:\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}=\begin{pmatrix}
+1&a/c\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}
+0&-1/c\\
+c&0
+\end{pmatrix}
+\begin{pmatrix}
+1&d/c\\
+0&1
+\end{pmatrix}.
+</div>
+Since
+\[
+\begin{pmatrix}
+1&1\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}
+0&-1/c\\
+c&0
+\end{pmatrix}
+\begin{pmatrix}
+1&1/c^2\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}
+0&-1/c\\
+c&0
+\end{pmatrix}
+\begin{pmatrix}
+1&1\\
+0&1
+\end{pmatrix}=\begin{pmatrix}
+0&-1\\
+1&0
+\end{pmatrix},
+\]
+we generate $N_-(F)$ and hence it suffices to prove (i).
+</li>
+</ol>
+<ol class="parenthesis">
+<li>In view of (<a href=#NWN></a>), it sufficient to show that $N_-(F)$ and $N(F)$ generate the matrices
+\[
+\begin{pmatrix}
+x&0\\
+0&1/x
+\end{pmatrix},\quad x\in F^\times.
+\]
+Consider a product of the form $N_-(F)N(F)N_-(F)N(F)$:
+\[
+\begin{pmatrix}
+1&0\\
+\alpha&1
+\end{pmatrix}
+\begin{pmatrix}
+1&\beta\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}
+1&0\\
+\gamma&1
+\end{pmatrix}
+\begin{pmatrix}
+1&\delta\\
+0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1+\beta\gamma&\delta(1+\beta\gamma)+\beta\\
+\alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
+\end{pmatrix}.
+\]
+Choose $\beta$ and $\gamma$ so taht $1+\beta\gamma=x$. To get the anti-diagonal terms to be $0$, we take
+\[
+\alpha=\frac{-\gamma}{1+\beta\gamma},\quad\delta=\frac{-\beta}{1+\beta\gamma}.
+\]
+Then this matrix becomes
+\[
+\begin{pmatrix}
+1+\beta\gamma&0\\
+0&1/(1+\beta\gamma)
+\end{pmatrix}=\begin{pmatrix}
+x&0\\
+0&1/x
+\end{pmatrix},
+\]
+as desired.</li>
+</ol>
+</div>
+
+<div class="theorem">
+Let $F$ be a non-archimedean local field, $(\pi,V)$ a smooth representation of $GL_2(F)$ that has no non-zero Whittaker functinoal. Then $\pi$ factors through the deterinant map $GL_2(F)\to F^\times$. In particular, if $\pi$ is irreducible and admissible, it is one dimenaional.
+</div>
+<div class="proof">
+Since $V$ has no non-zero Whittaker functinoal, $J_\psi^\ast=0$ by (<a href=#JPWP></a>). Hence (<a href=#SOSV></a>) implies that $S(V)_a=0$ for $a\in F^\times$, so $\mathcal{S}(V)$ is a skyscraper sheaf supported at zero, and its stalk there is $J(V)$. Because $V$ is itself equal to the space of all comapctly supported sections of $\mathcal{S}(V)$ by (<a href=#CCIXSC></a>), we see that the canonical map $V\to\mathcal{S}(V)_0=J(V)$ is an isomorphism. Thus $J_N=0$, which means that $\pi(u)v=v$ for all $u\in N(F)$, and thus $N(F)$ acts trivially. It follows that all conjugate of $N(F)$ act trivially also. But by (<a href=#NNSL></a>), $N(F)$ and its conjugate generate $SL_2(F)$, and so $SL_2(F)$ acts trivially on $V$. Thus the represetation $\pi$ factprs through the determinant map $GL_2(F)\to F^\times$ by (). Because the irreducible representation of the locally compact abelian group $F^\times$ are all of one-dimensional by (<a href=#AGOD></a>), $\dim(V)=1$.
+</div>
+
+<div class="corollary" data-label="VIWM">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ a smooth representation of $GL_2(F)$ with $\dim V=\infty$. Then $V$ admits a non-zero Whittaker functional.
+</div>
+
+<div class="proposition" data-label="VNF0">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ an irreducible admissible representation of $GL_2(F)$ with $\dim V=\infty$. Then $V^{N(F)}=0$.
+</div>
+
+<div class="proof">
+Assume $v\in V$ is invariant under all of $N(F)$. Since the stabilizer of $v$ is open by the smoothness, it contains an element of $SL_2(F)-B(F)$. Thus by (<a href=#NNSL></a>), $v$ is stabilizer by $SL_2(F)$. By (<a href=#SL-AIR></a>), the one-dimensional subspace spanned by $v$ is also fixed by the center $Z(F)$. Fisrt assume that the characteristic of $F$ is not two. If $g\in GL_2(F)$ then the coset of $g$ in $GL_2(F)/SL_2(F)Z(F)$ is determined by the class of $\det(g)$ in $F^\times/(F^\times)^2$ by the first isomorphism theorem, and there are only finitely many such classes by ()(Neur.p.142). It follows that the space spanned by $\pi(g)v$, $g\in GL_2(F)$ is finite dimensional, which contradicts the irreducibility and infinite dimensionality of $V$ if $v\neq 0$. If the characteristic of $F$ is two, the one-dimensional subspace spanned by $v$ is stabilized by $SL_2(F)$, $Z(F)$ and some open subgroup $U$ pf $GL_2(F)$. The first isomorphism theorem implies that $GL2(F)/SL_2(F)Z(F)U$ is isomorphic to $(F^\times/(F^\times)^2)/U'$ where $U'$ is an open subgroup of $F^\times/(F^\times)^2$. Since $F^\times/(F^\times)^2$ is compact by (), the quotient is of finite index by (). Hence the translate of $v$ span a finite-dimenaional space as before.
+</div>
+
+<div class="proposition" data-label="KMIT">
+Let $F$ be a non-archimedean local field, $(\pi,V)$ an irreducible admissible representation of $GL_2(F)$ with $\dim V=\infty$ and $\Lambda\in W_\psi$ be non-zero. If $v\in V$ satisfies $W_a(v)=0$ for all $a\in F^\times$, then $v=0$, where for $a\in F$,
+\[
+W(a):V\to\mathbf{C},\quad v\mapsto\Lambda\left(\pi\begin{pmatrix}
+a&0\\
+0&1
+\end{pmatrix}v\right).
+\]
+</div>
+
+<div class="proof">
+Assume $W_a(v)$ vanishes for all $a\in F^\times$. We will show that $v$ is $N(F)$-invariant and hence zero by (<a href=#VNF0></a>). It is easy to see that if $a\in F^\times$, then the kerenel of $W_a$ contains $V_{N,\psi_a}$. Because $\Lambda$ is non-zero, this map is non-zero. By (<a href=#UOJM></a>), $V_{N,\psi_a}$ is of codimension one, so the kernel of this map is all of $V_{N,\psi_a}$. Thus $v\in V_{N,\psi_a}$ and has zero image in $\mathcal{S}(V)_a\cong V/V_{N,\psi_a}$ for all $a\in F^\times$; see (<a href=#SOSV></a>). For any $x\in F$, the vector
+\[
+v'=v-\pi\begin{pmatrix}
+1&x\\
+0&1
+\end{pmatrix}v
+\]
+also satisfies $W_a(v')=0$ for all $a\in F^\times$; moreover, since $\pi(n)v'=v'$ for any $n\in N(F)$, $v'$ has zero image in $S(V)_0\cong V/V_N$ by (<a href=#SOSV></a>). Use the canonical isomorphism $V\cong\mathcal{S}(V)_c$ in (<a href=#MSIT></a>), we see that $v'=0$ by the property of sheaf. Because this is true for all $x$, it follows from (<a href=#VNF0></a>) that $v=0$.
+</div>
+
+<div class="definition"> Let $F$ be a non-archimedean local field, $(\pi,V)$ an irreducible admissible representation of $GL_2(F)$ with $\dim V=\infty$, and $\Lambda\in W_\psi$ be non-zero.
+<ol class="parenthesis">
+<li>The space $W_\Lambda$, called the <em style="color: teal;">Whittaker model</em> of $(\pi,V)$, consisting of linear functional on $GL_2(F)$
+$$
+W_v=\Lambda(\pi(-)v):GL_2(F)\to\mathbf{C},\quad v\in V.
+$$
+</li>
+<li>The space $K_\Lambda$, called the <em style="color: teal;">Kirillov model</em> of $(\pi,V)$, consiting of linear fucntinoals on $GL_1(F)=F^\times$
+\[
+\phi_v= W_v\begin{pmatrix}
+-&0\\
+0&1
+\end{pmatrix}:F^\times\to\mathbf{C}\quad v\in V.
+\]
+</li>
+</ol>
+</div>
+
+<div>We prove that they are indeed models of $(\pi,V)$:</div>
+
+<div class="proposition"> Let $F$ be a non-archimedean local field, $(\pi,V)$ an irreducible admissible representation of $GL_2(F)$ with $\dim V=\infty$, and $\Lambda\in W_\psi$ be non-zero.
+<ol class="parenthesis">
+<li>The linear map $(\pi,V)\to W_\Lambda$, $v\mapsto W_v$, is an isomorphism. The induced action of $GL_2(F)$ on $W_K$ is given by right translation.</li>
+<li>The linear map $(\pi,V)\to K_\Lambda$, $v\mapsto\phi_v$ is an isomorphism. The induced action of $B(F)$ on $K_\Lambda$ is given by
+\[
+\pi\begin{pmatrix}
+a&0\\
+0&1
+\end{pmatrix}\phi(x)=\phi(ax),\quad\pi\begin{pmatrix}
+1&b\\
+0&1
+\end{pmatrix}\phi(x)=\psi(bx)\phi(x),\quad a,b\in F,\quad\phi\in K_\Lambda.
+\]
+</li>
+</ol>
+</div>
+
+<div class="proof">
+The map $v\mapsto W_v$ is clearly an isomorphism. The map $v\mapsto\phi_v$ is an isomorphism by (<a href=#KMIT></a>).
+</div>
+
+<div>Now we are completing the elementary theory of the Jacquet functor.</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field. For each integer $n\geq 0$, define
+\[
+K_n=\left\{\begin{pmatrix}
+a&b\\
+c&d\\
+\end{pmatrix}\in GL_2(\mathfrak{o}):c\in\mathfrak{p}\text{ and }a,d\in U^n\right\}.
+\]
+They are known as the <em style="color: teal;">Iwahori subgroups</em>. We also define
+\begin{align}
+N_n&=\left\{\begin{pmatrix}
+1&x\\
+0&1\\
+\end{pmatrix}\in GL_2(\mathfrak{o}):x\in\mathfrak{p}^n\right\};
+\\
+T_n&=\left\{\begin{pmatrix}
+a&0\\
+0&d\\
+\end{pmatrix}\in GL_2(\mathfrak{o}):a,d\in U^n\right\};
+\\
+N_{-n}&=\left\{\begin{pmatrix}
+1&0\\
+x&1\\
+\end{pmatrix}\in GL_2(\mathfrak{o}):x\in\mathfrak{p}^n\right\}.
+\end{align}
+</div>
+
+<div class="proposition">
+Let $F$ be a non-archimedean local field. Then for each positive integer $n$, the product map
+\[
+N_{-n}\times T_n\times N_0\to K_n
+\]
+is a homeomorphism for any ordering of factors on the left hand side.
+</div>
+
+<div class="proof">
+Let $x\in K_n$. Use the factorization
+\[
+x:=\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}=\begin{pmatrix}
+1&0\\
+-c/a&1
+\end{pmatrix}\begin{pmatrix}
+a&0\\
+0&b-cd/a
+\end{pmatrix}\begin{pmatrix}
+1&b/a\\
+0&1
+\end{pmatrix}\in N_{-n}T_nN_0
+\]
+and (); note that $a\in\mathfrak{o}^\times$.
+</div>
+
+<div class="lemma" data-name="Jacquet" data-label="JQLM">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ an smooth representation of $GL_2(F)$. Then $V^{K_m}$ and $V^{N_{-m}T_m}$  have the same image in the Jacque module $J(V)$ for any positive integer $m$.
+</div>
+
+<div class="proof">
+Let $p:V\to J(V)$ be the projection map. Let $x\in V^{N_{-m}T_m}$. Then $x':=\int_{K_m}\pi(k)xdk$ lies in $V^{K_m}$; we will show that $p(x')=p(x)$. Note that this is sufficient because it shows that $p(V^{N_{-m}T_m})\subseteq p(V^{}K_m)$, but the other inclusion is obvious. By (), we have
+$$
+x'=\int_{K_{-m}}\int_{T_m}\int_{N_0}\pi(n)\pi(tn_-)xdndtdn_-=\int_{N_0}\pi(n)xdn
+$$
+where the second equality follows from the fact that $x$ is fixed by $t\in T_m$ and $n_{-m}$. Because $p(x)=p(\pi(n)x)$ for any $n\in N_m$ by the definition of $J(V)$, it follows that $p(x')=p(x)$.
+</div>
+
+<div class="theorem" data-label="JQTM">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ an smooth representation of $GL_2(F)$. Then the projection map $p:V\to J(V)$ induces a surjection $V^{K_m}\to J(V)^{T_m}$ for any positive integer $m$.
+</div>
+
+<div class="proof">
+Fix a positive integer $m$. We note that any $T_m$-fixed vector in $J(V)$ may be pulled back to a $T_m$-fixed vector in $V$; indeed, if $p(x)$ is $T_m$-fixed and $t\in T_m$, then we note that $p(\pi(t)x)=\pi_N(t)p(x)=p(x)$ where $\pi_N:T(F)\to\End(J(V))$ is the action of $T(F)$ on the Jacquet module, so integrating, we find that
+\[
+p(x')=p(x),\quad x'=\frac{1}{\vol(T_m)}\int_{T_m}\pi(t)xdt\in V^{T_m}.
+\]
+Thus if $\overline{U}$ is any finite-dimensional subspace of $J(V)^{T_m}$, then we can choose a basis $\{v_i\}$ of $\overline{U}$ so that the subspace $U\subseteq V^{T_m}$ generated by $\{v_i'\}$ is mapped onto $\overline{U}$ by $p$, which is in fact an isomorphism since the composition $\overline{U}\to U\to\overline{U}$ given by $v_i\mapsto v_i'\mapsto p(v_i')$ is the identity. Now $U$ is stailized by $N_{-n}$ for some sufficiently large $n$ by the smoothness of $\pi$, so $U$ is stabilized by $N_{-n}T_m$. We note that
+\[
+\pi(d)N_{-n}T_m\pi(d)^{-1}=N_{-m}T_m,\quad d=\begin{pmatrix}
+\varpi^{n-m}&0\\
+0&1
+\end{pmatrix},
+\]
+so $\pi(d)U$ is stabilized by $N_{-m}T_m$. By (<a href=#JQLM></a>), it follows that $\pi_N(d)p(U)=p(\pi(d)U)\subseteq p(V^{K_m})$ and the inclusion $\pi_N(d)p(U)\subseteq p(V^{K_m})$ holds for any subspace $\overline{U}$ of $J(V)^{T_m}$ regardless of the dimensional of $\overline{U}$. In particular, we can choose $\overline{U}=J(V)^{T_m}$ to obtain $\pi_N(d)J(V)^{T_m}\subseteq p(V^{K_m})$. However, because $T(F)$ is abelian, $\pi_N(d)$ commutes with the action of $T_m$ on $J(V)$, so this means that $J(V)^{T_m}\subseteq p(V^{K_m})$. The opposite inclusion is also clear.
+</div>
+
+<div class="corollary">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ an admissible representation of $GL_2(F)$. Then the representation of $T(F)$ on $J(V)$ is also admissible.
+</div>
+
+<div class="proof">
+By (<a href=#JQTM></a>), the dimension of $J(V)^{T_m}$ is bounded by $V^{K_m}$ for all positive integer $m$. Since $V$ is admissible, $V^{K_m}$ and so $J(V)^{T_m}$ is finite dimensional for all $m$ large enough. Since these $T_m$ form unit-neighborhood basis of $T(F)$, this prove the adissibility of $J(V)$.
+</div>
+
+<div>We end this section by study those representations whose Jacuqet module vanishes.</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ a smooth representation of $GL_2(F)$. Then $(\pi,V)$ is called <em style="color: teal;">supercuspidal</em> if $J(V)=0$.
+</div>
+
+<div class="proposition">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ an non-supercuspidal irreducible representation of $GL_2(F)$. Then $J(V)=V$.
+</div>
+
+<div class="proof">
+Since $V$ is irreducible, $V_N=0$ or $V_N=V$. Since $V$ is non-supercuspidal, $J(V)\neq 0$, so $V_N\neq V$. Hence $J(V)=V/V_N=V$.
+</div>
+
+<div class="definition">
+Let $G$ be a profinite group, $(\pi,V)$ a smooth representation of $G$ and $(\hat{\pi},\hat{V})$ its contragredient representation. For any $v\in V$ and $\hat{v}\in\hat{V}$, define
+$$
+f_{v,\hat{v}}:G\to\mathbf{C},\quad f_{v,\hat{v}}(g)=\langle\pi(g)v,\hat{v}\rangle,\quad g\in G,
+$$
+called the <em style="color: teal;">matrix coefficient function</em> of $v$ and $\hat{v}$.
+</div>
+
+<div class="proposition" data-label="MCZA">
+Let $G$ be a profinite group, $(\pi,V)$ an irreducible admissible representation of $G$. Then for any matrix coefficient function $f$, $f(zg)=\omega(z)f(g)$ for any $z\in Z(G)$ and $g\in G$, where $\omega$ is the central quasi-character.
+</div>
+
+<div class="proof">
+Immediate from (<a href=#SL-AIR></a>).
+</div>
+
+<div class="lemma">
+Let $F$ be a non-archimedean local field. Then
+\[
+GL_2(F)=\bigcup_{i\geq j\in\mathbf{Z}}K(F)\begin{pmatrix}
+\varpi^i&0\\
+0&\varpi^j
+\end{pmatrix}K(F)=\bigcup_{z\geq 0}Z(F)K(F)\begin{pmatrix}
+\varpi^n&0\\
+0&1
+\end{pmatrix}K(F)
+\]
+</div>
+
+<div class="proof">
+For $g_1$, $g_2\in GL_2(F)$, we say $g_1$ and $g_2$ are equivalent and write $g_1\sim g_2$ if $K(F)g_1K(F)=K(F)g_2K(F)$. Let $g\in GL_2(F)$. Notice that acting by $K(F)$ on the left of $g$ can be view as performing elementary row operations, so permuting rows, multiplying a row by a unit $u\in U$ adding a multiple (by an element of $\mathfrak{o}$) of one row to the other transforms $g$ to an equivalent element. Therefore, if
+\[
+g=\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+\]
+then we may assume that $\abs{d}$ is maximal among $\abs{a}$, $\abs{b}$, $\abs{c}$, $\abs{d}$, and, in fact that $d=\varpi^j$. Hence we can use column and row operation to obtain
+\[
+g=\begin{pmatrix}
+a&b\\
+c&\varpi^j
+\end{pmatrix}\sim\begin{pmatrix}
+a'&0\\
+c&\varpi^j
+\end{pmatrix}\sim\begin{pmatrix}
+a'&0\\
+0&\varpi^j
+\end{pmatrix}=\begin{pmatrix}
+u\varpi^i&0\\
+0&\varpi^j
+\end{pmatrix}=\begin{pmatrix}
+u&0\\
+0&1
+\end{pmatrix}\begin{pmatrix}
+\varpi^i&0\\
+0&\varpi^j
+\end{pmatrix}.
+\]
+Change the rows and columes if necessary, we may assume that $i\geq j$. This gives the desired decomposition.
+</div>
+
+<div class="theorem" data-label="MCZG">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$, $Z$ the center of $G$ and $(\pi,V)$ a supercuspidal irreducible admissible representation of $G$. Then for any matrix coefficient function $f$, $f$ is compactly supported on $Z\setminus G$. In other words, there exists a compact set $\Omega\subseteq G$ such that $f$ vanishes outside of $Z\Omega$.
+</div>
+
+<div class="proof">
+Let $f$ be a matrix coefficient function and
+\[
+w_n=\begin{pmatrix}
+\varpi^n&0\\
+0&1
+\end{pmatrix},\quad n\in\mathbf{Z}.
+\]
+We prove serveral results:
+<ol class="parenthesis">
+<li>For any $v\in V$ and $\hat{v}\in\hat{V}$, there exists $n_0$ such that $f_{v,\hat{v}}(w_n)=0$ for all $n\geq n_0$: Since $V$ is supercuspidal, $V=V_N$ and so () implies that for any $v\in V$, tehre exists a copmact open subset $U\subseteq N(F)$ such that
+$$
+\int_U\pi(u)vdu=0.
+$$
+Since $\hat{V}$ is smooth, there eixsts a compact open subset $V$ of $N$ such that $V\hat{v}=\hat{v}$. Choose $n_0$ large enough such that $w_{n_0}Uw_{-n_0}\subseteq V$. Then for any $n\geq n_0$, we can use () to computes
+\begin{align}
+0&=\langle\int_U\pi(w_n)\pi(u)vdu,\hat{v}\rangle\\
+&=\langle\int_U\pi(w_nuw_{-n})\pi(w_n)vdu,\hat{v}\rangle\\
+&=\abs{\varpi^n}\langle\int_{w_nUw_{-n}}\pi(u')\pi(w_n)v,\hat{v}\rangle du'\\
+&=\abs{\varpi^n}\langle\int_{w_nUw_{-n}}\pi(w_n)v,\hat{\pi}(u'^{-1})\hat{v}\rangle du'\\
+&=\abs{\varpi^n}\langle\int_{w_nUw_{-n}}\pi(w_n)v,\hat{v}\rangle du'\\
+&=\abs{\varpi^n}\vol(w_nUw_{-n})f_{v,\hat{v}}\\
+&=\vol(U)f_{v,\hat{v}}.
+\end{align}
+</li>
+<li>For any $v\in V$ and $\hat{v}\in\hat{V}$, there exists $n_0$ such that $f_{v,\hat{v}}(ZKw_nK)=0$ for all $n\geq n_0$: By smoothness, given $v$ and $\hat{v}$, there exists a open normal subgroup $L$ of $K$ fixing $v$ and $\hat{v}$; see (<a href=#PROFG></a>). Write $K$ as a disjoint union $\bigcup_{j=1}^lk_jL$ for some $k_1,\ldots,k_j$ where $j=[L:K]$. Then for any $k$ and $k'\in K$, there are $i$ and $j$ such that $k\in Lk_j$ and $k'\in k_iL$. thus
+\begin{align}
+f_{v,\hat{v}}(kw_nk')&=\langle\pi(k)\pi(w_n)\pi(k')v,\hat{v}\rangle\\
+&=\langle\pi(w_n)\pi(k'),\hat{\pi}(k^{-1})\hat{v}\rangle\\
+&=\langle\pi(w_n)\pi(k_i')v,\hat{\pi}(k_j^{-1})\hat{v}\rangle\\
+&=f_{v_i,\hat{v}_j}(w_n)
+\end{align}
+where $v_i=\pi(k_i')v$ and $\hat{v}=\hat{\pi}(k_j^{-1}\hat{v})$. By (i), there exists $n_{ij}$ such that $f_{v_i,\hat{v}_j}(w_n)=0$ for all $n\geq n_{ij}$. Hence we can choose $n_0=\max_{i,j}\{n_{ij}\}$.
+</li>
+</ol>
+Now $f$ vanishes on $ZKw_nK$ for all $n$ sufficiently large, say $n\geq n_0$. Then we can choose $\Omega=\bigcup_{n=0}^{n_0}Kw_nK$, which is compact set by 
+</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$, $Z$ the center of $G$ and $(\pi,V)$ a supercuspidal irreducible admissible representation of $G$. Fix a non-zero $\hat{v}\in\hat{V}$. For $v_1$ and $v_2\in V$, define
+$$
+(v_1,v_2)_{\hat{v}}=\int_{Z\setminus G}\langle f_{v,\hat{v}}(g)\overline{f_{v_2,\hat{v}}(g)}dg=\int_{Z\setminus G}\langle\pi(g)v_1,\hat{v}\rangle\overline{\langle\pi(g)v_2,\hat{v}\rangle}dg.
+$$
+The integral exists and is well-defined by (<a href=#MCZG></a>) and (<a href=#MCZA></a>).
+</div>
+
+<div class="corollary" data-label="GIIP">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$, $Z$ the center of $G$ and $(\pi,V)$ a supercuspidal irreducible admissible representation of $G$. Then for all non-zero $\hat{v}\in\hat{V}$, $(-,-)_{\hat{v}}$ is a $G$-invariant positive definite Hermitian pairing on $V$.
+</div>
+
+<div class="proof">
+It is clearly $G$-invariant, positive and Hermitian. We need to show that it is definite. If $(v,v)_{\hat{v}}=0$ for some $v\in V$, then $0=\langle\pi(g)v,\hat{v}\rangle=\langle v,\hat{\pi}(g^{-1})\hat{v})$ for all $g\in G$. Since $\hat{V}$ is irreducible by (<a href=#CGRI></a>), $\hat{g}(g^{-1})\hat{v}$ generate $\hat{V}$ as $g$ varies over $G$. Hence $\langle v,\hat{v}\rangle=0$ for all $\hat{v}\in\hat{V}$. Thus $v=0$.
+</div>
+
+<div class="proposition">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$, $Z$ the center of $G$ and $(\pi,V)$ a supercuspidal irreducible admissible representation of $G$. Then for any $G$-invariant inner product $(-,-)$ on $V$, there exists a constant $d>0$ such that
+<div class="equation" data-label="UVWY1">
+\int_{Z\setminus G}(\pi(g)u,w)\overline{(\pi(g)v,y)}dg=d\cdot (u,v)\overline{(w,y)},\quad u,\,v,\,w,\,y\in V.
+</div>
+If $v_0\in V$ is chosen so that $(v_0,v_0)=d^{-1}$, then
+<div class="equation" data-label="UVWY2">
+\int_{Z\setminus G}\pi(g)v_0\overline{\pi(g)v_0,u}dg=u,\quad u\in V.
+</div>
+</div>
+
+<div class="proof">
+Denote $\overline{V}$ the complex conjugate of $V$, that is, as a set we have $\overline{V}=V$, but the action of $\lambda\in\mathbf{C}$ is defined by $\lambda\cdot v=\overline{\lambda}v$. Then the map $\Phi:\overline{V}\to\hat{V}$ given by $v\mapsto(-,v)$ is a intertwining since for any $g\in G$, $v\in V$ and $w\in V$
+$$
+\hat{\pi}(g)\Phi(v)(w)=\hat{g}(-,v)(w)=(\pi(g^{-1}w,v)=(w,\pi(g)v)=\Phi(\pi(g))(w)
+$$
+where the third equality follows from $GL_2(F)$-invariance. It follows from (<a href=#CGRI></a>) that $\Phi$ is in fact an isomorphism. Now if there are two $G$-invariant inner product on $V$, then we obtain two such map $\Phi_1$ and $\Phi_2$ so that $\Phi_2^{-1}\circ\Phi_2:\overline{V}\to\overline{V}$ is an isomorphism. By (<a href=#SL-AIR></a>), it must be a scalar, so every $GL_2(F)$-invarint inner product on $V$ is unique up to scaling. Now fix $w$ and $v$ in $V$ and write
+$$
+(u,v)=\int_{Z\setminus G}(\pi(g)u,w)\overline{(\pi(g)v,y)}dg,\quad (u,v)\in V\times V
+$$
+Then $(u,v)$ is a multiple of $(u,v)_{\hat{v}}$, where $\hat{v}$ is a fixed non-zero vector in $\hat{V}$; detnoe this multiple by $F(u,v)$. Similarly, if we fix $u$ and $v$, then the pairing
+$$
+(w,y)=\int_{Z\setminus G}(\pi(g)u,w)\overline{(\pi(g)v,y)}dg,\quad (w,y)\in V\times V
+$$
+equals to a multiple of $\overline{(w,y)_{\hat{v}}}$; denote this multiple by $G(u,v)$. Thus $(u,v)F(w,y)=G(u,v)\overline{(w,y)}$. Since the functions $(w,y)\mapsto F(w,y)$ and $(u,v)\mapsto G(u,v)$ are not identically zero, it follos that the left hand side of (<a href=#UVWY1></a>) is a non-zero multiple $d$ of $(u,v)\overline{(w,y)}$, and $d>0$ follows from the definite of the pairings. To prove (<a href=#UVWY2></a>), fix $u\in V$ and let $s$ be the left-hand side of (<a href=#UVWY2></a>). Then for any $w\in V$,
+$$
+(s,w)=\int_{Z\setminus G}(\pi(g)v_0,w)\overline{(\pi(g)v_0,u)}dg=d(v_0,v_0)\overline{(w,u)}=\overline{(w,u)}=(u,w).
+$$
+</div>
+
+<div class="corollary" data-label="SCPI">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$, $(\pi,V)$ a supercuspidal irreducible admissible representation of $G$ and $(\pi',V')$ an admissible representation of $G$. If there exists a non-zero intertwining operator $A:V'\to V$, then $V$ is equivalent to a subrepresentation of $V'$, that is, there exists $B:V\to V'$ non-zero.
+</div>
+
+<div class="proof">
+Fix any $G$-invariant inner product $(-,-)$ on $V$, which exists by (<a href=#GIIP></a>). As in (), choose $v_0\in V$ such that $(v_0,v_0)=d^{-1}$. Since $A$ is surjective, we can choose a preimage $v_0'\in V$ of $v_0$ under $A$. Define
+$$
+B(u)=\int_{Z\setminus G}\pi'(g)v_0'\overline{(\pi(g)v_0,u)}dg.
+$$
+Then $B$ is an intertwining operator, and by (<a href=#UVWY2></a>),
+$$
+A(B(u))=A\left(\int_{Z\setminus G}\pi'(g)v_0'\overline{(\pi(g)v_0,u)}dg\right)=\int_{Z\setminus G}\pi(g)A(v_0')\overline{(\pi(g)v_0,u)}dg=u.
+$$
+</div>
+
+</div>
+
+<div class="section" data-name="Induced and Principal Series Representation">
+
+<div class="definition">
+Let $G$ be a profinite group and $H$ a closed subgroup. if $(\pi,V)$ is a smooth representation of $H$, then define $V^G$ the space of functions $f:G\to V$ such that tha following properties holds:
+<ol class="parenthesis">
+<li>$f(gh)=\pi(g)f(h)$ for any $h\in H$ and $g\in G$.</li>
+<li>There exists a compact subgroup $K$ of $G$ such that $f(gk)=f(g)$ for all $g\in G$ and $k\in K$.</li>
+</ol>
+We have a smooth representation $(\pi^G,V^G)$ where $\pi^G$ acts on $V^G$ right translation, called <em style="color: teal;">induced</em> representation of $\pi$. We write $\Ind_H^G(\pi)=(\pi^G,V^G)$.
+</div>
+
+<div class="proposition">
+Let $G$ be a profinite gorup, $H$ a closed subgroup, $(\pi,V)$ a smooth representation of $H$ and $(\sigma,W)$ a smooth representation of $G$. Then there is a natural isomorphism $\Hom_G(W,v^G)\cong\Hom_H(W_H,V)$.
+</div>
+
+<div class="definition">
+Let $F$ be a non-archimedean local field, $G=GL_2(F)$ and $H=B(F)$. If $\chi_1$ and $\chi_2$ are two quisi-characters of $F^\times$, then we define a quasi-character $\chi$ of $B(F)$ by
+\[
+\chi\begin{pmatrix}
+y_1&\ast\\
+0&y_2
+\end{pmatrix}=\chi_1(y_1)\chi_2(y_2),\quad y_1,y_2\in F^\times.
+\]
+Let $B(\chi_1,\chi_2)=\Ind_{B(F)}^{GL_2(F)}\left[\delta^{1/2}_{B(F)}\chi\right]$, called the <em style="color: teal;">principal series</em> representation.
+</div>
+
+<div class="proposition" data-label="SCEI">
+Let $F$ be a non-archimedean local field and $(\pi,V)$ a supercuspidal irreducible admissible representation of $GL_2(F)$. Then $(\pi,V)$ is not a subrepresentation of $B(\chi_1,\chi_2)$ for any quasi-characters $\chi_1$, $\chi_2$ of $F^\times$.
+</div>
+
+<div class="proof">
+Consider $L:B(\chi_1,\chi_2)\to\mathbf{C}$ defined by $f\mapsto f(e)$, which is not identically zero. If $(\pi,V)$ is a subrepresentation of $B(\chi_1,\chi_2)$, then for any $f\in N$, we have $(\rho(n)f-f)(e)=f(en)-f(e)=0$ for $n\in N$, so $L$ vanishes on $V_N$. However, $L$ can not be identically zero on $V$ because if $f\in V$ is non-zero, then there exists $g\in GL_2(F)$ such that $f(g)\neq 0$. Thus $L(\rho(g)f)=(\rho(g)f)(e)\neq 0$. Hence $V\neq V_N$ and $J(V)\neq 0$, that is, $(\pi,V)$ is non-supercuspidal.
+</div>
+
+<div class="proposition" data-name="Iwasawa decomposition" data-label="IWSW">
+Let $F$ be a non-archimedean local field and $G(F)=GL_n(F)$. Then $G(F)=B(F)K(F)$ with $B(F)/G(F)$ compact.
+</div>
+<div class="proof">
+
+</div>
+
+<div class="corollary" data-label="IWSWC">
+Let $F$ be a non-archimedean local field, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$. Then a function $f$ in $B(\chi_1,\chi_2)$ is determined by its action on $K(F)$.
+</div>
+
+<div class="proposition" data-label="FPIS">
+Let $F$ be a non-archimedean local field, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$ and $(\pi,V)=B(\chi_1,\chi_2)$. Then the map
+$$
+P:C_c^\infty(GL_2(F))\to V,\quad (P\phi)(g)=\int_{B(F)}\phi(b^{-1}g)(\delta^{1/2}\chi)(b)db,\quad\phi\in C_c^\infty(GL_2(F))
+$$
+is a surjection, where the integral is the left Haar integral on $B(F)$, and $\delta$ will always denote $\delta_{B(F)}$.
+</div>
+
+<div class="proof">
+Note that $P\phi\in V$ for $\phi\in C_c^\infty(GL_2(F))$ indeed since foy any $h\in H$ and $g\in G$,
+\begin{align}
+(P\phi)(hg)&=\int_{B(F)}\phi(b^{-1}hg)(\delta^{1/2}\chi)(b)db\\
+&=\int_{B(F)}\phi(b^{-1}g)(\delta^{1/2}\chi)(hb)db\\
+&=\delta^{1/2}\chi(h)\int_{B(F)}\phi(b^{-1}g)(\delta^{1/2}\chi)(b)db\\
+&=\delta^{1/2}\chi(h)(P\phi)(g).
+\end{align}
+If $f\in V$, we define for $g\in G$,
+\[
+\phi(g)=\begin{cases}
+f(g)&\text{if }g\in K(F);\\
+0&\text{if }g\notin K.
+\end{cases}
+\]
+We will show that $P\phi=\vol(K\cap B(F))f$. Indeed, by (<a href=#IWSWC></a>), it sufficient to show that $P\phi$ and $\vol(K\cap B(F))f$ agree on $K$. But for $k\in K$,
+\begin{align}
+(P\phi)(k)&=\int_{B(F)}\phi(b^{-1}k)(\delta^{1/2}\chi)(b)db\\
+&=\int_{K(F)\cap B(F)}\phi(b^{-1}k)(\delta^{1/2}\chi)(b)db\\
+&=\int_{K(F)\cap B(F)}f(b^{-1}k)(\delta^{1/2}\chi)(b)db\\
+&=\int_{K(F)\cap B(F)}(\delta^{1/2}\chi)(b^{-1})f(k)(\delta^{1/2}\chi)(b)db\\
+&=\vol({K(F)\cap B(F)})f(k).
+\end{align}
+</div>
+
+<div class="proposition" data-label="UOWFB">
+Let $F$ be a non-archimedean local field, $\psi$ a non-trivial additive character of $F$, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$ and $(\pi,V)=B(\chi_1,\chi_2)$. Then
+<ol class="parenthesis">
+<li>$\dim J(V)\leq 2$;</li>
+<li>$\dim J_\psi(V)\leq 1$.</li>
+</ol>
+In particular, the dimension of the space of Whittaker functionals on $B(\chi_1,\chi_2)$ is at most one.
+</div>
+<div class="proof">
+Let $(\pi,V)=B(\chi_1,\chi_2)$ and $\Lambda:V\to\mathbf{C}$ such that $\Lambda(\pi(n)v)=\tau(n)\Lambda(v)$ for all $n\in N(F)$ and $v\in V$, where $\tau$ is some additive character $\tau$ of $F$. Then we define a distribution $\Delta$ on $GL_2(F)$ by
+$$
+\Delta(\phi)=\Lambda(P\phi),\quad\phi\in C_c^\infty(GL_2(F)).
+$$
+If follows from direct computation that
+<div class="equation" data-label="UOWFB1">
+\lambda(b)\Delta=(\delta^{1/2}\chi)(b)\Delta,\quad b\in B(F)
+</div>
+and
+<div class="equation" data-label="UOWFB2">
+\rho(n)\Delta=\tau(n)^{-1}\Delta,\quad n\in N(F).
+</div>
+In view of the (<a href=#FPIS></a>), it is sufficient to show that the sapce of distributioin satisfying (<a href=#UOWFB1></a>) and (<a href=#UOWFB2></a>) is at most two dimensional if $\tau\equiv 1$, and one dimensional if $\tau=\psi$. If follows from () and (<a href=#ESOD></a>) that there is an exact sequence
+<div class="equation" data-label="UOWFB3">
+0\to D(B(F))\to D(GL_2(F))\to D(GL_2(F)-B(F))\to 0.
+</div>
+First we analyze the image of $\Delta$ in $D(GL_2(F)-B(F))$, which we show is uniquely determined up to constant multiple. Given $\Delta'\in D(GL_2(F)-B(F))$ satisfies (<a href=#UOWFB1></a>) and (<a href=#UOWFB2></a>), we will show that there exists a constant $c$ such that
+<div class="equation" data-label="UOWFB4">
+\Delta'(\phi)=c\int_{B(F)}\int_{N(F)}\phi(b\omega_0n^{-1})\tau(n)(\delta^{1/2}\chi^{-1}(b))dbdn,\quad\phi\in C_c^{\infty}(GL_2(F)-B(F)).
+</div>
+To see this, we note that the map
+$$
+B(F)\times N(F)\to GL_2(F)-B(F)=:P,\quad (b,n)\mapsto bwn^{-1}
+$$
+is a homemomrophism; we denote its ivnerse by $\tau$. Hence $B(F)\times N(F)$ induces the group structure on $P$ by
+$$
+b_1w_0n_1^{-1}\cdot b_2w_0n_1^{-1}=b_1b_2w_0(n_1n_2)^{-1}
+$$
+so that if $f$ is a smooth and compactly supported function on $P$, then
+\begin{align}
+\lambda_P(bw_0n^{-1})\cdot\Delta'(f)&=\Delta(\lambda_P(bw_0n^{-1})^{-1}f)\\
+&=\Delta'(\lambda_G(b)\rho_G(n)f)\\
+&=\lambda_G(b)^{-1}\rho_G(n)^{-1}\Delta'(f)\\
+&=(\delta^{1/2}\chi(b^{-1})\tau(n^{-1})\Delta'(f).
+\end{align}
+Hence (<a href=#UOWFB4></a>) follows from (<a href=#DIAI></a>). Next we show that a distribution $\Delta''$ in $D(B(F))$ satisfying (<a href=#UOWFB1></a>) and (<a href=#UOWFB2></a>) is at most one-dimensional if $\tau\equiv 1$, and zero if $\tau=\psi$ is non-trivial; but this follows immediately from (<a href=#DIAI></a>), which implies that if $\Delta''$ satisfies (<a href=#UOWFB1></a>), then there exists a constant $c$ such that
+$$
+\Delta''(\phi)=c\int_{B(F)}\phi(b)(\delta^{1/2}\chi^{-1})(b)db,\quad\phi\in C_c^\infty(B(F)),
+$$
+and if $\tau=\psi$ is non-trivial, then $\rho(n)\Delta''=\Delta''$ for $n\in N(F)$, which together with (<a href=#UOWFB2></a>) yields $c=0$.
+</div>
+
+<div class="corollary" data-label="DBL2">
+Let $F$ be a non-archimedean local field, $\psi$ a non-trivial additive character of $F$, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$. Then $B(\chi_1,\chi_2)$ has at most two component.
+</div>
+
+<div class="proof">
+Let $V=B(\chi_1,\chi_2)$. If $0=V_0\subsetneq V_1\subsetneq\cdots\subsetneq V_n=V$ is a composition series, then $V_i/V_{i-1}$ is irreducible for each $i$. If $J(V_i/V_{i-1})=0$ then $V_i/V_{i-1}$ is supercuspidal, so the canonical projection $V_i\to V_i/V_{i-1}$ induces an injection $V_i/V_{i-1}\hookrightarrow V_i$ by (<a href=#SCPI></a>). Hence $V_i/V_{i-1}$ is a subrepresentation of $B(\chi_1,\chi_2)$, which is impossible by (<a href=#SCEI></a>). Hence $J(V_i/V_{i-1})=V_i/V_{i-1}$, and so $0=J(V_0)\subsetneq J(V_1)\subsetneq\cdots\subsetneq J(V_n)=J(V)$. However, we have seem that the length of the composition series of $J(V)$ is less than two by (<a href=#UOWFB></a>), so the length of the composition series of $V$ is less than two.
+</div>
+
+<div class="proposition">
+Let $F$ be a non-archimedean local field, $\psi$ an additive character of $F$, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$. Then $\widehat{B(\chi_1,\chi_2)}$ is isomorphic to $B(\chi_1^{-1},\chi_2^{-1})$.
+</div>
+
+<div class="proof">
+Let us denote $(\pi,V)=B(\chi_1,\chi_2)$ and $(\pi,V)=B(\chi_1^{-1},\chi_2^{-1})$. We note that if $f\in V$ then $ff'$ satisfies () with $P=B(F)$. Thus by (), if we define a pairing $\langle-,-\rangle$ on $V\times V'$ by
+$$
+\langle f,f'\rangle=\int_{K(F)}f(k)f'(k)dk,\quad(f,f')\in V\times V'
+$$
+then $\langle\pi(g)f,\pi'(g)f'\rangle=\langle f,f'\rangle$ when $g\in GL_2(F)$. Moreover, the linear functional $V\to\mathbf{C}$, $f\mapsto\langle f,-\rangle$ is smooth since there exists a compact open subgroup $U$ of $G$ such that $\pi(g)f=f$ for all $g\in U$, so for any $g\in U\cap K(F)$, $\langle f,\pi(g)f'\rangle=\langle\pi(g^{-1}f,f'\rangle=\langle f,f'\rangle$. Hence $f\mapsto\langle f,-\rangle$ is an intertwining operator $B(\chi_1^{-1},\chi_2^{-1})\to\widehat{B(\chi_1,\chi_2)}$, which is in fact an injection since if $\langle f,-\rangle\equiv 0$ for some $f\in B(\chi_1^{-1},\chi_2^{-1}$), then we can choose $f'=P(1_{K(F)}\overline{f})$, which lies in $B(\chi_1,\chi_2)$ by (<a href=#FPIS></a>) so that
+\begin{align}
+\langle f,f'\rangle&=\int_{K(F)}f(k)\int_{B(F)}\overline{f(b^{-1}k)}(\delta^{1/2}\chi)(b)dbdk\\
+&=\int_{K(F)}f(k)\int_{K(F)\cap B(F)}\overline{f(b^{-1}k)}(\delta^{1/2}\chi)(b)dbdk\\
+&=\int_{K(F)}f(k)\int_{K(F)\cap B(F)}\overline{\delta^{1/2}(b^{-1})\chi(b)f(k)}(\delta^{1/2}\chi)(b)dbdk\\
+&=\int_{K(F)}f(k)\int_{K(F)\cap B(F)}\overline{(\delta^{1/2}\chi)(b)f(k)}(\delta^{1/2}\chi)(b)dbdk\\
+&=\vol(K(F)\cap B(F))\int_{K(F)}f(k)\overline{f}(k)dk.
+\end{align}
+Hence $f\equiv 0$ by () and the intertwining operator $f\mapsto\langle f,-\rangle$ is injective. We must show it is also a surjection. By symmetry, we also have an injection $B(\chi_1,\chi_2)\to\widehat{B(\chi_1^{-1},\chi_2^{-1})}$ and so a surjection $\widehat{\widehat{B(\chi_1^{-1},\chi_2^{-1})}}\to\widehat{B(\chi_1,\chi_2)}$. Since $\widehat{\widehat{B(\chi_1^{-1},\chi_2^{-1})}}\cong B(\chi_1^{-1},\chi_2^{-1})$ naturally by (<a href=#DBDI></a>), the result follows.
+</div>
+
+<div class="lemma" data-label="PSRL">
+Let $F$ be a non-archimedean local field, $\psi$ an additive character of $F$, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$.
+<ol class="parenthesis">
+<li>If $B(\chi_1,\chi_2)$ admits a one-dimensional invariant subspace, then $(\chi_1\chi_2^{-1})(y)=\abs{y}^{-1}$ for all $y\in F$.</li>
+<li>If $B(\chi_1,\chi_2)$ admits a one-dimensional quotient representation, then $(\chi_1\chi_2^{-1})(y)=\abs{y}$ for all $y\in F$.</li>
+</ol>
+</div>
+
+<div class="proof">
+We first prove (i). Suppose that $B(\chi_1,\chi_2)=(\pi,V)$ and that $f\in V$ spans a one-dimensional invariant subspace. Then there eixsts a quasi-charater $\chi':GL_2(F)\to\mathbf{C}$ such that $\pi(g)f=\chi'(g)f$. Evidently, $\chi'$ is trivial on the commutator subgroup of $GL_2(F)$, which is $SL_2(F)$, so $\chi'$ factors through the determinant map by (), and thus we may write $\pi(g)f=\chi''(\det(g))f$ for some quasi-character $\chi''$ of $F^\times$. Combining this with the definition of $V$, we see that
+$$
+f(bg)=(\delta^{1/2}\chi)(b)\chi''(\det(g))f(1),\quad b\in B(F),\,g\in GL_2(F),
+$$
+where $\chi=\chi_1\chi_2$. Because $f\neq 0$, this shows that $f(1)\neq 0$. Now taking
+\[
+b=g^{-1}=\begin{pmatrix}
+y&0\\
+0&y^{-1}
+\end{pmatrix},
+\]
+we have $(\delta^{1/2}\chi)(b)=1$, which implies (i). To prove (ii), we note that if $V$ has a one-dimensional irreducible quoteint, then the contragredient $\widehat{V}$ has a one-dimensional irreducible subrepresentation by (), so (ii) follwos from (i).
+</div>
+
+<div class="theorem" data-label="PSRC">
+Let $F$ be a non-archimedean local field, $\psi$ an additive character of $F$, $\chi_1$, $\chi_2$ two quasi-characters of $F^\times$. Then $B(\chi_1,\chi_2)$ is irreducible except in the following two cases:
+<ol class="parenthesis">
+<li>If $(\chi_1\chi_2^{-1})(y)=\abs{y}^{-1}$ for all $y\in F$, then $B(\chi_1,\chi_2)$ has a one-dimensional invariant subspace and the quotient representation is irreducible.</li>
+<li>If $(\chi_1\chi_2)^{-1}(y)=\abs{y}$, then $B(\chi_1,\chi_2)$ ha an irreducible invariant subspace of codimension one.</li>
+</ol>
+</div>
+
+<div class="proof">
+Let $(\pi,V)=B(\chi_1,\chi_2)$. Suppose that $0\subsetneq V'\subsetneq V$ is a non-trivial invariant subspace, and let $V''=V/V'$. Let $\pi'$ and $\pi''$ be the representations of $GL_2(F)$ on $V'$ and $V''$ respecitvely. Since the twisted jacuqet functor is exact by (), we have an exact sequence
+$$
+0\to J_\psi(V')\to J_\psi(V)\to J_\psi(V'')\to 0.
+$$
+By (<a href=#></a>), $J_\psi(V)$ is at most one dimensional by, so one of $J_\psi(V')$ of $J_\psi(V'')$ is zero. First suppose that $J_\psi(V')=0$. Then by (), $\pi'$ factos through $\det:GL_2(F)\to F^\times$. Because $V'$ is admissible, it has an invariant one-dimensional subspace by (<a href=#ARFK></a>), and so by (<a href=#PSRL></a>) we have $(\chi_1\chi_2^{-1})(y)=\abs{y}^{-1}$. In this situation, we are in case (i) of the theorem. Since $B(\chi_1,\chi_2)$ has at most two component by (<a href=#DBL2></a>), the quotient representation is irreducible. The other case where $J_\psi(V'')=0$ we may treat by dualizing: By (<a href=#CGRI></a>), the contragredient module $\hat{V}$ is isomorphic to $B(\chi_1^{-1},\chi_2^{-1})$, and we have a short exact sequence
+$$
+0\to\hat{V}''\to\hat{V}\to\hat{V}'\to 0,
+$$
+where now the representation $\pi''$ on $\hat{V}''$ factors through the determinant map $GL_2(F)$ because $\pi''$ does, and so we are in case (i) of the theorem, which is alreasy discussed. Therefore $(\chi_1^{-1}\chi_2)(y)=\abs{y}^{-1}$, and $V$ has an irreducible invariant subspace of codimension one.
+</div>
+
+<div class="theorem" data-label="CM12">
+Let $F$ be a non-archimedean local field, $\psi$ an additive character of $F$, $\chi_1$, $\chi_2$, $\mu_1$, $\mu_2$ two quasi-characters of $F^\times$ such that there exists a non-zero intertwining operator $B(\chi_1,\chi_2)\to B(\mu_1,\mu_2)$. Then either $(\chi_1,\chi_2)=(\mu_1,\mu_2$, or $(\chi_1,\chi_2)=(\mu_2,\mu_1)$.
+</div>
+
+<div class="proof">
+Denote $(\pi,V)=B(\chi_1,\chi_2)$, $\chi=\chi_1\otimes\chi_2$ and $\mu=\chi_1\otimes\mu_2$. By (), there exists a non-zero $B(F)$-intertwining operator $\Lambda:V\to\mathbf{C}$ where $\mathbf{C}$ is given a $B(F)$-module structure by means of the quasi-character $\delta^{1/2}\mu$ of $B(F)$. Thus $\Lambda(\pi(b)v)=(\delta^{1/2}\mu)(b)\Lambda(v)$, $v\in V$, $b\in B(F)$. Let $P:C_c^\infty(GL_2(F))\to V$ be as in (). We define a distributioin $\Delta$ on $GL_2(F)$ by $\Delta(\phi)=\Lambda(P(\phi))$. Because $P$ is surjective by (), $\Delta$ is non-zero. We have
+<div class="equation" data-label="CM12A">
+lambda(b)\Delta=(\delta^{-1/2}\chi)(b)\Delta,\quad b\in B(F),
+</div>
+<div class="equation" data-label="CM12B">
+\rho(b)\Delta=(\delta^{-1/2}\mu^{-1})(b)\Delta,\quad b\in B(F).
+</div>
+Now make use of the short exact sequence (), we see that there exists a non-zero distribution in either $D(B(F))$ or $D(GL_2(F)-B(F))$ satisfying both () and (). First suppose that there exists a non-zero distribution $\Delta\in D(GL_2(F)-B(F))$ that satisfies () and (). We note that () implies that for $n\in N(F)$, we have $\rho(n)\Delta=\Delta$. Thus, analogous to (), we have (after adjouting $\Delta$ by multiplying a non-zero constant)
+$$
+\Delta(\phi)=\int_{B(F)}\int_{N(F)}\phi(bw_0n^{-1})(\delta^{1/2}\chi^{-1})(b)dbdn.
+$$
+Now let $t\in T(F)$ and apply () with $b=t$. We see that
+\begin{align}
+(\delta^{-1/2}\mu^{-1}(t)\Delta(\phi)&=(\rho(t)\Delta)(\phi)\\
+&=\int_{N(F)}\int_{B(F)}\phi(bw_0n^{-1}t^{-1})(\delta^{1/2}\chi^{-1})(b)dbdn\\
+&=\int_{N(F)}\int_{B(F)}\phi(bw_0t^{-1}n^{-1})(\delta^{1/2}\chi^{-1})(b)dbdn\\
+\end{align}
 </div>
 
 </div>
 </div>
-</div>
-<!-- Write above -->
-</div>
+</div> <!--endofpart-->
+
+</div> <!-- \end{document} -->
 </body>
 </html>

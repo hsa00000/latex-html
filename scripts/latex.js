@@ -10,7 +10,8 @@ var label = {};
 
 $(document).ready(function() {
     $("body").append("<div id=\"hackmd-content\"></div>");
-
+    $("#doc").append("<div id=\"bottomspace\"></div>");
+    document.getElementById("bottomspace").setAttribute("style","height:"+document.documentElement.clientHeight+"px;");
     $("#hackmd-content").load("ajax/hackmd_content.html document > *", function() {
         $("#hackmd-content").children().each(function(){
             $(this).appendTo("body");
@@ -18,6 +19,10 @@ $(document).ready(function() {
         $("#hackmd-content").remove();
         document.getElementById("tocbr").innerHTML = generateTOC();
         document.getElementById("tocr").innerHTML = generateTOC();
+        try {
+            MathJax.typesetPromise();
+        } catch (e) {} finally {
+        }
         $.getScript("ajax/hackmd_content.js");
     });
 
@@ -113,6 +118,22 @@ $(document).ready(function() {
         $(this).parent(".collapse").collapse("show");
     });
 });
+
+function firstshow() {
+    var contentidlist = [];
+    $("#anchor").parents().each(function(){
+        if ($(this).attr("id") && $(this).attr("id").split("-")[0] == "content") {
+            contentidlist.push("#" + $(this).attr("id"));
+        }
+    });
+    $(contentidlist[contentidlist.length-1]).on('shown.bs.collapse', function () {
+        //const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        const vh = document.documentElement.clientHeight;
+        document.getElementById("anchor").scrollIntoView();
+        window.scrollBy(0, -0.5*vh);
+    });
+    return contentidlist[0];
+}
 
 function generateTOC(attr = "") {
     var toc_html = []

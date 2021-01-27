@@ -1,7 +1,6 @@
 .markdown-body {
     font-size: 16px;
     line-height: 1.5;
-    word-wrap: break-word
 }
 
 .markdown-body:after,
@@ -333,8 +332,6 @@
 
 body {
     -webkit-font-smoothing: subpixel-antialiased!important;
-    -moz-osx-font-smoothing: auto!important;
     text-shadow: 0 0 1em transparent, 1px 1px 1.2px rgba(0, 0, 0, .004);
-    -webkit-overflow-scrolling: touch;
     letter-spacing: .025em;
 }
