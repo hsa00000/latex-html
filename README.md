@@ -13,3 +13,33 @@ An HTML-based latex-like editor; all formulas are rendered by MathJax.
 * Counters for theorem and equation are dependent.
 5. Cross references are supported: `label`, `ref`.
 * Apply for theorem environments, equation environment.
+6. Contents are supported.
+## Example
+```
+<div class="part" data-name="Part">
+
+<div class="chapter" data-name="Chapter">
+
+<div class="section" data-name="Section">
+
+In this section we will prove (<a href=#>PT</a>):
+
+<div class="theorem" data-name="Pythagorean" data-label="PT">
+For a right triangle, if $c$ denotes the length of the hypotenuse and
+$a$ and $b$ denote the lengths of the other two sides, we have
+
+<div class="equation" data-label="PTE">
+a^2 + b^2 = c^2
+</div>
+
+</div>
+
+<div class="proof">
+(<a href=#>PTE</a>) is trivial.
+</div>
+
+
+</div>
+</div>
+</div>
+```
